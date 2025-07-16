@@ -1,0 +1,222 @@
+<app-client-header></app-client-header>
+
+<main class="comon_main internal_pages_prnt">
+	<div class="cmn-pading-top">
+		<section class="client_post_job vsblty_talntpref">
+			<div class="wrap-client">
+				<div class="d-flex">
+					<aside class="client-sidebar">
+						<ul class="list_optns">
+							<li routerLink="/getting-started"><span>Getting Started</span></li>
+							<li routerLink="/post-title"><span>Job Info</span></li>
+							<li routerLink="/visibility-talent-preferences"><span>Contract Preferences</span></li>
+							<li class="" routerLink="/talent-preferences">
+								<span>Talents Preferences</span>
+								<ul class="sub-bar" >
+									<li *ngFor="let item of totalTalents;let index = index;" routerLink="/talent-preferences"> Talent {{index + 1}}</li>
+								</ul>
+							</li>
+						</ul>
+					</aside>
+					<div class="main-cntnt geting-strt">
+						<h5>Post a Job</h5>
+						<div class="prgrs-bar">
+							<span class="prg-perc">100% Completed</span>
+							<mat-progress-bar mode="determinate" value="100"></mat-progress-bar>
+						</div>
+						<!-- <h6>Review Post</h6> -->
+						<div class="inside-wrapr card talent-pref">
+	                        <div class="main-tabs">
+	                            <mat-tab-group animationDuration="0ms">
+	                                <mat-tab label="Project Info">
+	                                	<div class="inside-tab">
+	                                		<div class="rev-post job-title">
+		                                		<h6>Job Title - {{ jobDetail ? jobDetail.title : '-' }}</h6>
+		                                		<p>{{ jobDetail ? jobDetail.description : '-' }}</p>
+											</div>
+											<div class="rev-post">
+												<span>Visibility</span>
+												<p>{{ jobDetail ? jobDetail.visibility : '-'}}</p>
+											</div>
+											<div class="rev-post">
+												<span>Project Start Date</span>
+												<p>{{ jobDetail ? jobDetail.job_start_date : '-'}}</p>
+											</div>
+											<div class="rev-post">
+												<span>How long do you expect this project to last?</span>
+												<p>3 to 8 months</p>
+											</div>
+											<div class="rev-post">
+												<span>Contract Type</span>
+												<p>{{
+
+													 jobDetail ? jobDetail.pay_type : '-'
+
+												}}</p>
+											</div>
+											<div class="rev-post">
+												<span>Project Files</span>
+												<ul class="d-flex" *ngIf="jobDetail && jobDetail.project_files">
+													<li class="prjct-files d-flex" *ngFor="let file of jobDetail.project_files">
+														<img src="assets/imgs/fileicon/{{ file.type.split('/')[1]}}.png" class="img-fluid">
+														<div>
+															<p class="mb-0">{{ file.name }}</p>
+															<span>25 MB</span>
+														</div>
+													</li>
+												</ul>
+											</div>
+											<div class="rev-post">
+												<span>Added Co-workers</span>
+												<ul class="co-wrkrs" *ngIf="jobDetail" >
+													<li *ngFor="let item of jobDetail.co_workers">
+														<p class="mb-0">{{ item.email }}</p>
+														<span>{{ item.description }}</span>
+													</li>
+												</ul>
+											</div>
+										</div>
+	                                </mat-tab>
+	                                <mat-tab label="Talent Info">
+	                                    <div class="form-group cstm-accordian">
+				                            <mat-accordion *ngIf="jobDetail">
+
+				                                <mat-expansion-panel *ngFor="let item of jobDetail.job_talents" (opened)="panelOpenState = true"
+				                                                     (closed)="panelOpenState = false">
+				                                  <mat-expansion-panel-header>
+				                                    <mat-panel-title>
+				                                        {{ item.talent_position.position }}
+				                                    </mat-panel-title>
+
+				                                  </mat-expansion-panel-header>
+				                                  <div>
+					                                  <span class="clr-1">Skills Required</span>
+					                                  <div class="skillss d-flex">
+					                                    <div *ngFor="let sk of item.skills">
+					                                        {{ sk.skill }}
+					                                    </div>
+														 <div *ngFor="let sk of item.tool_skills">
+					                                        {{ sk.skill }}
+					                                    </div>
+														
+					                                  </div>
+					                              </div>
+					                              <div>
+					                                  <span class="clr-1">Speciality</span>
+					                                  <div class="skillss d-flex">
+					                                    <div *ngFor="let sp of item.specialities">
+															{{ sp.name }}
+					                                    </div>
+					                                  </div>
+					                              </div>
+					                              <div>
+					                                  <span class="clr-1">Services</span>
+					                                  <div class="skillss d-flex">
+					                                    <div *ngFor="let trad of item.traditional_service">
+					                                        {{ trad.name }}
+					                                    </div>
+					                                    <div *ngFor="let digi of item.digital_service">
+					                                        {{ digi.name }}
+					                                    </div>
+					                                  </div>
+					                              </div>
+				                                  <div class="table">
+				                                    <table class="table table-55">
+				                                        <tr>
+				                                            <td class="text-left"><span class="clr-1">Location</span></td>
+				                                            <td class="text-right"><span class="clr-3">{{ item.talent_location }}</span></td>
+				                                        </tr>
+				                                        <tr>
+				                                            <td class="text-left"><span class="clr-1">Job Success Score</span></td>
+				                                            <td class="text-right"><span class="clr-3">{{ item.job_success_score }}% & up</span></td>
+				                                        </tr>
+				                                        <tr>
+				                                            <td class="text-left"><span class="clr-1">English Level</span></td>
+				                                            <td class="text-right"><span class="clr-3">{{ item.english_level.value }}</span></td>
+				                                        </tr>
+				                                        <tr>
+				                                            <td class="text-left"><span class="clr-1">Amount Earned</span></td>
+				                                            <td class="text-right" ><span class="clr-3">{{ item.amount_earned }} + Earned</span></td>
+
+				                                        </tr>
+				                                        <tr>
+				                                            <td class="text-left"><span class="clr-1" >Project Start Date</span></td>
+				                                            <td class="text-right"><span class="clr-3">{{ item.timeline_start_date }}</span></td>
+				                                        </tr>
+				                                        <tr>
+				                                            <td class="text-left"><span class="clr-1">How would you like to pay your talent?</span></td>
+				                                            <td class="text-right"><span class="clr-3">{{ item.talent_pay_type }}</span></td>
+				                                        </tr>
+				                                        <tr>
+				                                            <td class="text-left"><span class="clr-1">Set your own hourly rate</span></td>
+				                                            <td class="text-right"><span class="clr-3">${{ item.from_hour +"-" + item.to_hour }}</span></td>
+				                                        </tr>
+				                                        <tr>
+				                                            <td class="text-left"><span class="clr-1">How long do you expect this project to last?</span></td>
+				                                            <td class="text-right"><span class="clr-3">3 to 6 months</span></td>
+				                                        </tr>
+				                                        <tr>
+				                                            <td class="text-left"><span class="clr-1">Do you have a time requirement for this project?</span></td>
+				                                            <td class="text-right"><span class="clr-3">15 hours a week</span></td>
+				                                        </tr>
+				                                    </table>
+				                                  </div>
+				                                </mat-expansion-panel>
+				                              </mat-accordion>
+				                        </div>
+	                                </mat-tab>
+	                            </mat-tab-group>
+	                        </div>
+	    				</div>
+						<div class="submit-btn btn-width d-flex justify-content-between mt-3">
+							<a (click)="saveJob('discard')" class="btn btn_theme_black my-2 my-sm-0">Discard</a>
+							<div>
+								<a class="btn btn_theme_blue my-2 mr-2 my-sm-0" (click)="saveJob('publish')">Publish the Job</a>
+								<a class="btn btn_theme_blue my-2 my-sm-0" (click)="saveJob('draft')">Save Draft</a>
+							</div>
+						</div>
+						<div class="inside-footer">
+							<app-footer></app-footer>
+						</div>
+					</div>
+					<app-right-sidebar></app-right-sidebar>
+				</div>
+			</div>
+		</section>
+	</div>
+</main>
+
+
+<!-- add service modal -->
+<div class="modal fade add-service" id="addService" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Add Service</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="form-group">
+                        <label>Category</label>
+                         <ngx-select-dropdown></ngx-select-dropdown>
+                    </div>
+                </div>
+                <div class="col-sm-9">
+                    <div class="form-group">
+                        <label>Service Name</label>
+                        <input type="text" class="form-control" placeholder="e.g. Evaluate Baseline">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn_modal_black" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn_modal_blue">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>

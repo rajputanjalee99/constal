@@ -1,0 +1,982 @@
+<app-talent-header></app-talent-header>
+<main class="comon_main internal_pages_prnt">
+	<div class="cmn-pading-top view-tlnt-prf">
+		<section class="client-search-talent">
+			<!-- <div class="container"> -->
+				<br>
+				<mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+	            <div class="list-data mg-00">
+				
+	                <div class="block-fl prfile-resp d-flex">
+	                    <div class="img-wrap-3">
+	                        <img *ngIf="profile && profile.image" class="" src="{{ profile.image }}">
+	                        <img *ngIf="!profile || !profile.image" class="img-fluid" src="assets/imgs/dummy.jpeg">
+	                    </div>
+	                    <div class="data-info flex-grow-1">
+	                        <div class="hdr-1 d-flex justify-content-between">
+	                            <div class="data-55 d-flex align-items-center">
+	                                <span class="u-name mr-3">{{ profile && profile.first_name + " " + profile.last_name }}</span>
+	                                <!-- <span class="top-rated">
+	                                   <img src="assets/imgs/star-line.png"> &nbsp;Top Rated
+	                                </span> -->
+	                                <div class="text-right"  *ngIf="verified">
+			                            <img style="width:30px" src="assets/imgs/badgeverified.png"> 
+			                        </div>
+	                            </div>
+	                            <div class="invite-job d-flex">
+	                                <!-- <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 529 529"><defs><style>.cls-1{fill:none;stroke:#7c9cbf;stroke-width:18px;}.cls-2{fill:#7c9cbf;}</style></defs><title>hrt55</title><circle class="cls-1" cx="264.5" cy="264.5" r="255.5"/><path class="cls-2" d="M370.39,182.68A61,61,0,0,0,324,161.77c-25.39,0-41.46,15.16-50.47,27.88a92.46,92.46,0,0,0-6,9.72,92.46,92.46,0,0,0-6-9.72c-9-12.72-25.08-27.88-50.47-27.88a61,61,0,0,0-46.42,20.91C153.27,195.54,147,212.77,147,231.19c0,20,7.83,38.69,24.63,58.68,15,17.86,36.63,36.28,61.65,57.6,9.33,7.94,19,16.16,29.23,25.14l.31.27a7.05,7.05,0,0,0,9.3,0l.31-.27c10.26-9,19.9-17.2,29.23-25.14,25-21.32,46.63-39.74,61.65-57.6,16.8-20,24.63-38.64,24.63-58.68C388,212.77,381.73,195.54,370.39,182.68Zm-77.86,154c-8,6.85-16.31,13.9-25,21.48-8.72-7.58-17-14.63-25-21.48-49-41.73-81.32-69.3-81.32-105.53,0-15,5-28.9,14-39.18A47.13,47.13,0,0,1,211,175.88c19.35,0,31.87,11.93,38.95,21.93a83.61,83.61,0,0,1,10.81,21.49,7.06,7.06,0,0,0,13.42,0A83.61,83.61,0,0,1,285,197.81c7.08-10,19.6-21.93,39-21.93A47.13,47.13,0,0,1,359.8,192c9.06,10.28,14.05,24.2,14.05,39.18C373.85,267.42,341.5,295,292.53,336.72Z" transform="translate(-3 -3.7)"/></svg> -->
+	                                <!-- <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 529 529"><defs><style>.cls-1{fill:none;stroke:#7c9cbf;stroke-width:18px;}.cls-2{fill:#7c9cbf;}</style></defs><title>chat-new</title><circle class="cls-1" cx="264.5" cy="264.5" r="255.5"/><path class="cls-2" d="M268,160c-.06.05-.17.05-.35.05A105.43,105.43,0,0,0,185,331.2l-15.37,35.7a5.73,5.73,0,0,0,3,7.55,5.88,5.88,0,0,0,3.28.4l56.37-9.9a101.76,101.76,0,0,0,35.13,6.1A105.51,105.51,0,0,0,268,160Zm-.58,199.56a92.31,92.31,0,0,1-32.53-5.93,5.57,5.57,0,0,0-3-.29l-47.44,8.29,12.55-29.19a5.79,5.79,0,0,0-.92-6,91.88,91.88,0,0,1-16-26.61,94,94,0,1,1,181.54-34.77v.34A94.26,94.26,0,0,1,267.41,359.59Z" transform="translate(-3 -2.97)"/><path class="cls-2" d="M262.92,244.49H231.83a5.76,5.76,0,0,0,0,11.52h31.09a5.76,5.76,0,1,0,0-11.52Z" transform="translate(-3 -2.97)"/><path class="cls-2" d="M303.23,273.28h-71.4a5.76,5.76,0,0,0,0,11.52h71.4a5.76,5.76,0,0,0,0-11.52Z" transform="translate(-3 -2.97)"/></svg> -->
+	                                <!-- <img src="assets/imgs/hrt.png">
+	                                <img src="assets/imgs/msg.png">
+	                                -->
+	                                <span class="invite-btn" *ngIf="inviteForJob">
+	                                    <a  routerLink="/invite-for-interview">Invite for a Job</a>
+	                                </span>
+	                            </div>
+	                        </div>
+	                        <div class="address">
+	                        	
+							<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+								 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve"><g><g><path d="M256,0C161.896,0,85.333,76.563,85.333,170.667c0,28.25,7.063,56.26,20.49,81.104L246.667,506.5
+										c1.875,3.396,5.448,5.5,9.333,5.5s7.458-2.104,9.333-5.5l140.896-254.813c13.375-24.76,20.438-52.771,20.438-81.021
+										C426.667,76.563,350.104,0,256,0z M256,256c-47.052,0-85.333-38.281-85.333-85.333c0-47.052,38.281-85.333,85.333-85.333
+										s85.333,38.281,85.333,85.333C341.333,217.719,303.052,256,256,256z"/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
+								</svg> {{profile && profile.state ? profile.state.name+', ':''}} {{profile && profile.country.name}} {{ profile && profile.talent_timezone ? profile.talent_timezone.text : ''}} – {{ date | date:'HH:mm:ss' }}
+	                        </div>
+	                        <div class="stts">
+	                            <img src="assets/imgs/online.png"> Online
+	                        </div>
+	                        <div class="desig" *ngIf="profile && profile.talent_experience && profile.talent_experience.work_record">
+	                            <!-- Delay Analyst, Planner -->
+								{{ getTitleFromExp(profile.talent_experience.work_record) }}
+	                        </div>
+	                        <div class="d-flex opt-data">
+	                            <div *ngIf="profile && profile.admin_profile_status == 'accepted' && profile.talent_preference && profile.talent_preference.hourly_from">
+	                                <span >
+	                                    Rate/Hour
+	                                </span>
+	                                <span>
+	                                    ${{ profile.talent_preference.hourly_from }}/hrs
+	                                </span>
+	                            </div>
+	                            <!-- <div>
+	                                <span>
+	                                    Total Earnings
+	                                </span>
+	                                <span>
+	                                    $10K +
+	                                </span>
+	                            </div> -->
+	                            <div >
+	                                <span *ngIf="profile && profile.admin_profile_status == 'accepted' && profile.talent_experience && profile.talent_experience.level_of_talent " >
+	                                    Experience
+	                                </span>
+	                                <span *ngIf="profile && profile.admin_profile_status == 'accepted' && profile.talent_experience && profile.talent_experience.level_of_talent ">
+	                                    {{ profile.talent_experience.level_of_talent == "entry_level" ? "Entry Level" : profile.talent_experience.level_of_talent == "intermediate" ? "Intermediate" : profile.talent_experience.level_of_talent == "expert" ? "expert" : "" }} 
+	                                </span>
+	                            </div>
+	                            <!-- <div class="flex-grow-1"> 
+	                                <div class="pull-left loader-wrap">
+	                                    <div class="loader-per ">
+	                                   
+	                                    </div>
+	                                    <span class="loader-val">77%</span>
+	                                </div>
+	                               
+	                                 <span class="pull-left">
+	                                    Job Success
+	                                </span>
+	                            </div> -->
+	                        </div>
+	                        <div>
+	                        	<br>
+	                        </div>
+	                        <div class="d-flex opt-data" *ngIf="profile && profile.admin_profile_status == 'accepted' && profile.talent_preference && profile.talent_preference.salary_from">
+	                            <div>
+	                                <span>
+	                                    Salary
+	                                </span>
+	                                <span>
+	                                    ${{ profile.talent_preference.salary_from }} Monthly
+	                                </span>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+					
+	            </div>
+				<div class="list-data pd-top-0 tab-data">
+					<mat-tab-group>
+						  <mat-tab label="Overview" dynamicHeight>
+	                        <ng-template matTabContent>
+	                            <div class="tab-cont view-tabss">
+	                            	<div class="row">
+	                            		
+	                            	
+	                                <div class="col-sm-4 width-fl">
+	                                    <div class="hdrs" *ngIf="profile && profile.video_introduction" > 
+	                                        <img class="" src="assets/imgs/play-0.png">
+	                                        &nbsp; Introductory Video
+	                                    </div>
+	                                    <div class="video-box" *ngIf="profile && profile.video_introduction" id="{{ profile.video_introduction }}"> 
+	                                        <!-- <iframe  src="https://www.youtube.com/embed/0GUxnRvqaNE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+	                                        <!-- <iframe width="560" height="315" [src]="videoUrl" frameborder="0" allowfullscreen></iframe> -->
+											<plyr  width="560" height="315" style="display: block;" plyrTitle="Video 1" [plyrPlaysInline]="true" [plyrSources]="profile.intro" (plyrInit)="player = $event" (plyrPlay)="played($event)"></plyr>
+      
+										</div>
+										<br>
+										<div *ngIf="profile && profile.talent_accomplishment && profile.talent_accomplishment.awards && profile.talent_accomplishment.awards.length"> 
+											<div class="hdrs">
+												<img class="" src="assets/imgs/batch.png">
+												&nbsp; Honor & Awards
+											</div>
+										</div>
+										<div class="ul-wrap" *ngIf="profile && profile.talent_accomplishment && profile.talent_accomplishment.awards && profile.talent_accomplishment.awards.length">
+											<!-- <ul *ngIf="profile && profile.talent_accomplishment && profile.talent_accomplishment.awards">
+												<li *ngFor="let item of profile.talent_accomplishment.awards">{{ item.title }} 
+													<div>Issue Date: {{ item.start_month+","  }} {{ item.start_year }}</div>
+												</li>
+											</ul> -->
+											<ul>
+												<li *ngFor="let item of profile.talent_accomplishment.awards">
+													<p *ngIf="item.title"><strong>Title: </strong>{{ item.title }}</p>
+													<p *ngIf="item.issuer"><strong>Issuer: </strong>{{ item.issuer }}</p>
+													<!-- <p *ngIf="item."><strong>Issued on: </strong>--</p> -->
+													<p *ngIf="item.start_month || item.start_year"><strong>Issued on:</strong> {{ item.start_month ? yearMonthName(item.start_month)+",":'' }} {{ item.start_year }}</p>
+													<p *ngIf="item.associated_with"><strong>Associated with: </strong>{{ item.associated_with }}</p>
+													<div class="doc-wrpr d-flex flex-wrap" *ngIf="item.media">
+														<div class="doc-img" *ngFor="let doc of item.media">
+															<a href="{{ doc.name ? doc.url  : ''  }}" download="" target="_blank"><mat-icon  class="mat-icon notranslate material-icons mat-icon-no-color" role="img" aria-hidden="true">get_app</mat-icon></a>
+															<img src="assets/imgs/fileicon/{{ doc.url ? doc.url.split('.').pop() : doc.name.split('.').pop()  }}.png" class="img-fluid">
+														</div>
+													</div>
+												</li>
+											</ul>
+										</div>
+	                                  <div class="hdrs" *ngIf="profile && profile.admin_profile_status == 'accepted' && profile.talent_qualification && profile.talent_qualification.education && profile.talent_qualification.education.length ">
+	                                      <img class="" src="assets/imgs/edu.png">
+	                                      &nbsp; Qualification
+	                                  </div>
+	                                  <div class="ul-wrap" *ngIf="profile && profile.admin_profile_status == 'accepted' && profile.talent_qualification && profile.talent_qualification.education && profile.talent_qualification.education.length ">
+	                                      <ul>
+	                                          <li *ngFor="let item of profile.talent_qualification.education">{{item.degree }}, {{item.field_of_study}}, {{ item.school_name }}
+	                                          </li>
+	                                      </ul>
+	                                  </div>
+										<div *ngIf="profile && profile.talent_qualification && profile.talent_qualification.licenses && profile.talent_qualification.licenses.length">
+											<div class="hdrs">
+												<img class="" src="assets/imgs/batch.png">
+												&nbsp; Certification & Licenses
+											</div>
+											<div class="ul-wrap">
+												<ul>
+													<li *ngFor="let item of profile.talent_qualification.licenses">
+														<p *ngIf="item.certificate_name"><strong>Certificate Name: </strong>{{ item.certificate_name }}</p>
+														<p *ngIf="item.certification_authority"><strong>Certification Authority: </strong>{{ item.certification_authority }}</p>
+														<p *ngIf="item.certification_url"><strong>Certification URL: </strong><a href="{{ item.certification_url }}">{{ item.certification_url }}</a></p>
+														<p *ngIf="item.license_no"><strong>License Number: </strong>{{ item.license_no }}</p>
+														<p *ngIf="item.start_month"><strong>Issue Date: </strong>{{ yearMonthName(item.start_month) }} {{ item.start_year }}</p>
+														
+														<div class="doc-wrpr flex-wrap d-flex ml-4">
+															<div class="doc-img" *ngFor="let doc of item.documents">
+																<a href="{{ doc.file_name }}" download="" target="_blank"><mat-icon  class="mat-icon notranslate material-icons mat-icon-no-color" role="img" aria-hidden="true">get_app</mat-icon></a>
+																<img src="assets/imgs/fileicon/{{ doc.url ? doc.url.split('.').pop() : doc.document.split('.').pop()  }}.png" class="img-fluid">
+															</div>
+														</div>
+													
+													</li>
+												</ul>
+											</div>
+										</div>
+	                                  <!-- <div class="hdrs">
+	                                      <img class="" src="assets/imgs/member.png">
+	                                      &nbsp; Professional Membership
+	                                  </div>
+	                                  <div class="ul-wrap">
+	                                      <ul>
+	                                          <li>Fellow, the Chartered Institute of
+	                                              Arbitrators (FCIArb)
+	                                          </li>
+	                                          <li>Member, Institution of Civil Engineers 
+	                                          </li>
+	                                          <li>Member, Society of Construction Law
+	                                              (SCL)
+	                                          </li>
+	                                      </ul>
+	                                  </div> -->
+	                                  <div class="hdrs" *ngIf="profile && profile.admin_profile_status == 'accepted' && profile.talent_category_data && profile.talent_category_data.discipline_sector_data && profile.talent_category_data.discipline_sector_data.length ">
+	                                      <img class="" src="assets/imgs/sector.png">
+	                                      &nbsp; Sectors
+	                                  </div>
+	                                  <div class="ul-wrap" *ngIf="profile && profile.admin_profile_status == 'accepted' && profile.talent_category_data && profile.talent_category_data.discipline_sector_data && profile.talent_category_data.discipline_sector_data.length ">
+	                                      <ul>
+	                                          <li *ngFor="let item of profile.talent_category_data.discipline_sector_data">
+												  {{ item.name }}
+	                                          </li>
+	                                          
+	                                      </ul>
+	                                  </div>
+									  <div *ngIf="profile && profile.talent_experience &&  profile.talent_experience.regional_experience && profile.talent_experience.regional_experience.length">
+										<div class="hdrs" >
+											<img class="" src="assets/imgs/sector.png">
+											&nbsp; Regional Experience
+										</div>
+										<div class="ul-wrap" >
+											<ul>
+												<li *ngFor="let item of profile.talent_experience.regional_experience">{{ item }}</li>
+												<!-- <li>Europe</li> -->
+												
+											</ul>
+										</div>
+									  </div>
+									  <div *ngIf="profile && profile.talent_preference && profile.talent_preference.spend_week_hours">
+										<div class="hdrs" >
+											<img class="" src="assets/imgs/sector.png">
+											&nbsp; Availability
+										</div>
+										<div class="ul-wrap" >
+											<ul>
+												<li>Available More than {{ profile.talent_preference.spend_week_hours }}hrs/week</li>
+												
+											</ul>
+										</div>
+									  </div>
+	                                  <div class="hdrs" *ngIf="profile && profile.admin_profile_status == 'accepted' && profile.talent_accomplishment && profile.talent_accomplishment.languages">
+	                                      <img class="" src="assets/imgs/language.png">
+	                                      &nbsp; Language
+	                                  </div>
+	                                  <div class="ul-wrap" *ngIf="profile && profile.admin_profile_status == 'accepted' && profile.talent_accomplishment && profile.talent_accomplishment.languages">
+	                                      <ul >	                                          
+											  <li>English - {{ profile.talent_accomplishment.languages.english_proficiency }}
+	                                          </li>
+	                                         
+											  <li *ngFor="let item of profile.talent_accomplishment.languages.other_language">
+	                                              {{ item.language }} - {{ item.proficiency }}
+											  </li>
+	                                      </ul>
+	                                  </div>
+
+
+									  <div class="hdrs" *ngIf="profile && profile.talent_category_data && profile.talent_category_data.discipline_data"> 
+										<img class="" src="assets/imgs/pencel.png">
+										&nbsp; Discipline
+									  </div>
+										<div class="ul-wrap" *ngIf="profile && profile.talent_category_data && profile.talent_category_data.discipline_data">
+											
+											<span class="info-dddesc">
+												{{ profile.talent_category_data.discipline_data.discipline }}
+											</span>
+										</div>
+										<div class="hdrs" *ngIf="profile && profile.talent_category_data && profile.talent_category_data.speciality && profile.talent_category_data.speciality.length">
+											<img class="" src="assets/imgs/badge.png">
+											&nbsp; Speciality
+										</div>
+										<div class="ul-wrap" *ngIf="profile && 
+																	profile.talent_category_data && 
+																	profile.talent_category_data.speciality && 
+																	profile.talent_category_data.speciality.length"
+										>
+											<ul class="">
+												<li *ngFor="let item of profile.talent_category_data.speciality">
+													{{ item.name }}
+												</li>
+											</ul>
+										</div>
+										<!-- <div class="hdrs">
+											<img class="" src="assets/imgs/cog.png">
+											&nbsp; Services
+										</div>
+										<div class="row">
+											<div class="col-sm-4" *ngIf="profile && 
+											profile.talent_category_data && 
+											profile.talent_category_data.digital_service && 
+											profile.talent_category_data.digital_service.length" >
+												<div class="skills-set-2 ul-wrap" >
+													<h5>Traditional</h5>
+													<ul class="ml-0">
+														<li *ngFor="let item of profile.talent_category_data.digital_service">
+															{{ item.name }}
+														</li>
+													</ul>
+												</div>
+											</div>
+											<div class="col-sm-4" *ngIf="profile && 
+											profile.talent_category_data && 
+											profile.talent_category_data.traditional_service && 
+											profile.talent_category_data.traditional_service.length">
+												<div class="skills-set-2 ul-wrap">
+													<h5>Digital</h5>
+													<ul class="ml-0">
+														<li *ngFor="let item of profile.talent_category_data.traditional_service">
+															{{ item.name }}
+														</li>
+													</ul>
+												</div>
+											</div>
+										</div> -->
+
+
+	                                </div>
+	                                <div class="wrap-right col-sm-8 width-fl">
+				                                  <div class="hdrs">
+				                                      <img class="" src="assets/imgs/edu.png">
+				                                      &nbsp; Highlights
+				                                  </div>
+				                                  <div class="ul-wrap">
+				                                   
+				                                      <span class="info-dddesc">
+				                                          {{ profile ? profile.profile_headline : '-' }}
+				                                      </span>
+				                                  </div>
+												  <!-- <div class="hdrs" *ngIf="profile && profile.talent_category_data && profile.talent_category_data.discipline_data"> 
+													<img class="" src="assets/imgs/pencel.png">
+													&nbsp; Discipline
+												  </div>
+												<div class="ul-wrap" *ngIf="profile && profile.talent_category_data && profile.talent_category_data.discipline_data">
+													
+													<span class="info-dddesc">
+														{{ profile.talent_category_data.discipline_data.discipline }}
+													</span>
+												</div>
+												<div class="hdrs" *ngIf="profile && profile.talent_category_data && profile.talent_category_data.speciality && profile.talent_category_data.speciality.length">
+													<img class="" src="assets/imgs/badge.png">
+													&nbsp; Speciality
+												</div>
+												<div class="ul-wrap" *ngIf="profile && 
+																			profile.talent_category_data && 
+																			profile.talent_category_data.speciality && 
+																			profile.talent_category_data.speciality.length"
+												>
+													<ul class="">
+														<li *ngFor="let item of profile.talent_category_data.speciality">
+															{{ item.name }}
+														</li>
+													</ul>
+												</div>
+												<div class="hdrs">
+													<img class="" src="assets/imgs/cog.png">
+													&nbsp; Services
+												</div>
+												<div class="row">
+													<div class="col-sm-4" *ngIf="profile && 
+													profile.talent_category_data && 
+													profile.talent_category_data.digital_service && 
+													profile.talent_category_data.digital_service.length" >
+														<div class="skills-set-2 ul-wrap" >
+															<h5>Traditional</h5>
+															<ul class="ml-0">
+																<li *ngFor="let item of profile.talent_category_data.digital_service">
+																	{{ item.name }}
+																</li>
+															</ul>
+														</div>
+													</div>
+													<div class="col-sm-4" *ngIf="profile && 
+													profile.talent_category_data && 
+													profile.talent_category_data.traditional_service && 
+													profile.talent_category_data.traditional_service.length">
+														<div class="skills-set-2 ul-wrap">
+															<h5>Digital</h5>
+															<ul class="ml-0">
+																<li *ngFor="let item of profile.talent_category_data.traditional_service">
+																	{{ item.name }}
+																</li>
+															</ul>
+														</div>
+													</div>
+												</div> -->
+
+				                                  <div class="hdrs">
+				                                      <img class="" src="assets/imgs/pencel.png">
+				                                      &nbsp; Skills
+				                                  </div>
+				                                  <!-- <div  class="skills-set-2">
+				                                      <h5>Top Skills</h5>
+				                                      <span>Project Management</span>
+				                                      <span>Residential Jobs</span>
+				                                      <span>Construction Jobs</span>
+				                                  </div> -->
+				                                  <div class="skills-set-2" *ngIf="profile && profile.admin_profile_status == 'accepted' && profile.talent_skills && profile.talent_skills.industry_knowledge_skills && profile.talent_skills.industry_knowledge_skills.length ">
+				                                      <h5>Industry Knowledge</h5>
+				                                      <span *ngFor="let item of profile.talent_skills.industry_knowledge_skills">{{item.skill}}</span>
+				                                  </div>
+				                                  <div class="skills-set-2" *ngIf="profile && profile.admin_profile_status == 'accepted' && profile.talent_skills && profile.talent_skills.technologies_skills && profile.talent_skills.technologies_skills.length">
+													<h5>Tools & Technologies</h5>
+													<span *ngFor="let item of profile.talent_skills.technologies_skills">{{item.skill}}</span>
+												  </div>	                                  
+			                                      <div class="skills-set-2" *ngIf="profile && profile.admin_profile_status == 'accepted' && profile.talent_skills && profile.talent_skills.interpersonal_skills && profile.talent_skills.interpersonal_skills.length">
+													<h5>Interpersonal Skills</h5>
+													<span *ngFor="let item of profile.talent_skills.interpersonal_skills">{{item.skill}}</span>
+												  </div>
+
+				                                  <!-- <div class="hdrs">
+				                                      <img class="" src="assets/imgs/cap.png">
+				                                      &nbsp; Language
+				                                  </div>
+				                                  <div class="ul-wrap">
+				                                      <ul>
+				                                          <li>Construction Management
+				                                          </li>
+				                                      </ul>
+				                                  </div> -->
+				                                  
+				                                  <!-- <div class="carousal-portfolio-wrap">
+				                                    <div id="carousal-port">
+				                                        <owl-carousel-o [options]="portfolio">
+				                                            <ng-template carouselSlide>
+				                                              <div class="portfolio-wrap">
+				                                                <img src="assets/imgs/port-1.png">
+				                                              </div>
+				                                            </ng-template>
+				                                            <ng-template carouselSlide>
+				                                                <div class="portfolio-wrap">
+				                                                    <img src="assets/imgs/port-2.png">
+				                                                </div>
+				                                            </ng-template>
+				                                            <ng-template carouselSlide>
+				                                                <div class="portfolio-wrap">
+				                                                    <img src="assets/imgs/port-1.png">
+				                                                </div>
+				                                            </ng-template>
+				                                            <ng-template carouselSlide>
+				                                                <div class="portfolio-wrap">
+				                                                    <img src="assets/imgs/port-2.png">
+				                                                </div>
+				                                            </ng-template>
+				                                        </owl-carousel-o>
+				                                      </div>
+				                                  </div> -->
+
+												  <!-- Portifolio -->
+				                                  <!-- <div class="mat-carousal-new catch-btn" *ngIf="profile && profile.portfolio && profile.admin_profile_status == 'accepted' ">
+				                                    <div class="hdrs">
+				                                        <img class="" src="assets/imgs/brief.png">
+				                                        &nbsp; Portfolio
+				                                    </div>
+				                                    <div class="pdd-left">
+				                                        <mat-carousel
+				                                            timings="350ms ease-in"
+				                                            [autoplay]="false"
+				                                            interval="5000"
+				                                            color="accent"
+				                                            maxWidth="1500"
+				                                            proportion="22"
+				                                            slides="3"
+				                                            [loop]="false"
+				                                            [hideArrows]="false"
+				                                            [hideIndicators]="true"
+				                                            [useKeyboard]="true"
+				                                            [useMouseWheel]="true"
+				                                            orientation="ltr"
+				                                        >
+				                                      <mat-carousel-slide>
+				                                         <div class="mat-slider-wrap">
+				                                            <img src="{{ profile.portfolio }}">  
+				                                         </div>
+				                                      </mat-carousel-slide>
+				                                     
+				                                  </mat-carousel>
+				                                    </div>
+				                                  </div> -->
+				                                  <div class="hdrs">
+				                                    <img class="" src="assets/imgs/employ.png">
+				                                    &nbsp; Work History
+				                                  </div>
+				                                  <div class="full-time-listing pdd-left" *ngIf="profile && profile.talent_experience && profile.talent_experience && profile.talent_experience.work_record">
+				                                    <div class="full-time-wrap" *ngFor="let item of profile.talent_experience.work_record">
+				                                        <span>{{ item.title }}</span>
+				                                        <span class="sp-2">{{ item.company_name }}</span>
+				                                        <span class="sp-2" *ngIf="item.start_month" >{{ yearMonthName(item.start_month) }}, {{ item.start_year }}</span>
+														<span class="sp-2" *ngIf="item.end_month" >{{ yearMonthName(item.end_month) }}, {{ item.end_year }}</span>
+
+				                                        <div class="doc-wrpr d-flex">
+															<div class="doc-img">
+																<a href="" download="" target="_blank"><mat-icon  class="mat-icon notranslate material-icons mat-icon-no-color" role="img" aria-hidden="true">get_app</mat-icon></a>
+																<img src="assets/imgs/fileicon/pdf.png" class="img-fluid">
+															</div>
+														</div>
+														<span class="text-right">
+				                                            <button class="fade-btn">
+				                                                {{ emp_type(item.employment_type) }}
+				                                            </button>
+				                                        </span>
+
+													    <div class="hr">
+															<img class="vert_line" src="assets/imgs/mask.png">
+														</div>
+
+				                                    </div>
+				                                    
+				                                    <!-- <div class="full-time-wrap">
+				                                        <span>Baseline Programme, Revised Programme, Tender Programme</span>
+				                                        <span class="sp-2">Construction Technology Pvt. Ltd</span>
+				                                       <span class="text-right">
+				                                            <button class="fade-btn">
+				                                                Full Time
+				                                            </button>
+				                                       </span>
+				                                    </div> -->
+				                                  </div>
+				                                  <br>
+				                                  <!-- <div class="mat-carousal-new catch-btn" id="testimon">
+				                                    <div class="hdrs">
+				                                        <img class="" src="assets/imgs/clients.png">
+				                                        &nbsp; Testimonials
+				                                    </div>
+				                                    <div class="pdd-left">
+				                                        <mat-carousel
+				                                            timings="350ms ease-in"
+				                                            [autoplay]="false"
+				                                            interval="5000"
+				                                            color="accent"
+				                                            maxWidth="1500"
+				                                            proportion="22"
+				                                            slides="3"
+				                                            [loop]="false"
+				                                            [hideArrows]="false"
+				                                            [hideIndicators]="true"
+				                                            [useKeyboard]="true"
+				                                            [useMouseWheel]="true"
+				                                            orientation="ltr"
+				                                        >
+				                                      <mat-carousel-slide>
+				                                        <div class="testimonial-proof">
+				                                            <div>
+				                                              <img class="" src="assets/imgs/sl-1.png">
+				                                            </div>
+				                                            <div>
+				                                              John Doe
+				                                            </div>
+				                                            <div class="starz-rate">
+				                                                <i class="fa fa-star"></i>
+				                                                <i class="fa fa-star"></i>
+				                                                <i class="fa fa-star"></i>
+				                                                <i class="fa fa-star"></i>
+				                                                <i class="fal fa-star"></i>
+				                                                <span>[4]</span>
+				                                            </div>
+				                                            <div class="desc">
+				                                              Lorem ipsum sit donar set
+				                                              ipsum sit donar ipsum donar
+				                                              ipsum donar sir lorem ipsum donar
+				                                              sit donar
+				                                            </div>
+				                                        </div>
+				                                        <div class="testimonial-proof">
+				                                            <div>
+				                                              <img class="" src="assets/imgs/sl-2.png">
+				                                            </div>
+				                                            <div>
+				                                                Charlie Darwin
+				                                            </div>
+				                                            <div class="starz-rate">
+				                                                <i class="fa fa-star"></i>
+				                                                <i class="fa fa-star"></i>
+				                                                <i class="fa fa-star"></i>
+				                                                <i class="fa fa-star"></i>
+				                                                <i class="fal fa-star"></i>
+				                                                <span>[4]</span>
+				                                            </div>
+				                                            <div class="desc">
+				                                              Lorem ipsum sit donar set
+				                                              ipsum sit donar ipsum donar
+				                                              ipsum donar sir lorem ipsum donar
+				                                              sit donar
+				                                            </div>
+				                                        </div>
+				                                        <div class="testimonial-proof">
+				                                            <div>
+				                                              <img class="" src="assets/imgs/sl-3.png">
+				                                            </div>
+				                                            <div>
+				                                                James Matthew
+				                                            </div>
+				                                            <div class="starz-rate">
+				                                                <i class="fa fa-star"></i>
+				                                                <i class="fa fa-star"></i>
+				                                                <i class="fa fa-star"></i>
+				                                                <i class="fa fa-star"></i>
+				                                                <i class="fal fa-star"></i>
+				                                                <span>[4]</span>
+				                                            </div>
+				                                            <div class="desc">
+				                                              Lorem ipsum sit donar set
+				                                              ipsum sit donar ipsum donar
+				                                              ipsum donar sir lorem ipsum donar
+				                                              sit donar
+				                                            </div>
+				                                        </div>
+				                                      </mat-carousel-slide>
+				                                      <mat-carousel-slide>
+				                                        <div class="testimonial-proof">
+				                                            <div>
+				                                              <img class="" src="assets/imgs/sl-1.png">
+				                                            </div>
+				                                            <div>
+				                                              John Doe
+				                                            </div>
+				                                            <div class="starz-rate">
+				                                                <i class="fa fa-star"></i>
+				                                                <i class="fa fa-star"></i>
+				                                                <i class="fa fa-star"></i>
+				                                                <i class="fa fa-star"></i>
+				                                                <i class="fal fa-star"></i>
+				                                                <span>[4]</span>
+				                                            </div>
+				                                            <div class="desc">
+				                                              Lorem ipsum sit donar set
+				                                              ipsum sit donar ipsum donar
+				                                              ipsum donar sir lorem ipsum donar
+				                                              sit donar
+				                                            </div>
+				                                        </div>
+				                                        <div class="testimonial-proof">
+				                                            <div>
+				                                              <img class="" src="assets/imgs/sl-2.png">
+				                                            </div>
+				                                            <div>
+				                                                Charlie Darwin
+				                                            </div>
+				                                            <div class="starz-rate">
+				                                                <i class="fa fa-star"></i>
+				                                                <i class="fa fa-star"></i>
+				                                                <i class="fa fa-star"></i>
+				                                                <i class="fa fa-star"></i>
+				                                                <i class="fal fa-star"></i>
+				                                                <span>[4]</span>
+				                                            </div>
+				                                            <div class="desc">
+				                                              Lorem ipsum sit donar set
+				                                              ipsum sit donar ipsum donar
+				                                              ipsum donar sir lorem ipsum donar
+				                                              sit donar
+				                                            </div>
+				                                        </div>
+				                                        <div class="testimonial-proof">
+				                                            <div>
+				                                              <img class="" src="assets/imgs/sl-3.png">
+				                                            </div>
+				                                            <div>
+				                                                James Matthew
+				                                            </div>
+				                                            <div class="starz-rate">
+				                                                <i class="fa fa-star"></i>
+				                                                <i class="fa fa-star"></i>
+				                                                <i class="fa fa-star"></i>
+				                                                <i class="fa fa-star"></i>
+				                                                <i class="fal fa-star"></i>
+				                                                <span>[4]</span>
+				                                            </div>
+				                                            <div class="desc">
+				                                              Lorem ipsum sit donar set
+				                                              ipsum sit donar ipsum donar
+				                                              ipsum donar sir lorem ipsum donar
+				                                              sit donar
+				                                            </div>
+				                                        </div>
+				                                      </mat-carousel-slide>
+				                                      <mat-carousel-slide>
+				                                        <div class="testimonial-proof">
+				                                            <div>
+				                                              <img class="" src="assets/imgs/sl-1.png">
+				                                            </div>
+				                                            <div>
+				                                              John Doe
+				                                            </div>
+				                                            <div class="starz-rate">
+				                                                <i class="fa fa-star"></i>
+				                                                <i class="fa fa-star"></i>
+				                                                <i class="fa fa-star"></i>
+				                                                <i class="fa fa-star"></i>
+				                                                <i class="fal fa-star"></i>
+				                                                <span>[4]</span>
+				                                            </div>
+				                                            <div class="desc">
+				                                              Lorem ipsum sit donar set
+				                                              ipsum sit donar ipsum donar
+				                                              ipsum donar sir lorem ipsum donar
+				                                              sit donar
+				                                            </div>
+				                                        </div>
+				                                        <div class="testimonial-proof">
+				                                            <div>
+				                                              <img class="" src="assets/imgs/sl-2.png">
+				                                            </div>
+				                                            <div>
+				                                                Charlie Darwin
+				                                            </div>
+				                                            <div class="starz-rate">
+				                                                <i class="fa fa-star"></i>
+				                                                <i class="fa fa-star"></i>
+				                                                <i class="fa fa-star"></i>
+				                                                <i class="fa fa-star"></i>
+				                                                <i class="fal fa-star"></i>
+				                                                <span>[4]</span>
+				                                            </div>
+				                                            <div class="desc">
+				                                              Lorem ipsum sit donar set
+				                                              ipsum sit donar ipsum donar
+				                                              ipsum donar sir lorem ipsum donar
+				                                              sit donar
+				                                            </div>
+				                                        </div>
+				                                        <div class="testimonial-proof">
+				                                            <div>
+				                                              <img class="" src="assets/imgs/sl-3.png">
+				                                            </div>
+				                                            <div>
+				                                                James Matthew
+				                                            </div>
+				                                            <div class="starz-rate">
+				                                                <i class="fa fa-star"></i>
+				                                                <i class="fa fa-star"></i>
+				                                                <i class="fa fa-star"></i>
+				                                                <i class="fa fa-star"></i>
+				                                                <i class="fal fa-star"></i>
+				                                                <span>[4]</span>
+				                                            </div>
+				                                            <div class="desc">
+				                                              Lorem ipsum sit donar set
+				                                              ipsum sit donar ipsum donar
+				                                              ipsum donar sir lorem ipsum donar
+				                                              sit donar
+				                                            </div>
+				                                        </div>
+				                                      </mat-carousel-slide>
+				                                  </mat-carousel>
+				                                    </div>
+				                                  </div> -->
+				                                  <!-- <div class="hdrs">
+				                                    <img class="" src="assets/imgs/projects.png">
+				                                    &nbsp; Language
+				                                  </div>
+				                                  <div class="ul-wrap">
+				                                        <ul>
+				                                            <li>Construction of a Building
+				                                            </li>
+				                                            
+				                                        </ul>
+				                                   </div> -->
+				                                   <div class="hdrs">
+				                                    <img class="" src="assets/imgs/cog.png">
+				                                    &nbsp; Publications
+				                                  </div>
+				                                  <div class="ul-wrap" *ngIf="profile && profile.talent_accomplishment && profile.talent_accomplishment.publications && profile.talent_accomplishment.publications.length">
+				                                        <ul>
+															
+				                                            
+				                                            <li *ngFor="let item of profile.talent_accomplishment.publications">“{{ item.title }} – {{ item.publisher }}”, 
+				                                                {{ item.publish_date }}
+																<ul>
+																	<li> <a href="{{ item.publication_url }}">{{ item.publication_url }}</a>
+																	<li>
+																		Authours 
+																		<ul>
+																			<li *ngFor="let it of item.authors">{{ it.name }}</li>
+																			
+																		</ul>
+																	</li>
+																</ul>
+				                                            </li>
+				                                           
+				                                            
+				                                        </ul>
+														
+				                                   </div>
+												   <div class="singl-wrppr" *ngIf="profile && profile.talent_experience && profile.talent_experience.recieved_recommendations && profile.talent_experience.recieved_recommendations.length">
+													<div class="hdrs">
+														<img class="" src="assets/imgs/cog.png">
+														&nbsp; Received Recommendations
+													</div>
+													<div class="ul-wrap" *ngIf="profile && profile.talent_experience && profile.talent_experience.recieved_recommendations && profile.talent_experience.recieved_recommendations.length">
+														<ul>
+															<li *ngFor="let item of profile.talent_experience.recieved_recommendations">
+																<p *ngIf="item.person_name"><strong>Name: </strong>{{ item.person_name }}</p>
+																<p *ngIf="item.position_time"> <strong>Position: </strong>{{ item.position_time }}</p>
+																<p *ngIf="item.recommendation"><strong>Copy the received recommendation: </strong>{{ item.recommendation }}</p>
+																<p *ngIf="item.relationship"><strong>Relationship: </strong>{{ item.relationship }}</p>
+																<p *ngIf="item.talent_company_name"><strong>Talent company name : </strong>{{ item.talent_company_name }}</p>
+																<p *ngIf="item.talent_position"><strong>Talent position: </strong>{{ item.talent_position }}</p>
+															</li>
+														</ul>
+													</div>
+												</div>
+
+												<div class="singl-wrppr" *ngIf="profile && profile.talent_accomplishment && profile.talent_accomplishment.organizations && profile.talent_accomplishment.organizations.length">
+													<div class="hdrs">
+														<img class="" src="assets/imgs/cog.png">
+														&nbsp; Organizations
+													</div>
+													<div class="ul-wrap" *ngIf="profile && profile.talent_accomplishment && profile.talent_accomplishment.organizations && profile.talent_accomplishment.organizations.length">
+														<ul>
+															<li *ngFor="let item of profile.talent_accomplishment.organizations">
+																<p *ngIf="item.organization"><strong>Name of the Organization: </strong>{{ item.organization }}</p>
+																<p *ngIf="item.membership_ongoing">{{ yearMonthName(item.start_month) }}{{ item.start_year ? ', '+item.start_year : '' }} (Membership Ongoing)</p>
+																							
+																<p *ngIf="!item.membership_ongoing && (item.start_month || item.start_year || item.end_month || item.end_year)">
+																	{{ yearMonthName(item.start_month) }}, {{ item.start_year }} to {{ yearMonthName(item.end_month) }}, {{ item.end_year }}
+																</p>
+																
+																
+																<!-- <p *ngIf="item.membership_ongoing"><strong>Membership Ongoing: </strong>--</p> -->
+																<p *ngIf="item.position_helds"><strong>Position Held: </strong>{{ item.position_helds }}</p>
+																<p *ngIf="item.occupation"><strong>Occupation: </strong>{{ item.occupation }}</p>
+															</li>
+														</ul>
+													</div>
+												</div>
+
+												<div class="singl-wrppr" *ngIf="profile && profile.talent_accomplishment && profile.talent_accomplishment.courses && profile.talent_accomplishment.courses.length">
+													<div class="hdrs">
+														<img class="" src="assets/imgs/cog.png">
+														&nbsp; Courses
+													</div>
+													<div class="ul-wrap" *ngIf="profile && profile.talent_accomplishment && profile.talent_accomplishment.courses && profile.talent_accomplishment.courses.length">
+														<ul>
+															<li *ngFor="let item of profile.talent_accomplishment.courses">
+																<p *ngIf="item.course_name"><strong>Name of the Course: </strong> {{ item.course_name }} </p>
+																<p *ngIf="item.start_date"><strong>Course Duration: </strong>{{ item.start_date }} - {{ item.end_date }}</p>
+																<p *ngIf="item.associated_with"><strong>Associated With: </strong>{{ item.associated_with }}</p>
+															</li>
+														</ul>
+													</div>
+												</div>
+
+												<div class="singl-wrppr">
+													<div class="hdrs">
+														<img class="" src="assets/imgs/cog.png">
+														&nbsp; Projects
+													</div>
+													<div class="ul-wrap" *ngIf="profile && profile.talent_accomplishment && profile.talent_accomplishment.projects && profile.talent_accomplishment.projects.length">
+														<ul>
+															<li *ngFor="let item of profile.talent_accomplishment.projects">
+																<p *ngIf="item.project_name"> <strong>Name of the Project: </strong>gdfgdfg</p>
+																<p *ngIf="item.start_year && item.end_year && !item.is_currently_working"> {{ yearMonthName(item.start_month) }}, {{item.start_year}} to {{ yearMonthName(item.end_month) }}, {{ item.end_year }}</p>
+																<p *ngIf="item.start_year && item.is_currently_working">{{item.start_year}} to Currently Working</p>
+																<p *ngIf="item.associated_with"><strong>Associated With: </strong>{{ item.associated_with }}</p>
+																<p *ngIf="item.team_members">
+																	<span *ngFor="let tm of item.team_members">
+																		<strong>Member: {{ tm.name }}</strong>
+																	</span>
+
+																</p>
+																<p *ngIf="item.project_url"> <strong>Project URL: </strong><a href="{{ item.project_url }}">{{ item.project_url }}</a></p>
+															</li>
+														</ul>
+													</div>
+												</div>
+
+												<div class="singl-wrppr" *ngIf="profile && profile.portfolio">
+													<div class="hdrs">
+														<img class="" src="assets/imgs/cog.png">
+														&nbsp; Portfolio
+													</div>
+													<div class="ul-wrap" >
+														
+														<div class="doc-wrpr d-flex ml-4">
+															<div >
+																<a href="{{ profile.portfolio }}" download="" target="_blank">{{ profile.portfolio }}</a>
+																<!-- <img src="assets/imgs/fileicon/pdf.png" class="img-fluid"> -->
+															</div>
+														</div>
+														
+													</div>
+												</div>
+													<div class="singl-wrppr" *ngIf="profile && profile.intro">
+													<div class="hdrs">
+														<img class="" src="assets/imgs/cog.png">
+														&nbsp; Intro video
+													</div>
+													<div class="ul-wrap" >
+														
+														
+															<div >
+															<a href="{{ profile.intro }}" download="" target="_blank">{{ profile.intro }}</a>
+																<!-- <img src="assets/imgs/fileicon/pdf.png" class="img-fluid"> -->
+															</div>
+														
+													</div>
+												</div>
+	                                </div>
+	                                </div>
+	                            </div>
+	                          </ng-template>
+						  </mat-tab>
+						  <!-- <mat-tab label="Work History with CONSTAL" dynamicHeight>
+	                        <div class="hdrs">
+	                           Work History
+	                        </div>
+	                        <div class="ul-wrap price-wrap">
+	                            <div class="price">
+	                                <h5>$ 540</h5>
+	                                <h6>Fixed Price</h6>
+	                            </div>
+	                            <ul>
+	                                <li>Construction of a Building 
+	                                    <div>Oct 2019 - Nov 2020</div>
+	                                    <div class="li-data-55">
+	                                        <i class="fa fa-check"></i>
+	                                        Functions as the lead Architect for public commercial projects from early concept and
+	                                        throughout the design development process.
+	                                    </div>
+	                                    <div class="li-data-55">
+	                                        <i class="fa fa-check"></i>
+	                                        Oversees preparation of design drawings specific to the instructions outlined in the construction documents.
+	                                    </div>
+	                                    <div class="li-data-55">
+	                                        <i class="fa fa-check"></i>
+	                                        Designs and documents for both commercial and industrial construction projects.
+	                                    </div>
+	                                    <div class="li-data-55">
+	                                        <i class="fa fa-check"></i>
+	                                        Presides over group’s preliminary meeting with clients to determine their needs and wants.
+	                                    </div>
+	                                </li>
+	                            </ul>
+	                        </div>
+	                        <div class="hr">
+	                            <img class="" src="assets/imgs/mask.png" class="hr-img">
+	                        </div>
+	                        <div class="ul-wrap price-wrap">
+	                            <div class="price">
+	                                <h5>$ 540</h5>
+	                                <h6>Fixed Price</h6>
+	                            </div>
+	                            <ul>
+	                                <li>Construction of a Building 
+	                                    <div>Oct 2019 - Nov 2020</div>
+	                                    <div class="li-data-55">
+	                                        <i class="fa fa-check"></i>
+	                                        Functions as the lead Architect for public commercial projects from early concept and
+	                                        throughout the design development process.
+	                                    </div>
+	                                    <div class="li-data-55">
+	                                        <i class="fa fa-check"></i>
+	                                        Oversees preparation of design drawings specific to the instructions outlined in the construction documents.
+	                                    </div>
+	                                    <div class="li-data-55">
+	                                        <i class="fa fa-check"></i>
+	                                        Designs and documents for both commercial and industrial construction projects.
+	                                    </div>
+	                                    <div class="li-data-55">
+	                                        <i class="fa fa-check"></i>
+	                                        Presides over group’s preliminary meeting with clients to determine their needs and wants.
+	                                    </div>
+	                                </li>
+	                            </ul>
+	                        </div>
+						  </mat-tab> -->
+					</mat-tab-group>
+	                
+				</div>
+	            <div>
+	                <button (click)="backClicked()" class="btn-theme-2">Back</button>
+	            </div>
+	            <div class="">
+					<app-footer></app-footer>
+				</div>
+			<!-- </div> -->
+		</section>
+	</div>
+
+</main>

@@ -1,0 +1,22 @@
+<span class="menu-br" (click)="openNav()"><i class="fas fa-bars"></i></span>
+
+
+<aside class="client-sidebar talent-sidebar sidenav" id="mySidenav">
+	<a class="closebtn" (click)="closeNav()">&times;</a>
+	<ul class="list_optns">
+		<li class="active green_text" routerLink="/create-agency"><span>Create Agency</span></li>
+		<li><span>Categories</span>
+			<ul class="sub-bar">
+				<li routerLink="/agency-disciplines">Disciplines</li>
+				<li routerLink="/agency-specialities">Speciality</li>
+				<li routerLink="/agency-services">Services</li>
+				<!-- <li routerLink="/choose-sectors">Sectors</li> -->
+			</ul>
+		</li>
+		<li routerLink="/agency-skills"><span>Skills</span></li>
+		<!-- <li routerLink="/accomplishments"><span>Accomplishments</span></li> -->
+		<!-- <li routerLink="/experience"><span>Experience</span></li> -->
+		<!-- <li routerLink="/visibility-preferences"><span>Visibility & Preferences</span></li> -->
+		<li routerLink="/create-agency-profile"><span>Profile Details</span></li>
+	</ul>
+</aside>

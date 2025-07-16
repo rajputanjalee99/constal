@@ -1,0 +1,167 @@
+<app-talent-header></app-talent-header>
+
+<main class="comon_main internal_pages_prnt">
+	<div class="cmn-pading-top">
+		<section class="talent-profile">
+			<div class="d-flex">
+				<app-talent-sidebar></app-talent-sidebar>
+				<div class="main-cntnt geting-strt">
+					<div class="top-cntnt">
+						<h5>Talent Admission</h5>
+						<div class="prgrs-bar bar-green" *ngIf="service.sideBarHeight">
+							<span class="prg-perc">{{service.sideBarHeight}}% Completed</span>
+							<mat-progress-bar mode="determinate" value="{{service.sideBarHeight}}"></mat-progress-bar>
+	                    </div>
+	                    <div class="main-title mb-2 d-flex justify-content-between">
+	                    </div>
+					</div>
+					<form #addVisibilityPreferences="ngForm" (ngSubmit)="addVisibilityPreferences.valid && addVisibilityPreferencesData()">
+					<div class="inside-wrapr visibility-pref">
+						<div class="other-info mb-3">
+							<div class="card main-card see-profile">
+								<p>Who can see your profile?</p>
+								<div class="row ml-3">
+									<div class="col-sm-4 pl-0" *ngFor="let profileVisibility of profileVisibilities; index as index;">
+									    <div class="custom-control custom-radio custm-radio-cs">
+										  <input type="radio" class="custom-control-input" id="customRadio{{index}}" [(ngModel)]="this.visibilityPreferencesModel.see_your_profile" [ngModelOptions]="{standalone: true}"   value="{{profileVisibility.value}}">
+									      <label class="custom-control-label" for="customRadio{{index}}">
+									      	<span class="">{{profileVisibility.name}}</span>
+									      	<p>{{profileVisibility.description}}</p>
+									      </label>
+									    </div>  
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- <div class="other-info mb-3">
+							<div class="card main-card">
+								<p class="head-title">Select the currency of your Job?</p>
+								<div class="row ml-3">
+									<div class="col-sm-10">
+						    			<div class="form-group">
+	                                        <label>Currency</label>
+											<select [(ngModel)]="this.visibilityPreferencesModel.currency" (change)="changeCurrency($event.target.value)" class="form-control" [ngModelOptions]="{standalone: true}">
+												<option *ngFor="let item of currencies" value="{{item.code}}">
+													{{item.code}}
+												</option>
+											</select>
+	                                    </div>
+						    		</div>
+								</div>
+							</div>
+						</div> -->
+						<div class="other-info mb-3">
+							<div class="card main-card">
+								<p class="mb-0">Set your own rate of service?</p>
+								<div class="row ml-3">
+									<div class="col-sm-12">
+									    <div class="open-div mt-3 ml-3">
+									    	<div class="row">
+									    		<div class="col-sm-10 pl-0">
+									    			<label>Expected Hourly Salary*</label>
+									    			<div class="input-group mb-3 append-input-cs">
+														<input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" pattern="[0-9.]+" class="form-control {{visibilityPreferencesModel.hourlyFromValidation ? 'validatn-input' : '' }}" appOnlynumber placeholder="eg. 50" [(ngModel)]="visibilityPreferencesModel.hourly_from" #hourly_from="ngModel"
+														[ngClass]="{ 'is-invalid': addVisibilityPreferences.submitted && !hourly_from.valid }" [ngModelOptions]="{standalone: true}">
+														<div class="input-group-append">
+															<!-- <span class="input-group-text" id="basic-addon2">{{this.visibilityPreferencesModel.symbol}}/Hour</span> -->
+															<span class="input-group-text" id="basic-addon2">$/Hour</span>
+														</div>
+													</div>
+													<div *ngIf="visibilityPreferencesModel.hourlyFromValidation" class="validation-spn">Please enter expected hourly salary</div>
+									    		</div>
+									    	</div>
+											<div class="row">
+									    		<div class="col-sm-10 pl-0">
+									    			<label>Service Fee</label>
+									    			<div class="input-group mb-3 append-input-cs">
+																													<span  id="basic-addon2">Service fee is 20% when you begin a contract with a new client. Once you bill over $500 with your client, the fee will be 10%</span>
+
+															<!-- <span class="input-group-text" id="basic-addon2">{{this.visibilityPreferencesModel.symbol}}/Hour</span> -->
+															<span *ngIf="visibilityPreferencesModel.hourly_from">{{((visibilityPreferencesModel.hourly_from)/100)*20}}$/Hour</span>
+													</div>
+									    		</div>
+									    	</div>
+											<div class="row">
+									    		<div class="col-sm-10 pl-0">
+									    			<label>You will receive</label>
+									    			<div class="input-group mb-3 append-input-cs">
+
+															<!-- <span class="input-group-text" id="basic-addon2">{{this.visibilityPreferencesModel.symbol}}/Hour</span> -->
+															<span *ngIf="visibilityPreferencesModel.hourly_from">{{visibilityPreferencesModel.hourly_from-((visibilityPreferencesModel.hourly_from)/100)*20}}$/Hour</span>
+													</div>
+									    		</div>
+									    	</div>
+									    </div>
+									</div>
+								</div>
+								<div class="row ml-3">
+									<div class="col-sm-12">
+									    <div class="open-div mt-3 ml-3">
+									    	<div class="row">
+									    		<div class="col-sm-10 pl-0 form-group">
+									    			<label>Expected Monthly Salary*</label>
+									    			<div class="input-group mb-3 append-input-cs">
+														<input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" pattern="[0-9.]+" class="form-control {{visibilityPreferencesModel.SalaryFromValidation ? 'validatn-input' : '' }}" appOnlynumber placeholder="eg. 500" name="salary_from" [(ngModel)]="visibilityPreferencesModel.salary_from" #salary_from="ngModel"
+														[ngClass]="{ 'is-invalid': addVisibilityPreferences.submitted && !salary_from.valid }">
+														<div class="input-group-append">
+														  <!-- <span class="input-group-text" id="basic-addon2">{{this.visibilityPreferencesModel.symbol}}/Month</span> -->
+														  <span class="input-group-text" id="basic-addon2">$/Month</span>
+														</div>
+													</div>
+													<div class="row">
+									    		<div class="col-sm-10 pl-0 form-group">
+									    			<label>Service Fee</label>
+									    			<div class="input-group mb-3 append-input-cs">
+													<span  id="basic-addon2">Service fee is 20% when you begin a contract with a new client. Once you bill over $500 with your client, the fee will be 10%</span>
+
+															<!-- <span class="input-group-text" id="basic-addon2">{{this.visibilityPreferencesModel.symbol}}/Hour</span> -->
+															<span *ngIf="visibilityPreferencesModel.salary_from">{{((visibilityPreferencesModel.salary_from)/100)*20}}$/Month</span>
+													</div>
+									    		</div>
+									    	</div>
+											<div class="row">
+									    		<div class="col-sm-10 pl-0 form-group">
+									    			<label>You will receive</label>
+									    			<div class="input-group mb-3 append-input-cs">
+
+															<!-- <span class="input-group-text" id="basic-addon2">{{this.visibilityPreferencesModel.symbol}}/Hour</span> -->
+															<span *ngIf="visibilityPreferencesModel.salary_from">{{visibilityPreferencesModel.salary_from-((visibilityPreferencesModel.salary_from)/100)*20}}$/Month</span>
+													</div>
+									    		</div>
+									    	</div>
+													<div *ngIf="visibilityPreferencesModel.SalaryFromValidation" class="validation-spn">Please enter expected monthly salary</div>
+									    		</div>
+									    	</div>
+									    </div> 
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="other-info mb-3">
+							<div class="card main-card">
+								<div class="row">
+									<div class="col-sm-9">
+										<p>How much time would you like to spend in a week? (in Hours)</p>
+										<div class="rang-slidr">
+											<ngx-slider [(value)]="value" [options]="options"></ngx-slider>
+										</div>
+										<div *ngIf="visibilityPreferencesModel.timeRangeValidation" class="validation-spn">Please select time greater than zero</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="submit-btn btn-width d-flex justify-content-between mt-3">
+						<a routerLink="/experience" class="btn btn_theme_black my-2 my-sm-0">Back</a>
+						<button class="btn btn_theme_green my-2 my-sm-0" type="submit" [disabled]="!addVisibilityPreferences.valid">Next</button>
+					</div>
+					</form>
+					<div class="inside-footer">
+						<app-footer></app-footer>
+					</div>
+				</div>
+				<app-talent-right-sidebar></app-talent-right-sidebar>
+			</div>
+		</section>
+	</div>
+</main>

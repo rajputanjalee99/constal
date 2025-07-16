@@ -1,0 +1,324 @@
+<app-client-header></app-client-header>
+
+<main class="comon_main internal_pages_prnt">
+	<div class="cmn-pading-top">
+		<section class="client_post_job vsblty_talntpref individual-post-review">
+			<div class="wrap-client">
+				<div class="d-flex">
+					<app-client-left-sidebar></app-client-left-sidebar>
+					<div class="main-cntnt geting-strt full_wdii">
+						<h5>Post a Job</h5>
+						<div class="prgrs-bar">
+							<span class="prg-perc">90% Completed</span>
+							<mat-progress-bar mode="determinate" value="90"></mat-progress-bar>
+						</div>
+						<!-- <h6>Review Post</h6> -->
+						<div class="insde-tbs props-list">
+	                       	<div class="noti-wrap job-dt-wrap">
+		                        <div class="job-title">
+		                            Job Title - {{ jobDetail ? jobDetail.title : '-' }}
+		                        </div>
+		                        <div class="client-job-data">
+	                                <p class="p-frst">
+	                                <strong>Job Description</strong>
+	                                     - {{ jobDetail ? jobDetail.description : '-' }}
+		                        </div>
+	            			</div>     
+							<div class="noti-w-2">
+								<div class="row">
+		                            <div class="col-sm-12">
+		                               <div class="noti-inner" >
+											<div class="listing-job-dtls" >
+												<h6>Discipline: </h6>
+												<ul>
+													<li>{{disciplineName}}</li>
+												</ul>
+											</div>
+											<div class="listing-job-dtls">
+												<h6>Speciality: </h6>
+												 <ul *ngFor="let item of jobtalent">
+													<li >{{item.name}}</li>
+												</ul>
+											</div>
+											<div class="listing-job-dtls" *ngIf="sectors">
+												<h6>Sectors: </h6>
+												 <ul *ngFor="let item of sectors">
+													<li >{{item.name}}</li>
+												</ul>
+											</div>
+											
+											<div class="listing-job-dtls ul_10">
+												<h6>Services: </h6>
+												<div class="row">
+													<div class="col-sm-6" *ngIf="selectedTraditionalServices">
+														<span>Traditional</span> 
+														<div>
+															<ul class="" *ngFor="let selectedTraditionalService of selectedTraditionalServices;">
+																<li >
+																	{{selectedTraditionalService.name}}
+																</li>
+															</ul>
+														</div>
+													</div>
+													<div class="col-sm-6" *ngIf="selectedDigitalServices">
+														<span>Digital</span>
+														<div>
+															<ul class="" *ngFor="let selectedDigitalService of selectedDigitalServices;">
+																<li >
+																	{{selectedDigitalService.name}}
+																</li>
+															</ul>
+														</div>
+													</div>
+													
+												</div>
+						
+											</div>
+												<div class="listing-job-dtls ul_10">
+												<h6>Skills: </h6>
+												<div class="row">
+													<div class="col-sm-4" *ngIf="skills">
+														<span>IndustryKnowledge skills</span> 
+														<div>
+															<ul class="" *ngFor="let skill of skills;">
+																<li >
+																	{{skill.skill}}
+																</li>
+															</ul>
+														</div>
+													</div>
+													<div class="col-sm-4" *ngIf="tool_skills">
+														<span>Tools and Technology </span>
+														<div>
+															<ul class="" *ngFor="let skill of tool_skills;">
+																<li >
+																	{{skill.skill}}
+																</li>
+															</ul>
+														</div>
+													</div>
+													<div class="col-sm-4" *ngIf="interpersonalskill">
+														<span>Interpersonal skills</span>
+														<div>
+															<ul class="" *ngFor="let skill of interpersonalskill;">
+																<li >
+																	{{skill.skill}}
+																</li>
+															</ul>
+														</div>
+													</div>
+												</div>
+						
+											</div>
+											<!-- <div class="form-group">
+												<span class="txt-normal clr-2">Skills Required</span>
+												<div class="skills-req">
+													<span class="duratn-spn">07-02-2021</span>
+												</div>												
+											</div> -->
+												<div class="listing-job-dtls form-group" *ngIf="jobDetail && jobDetail.project_files.length">
+												<h6>Project Files</h6>
+												<div class="d-flex flex-wrap">
+													<div class="prjct-files post-job-files" *ngFor="let file of jobDetail.project_files">
+																					<img src="assets/imgs/fileicon/{{ file.url ? file.url.split('.').pop() : file.name.split('.').pop()  }}.png" class="img-fluid">
+														<div class="clr-1">{{ file.name }}</div>
+													</div>
+													<!-- <div class="prjct-files">
+														<img src="assets/imgs/pdf.png">
+														<div class="clr-1">project.pdf</div>
+														<small class="clr-2">25 MB</small>
+													</div> -->
+												</div>
+											</div>
+											
+																						<div class="full-list">
+
+											<div class="form-group" *ngIf="talent_pay_type">
+												<h6 class="clr-2">Payment method: </h6>
+												 <small class="clr-3">{{talent_pay_type}}</small>
+												  <small class="clr-3">{{talent_pay_type}}</small><br>
+												<h6 class="clr-2">From: </h6><small class="clr-3">{{from_hour+ ""+'USD'}}</small>
+																								<h6 class="clr-2">To: </h6><small class="clr-3">{{to_hour+''+'USD'}}</small>
+											</div>
+
+											<div class="form-group" *ngIf="timestart">
+												<h6 class="clr-2">Time to start </h6>
+												 <small class="clr-3" *ngIf="timestart=='1-2'">In 1-2 weeks</small>
+												  <small class="clr-3" *ngIf="timestart=='immediately'">Immediately</small>
+													 <small class="clr-3" *ngIf="timestart=='>2'"> After 2 weeks</small>
+
+											</div>
+											
+
+												<div class="form-group" *ngIf="timeend">
+												<h6 class="clr-2">Time to end </h6>
+												 <small class="clr-3" *ngIf="timeend=='1'">1-4 weeks</small>
+												 <small class="clr-3" *ngIf="timeend=='3'">1-3 months</small>
+												 <small class="clr-3" *ngIf="timeend=='6'">3-6 months</small>
+												 <small class="clr-3" *ngIf="timeend=='>6'">Longer than 6 months</small>
+											</div>
+											</div>
+											<div class="full-list">
+											
+												<div class="form-group" *ngIf="location">
+													<h6 class="clr-2">Location</h6>
+													<small class="clr-3">{{location}}</small>
+												</div>
+												<div class="form-group" *ngIf="location=='onsite' && address">
+													<h6 class="clr-2">Address</h6>
+													<small class="clr-3">{{address}}</small><br>
+																										<small class="clr-3">{{city}},{{state}},{{country}}</small>
+
+												</div>
+											
+												<div class="form-group" *ngIf="english_level">
+													<h6 class="clr-2">English Level</h6>
+													<small class="clr-3">{{english_level}}</small>
+												</div>
+												<div class="form-group" *ngIf="location">
+													<h6 class="clr-2">Talent level</h6>
+													<small class="clr-3">{{talent_level}}</small>
+												</div>
+												
+													<div class="form-group" *ngIf="additional_req">
+													<h6 class="clr-2">Additional Requirements</h6>
+													<small class="clr-3">{{additional_req}}</small>
+												</div>
+												<div class="form-group"  *ngIf='workers.values'>
+													<h6 class="clr-2">Added Co-workers</h6>
+													<ul class="co-wrkrs"  >
+													<li *ngFor="let item of workers">
+													<p *ngIf="item.email">Email: {{ item.email }}</p>
+												    <p *ngIf="item.description">Description: {{ item.description }}</p>
+
+													</li>
+												</ul>												</div>
+												<div class="form-group"  *ngIf='links'>
+													<h6 class="clr-2">Added Links</h6>
+													<ul class="co-wrkrs"  >
+													<li *ngFor="let item of links">
+													<p *ngIf="item.list">Link: {{ item.list }}</p>
+
+													</li>
+												</ul>												</div>
+											</div>
+									   </div>
+		                            </div>
+		                        
+		                        </div>
+		                       
+		                        <!--     <div class="col-sm-4">
+		                                <div class="cont-box">
+		                                	<div class="text-right">
+		                                		<svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<g clip-path="url(#clip0)">
+												<path d="M18 15.4285H0V16.7142H18V15.4285Z" fill="black"/>
+												<path d="M15.0429 4.5001C15.1648 4.38403 15.2619 4.24441 15.3282 4.0897C15.3945 3.93499 15.4287 3.76842 15.4287 3.6001C15.4287 3.43177 15.3945 3.2652 15.3282 3.11049C15.2619 2.95578 15.1648 2.81616 15.0429 2.7001L12.7286 0.385811C12.6126 0.263899 12.4729 0.166839 12.3182 0.100518C12.1635 0.0341978 11.9969 0 11.8286 0C11.6603 0 11.4937 0.0341978 11.339 0.100518C11.1843 0.166839 11.0447 0.263899 10.9286 0.385811L1.28577 10.0287V14.143H5.40005L15.0429 4.5001ZM11.8286 1.28581L14.1429 3.6001L12.2143 5.52867L9.90005 3.21438L11.8286 1.28581ZM2.57148 12.8572V10.543L9.00005 4.11438L11.3143 6.42867L4.88577 12.8572H2.57148Z" fill="black"/>
+												</g>
+												<defs>
+												<clipPath id="clip0">
+												<rect width="18" height="16.7143" fill="white"/>
+												</clipPath>
+												</defs>
+												</svg>
+
+		                                	</div>
+		                                    <div class="form-group">
+		                                        <h6>Talent Position</h6>
+		                                        <h6>DCDD</h6>
+		                                    </div>
+		                                    <div  class="form-group">
+		                                        <h6>Talent Level</h6>
+		                                        <h6>XCCCC</h6>
+		                                    </div>
+											<div  class="form-group">
+		                                        <h6>Contract Type</h6>
+		                                        <h6>DCCCC</h6>
+		                                    </div>
+											<div  class="form-group">
+		                                        <h6>Proposed Rate</h6>
+		                                        <h6>CXDSC</h6>
+		                                    </div>
+											<div  class="form-group">
+		                                        <h6>Contract Start Date</h6>
+		                                        <h6>07-02-2021</h6>
+		                                    </div>
+											<div  class="form-group">
+		                                        <h6>Contract Duration</h6>
+		                                        <h6>6 Months</h6>
+		                                    </div>
+		                                </div>
+		                            </div>
+								
+								<div class="form-group cstm-accordian">
+		                            <mat-accordion>
+		                               
+		                                <mat-expansion-panel (opened)="panelOpenState = true"
+		                                                     (closed)="panelOpenState = false">
+		                                  <mat-expansion-panel-header>
+		                                    <mat-panel-title>
+		                                        Talent  Information - Planner
+		                                    </mat-panel-title>
+		                                   
+		                                  </mat-expansion-panel-header>
+		                                  <span class="clr-1">Skills Required</span>
+		                                  <div class="skillss d-flex">
+		                                    <div>
+		                                        Project Planning 
+		                                    </div>
+		                                  </div>
+		                                  <div class="table">
+		                                    <table class="table table-55">
+		                                        <tr>
+		                                            <td class="text-left"><span class="clr-1">Location</span></td>
+		                                            <td class="text-right"><span class="clr-3">No Preferences</span></td>
+		                                        </tr>
+		                                        <tr>
+		                                            <td class="text-left"><span class="clr-1">Job Success Score</span></td>
+		                                            <td class="text-right"><span class="clr-3">30% & up</span></td>
+		                                        </tr>
+		                                        <tr>
+		                                            <td class="text-left"><span class="clr-1">English Level</span></td>
+		                                            <td class="text-right"><span class="clr-3">Fluent</span></td>
+		                                        </tr>
+		                                        <tr>
+		                                            <td class="text-left"><span class="clr-1">Amount Earned</span></td>
+		                                            <td class="text-right"><span class="clr-3">$1K + Earned</span></td>
+		                                        </tr>
+		                                        <tr>
+		                                            <td class="text-left"><span class="clr-1">How would you like to pay your talent?</span></td>
+		                                            <td class="text-right"><span class="clr-3">Pay By Hour</span></td>
+		                                        </tr>
+		                                        <tr>
+		                                            <td class="text-left"><span class="clr-1">Set your own hourly rate</span></td>
+		                                            <td class="text-right"><span class="clr-3">$50/hr to $70/hr</span></td>
+		                                        </tr>
+		                                        <tr>
+		                                            <td class="text-left"><span class="clr-1">Do you have a time requirement for this project?</span></td>
+		                                            <td class="text-right"><span class="clr-3">15 hours a week</span></td>
+		                                        </tr>
+		                                    </table>
+		                                  </div>
+		                                </mat-expansion-panel>
+		                              </mat-accordion>
+		                        </div> -->
+
+							</div>  
+                    	</div>
+						<div class="submit-btn btn-width d-flex justify-content-between mt-3">
+							<a (click)="saveJob('discard')" class="btn btn_theme_black my-2 my-sm-0">Discard</a>
+							<div>
+								<a class="btn btn_theme_blue my-2 mr-2 my-sm-0" (click)="saveJob('publish')">Publish the Job</a>
+								<a class="btn btn_theme_blue my-2 my-sm-0" (click)="saveJob('draft')">Save Draft</a>
+							</div>
+						</div>  
+						<div class="inside-footer">
+							<app-footer></app-footer>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</main>
+

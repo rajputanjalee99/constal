@@ -1,0 +1,137 @@
+<app-talent-header></app-talent-header>
+
+<main class="comon_main internal_pages_prnt">
+	<div class="cmn-pading-top">
+        <section class="talent-profile">
+            <div class="d-flex">
+                <app-talent-sidebar></app-talent-sidebar>
+                <div class="main-cntnt geting-strt">
+                    <div class="top-cntnt">
+                        <h5>Talent Admission</h5>
+                        <div class="prgrs-bar bar-green" *ngIf="_service.sideBarHeight">
+                            <span class="prg-perc">{{_service.sideBarHeight}}% Completed</span>
+                            <mat-progress-bar mode="determinate" value="{{_service.sideBarHeight}}"></mat-progress-bar>
+                        </div>
+                        <div class="main-title mb-2 d-flex justify-content-between">
+                            <p class="mb-0">What services do you offer?  You can add new services.</p>
+                            <div class="add-more-link d-flex justify-content-end m-0" data-toggle="modal" data-target="#addService">
+                                <img src="assets/imgs/add-alt.png" class="img-fluid">
+                                <span class="green_text" (click)="showAddNewServiceModal()">Add New Service</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inside-wrapr choose-services">
+                        <div class="services-card">
+                            <div class="row">
+                                <div class="col-sm-6" *ngIf="traditional_services_List.length">
+                                    <div class="card">
+                                        <h6>Traditional</h6>
+                                        <ul class="servc-listng">
+                                            <li *ngFor="let tradition of traditional_services_List">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" (change)="onCheckboxChangeTraditional($event,tradition)" class="custom-control-input" id="{{tradition._id}}" 
+                                                    [(ngModel)]="tradition.flag" name="{{tradition.name}}">
+                                                    <label class="custom-control-label" for="{{tradition._id}}">{{tradition.name}}</label>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6" *ngIf="digital_services_List.length">
+                                    <div class="card">
+                                        <h6>Digital</h6>
+                                        <ul class="servc-listng">
+                                            <li *ngFor="let digital of digital_services_List">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" (change)="onCheckboxChangeDigital($event,digital)" class="custom-control-input" id="{{digital._id}}"
+                                                    [(ngModel)]="digital.flag" name="{{digital.name}}">
+                                                    <label class="custom-control-label" for="{{digital._id}}">{{digital.name}}</label>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="submit-btn btn-width d-flex justify-content-between mt-3">
+                        <a routerLink="/choose-speciality" class="btn btn_theme_black my-2 my-sm-0">Back</a>
+                        <a class="btn btn_theme_green my-2 my-sm-0" (click)="addTalentServices()">Next</a>
+                    </div>
+                    <div class="inside-footer">
+                        <app-footer></app-footer>
+                    </div>
+                </div>
+                <!-- <app-talent-right-sidebar></app-talent-right-sidebar> -->
+            </div>
+        </section>
+    </div>
+</main>
+
+<!-- add service modal -->
+<div class="modal add-service" [ngClass]="{'show show-modal': showModal}" id="addService" tabindex="-1" 
+  role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Add Service</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form #addServices="ngForm" (ngSubmit)="addServices.valid && addNewSpeciality()">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <div class="form-group">
+                                <label>Speciality</label>
+                                <select  [(ngModel)]="serviceId" name="speciality" 
+                                #speciality="ngModel"  class="form-control" required
+                                [ngClass]="{ 'is-invalid': addServices.submitted && !speciality.valid }">
+                                    <option value="" disabled >Select speciality</option>
+                                    <option *ngFor="let service of service_list" value="{{service._id}}">{{service.name}}</option>
+                                </select>
+                                <div *ngIf="addServices.submitted && !speciality.valid" class="invalid-feedback">Speciality is required</div>
+                                <!-- <h6 class="speciality-name">{{speciality}}</h6> -->
+                            </div>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="form-group">
+                                <label>Category</label>
+                                <select  [(ngModel)]="category" name="categ" 
+                                #categ="ngModel"  class="form-control" required
+                                [ngClass]="{ 'is-invalid': addServices.submitted && !categ.valid }">
+                                    <option value="" disabled>Select category</option>
+                                    <option *ngFor="let category of category_list" value="{{category.value}}">{{category.name}}</option>
+                                </select>
+                                <div *ngIf="addServices.submitted && !categ.valid" class="invalid-feedback">Category is required</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="form-group">
+                                <label>Service Name</label>
+                                <!-- <input pattern="[a-zA-Z ]*$" type="text" [(ngModel)]="serviceName" #service="ngModel"
+                                name="service" required class="form-control pd-left" placeholder="e.g. Evaluate Baseline" 
+                                [ngClass]="{ 'is-invalid': addServices.submitted && !service.valid }"> -->
+                                <input pattern="[^\s][A-z0-9À-ž\s]*$" type="text" [(ngModel)]="serviceName" #service="ngModel"
+                                name="service" required class="form-control pd-left" placeholder="e.g. Evaluate Baseline" 
+                                [ngClass]="{ 'is-invalid': addServices.submitted && !service.valid }">
+                                <div *ngIf="addServices.submitted && !service.valid && !service.errors.pattern" class="invalid-feedback">Service Name is required</div>
+                                <div *ngIf="addServices.submitted && !service.valid && service.errors.pattern" class="invalid-feedback">
+                                    Please enter valid Service Name
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn_modal_black" data-dismiss="modal" (click)="closeModal()">Cancel</button>
+                    <button type="submit" class="btn btn_modal_green">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div *ngIf="isLoading" class="uploader-status" id="spin">
+    <mat-spinner diameter="30"></mat-spinner>
+</div>

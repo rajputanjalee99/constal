@@ -1,0 +1,61 @@
+<app-talent-header></app-talent-header>
+
+<main class="comon_main internal_pages_prnt">
+	<div class="cmn-pading-top">
+		<section class="talent-profile">
+			<div class="d-flex">
+				<app-create-agency-sidebar></app-create-agency-sidebar>
+				<div class="main-cntnt geting-strt">
+					<div class="top-cntnt">
+						<h5>Agency Account</h5>
+						<div class="prgrs-bar bar-green">
+							<span class="prg-perc">35% Completed</span>
+							<mat-progress-bar mode="determinate" value="35"></mat-progress-bar>
+	                    </div>
+	                    <div class="main-title mb-2 d-flex justify-content-between">
+	                        <!-- <h6>1.1 Disciplines</h6> -->
+							<p class="mb-2"><strong>Digital Transformation - </strong> What are you specialized in?</p>
+	                    </div>
+					</div>
+					<div class="inside-wrapr card main-card">
+						<div class="speciality-list">
+                            <div class="row">
+								<div class="col-sm-3 pr-0">
+									<select name="" [(ngModel)]="discipline_id" name="discipline_id" class="form-control">
+										<option value="">Select Discipline</option>
+										<option *ngFor="let item of disciplines" value="{{ item._id }}">{{ item.discipline }}</option>
+									</select>
+								</div>
+                                <div class="col-sm-7 pr-0">
+                                    <div class="form-group">
+                                        <input type="text" [(ngModel)]="speciality_name" name="speciality_name" (keyup.enter)="addSpeciality()" class="form-control" placeholder="Add Speciality...">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <a class="btn btn_theme_green" (click)="addSpeciality()">Add</a>
+                                </div>
+                            </div>
+                            <ul class="servc-listng">                              
+								<li class="d-flex justify-content-between spc-hover" *ngFor="let spec of specialities;let ind = index">
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" [(ngModel)]="spec.flag" checked="checked" class="custom-control-input" id="customCheck{{ind}}" name="speciality{{ind}}">
+										<label class="custom-control-label" for="customCheck{{ind}}">{{ spec.name  }} </label>
+									</div>
+									<!-- <span><i class="fas fa-trash"></i></span> -->
+								</li>
+                            </ul>
+                        </div>
+						
+					</div>
+					<div class="text-right mt-3">
+						<a class="btn btn_theme_green" (click)="goNextPage()">Next</a>
+
+					</div>
+					<div class="inside-footer">
+						<app-footer></app-footer>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</main>

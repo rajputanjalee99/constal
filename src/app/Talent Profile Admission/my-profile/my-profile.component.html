@@ -1,0 +1,1656 @@
+<app-talent-header></app-talent-header>
+
+<main class="comon_main internal_pages_prnt">
+	<div class="cmn-pading-top">
+		<section class="talent-profile profile-review profile-page">
+			<div class="main-cntnt my-profile">
+				<div class="d-flex">
+					<app-talent-settings-sidebar [activeModule]="'my_profile'"></app-talent-settings-sidebar>
+					<div class="inside-wrapr">
+						<div class="prf-card">
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="card">
+										<div class="top-head d-flex justify-content-between public-view">
+											<div class="prf-wrpr d-flex">
+												<div class="prof-img">
+													<img *ngIf="profile && profile.image" src="{{ profile.image }}" class="img-fluid">
+													<img *ngIf="!profile || !profile.image" src="assets/imgs/no-image.png" class="img-fluid">
+												</div>
+												<div class="prf-cntnt">
+													<h5>{{ profile ? profile.first_name : ''  }} {{ profile ? profile.last_name : ''  }}</h5>
+													<p class="mb-0" *ngIf="profile && profile.country"><i class="fas fa-map-marker-alt"></i> {{profile.state ? profile.state.name+', ':''}} {{profile.country.name}}</p>
+												</div>
+											</div>
+											<!-- <div class="cmn-btn" *ngIf="profile">
+												<a routerLink="/view-talent-profile/{{ profile._id }}" class="btn btn_theme_green">See Public View</a>
+											</div> -->
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-4 pr-0">
+									<div class="card left-crd-hgt">
+										<div class="top-head">
+											<div class="prf-wrpr main-wrap margn-btm" *ngIf="profile && profile.talent_preference && (profile.talent_preference.hourly_from || profile.talent_preference.salary_from)">
+												<div class="icns-spn d-flex align-items-center">
+													<h6>Work Rate</h6>
+													<div class="fa-icns">
+														<span class="add-new" (click)="editSingleFields('work_rate')"><i class="fas fa-pencil"></i></span>
+													</div>
+												</div>
+												<p *ngIf="profile && profile.talent_preference && profile.talent_preference.hourly_from">${{ profile.talent_preference.hourly_from ? profile.talent_preference.hourly_from : profile.talent_preference.hourly_from }}/Hour</p>
+												<p *ngIf="profile && profile.talent_preference && profile.talent_preference.salary_from">${{ profile.talent_preference.salary_from }}/Month</p>
+											</div>
+											<div class="div-hide mb-5">
+												<h6>Work Rate</h6>
+												<!-- <form>
+													<div class="row">
+														<div class="col-sm-12">
+															<div class="input-group mb-3 append-input-cs">
+																<input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" pattern="[0-9.]+" type="text" class="form-control" [(ngModel)]="single_fields.work_rate" [ngModelOptions]="{standalone : true}" placeholder="eg. 50" aria-label="" aria-describedby="basic-addon2">
+																<div class="input-group-append">
+																<span class="input-group-text" id="basic-addon2">$/Hour</span>
+																</div>
+															</div>
+														</div>
+														<div class="col-sm-12">
+															<div class="cmn-btn">
+																<button [disabled]="!single_fields.work_rate" (click)="saveWorkRate()" class="btn btn_theme_green on-save">Save</button>
+															</div>
+														</div>
+													</div>
+												</form> -->
+												<form>
+													<div class="row">
+														<div class="col-sm-12">
+															<div class="input-group mb-3 append-input-cs">
+																<input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" pattern="[0-9.]+" type="text" class="form-control" [(ngModel)]="single_fields.hourly_from" [ngModelOptions]="{standalone : true}" placeholder="eg. 50" aria-label="" aria-describedby="basic-addon2">
+																<div class="input-group-append">
+																<span class="input-group-text" id="basic-addon2">$/Hour</span>
+																</div>
+															</div>
+														</div>
+														<div class="col-sm-12">
+															<div class="input-group mb-3 append-input-cs">
+																<input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" pattern="[0-9.]+" type="text" class="form-control" [(ngModel)]="single_fields.salary_from" [ngModelOptions]="{standalone : true}" placeholder="eg. 500" aria-label="" aria-describedby="basic-addon2">
+																<div class="input-group-append">
+																<span class="input-group-text" id="basic-addon2">$/Month</span>
+																</div>
+															</div>
+														</div>
+														<div class="col-sm-12">
+															<div class="cmn-btn">
+																<button [disabled]="!single_fields.hourly_from || !single_fields.salary_from" (click)="saveWorkRate()" class="btn btn_theme_green on-save">Save</button>
+																&nbsp;
+																<button class="btn btn_theme_green on-save" (click)="cancel()">Cancel</button>
+															</div>
+														</div>
+													</div>
+												</form>
+											</div>
+										</div>
+										<div class="top-head">
+											<div class="prf-wrpr main-wrap margn-btm">
+												<div class="icns-spn d-flex align-items-center">
+													<h6>Video Introduction</h6>
+													<div class="fa-icns">
+														<!-- <span class="add-new"><i class="fas fa-plus"></i></span> -->
+														<span class="add-new"><i class="fas fa-pencil"></i></span>
+													</div>
+												</div>
+												<div *ngIf="single_fields.video_introduction">
+													<plyr  width="560" height="315" style="display: block;" plyrTitle="Video 1" [plyrPlaysInline]="true" [plyrSources]="single_fields.video_introduction" (plyrInit)="player = $event" (plyrPlay)="played($event)"></plyr>
+													
+												</div>
+												<!-- <a *ngIf="single_fields.video_introduction"  target="_blank" href="{{ single_fields.video_introduction }}">{{ single_fields.video_introduction }}</a> -->
+											</div>
+											<div class="div-hide mb-5">
+												<h6 class="mb-3">Video Introduction</h6>
+												<form>
+													<div class="row">
+														<div class="col-sm-12">
+															<div class="form-group custom-file">
+																<label> Video Link</label>
+																<!-- <input [(ngModel)]="single_fields.video_introduction" [ngModelOptions]="{standalone : true}" type="text" class="form-control" placeholder=""> -->
+															
+																
+																<input type="file" (change)="onSelectUserId($event)" name="intro_video" class="custom-file-input validatn-input" id="customFile">
+																<label style="overflow: hidden;" class="custom-file-label file-cs-con" for="customFile">{{single_fields.video_introduction}}</label>
+																
+																<div class="disclaimer-txt"> 
+																	<p>*The file should not exceed more than 25MB.</p>
+																</div>
+															</div>
+														</div>
+														<div class="col-sm-12">
+															<div class="cmn-btn">
+																<button class="btn btn_theme_green on-save" [disabled]="!this.intro_file" (click)="saveVideoIntro()">Save</button>
+																&nbsp;
+																<button class="btn btn_theme_green on-save">Cancel</button>
+															</div>
+														</div>
+													</div>
+												</form>
+											</div>
+										</div>
+										<div class="top-head">
+											<div class="prf-wrpr main-wrap margn-btm">
+												<div class="icns-spn d-flex align-items-center">
+													<h6>Availability</h6>
+													<div class="fa-icns">
+														<span class="add-new" (click)="editSingleFields('availability')"><i class="fas fa-pencil"></i></span>
+													</div>
+												</div>
+												<p *ngIf="single_fields.availability"><strong>Available</strong> More than {{single_fields.availability}}hrs/week</p>
+											</div>
+											<div class="div-hide mb-5">
+												<h6>Availability</h6>
+												<div class="rang-slidr">
+													<ngx-slider [(ngModel)]="single_fields.availability" [ngModelOptions]="{standalone : true}" [(value)]="value" [options]="options"></ngx-slider>
+												</div>
+												<div class="cmn-btn mt-4">
+													<a (click)="availabilityTalent()" class="btn btn_theme_green on-save">Save</a>
+													&nbsp;
+													<button class="btn btn_theme_green on-save">Cancel</button>
+												</div>
+											</div>
+										</div>
+										<div class="top-head">
+											<div class="prf-wrpr main-wrap margn-btm">
+												<div class="icns-spn d-flex align-items-center">
+													<h6>Visibility</h6>
+													<div class="fa-icns">
+														<span class="add-new" (click)="editSingleFields('visibility')"><i class="fas fa-pencil"></i></span>
+													</div>
+												</div >
+												<p *ngIf="profile && profile.talent_preference && profile.talent_preference.who_can_see_profile == 'anyone'">Anyone</p>
+												<p *ngIf="profile && profile.talent_preference && profile.talent_preference.who_can_see_profile == 'constal_talent'">Only CONSTAL Client</p>
+												<p *ngIf="profile && profile.talent_preference && profile.talent_preference.who_can_see_profile == 'private'">Private</p>
+											</div>
+											<div class="div-hide mb-5">
+												<h6>Visibility</h6>
+												<ul class="servc-listng">
+													<li>
+														<div class="custom-control custom-radio custm-radio-cs">
+															<input type="radio" [(ngModel)]="single_fields.visibility" value="anyone" [ngModelOptions]="{standalone : true}" class="custom-control-input"id="customRadio11" name="example1">
+															<label class="custom-control-label" for="customRadio11">
+															Anyone
+															</label>
+														</div>  
+													</li>
+													<li>
+														<div class="custom-control custom-radio custm-radio-cs">
+															<input type="radio" [(ngModel)]="single_fields.visibility" value="constal_talent" [ngModelOptions]="{standalone : true}" class="custom-control-input"id="customRadio12" name="example1">
+															<label class="custom-control-label" for="customRadio12">
+															Only CONSTAL Client
+															</label>
+														</div>  
+													</li>
+													<li>
+														<div class="custom-control custom-radio custm-radio-cs">
+															<input type="radio" [(ngModel)]="single_fields.visibility" value="private" [ngModelOptions]="{standalone : true}" class="custom-control-input"id="customRadio13" name="example1">
+															<label class="custom-control-label" for="customRadio13">
+															Private
+															</label>
+														</div>  
+													</li>
+												</ul>
+												<div class="cmn-btn">
+													<a class="btn btn_theme_green on-save" (click)="saveTalentVisibility()">Save</a>
+													&nbsp;
+													<button class="btn btn_theme_green on-save">Cancel</button>
+												</div>
+											</div>
+										</div>
+										<div class="top-head">
+											<div class="prf-wrpr main-wrap margn-btm">
+												<div class="icns-spn d-flex align-items-center">
+													<h6>Level of Talent</h6>
+													<div class="fa-icns">
+														<span class="add-new" (click)="editSingleFields('level_of_talent')"><i class="fas fa-pencil"></i></span>
+													</div>
+												</div>
+												<p *ngIf="profile && profile.talent_experience && profile.talent_experience.level_of_talent == 'entry_level'">Entry Level</p>
+												<p *ngIf="profile && profile.talent_experience && profile.talent_experience.level_of_talent == 'intermediate'">Intermediate</p>
+												<p *ngIf="profile && profile.talent_experience && profile.talent_experience.level_of_talent == 'expert'">Expert</p>
+											</div>
+											<div class="div-hide mb-5">
+												<h6>Level of Talent</h6>
+												<ul class="servc-listng">
+													<li>
+														<div class="custom-control custom-radio custm-radio-cs">
+															<input type="radio" [(ngModel)]="single_fields.level_of_talent" value="entry_level" [ngModelOptions]="{standalone : true}" class="custom-control-input" id="customRadioTalent11" name="example3">
+															<label class="custom-control-label" for="customRadioTalent11">
+															Entry Level
+															</label>
+														</div>  
+													</li>
+													<li>
+														<div class="custom-control custom-radio custm-radio-cs">
+															<input type="radio" [(ngModel)]="single_fields.level_of_talent" value="intermediate" [ngModelOptions]="{standalone : true}" class="custom-control-input" id="customRadioTalent12" name="example3">
+															<label class="custom-control-label" for="customRadioTalent12">
+															Intermediate
+															</label>
+														</div>  
+													</li>
+													<li>
+														<div class="custom-control custom-radio custm-radio-cs">
+															<input type="radio" [(ngModel)]="single_fields.level_of_talent" value="expert" [ngModelOptions]="{standalone : true}" class="custom-control-input" id="customRadioTalent13" name="example3">
+															<label class="custom-control-label" for="customRadioTalent13">
+															Expert
+															</label>
+														</div>  
+													</li>
+												</ul>
+												<div class="cmn-btn">
+													<a class="btn btn_theme_green on-save" (click)="saveTalentLevel()">Save</a>
+													&nbsp;
+													<button class="btn btn_theme_green on-save">Cancel</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-8">									 
+									<div class="card">
+										<div class="top-head">
+											<div class="prf-wrpr main-wrap" *ngIf="!hidden_blocks.work_history">
+												<div class="prf-titl d-flex align-items-center">
+													<h6>Work History</h6>
+													<div class="fa-icns">
+														<span (click)="hideShow('work_history','add')" class="add-new"><i class="fas fa-plus"></i></span>
+													</div>
+												</div>
+												<div>
+												</div>
+												<div class="" *ngIf="profile && profile.talent_experience && profile.talent_experience.work_record">
+													<div class="prf-desc form-group work-histry d-flex justify-content-between" *ngFor="let exe of profile.talent_experience.work_record;let ind = index">
+														<div class="eductn-title ">
+															<strong>{{ exe.title }}</strong>
+															<p class="">Company: {{ exe.company_name }}</p>
+															<p class="" *ngIf="exe.start_month && exe.start_year && exe.end_month && exe.end_year && !exe.currently_working">{{ exe.start_month }},{{ exe.start_year }} - {{ exe.end_month }},{{ exe.end_year }}</p>
+															<p class="" *ngIf="exe.start_month && exe.start_year && exe.currently_working">{{ exe.start_month }},{{ exe.start_year }} - Currently Working</p>
+															<div class="doc-wrpr d-flex" *ngIf="exe.media">
+																<div class="doc-img" *ngFor="let item of exe.media">
+																	<a href="{{ item.file_name }}" download="" target="_blank"><mat-icon  class="mat-icon notranslate material-icons mat-icon-no-color" role="img" aria-hidden="true">get_app</mat-icon></a>
+																	<img src="assets/imgs/fileicon/{{ item.file_name.split('.').pop() }}.png" class="img-fluid">
+																</div>
+															</div>
+														</div>
+														<div class="fa-icns d-flex">
+															<span (click)="hideShow('work_history','edit')" (click)="editWork(ind)" class=""><i class="fas fa-pencil"></i></span>
+															<span><i (click)="deleteWork(ind)" class="fas fa-trash"></i></span>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="div-hide" *ngIf="hidden_blocks.work_history == 'add' || hidden_blocks.work_history == 'edit'">
+												<h6>Work History</h6>
+												<form [formGroup]="workForm">
+													<div class="row">
+														<div class="col-sm-12">
+															<div class="form-group">
+																<label>Title*</label>
+																<input type="text" formControlName="title" [(ngModel)]="work_history.title" name="title"  class="form-control" placeholder="e.g. Project Manager">
+																<label *ngIf="title.touched && title.invalid" [ngClass] = "'invalid-feedback'"> Title is Required </label>
+															</div>
+														</div>
+														<div class="col-sm-12">
+															<div class="form-group">
+																<label>Company Name*</label>
+																<input type="text" formControlName="company_name" [(ngModel)]="work_history.company_name" class="form-control" placeholder="e.g. Construction Technology">
+																<label *ngIf="company_name.touched && company_name.invalid" [ngClass] = "'invalid-feedback'"> Company name is Required </label>
+															</div>
+														</div>
+														<div class="col-sm-12">
+															<div class="form-group">
+																<label>Employment Type*</label>
+																<select formControlName="employment_type" [(ngModel)]="work_history.employment_type"  class="form-control">
+																	<option value="" disabled>Select Type</option>
+																	<option value="full_time">Full-time</option>
+																	<option value="part_time">Part-time</option>
+																	<option value="self_employed">Self-employed</option>
+																	<option value="freelance">Freelance</option>
+																	<option value="internship">Internship</option>
+																	<!-- <option *ngFor="let type of employment_list" value="type">{{type.name}}</option> -->
+																</select>
+																<label *ngIf="employment_type.touched && employment_type.invalid" [ngClass] = "'invalid-feedback'"> Employment type is Required </label>
+															</div>
+														</div>
+														<div class="col-sm-12">
+															<div class="prjct-date">
+																<label>Start Date</label>
+																<div class="row">
+																	<div class="col-sm-6">
+																		<div class="form-group">
+																			<select name="" class="form-control" [(ngModel)]="work_history.start_month" [ngModelOptions]="{standalone: true}" id="">
+																				<option value="">Choose</option>
+																				<option *ngFor="let month of months;" value="{{ month.value }}">{{ month.value }}</option>
+																			</select>
+																		</div>
+																	</div>
+																	<div class="col-sm-6">
+																		<div class="form-group">
+																			<select name="" class="form-control" [(ngModel)]="work_history.start_year" [ngModelOptions]="{standalone: true}" id="">
+																				<option value="">Choose</option>
+																				<option *ngFor="let year of years;" value="{{ year }}">{{ year }}</option>
+																			</select>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="col-sm-12" >
+															<div class="form-group">
+																<div class="custom-control custom-checkbox">
+																<input type="checkbox" class="custom-control-input" id="customCheckWorking" checked="checked"
+																[(ngModel)]="work_history.currently_working" [ngModelOptions]="{standalone: true}" #currently_working="ngModel">
+																<label class="custom-control-label" for="customCheckWorking">I am currently working in this role</label>
+																</div>
+															</div>
+														</div>
+														<div class="col-sm-12" *ngIf="!work_history.currently_working">
+															<div class="prjct-date">
+																<label>End Date</label>
+																<div class="row">
+																	<div class="col-sm-6">
+																		<div class="form-group">
+																			<select name="" class="form-control" id="" [(ngModel)]="work_history.end_month" [ngModelOptions]="{standalone: true}">
+																				<option value="">Choose</option>
+																				<option *ngFor="let month of months;" value="{{ month.value }}">{{ month.value }}</option>
+																			</select>
+																		</div>
+																	</div>
+																	<div class="col-sm-6">
+																		<div class="form-group">
+																			<select name="" class="form-control" id="" [(ngModel)]="work_history.end_year" [ngModelOptions]="{standalone: true}">
+																				<option value="">Choose</option>
+																				<option *ngFor="let year of years;"  value="{{ year }}">{{ year }}</option>
+																			</select>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+
+														<div class="col-sm-12">
+															<div class="form-group">
+																<label>Description</label>
+																<textarea class="form-control" [(ngModel)]="work_history.description" [ngModelOptions]="{standalone: true}" placeholder="" rows="3"></textarea>
+															</div>
+														</div>
+
+														<div class="col-sm-12">
+															<div class="form-group">
+																<label>Media <small>(250W*250H)</small></label>
+																<div class="custm-dropzone">
+																	<ngx-dropzone (change)="uploadFileHistory($event)">
+																		<ngx-dropzone-label>
+																			<img src="assets/imgs/cloud-computing.png" class="img-fluid">
+																			<p>Upload documents, photos, videos or presentation</p>
+																		</ngx-dropzone-label>
+																		<ngx-dropzone-preview *ngFor="let f of work_history.media" [removable]="true" (removed)="deleteDocument2(f)">
+																			<ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+																		</ngx-dropzone-preview>
+																	</ngx-dropzone>
+																</div>
+																<div class="disclaimer-txt"> 
+																<p>*The file should not exceed more than 25MB.</p>
+																</div>
+															</div>
+														</div>
+
+														<div class="col-sm-12">
+															<div class="cmn-btn">
+																<button *ngIf="hidden_blocks.work_history == 'add'"  class="btn btn_theme_green " (click)="updateWork()" [disabled]="!workForm.valid">Save</button>
+																<button *ngIf="hidden_blocks.work_history == 'edit'" class="btn btn_theme_green " (click)="updateWork(ind)" [disabled]="!workForm.valid">Save</button>
+																&nbsp;
+																<button  class="btn btn_theme_green " (click)="hideShow('work_history','')" >Cancel</button>
+															</div>
+														</div>
+													</div>
+												</form>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="full-crd-wrp">
+							<div class="row">
+								<div class="col-sm-12">
+									<div class="accordion" id="accordionExample">
+										<div class="card ful-card">
+											<div class="top-head {{ hidden_blocks.organization }}">
+												<div class="prf-wrpr main-wrap" *ngIf="!hidden_blocks.organization">
+													<div class="" id="headingOne">
+														<div class="titl-top d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" >
+															<h6 class="mb-0" >Organizations</h6>
+															<div class="fa-icns" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+																<span class="" (click)="hideShow('organization','add')"><i class="fas fa-plus"></i></span>
+															</div>
+														</div>
+														
+													</div>
+												
+													<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+														<div class="insid-crd" *ngIf="profile && profile.talent_accomplishment && profile.talent_accomplishment.organizations">
+															<div class="prf-desc" *ngFor="let org of profile.talent_accomplishment.organizations;let ind = index">
+																<div class="d-flex justify-content-between">
+																	<div class="d-flex">
+																		<div class="test-cntnt">
+																			<!-- <h6>{{ org.position_helds }}</h6> -->
+																			<h6>{{ org.organization }}</h6>
+
+
+																			<p *ngIf="org.membership_ongoing">{{ yearMonthName(org.start_month) }}{{ org.start_year ? ', '+org.start_year : '' }} (Membership Ongoing)</p>
+																			
+																			<p *ngIf="!org.membership_ongoing && (org.start_month || org.start_year || org.end_month || org.end_year)">
+																				{{ yearMonthName(org.start_month) }}, {{ org.start_year }} to {{ yearMonthName(org.end_month) }}, {{ org.end_year }}
+																			</p>
+																			<p class="mb-0" *ngIf="org.position_helds"><strong>Position Held:</strong> {{ org.position_helds }}</p>
+																			<p class="mb-0" *ngIf="org.occupation"><strong>Occupation:</strong> {{ org.occupation }}</p>
+																		</div> 
+																	</div>
+																	<div class="fa-icns">
+																		<span class="" (click)="hideShow('organization','edit')" (click)="editOrganization(ind)"> <i class="fas fa-pencil"></i></span>
+																		<span (click)="deleteOrganization(ind)"><i class="fas fa-trash"></i></span>
+																	</div>
+																</div>
+																<p class="mb-0">{{ org.additional_note }}</p>
+															</div>												
+														</div>
+													</div>
+												</div>
+												<div class="div-hide" *ngIf="hidden_blocks.organization == 'add' || hidden_blocks.organization == 'edit'" >
+													<div class="innr-form">
+														<h6 class="mb-3">Organizations</h6>
+														<form [formGroup]="organizationForm">
+															<div class="row">
+																<div class="col-sm-12">
+																	<div class="form-group">
+																		<label>Organization*</label>
+																		<input type="text" formControlName="organization" [(ngModel)]="organization.organization" class="form-control" placeholder="e.g. American Institute of Architects (AIA)">
+																		<label *ngIf="organization_form.touched && organization_form.invalid" [ngClass] = "'invalid-feedback'"> Organization is Required </label>
+																	</div>
+																</div>
+																<div class="col-sm-12">
+																	<div class="form-group">
+																		<label>Position(s) Held</label>
+																		<input type="text" class="form-control" formControlName="position_helds" [(ngModel)]="organization.position_helds" placeholder="">
+																	</div>
+																</div>
+																<div class="col-sm-12">
+																	<div class="form-group">
+																		<label>Occupation</label>
+																		<!-- <select formControlName="occupation" [(ngModel)]="organization.occupation" class="form-control"> -->
+																		<select [(ngModel)]="organization.occupation" [ngModelOptions]="{standalone: true}" 
+																		#occupation="ngModel" class="form-control">
+																			<option value="" disabled>Select Occupation</option>
+																			<option *ngFor="let occupation of occupation_list" value="{{occupation.value}}">{{occupation.value}}</option>
+																		</select>
+																	</div>
+																</div>
+																<div class="col-sm-12">
+																	<div class="prjct-date">
+																		<label>Start Date</label>
+																		<div class="row">
+																			<div class="col-sm-6">
+																				<div class="form-group">
+																					<select name="" class="form-control" [(ngModel)]="organization.start_month" [ngModelOptions]="{standalone: true}" id="">
+																						<option value="">Choose</option>
+																						<option *ngFor="let month of months;" value="{{ month.value }}">{{ month.value }}</option>
+																					</select>
+																				</div>
+																			</div>
+																			<div class="col-sm-6">
+																				<div class="form-group">
+																					<select name="" class="form-control" [(ngModel)]="organization.start_year" [ngModelOptions]="{standalone: true}" id="">
+																						<option value="">Choose</option>
+																						<option *ngFor="let year of years;" value="{{ year }}">{{ year }}</option>
+																					</select>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+																<div class="col-sm-12">
+																	<div class="form-group">
+																		<div class="custom-control custom-checkbox">
+																		<input type="checkbox" class="custom-control-input" id="customCheckMember" checked="checked"
+																		[(ngModel)]="organization.membership_ongoing" #membership_ongoing="ngModel" [ngModelOptions]="{standalone: true}">
+																		<label class="custom-control-label" for="customCheckMember">Membership Ongoing</label>
+																		</div>
+																	</div>
+																</div>
+																<div class="col-sm-12">
+																	<div class="prjct-date"  *ngIf="!organization.membership_ongoing">
+																		<label>End Date</label>
+																		<div class="row">
+																			<div class="col-sm-6">
+																				<div class="form-group">
+																					<select name="" class="form-control" [(ngModel)]="organization.end_month" [ngModelOptions]="{standalone: true}" id="">
+																						<option value="">Choose</option>
+																						<option *ngFor="let month of months;" value="{{ month.value }}">{{ month.value }}</option>
+																					</select>
+																				</div>
+																			</div>
+																			<div class="col-sm-6">
+																				<div class="form-group">
+																					<select name="" class="form-control" [(ngModel)]="organization.end_year" [ngModelOptions]="{standalone: true}" id="">
+																						<option value="">Choose</option>
+																						<option *ngFor="let year of years;" value="{{ year }}">{{ year }}</option>
+																					</select>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+																<div class="col-sm-12">
+																	<div class="form-group">
+																		<label>Additional Notes</label>
+																		<textarea class="form-control" [(ngModel)]="organization.additional_note" [ngModelOptions]="{standalone: true}" placeholder="" rows="3"></textarea>
+																	</div>
+																</div>
+																<div class="col-sm-12">
+																	<div class="cmn-btn">
+																		<button class="btn btn_theme_green " (click)="updateOrganization()" [disabled]="!organizationForm.valid">Save</button>
+																		&nbsp;
+																		<button  class="btn btn_theme_green " (click)="hideShow('organization','')" >Cancel</button>
+																	</div>
+																</div>
+															</div>
+														</form>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-12">
+									<div class="accordion" id="accordionExample2">
+										<div class="card ful-card">
+											<div class="top-head">
+												<div class="prf-wrpr main-wrap" *ngIf="!hidden_blocks.course">
+													<div class="" id="headingOne">
+														<div class="titl-top d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
+															<h6 class="mb-0">Courses</h6>
+															<div class="fa-icns">
+																<span class="add-new" (click)="hideShow('course','add')"><i class="fas fa-plus"></i></span>
+															</div>
+														</div>
+													</div>
+													<div id="collapse3" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample2">
+														<div class="insid-crd" *ngIf="profile && profile.talent_accomplishment && profile.talent_accomplishment.courses">
+															<div class="prf-desc" *ngFor="let item of profile.talent_accomplishment.courses;let ind = index;">
+																<div class="d-flex justify-content-between">					                                		
+																	<div class="test-cntnt">
+																		<h6>{{ item.course_name }}</h6>
+																		<p class="mb-0" *ngIf="item.start_date || item.end_date">{{ item.start_date }}  {{ item.end_date ? 'to '+item.end_date : '' }}</p>
+																	</div>
+																	<div class="fa-icns">
+																		<span class="" (click)="hideShow('course','edit')" (click)="editCourse(ind)"><i class="fas fa-pencil"></i></span>
+																		<span (click)="deleteCourse(ind)" ><i class="fas fa-trash"></i></span>
+																	</div>
+																</div>
+																<p class="mb-0" *ngIf="item.associated_with"><strong>Associated with:</strong> {{ item.associated_with }}</p>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="div-hide" *ngIf="hidden_blocks.course == 'add' || hidden_blocks.course == 'edit'">
+													<div class="innr-form">
+														<h6 class="mb-3">Courses</h6>
+														<form [formGroup]="courseForm">
+															<div class="row">
+																<div class="col-sm-12">
+																	<div class="form-group" >
+																		<label>Course Name*</label>
+																		<input type="text" formControlName="course_name" [(ngModel)]="course.course_name" class="form-control" placeholder="e.g. Construction Management">
+																		<label *ngIf="course_name_form.touched && course_name_form.invalid" [ngClass] = "'invalid-feedback'"> Course name is Required </label>
+																	</div>
+																</div>
+															</div>
+															<div class="row">
+																<div class="col-sm-6">
+																	<div class="form-group custm-datepickr">
+																		<label>Start Date</label>
+																		<mat-form-field appearance="fill">
+																			<mat-label>Choose a date</mat-label>
+																			<input matInput [matDatepicker]="picker2" [(ngModel)]="course.start_date" [ngModelOptions]="{standalone: true}">
+																			<mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+																			<mat-datepicker #picker2></mat-datepicker>
+																		</mat-form-field>
+																	</div>
+																</div>
+																<div class="col-sm-6">
+																	<div class="form-group custm-datepickr">
+																		<label>End Date</label>
+																		<mat-form-field appearance="fill">
+																			<mat-label>Choose a date</mat-label>
+																			<input matInput [(ngModel)]="course.end_date" [ngModelOptions]="{standalone: true}" [matDatepicker]="picker3">
+																			<mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+																			<mat-datepicker #picker3></mat-datepicker>
+																		</mat-form-field>
+																	</div>
+																</div>
+															</div>
+															<div class="row">
+																<div class="col-sm-12">
+																	<div class="form-group">
+																		<label>Associated With</label>
+																		<input type="text" [(ngModel)]="course.associated_with" formControlName="associated_with" class="form-control" placeholder="e.g. James Matthew">
+																		<label *ngIf="associated_with_form.touched && associated_with_form.invalid" [ngClass] = "'invalid-feedback'"> Associated with is Required </label>
+																	</div>
+																</div>
+															</div>
+															<div class="row">
+																<div class="col-sm-12">
+																	<div class="cmn-btn">
+																		<button class="btn btn_theme_green on-save" [disabled]="!courseForm.valid" (click)="updateCourse()" >Save</button>
+																		&nbsp;
+																		<button  class="btn btn_theme_green " (click)="hideShow('course','')" >Cancel</button>
+																	</div>
+																</div>
+															</div>
+														</form>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-12">
+									<div class="accordion" id="accordionExample">
+										<div class="card ful-card">
+											<div class="top-head">
+												<div class="prf-wrpr main-wrap" *ngIf="!hidden_blocks.project">
+													<div class="titl-top d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
+														<h6 class="mb-0">Projects</h6>
+														<div class="fa-icns">
+															<span class="" (click)="hideShow('project','add')"><i class="fas fa-plus"></i></span>
+														</div>
+													</div>
+													<div id="collapse4" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+														<div class="insid-crd" *ngIf="profile && profile.talent_accomplishment && profile.talent_accomplishment.projects">
+															<div class="prf-desc" *ngFor="let item of profile.talent_accomplishment.projects;let ind = index;">
+																<div class="d-flex justify-content-between">
+																	<div class="d-flex">
+																		<div class="test-img" *ngIf="fetchImageFromMedia(item.media)" >
+																			<img src="{{ env.COMMON_MEDIA + fetchImageFromMedia(item.media) }}" class="img-fluid">
+																		</div>
+																		<div class="test-cntnt">
+																			<h6>{{item.project_name}}</h6>
+																			<p class="mb-0" *ngIf="item.start_year && item.end_year && !item.is_currently_working"> {{ yearMonthName(item.start_month) }}, {{item.start_year}} to {{ yearMonthName(item.end_month) }}, {{ item.end_year }}</p>
+																			<p class="mb-0" *ngIf="item.start_year && item.is_currently_working">{{item.start_year}} to Currently Working</p>
+																			<p *ngIf="item.associated_with"><strong>Associated with:</strong> {{ item.associated_with }}</p>
+																		</div>
+																	</div>
+																	<div class="fa-icns">
+																		<span class="" (click)="hideShow('project','edit')" (click)="editProject(ind)" ><i class="fas fa-pencil"></i></span>
+																		<span (click)="deleteProject(ind)"><i class="fas fa-trash"></i></span>
+																	</div>
+																</div>
+																<div>
+																	<span *ngIf="item.team_members">
+																		<p class="mb-0" *ngFor="let item2 of item.team_members;"><strong>Member</strong> {{ item2.name  }}</p>
+																	</span>
+																	<p class="mb-0" *ngIf="item.project_url"><strong>Project URL:</strong> <a target="_blank" href="{{ item.project_url }}"> {{ item.project_url }}</a></p>
+																	<p class="mb-0">{{ item.description }}</p>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="div-hide" *ngIf="hidden_blocks.project == 'add' || hidden_blocks.project == 'edit'">
+													<div class="innr-form">
+														<h6 class="mb-3">Projects</h6>
+														<form [formGroup]="projectForm" >
+															<div class="row">
+																<div class="col-sm-12">
+																	<div class="form-group">
+																		<label>Project Name*</label>
+																		<input type="text" class="form-control" formControlName="project_name" [(ngModel)]="project.project_name" placeholder="e.g. Construction of a Building">
+																		<label *ngIf="project_name_form.touched && project_name_form.invalid" [ngClass] = "'invalid-feedback'"> Project Name is Required </label>
+																	</div>
+																</div>
+															</div>
+															<div class="prjct-date">
+																<label>Start Date</label>
+																<div class="row">
+																	<div class="col-sm-6">
+																		<div class="form-group">
+																			<select name="" class="form-control" [(ngModel)]="project.start_month" [ngModelOptions]="{standalone: true}" id="">
+																				<option value="">Choose</option>
+																				<option *ngFor="let month of months;" value="{{ month.value }}">{{ month.value }}</option>
+																			</select>
+																		</div>
+																	</div>
+																	<div class="col-sm-6">
+																		<div class="form-group">
+																			<select name="" class="form-control" [(ngModel)]="project.start_year" [ngModelOptions]="{standalone: true}" id="">
+																				<option value="">Choose</option>
+																				<option *ngFor="let year of years;" value="{{ year }}">{{ year }}</option>
+																			</select>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="row">
+																<div class="col-sm-12">
+																	<div class="form-group">
+																		<div class="custom-control custom-checkbox">
+																			<input type="checkbox" class="custom-control-input" id="customCheckkCurrentlyWorking" checked="checked"
+																			[ngModelOptions]="{standalone: true}" [(ngModel)]="project.is_currently_working" #is_currently_working="ngModel">
+																			<label class="custom-control-label" for="customCheckkCurrentlyWorking">I am currently working in the project</label>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="prjct-date" *ngIf="!project.is_currently_working">
+																<label>End Date</label>
+																<div class="row">
+																	<div class="col-sm-6">
+																		<div class="form-group">
+																			<select name="" class="form-control" [(ngModel)]="project.end_month" [ngModelOptions]="{standalone: true}" id="">
+																				<option value="">Choose</option>
+																				<option *ngFor="let month of months;" value="{{ month.value }}">{{ month.value }}</option>
+																			</select>
+																		</div>
+																	</div>
+																	<div class="col-sm-6">
+																		<div class="form-group">
+																			<select name="" class="form-control" [(ngModel)]="project.end_year" [ngModelOptions]="{standalone: true}" id="">
+																				<option value="">Choose</option>
+																				<option *ngFor="let year of years;" value="{{ year }}">{{ year }}</option>
+																			</select>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="col-sm-12">
+																<div class="form-group">
+																	<div class="add-new d-flex justify-content-between">
+																		<label>Team Members</label>
+																		<div class="add-more-link add-new-row">
+																		</div>
+																	</div>																	
+																	<div class="form-group">
+																		<img src="assets/imgs/add-alt.png" class="img-fluid">&nbsp;
+																		<span (click)="addMember(ind)" class="green_text">Add more Member</span>
+																	</div>
+																	<div *ngFor="let auth of project.team_members;let indexA = index">
+																		<input type="text" [(ngModel)]="project.team_members[indexA].name" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="">
+																		<div class="form-group">
+																			<span (click)="deleteMember(indexA,ind)" style="cursor: pointer;" class="green_text dlt-auther">Delete Member</span>
+																		</div>
+																	</div>																	
+																</div>
+															</div>
+															<div class="row">
+																<div class="col-sm-12">
+																	<div class="form-group">
+																		<label>Associated with</label>
+																		<input type="text" [(ngModel)]="project.associated_with" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="">
+																	</div>
+																</div>
+																<div class="col-sm-12">
+																	<div class="form-group">
+																		<label>Project URL</label>
+																		<input type="text" [(ngModel)]="project.project_url" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="">
+																	</div>
+																</div>
+																<div class="col-sm-12">
+																	<div class="form-group">
+																		<label>Description</label>
+																		<textarea class="form-control" [(ngModel)]="project.description" [ngModelOptions]="{standalone: true}" placeholder="e.g. lorem ipsum sit donar lorem ipsum sit donar..." rows="3"></textarea>
+																	</div>
+																</div>
+																<div class="col-sm-12">
+																	<div class="form-group">
+																		<label>Media <small>(250W*250H)</small></label>
+																		<div class="custm-dropzone">
+																			<ngx-dropzone (change)="uploadFile($event,project)">
+																				<ngx-dropzone-label>
+																					<img src="assets/imgs/cloud-computing.png" class="img-fluid">
+																					<p>Upload documents, photos, videos or presentation</p>
+																				</ngx-dropzone-label>
+																				<ngx-dropzone-preview *ngFor="let f of project.media" [removable]="true" (removed)="deleteDocument(f,project.media)">
+																					<ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+																				</ngx-dropzone-preview>
+																			</ngx-dropzone>
+																		</div>
+																		<div class="disclaimer-txt"> 
+																		<p>*The file should not exceed more than 25MB.</p>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="row">
+																<div class="col-sm-12">
+																	<div class="cmn-btn">
+																		<button (click)="updateProject()"  class="btn btn_theme_green on-save" [disabled]="!projectForm.valid">Save</button>
+																		&nbsp;
+																		<button  class="btn btn_theme_green " (click)="hideShow('project','')" >Cancel</button>
+																	</div>
+																</div>
+															</div>
+														</form>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- Honor & Rewards -->
+								<div class="col-sm-12">
+									<div class="accordion" id="accordionExample">
+										<div class="card ful-card">
+											<div class="top-head">
+												<div class="prf-wrpr main-wrap" *ngIf="!hidden_blocks.award">
+													<div class="titl-top d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapse5" aria-expanded="true" aria-controls="collapse5">
+														<h6 class="mb-0">Honor & Rewards</h6>
+														<div class="fa-icns">
+															<span class="" (click)="hideShow('award','add')"><i class="fas fa-plus"></i></span>
+														</div>
+													</div>
+													<div id="collapse5" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+														<div class="insid-crd" *ngIf="profile && profile.talent_accomplishment && profile.talent_accomplishment.awards">
+															<div class="prf-desc" *ngFor="let item of profile.talent_accomplishment.awards;let ind = index;">
+																<div class="d-flex justify-content-between">
+																	<div class="d-flex">
+																		<div class="test-img">
+																			<div class="test-img" *ngIf="fetchImageFromMedia(item.media)" >
+																				<img src="{{ env.COMMON_MEDIA + fetchImageFromMedia(item.media) }}" class="img-fluid">
+																			</div>
+																		</div>
+																		<div class="test-cntnt">
+																			<h6>{{ item.title }}</h6>
+																			<p class="mb-0"><strong>Issuer:</strong> {{ item.issuer }}</p>
+																			<p class="mb-0" *ngIf="item.start_month || item.start_year"><strong>Issued on:</strong> {{ item.start_month ? yearMonthName(item.start_month)+",":'' }} {{ item.start_year }}</p>
+																			<p *ngIf="item.associated_with"><strong>Associated with:</strong> {{ item.associated_with }}</p>
+																		</div>
+																	</div>
+																	<div class="fa-icns">
+																		<span class="" (click)="hideShow('award','edit')" (click)="editAward(ind)"><i class="fas fa-pencil"></i></span>
+																		<span (click)="deleteAward(ind)"><i class="fas fa-trash"></i></span>
+																	</div>
+																</div>
+																<div>
+																	<p *ngIf="item.description" class="mb-0">{{ item.description }}</p>
+																</div>
+
+																<div class="doc-wrpr d-flex" *ngIf="item.media">
+																	<div class="doc-img" *ngFor="let item2 of item.media">
+																		<a href="{{ item2.name ? item2.url  : ''  }}" download="" target="_blank"><mat-icon  class="mat-icon notranslate material-icons mat-icon-no-color" role="img" aria-hidden="true">get_app</mat-icon></a>
+																		<img src="assets/imgs/fileicon/{{ item2.url ? item2.url.split('.').pop() : item2.name.split('.').pop()  }}.png" class="img-fluid">
+																	</div>
+																</div>
+
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="div-hide" *ngIf="hidden_blocks.award == 'add' || hidden_blocks.award == 'edit'">
+													<div class="innr-form">
+														<h6 class="mb-3">Honor & Awards</h6>
+														<form [formGroup]="awardForm">
+															<div class="row">
+																<div class="col-sm-12">
+																	<div class="form-group">
+																		<label>Title*</label>
+																		<input type="text" formControlName="title" [(ngModel)]="award.title" class="form-control" placeholder="e.g. Nobel Prize of Architecture">
+																		<label *ngIf="award_form.touched && award_form.invalid" [ngClass] = "'invalid-feedback'"> Title is Required </label>
+																	</div>
+																</div>
+																<div class="col-sm-12">
+																	<div class="form-group">
+																		<label>Associated with</label>
+																		<input type="text" class="form-control" [(ngModel)]="award.associated_with" [ngModelOptions]="{standalone: true}" placeholder="">
+																	</div>
+																</div>
+																<div class="col-sm-12">
+																	<div class="form-group">
+																		<label>Issuer*</label>
+																		<input type="text" class="form-control" formControlName="issuer" [(ngModel)]="award.issuer" placeholder="">
+																		<!-- <div *ngIf="award.issuerValidation" class="validation-spn">Please enter issuer</div> -->
+																		<label *ngIf="award_issuer_form.touched && award_issuer_form.invalid" [ngClass] = "'invalid-feedback'">Please enter issuer </label>
+																	</div>
+																</div>
+															</div>
+															<div class="prjct-date">
+																<label>Issue Date</label>
+																<div class="row">
+																	<div class="col-sm-6">
+																		<div class="form-group">
+																			<select name="" class="form-control" [(ngModel)]="award.start_month" [ngModelOptions]="{standalone: true}" id="">
+																				<option value="">Choose</option>
+																				<option *ngFor="let month of months;" value="{{ month.value }}">{{ month.value }}</option>
+																			</select>
+																		</div>
+																	</div>
+																	<div class="col-sm-6">
+																		<div class="form-group">
+																			<select name="" class="form-control" [(ngModel)]="award.start_year" [ngModelOptions]="{standalone: true}" id="">
+																				<option value="">Choose</option>
+																				<option *ngFor="let year of years;" value="{{ year }}">{{ year }}</option>
+																			</select>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="row">
+																<div class="col-sm-12">
+																	<div class="form-group">
+																		<label>Description</label>
+																		<textarea class="form-control" [(ngModel)]="award.description" [ngModelOptions]="{standalone: true}" placeholder="e.g. lorem ipsum sit donar lorem ipsum sit donar..." rows="3"></textarea>
+																	</div>
+																</div>
+															</div>
+
+															<div class="row">
+																<div class="col-sm-12">
+																	<div class="form-group">
+																		<label>Attach File <small>(250W*250H)</small></label>
+																		<div class="custm-dropzone">
+																			<ngx-dropzone (change)="uploadFileAward($event)">
+																				<ngx-dropzone-label>
+																					<img src="assets/imgs/cloud-computing.png" class="img-fluid">
+																					<p>Upload documents, photos, videos or presentation</p>
+																				</ngx-dropzone-label>
+																				<ngx-dropzone-preview *ngFor="let f of award.media" [removable]="true" (removed)="deleteDocumentAward(f)">
+																					<ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+																				</ngx-dropzone-preview>
+																			</ngx-dropzone>
+																		</div>
+																		<div class="disclaimer-txt"> 
+																		<p>*The file should not exceed more than 25MB.</p>
+																		</div>
+																	</div>
+																</div>
+															</div>
+
+															<div class="row">
+																<div class="col-sm-12">
+																	<div class="cmn-btn">
+																		<button class="btn btn_theme_green on-save" [disabled]="!awardForm.valid" (click)="updateAward()">Save</button>
+																		&nbsp;
+																		<button  class="btn btn_theme_green " (click)="hideShow('award','')" >Cancel</button>
+																	</div>
+																</div>
+															</div>
+														</form>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<!-- Publications -->
+								<div class="col-sm-12">
+									<div class="accordion" id="accordionExample">
+										<div class="card ful-card">
+											<div class="top-head">
+												<div class="prf-wrpr main-wrap" *ngIf="!hidden_blocks.publication">
+													<div class="titl-top d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapse6" aria-expanded="true" aria-controls="collapse6">
+														<h6 class="mb-0">Publications</h6>
+														<div class="fa-icns">
+															<span class="" (click)="hideShow('publication','add')"><i class="fas fa-plus"></i></span>
+														</div>
+													</div>
+													<div id="collapse6" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+														<div class="insid-crd" *ngIf="profile && profile.talent_accomplishment && profile.talent_accomplishment.publications">
+															<div class="prf-desc" *ngFor="let item of profile.talent_accomplishment.publications;let ind = index">
+																<div class="d-flex justify-content-between">
+																	<div class="d-flex">
+																		<!-- <div class="test-img">
+																			<img src="assets/imgs/t1.jpeg" class="img-fluid">
+																		</div> -->
+																		<div class="test-cntnt">
+																			<h6>{{ item.title }}</h6>
+																			<p class="mb-0"><strong>Publication Date:</strong> {{ item.publish_date }}</p>
+																			<p class="mb-0"><strong>Publisher</strong> {{ item.publisher }}</p>
+																		</div>
+																	</div>
+																	<div class="fa-icns">
+																		<span class="" (click)="hideShow('publication','edit')" (click)="editPublication(ind)">  <i class="fas fa-pencil"></i></span>
+																		<span (click)="deletePublication(ind)" ><i class="fas fa-trash"></i></span>
+																	</div>
+																</div>
+																<div>
+																	<span *ngIf="item.authors">
+																		<p class="mb-0" *ngFor="let item2 of item.authors;"><strong>Author</strong> {{ item2.name  }}</p>
+																	</span>
+																	<p class="mb-0" *ngIf="item.publication_url"><strong>Publication URL:</strong> <a target="_blank" href="{{ item.publication_url }}"> {{ item.publication_url }}</a></p>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="div-hide"  *ngIf="hidden_blocks.publication == 'add' || hidden_blocks.publication == 'edit'">
+													<div class="innr-form">
+														<h6 class="mb-3">Publications</h6>
+														<form [formGroup]="publicationForm"> 
+															<div class="row">
+																<div class="col-sm-12">
+																	<div class="form-group">
+																		<label>Title*</label>
+																		<input type="text" formControlName="title" [(ngModel)]="publication.title" class="form-control" placeholder="e.g. Building Design & Construction">
+																		<label *ngIf="publication_title_form.touched && publication_title_form.invalid" [ngClass] = "'invalid-feedback'"> Title is Required </label>
+																	</div>
+																</div>
+																<div class="col-sm-12">
+																	<div class="form-group">
+																		<label>Publication/Publisher*</label>
+																		<input formControlName="publisher" [(ngModel)]="publication.publisher" type="text" class="form-control" placeholder="">
+																		<label *ngIf="publisher_form.touched && publisher_form.invalid" [ngClass] = "'invalid-feedback'"> Publisher is Required </label>
+																	</div>
+																</div>
+																<div class="col-sm-12">
+																	<div class="form-group custm-datepickr">
+																		<label>Publication Date*</label>
+																		<mat-form-field appearance="fill">
+																			<mat-label>Choose a date</mat-label>
+																			<input formControlName="publish_date" [(ngModel)]="publication.publish_date" matInput [matDatepicker]="picker">
+																			<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+																			<mat-datepicker #picker></mat-datepicker>
+																		</mat-form-field>
+																		<label *ngIf="publish_date_form.touched && publish_date_form.invalid" [ngClass] = "'invalid-feedback'"> Publication date is Required </label>
+																	</div>
+																</div>
+																<div class="col-sm-12">
+																	<div class="form-group">
+																		<div class="add-new d-flex justify-content-between">
+																			<label>Authors*</label>
+																			<div class="add-more-link add-new-row">
+																			</div>
+																		</div>																	
+																		<div class="form-group">
+																			<img src="assets/imgs/add-alt.png" class="img-fluid">&nbsp;
+																			<span (click)="addAuthor(ind)" class="green_text">Add more Author</span>
+																		</div>
+																		<div *ngFor="let auth of publication.authors;let indexA = index">
+																			<input type="text" [(ngModel)]="auth.name" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="">
+																			<div class="form-group">
+																				<span (click)="deleteAuthor(indexA,ind)" style="cursor: pointer;" class="green_text dlt-auther">Delete Author</span>
+																			</div>
+																		</div>																	
+																	</div>
+																</div>
+																<div class="col-sm-12">
+																	<div class="form-group">
+																		<label>Publication URL</label>
+																		<input formControlName="publication_url" [(ngModel)]="publication.publication_url" type="text" class="form-control" placeholder="">
+																		<label *ngIf="publication_url_form.touched && publication_url_form.invalid" [ngClass] = "'invalid-feedback'"> Publication URL is Required </label>
+																	</div>
+																</div>
+																<div class="col-sm-12">
+																	<div class="cmn-btn">
+																		<button (click)="updatePublication()" [disabled]="!publicationForm.valid" class="btn btn_theme_green on-save">Save</button>
+																		&nbsp;
+																		<button  class="btn btn_theme_green " (click)="hideShow('publication','')" >Cancel</button>
+																	</div>
+																</div>
+															</div>
+														</form>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								<!-- Recieved Recommendations -->
+								<div class="col-sm-12">
+									<div class="accordion" id="accordionExample">
+										<div class="card ful-card">
+											<div class="top-head">
+												<div class="prf-wrpr main-wrap" *ngIf="!hidden_blocks.recommend">
+													<div class="titl-top d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapse7" aria-expanded="true" aria-controls="collapse7">
+														<h6 class="mb-0">Received Recommendations</h6>
+														<div class="fa-icns">
+															<span class="" (click)="hideShow('recommend','add')"><i class="fas fa-plus"></i></span>
+														</div>
+													</div>
+													<div id="collapse7" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+														<div class="insid-crd" *ngIf="profile && profile.talent_experience && profile.talent_experience.recieved_recommendations">
+															<div class="prf-desc" *ngFor="let item of profile.talent_experience.recieved_recommendations;let ind = index;">
+																<div class="d-flex justify-content-between">
+																	<div class="test-cntnt">													
+																		<p class="mb-0"><strong>Name :- </strong> {{ item.person_name }}</p>
+																		<p class="mb-0" *ngIf="item.position_time"><strong>Position :- </strong> {{ item.position_time }}</p>
+																		<p class="mb-0" *ngIf="item.recommendation"><strong>Copy the received recommendation :- </strong> {{ item.recommendation }}</p>
+																		<p class="mb-0" *ngIf="item.relationship"><strong>Relationship :- </strong> {{ item.relationship }}</p>
+																		<p class="mb-0" *ngIf="item.talent_company_name"><strong>Talent company name :- </strong> {{ item.talent_company_name }}</p>
+																		<p class="mb-0" *ngIf="item.talent_position"><strong>Talent position :- </strong> {{ item.talent_position }}</p>				
+																	</div>
+																	<div class="fa-icns">
+																		<span class="" (click)="hideShow('recommend','edit')" (click)="editRecommend(ind)"><i class="fas fa-pencil"></i></span>
+																		<span (click)="deleteRecommend(ind)"><i class="fas fa-trash"></i></span>
+																	</div>
+																</div>
+																<!-- <p class="mb-0">{{ item.recommendation }}</p> -->
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="div-hide" *ngIf="hidden_blocks.recommend == 'add' || hidden_blocks.recommend == 'edit'">
+													<div class="innr-form">
+														<h6 class="mb-3">Recieved Recommendations</h6>
+														<form [formGroup]="recommendForm">
+															<div class="row">
+																<div class="col-sm-12">
+																	<div class="form-group">
+																		<label>Person Name*</label>
+																		<input type="text" formControlName="person_name" [(ngModel)]="recommendation.person_name" class="form-control" placeholder="e.g. James Matthew">
+																		<label *ngIf="person_name_form.touched && person_name_form.invalid" [ngClass] = "'invalid-feedback'"> Person Name is Required </label>
+																	</div>
+																</div>
+																<div class="col-sm-12">
+																	<div class="form-group">
+																		<label>Person Company </label>
+																		<input type="text" formControlName="talent_company_name" class="form-control" [(ngModel)]="recommendation.talent_company_name" placeholder="e.g. Bechtel" id="talent_company_name" >
+																	</div>
+																</div>
+																<div class="col-sm-12">
+																	<div class="form-group">
+																		<label>Person Position </label>
+																		<input type="text" formControlName="talent_position" class="form-control" [(ngModel)]="recommendation.talent_position" placeholder="e.g. Civil Engineer" id="talent_position">
+																	</div>
+																</div>
+																<div class="col-sm-12">
+																	<div class="form-group">
+																		<label>Relationship</label>
+																		<select formControlName="relationship" [(ngModel)]="recommendation.relationship" class="form-control">
+																		<option value="" disabled>Select Relationship</option>
+																		<option *ngFor="let relation of relationship_list" value="{{relation.value}}">{{relation.value}}</option>
+																		</select>
+																	</div>
+																</div>
+																<div class="col-sm-12">
+																	<div class="form-group">
+																		<label>Your Position</label>
+																		<select formControlName="position_time" [(ngModel)]="recommendation.position_time" class="form-control">
+																		<option value="" disabled>Select Position</option>
+																		<option *ngFor="let position of position_list" value="{{position.value}}">{{position.value}}</option>
+																		</select>
+																	</div>
+																</div>
+																<div class="col-sm-12">
+																	<div class="form-group">
+																		<label>Copy the received recommendation*</label>
+																		<textarea class="form-control" formControlName="recommendation" [(ngModel)]="recommendation.recommendation" placeholder="e.g. lorem ipsum sit donar lorem ipsum sit donar..." rows="3"></textarea>
+																		<label *ngIf="recommendation_form.touched && recommendation_form.invalid" [ngClass] = "'invalid-feedback'"> Received recommendation is Required </label>
+																	</div>
+																</div>
+																<div class="col-sm-12">
+																	<div class="cmn-btn">
+																		<button class="btn btn_theme_green" (click)="updateRecommend()" [disabled]="!recommendForm.valid">Save</button>
+																		&nbsp;
+																		<button  class="btn btn_theme_green " (click)="hideShow('recommend','')" >Cancel</button>
+																	</div>
+																</div>
+															</div>
+														</form>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<!-- Regi experience -->
+								<div class="col-sm-12">
+									<div class="accordion" id="accordionExample">
+										<div class="card ful-card regional-card">
+											<div class="top-head">
+												<div class="prf-wrpr main-wrap" *ngIf="!hidden_blocks.regional">
+													<div class="titl-top d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
+														<h6 class="mb-0">Regional Experience</h6>
+														<!-- <div class="fa-icns">
+															<span class="" (click)="hideShow('recommend','add')"><i class="fas fa-plus"></i></span>
+														</div> -->
+														<div class="fa-icns">
+															<span class="" (click)="hideShow('regional','add')" (click)="editRecommend(10)"><i class="fas fa-pencil"></i></span>
+															
+														</div>
+													</div>
+													<div id="collapse8" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+														<div class="insid-crd" *ngIf="profile && profile.talent_experience && profile.talent_experience.regional_experience">
+															<div class="prf-desc regional-list" *ngFor="let item of profile.talent_experience.regional_experience;let ind = index;">
+																<div class="d-flex justify-content-between">
+																	<div class="test-cntnt">
+																		<h6>{{ item }}</h6>
+																	</div>
+																	<!-- <div class="fa-icns">
+																		<span class="" (click)="hideShow('recommend','edit')" (click)="editRecommend(ind)"><i class="fas fa-pencil"></i></span>
+																		<span (click)="deleteRecommend(ind)"><i class="fas fa-trash"></i></span>
+																	</div> -->
+																</div>
+																
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="div-hide" *ngIf="hidden_blocks.regional == 'add' || hidden_blocks.regional == 'edit'">
+													<div class="innr-form">
+														<h6 class="mb-3">Recieved Recommendations</h6>
+														<form >
+															<div class="row">
+																<div class="col-sm-12">
+																	<div class="form-group">
+																		<ul class="servc-listng">
+																			<li *ngFor="let regional of regional_list; let i = index">
+																				<div class="custom-control custom-checkbox">
+																				<input type="checkbox" (change)="changeRegional($event)" class="custom-control-input" id="customCheck{{i}}"
+																				checked="checked" [checked]="true" [(ngModel)]="regional.flag" [ngModelOptions]="{standalone: true}" #checkFlag="ngModel">
+																				<label class="custom-control-label" for="customCheck{{i}}">{{regional.name}}</label>
+																				</div>
+																			</li>
+																			<li>
+																				<div class="custom-control custom-checkbox">
+																				<input type="checkbox" (change)="changeRegionalNone($event)" class="custom-control-input" id="customCheck"
+																					checked="checked" [(ngModel)]="experienceModel.regional_experience_none" name="regional_experience_none" >
+																				<label class="custom-control-label" for="customCheck">None</label>
+																				</div>
+																			</li>
+																			<!-- <div *ngIf="experienceModel.regionalExperienceValidation" class="validation-spn">Please select regional experience</div> -->
+																		</ul>
+																	</div>
+																</div>
+																
+															</div>
+
+															<div class="row">
+																<div class="col-sm-12">
+																	<button (click)="updateRegional()"  class="btn btn_theme_green on-save">Save</button>
+																	&nbsp;
+																	<button  class="btn btn_theme_green " (click)="hideShow('regional','')" >Cancel</button>
+																</div>
+															</div>
+														</form>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+
+								<!-- Profile Details -->
+								<!-- <div class="col-sm-12">
+									<div class="card ful-card">
+										<div class="top-head">
+											<div class="prf-wrpr main-wrap" *ngIf="!hidden_blocks.profile_details">
+												<div class="titl-top d-flex justify-content-between align-items-center">
+													<h6 class="mb-0">Profile Details</h6>
+													<div class="fa-icns">
+														<span class="add-new" (click)="hideShow('profile_details','edit')"><i class="fas fa-pencil"></i></span>
+													</div>
+												</div>
+												<div class="insid-crd">
+													<div class="prf-desc">
+														<div class="d-flex justify-content-between">					                                		
+															<div class="test-cntnt">
+																<div class="prof-img">
+																	<img src="assets/imgs/userr.png" class="img-fluid">
+																</div>
+																<p class="mb-0"><strong>Profile Details:</strong> Lorem ipsum lorem ipsum</p>
+																<p class="mb-0"><strong>Contact Number:</strong> 4531642</p>
+																<p class="mb-0"><strong>WEB Address:</strong> https://google.com</p>
+																<p class="mb-0"><strong>Country:</strong> Bangladesh</p>
+																<p class="mb-0"><strong>Appartment/Suite:</strong> --</p>
+																<p class="mb-0"><strong>State:</strong> --</p>
+																<p class="mb-0"><strong>city:</strong> --</p>
+																<p class="mb-0"><strong>ZIP Code:</strong> --</p>
+																<p class="mb-0"><strong>Portfolio:</strong> --</p>
+																<div>
+																	<p class="mb-0"><strong>User ID</strong></p>
+																	<div class="doc-wrpr d-flex">
+																		<div class="doc-img">
+																			<a href="" download="" target="_blank"><mat-icon  class="mat-icon notranslate material-icons mat-icon-no-color" role="img" aria-hidden="true">get_app</mat-icon></a>
+																			<img src="assets/imgs/fileicon/jpg.png" class="img-fluid">
+																		</div>
+																	</div>
+																</div>
+																<div>
+																	<p class="mb-0"><strong>Intro Video</strong></p>
+																	<div class="doc-wrpr d-flex">
+																		<div class="doc-img">
+																			<a href="" download="" target="_blank"><mat-icon  class="mat-icon notranslate material-icons mat-icon-no-color" role="img" aria-hidden="true">get_app</mat-icon></a>
+																			<img src="assets/imgs/fileicon/jpg.png" class="img-fluid">
+																		</div>
+																	</div>
+																</div>
+															</div>
+														
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="insid-crd" *ngIf="hidden_blocks.profile_details == 'edit'">
+												<div class="prf-desc innr-form">
+													<h6 class="mb-3">Profile Details</h6>
+													<form [formGroup]="profile_form">
+														<div class="row">
+															<div class="col-sm-12">
+																<div class="prof-imag-card d-flex align-items-center">
+																	<img src="assets/imgs/userr.png" class="img-fluid">
+																	<div class="prf-side ml-3">
+																		<a class="btn btn_theme_green my-2 my-sm-0">Upload Image</a>
+																		<input name="file" type="file" class="uplod-prf-img">
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="row">
+															<div class="col-sm-12">
+																<div class="form-group">
+																	<label>Profile Headline</label>
+																	<textarea class="form-control" name="profile_headline" rows="3"></textarea>
+																</div>
+															</div>
+															<div class="col-sm-12">
+																<div class="intl-input">
+																	<label>Contact Number*</label>
+																	<div class="mob-input form-group {{profileDetailModel.contactNumberValidation || profileDetailModel.contactNumberLengthValidation ? 'validatn-input' : '' }}">
+																		<ngx-intl-tel-input
+																			[cssClass]="'custom'"
+																			[preferredCountries]="[CountryISO.UnitedStates, CountryISO.UnitedKingdom]"
+																			[enableAutoCountrySelect]="false"
+																			[enablePlaceholder]="true"
+																			[searchCountryFlag]="true"
+																			[searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+																			[selectFirstCountry]="false"
+																			[selectedCountryISO]="CountryISO.UnitedArabEmirates"
+																			[maxLength]="15"
+																			[phoneValidation]="true"
+																			[(ngModel)]="phone"
+																			[ngModelOptions]="{standalone: true}"
+																			(ngModelChange)="checkNumber()"
+																			name="phone"
+																			autocomplete="off"
+																		></ngx-intl-tel-input>
+																		<div *ngIf="profileDetailModel.contactNumberValidation" class="validation-spn">Please enter contact number</div>
+																		<div *ngIf="profileDetailModel.contactNumberLengthValidation" class="validation-spn">Please enter atleast 8 digit</div>
+																	</div>
+																</div>
+															</div>
+															<div class="col-sm-12">
+																<div class="form-group">
+																	<label>WEB Address</label>
+																	<input type="text" name="web_address" autocomplete="off"
+																	class="form-control" placeholder="">
+																	<div class="validation-spn">Please enter valid url</div>
+																</div>
+															</div>
+															<div class="col-sm-12">
+																<div class="form-group">
+																	<div>
+																		<label>Country*</label>
+																	</div>
+																	<select name="" class="form-control slct-form">
+																	<option value="" disabled>Select Country</option>
+																	<option>Bangladesh</option>
+																	</select>
+																	<div class="validation-spn">Please select country</div>
+																	<div class="invalid-feedback">
+																		*Please Select country
+																	</div>
+																</div>
+															</div>
+															<div class="col-sm-12">
+																<div class="form-group">
+																	<label>Appartment/Suite</label>
+																	<input type="text" class="form-control" name="appartment" placeholder="">
+																</div>
+															</div>
+															<div class="col-sm-6">
+																<div class="form-group">
+																<div>
+																	<label>State*</label>
+																</div>														
+																	<select name="" formControlName="state" class="form-control" id="">
+																		<option value="" disabled>Select State</option>
+																		<option >chdc</option>
+																	</select>
+																	
+																</div>
+															</div>
+															<div class="col-sm-6">
+																<div class="form-group">
+																<div>
+																	<label>City</label>
+																</div>
+																	
+																	<select name="" formControlName="city" class="form-control" id="">
+																		<option value="" disabled>Select City</option>
+																		<option >chcc</option>
+																	</select>
+																	
+																</div>
+															</div>
+															<div class="col-sm-12">
+																<div class="form-group">
+																	<label>ZIP Code</label>
+																	<input type="text" name="zip_code" class="form-control" placeholder="">
+																</div>
+															</div>
+															<div class="col-sm-12">
+																<div class="form-group">
+																	<label>Portfolio</label>
+																	<input type="text" name="port_folio" autocomplete="off"	class="form-control" placeholder="">
+																	
+																</div>
+															</div>
+														</div>
+														<div class="file-inpt">
+															<label>User ID* <span class="cstm-sp-con">( NOTE : Your ID will not be shared with our clients, it's only to make sure it's you.) </span></label>
+															<div class="row">
+																<div class="col-sm-10 pr-0">
+																	<div class="form-group">
+																		<div class="custom-file">
+																			<input type="file" name="intro_video" class="custom-file-input validatn-input" id="customFile">
+																			<label class="custom-file-label file-cs-con" for="customFile">user id</label>
+																		</div>
+																		<div class="disclaimer-txt"> 
+																			<p>*The file should not exceed more than 25MB.</p>
+																		</div>
+																		
+																	</div>
+																</div>
+																<div class="col-sm-2">
+																	<a class="btn btn_theme_black">Reset</a>
+																</div>
+															</div>
+														</div>
+														<div class="file-inpt">
+															<label>Upload Intro Video</label>
+															<div class="row">
+																<div class="col-sm-10 pr-0">
+																	<div class="form-group">
+																		
+																		<div class="custom-file">
+																			<input type="file" name="intro_video" class="custom-file-input" id="customFile">
+																			<label class="custom-file-label file-cs-con" for="customFile">intro file name</label>
+																		</div>
+																		<div class="disclaimer-txt"> 
+																		<p>*The file should not exceed more than 25MB.</p>
+																		</div>
+																	</div>
+																</div>
+																<div class="col-sm-2">
+																	<a class="btn btn_theme_black">Reset</a>
+																</div>
+															
+															</div>
+														</div>
+													</form>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div> -->
+
+								<!-- visibility -->
+								<!-- <div class="col-sm-12">
+									<div class="card ful-card">
+										<div class="top-head">
+											<div class="prf-wrpr main-wrap">
+												<div class="titl-top d-flex justify-content-between align-items-center">
+													<h6 class="mb-0">Visibility & Preferences</h6>
+													<div class="fa-icns">
+														<span class="add-new"><i class="fas fa-plus"></i></span>
+													</div>
+												</div>
+												<div class="insid-crd">
+													<div class="prf-desc">
+														<div class="d-flex justify-content-between">					                                		
+															<div class="test-cntnt">
+																
+																<p class="mb-0"><strong>Visibility:</strong> Anyone</p>
+																<p class="mb-0"><strong>Expected Hourly Salary:</strong> 5$/hr</p>
+																<p class="mb-0"><strong>Expected Monthly Salary:</strong> 5$/hr</p>
+																<p class="mb-0"><strong>Availability:</strong> 10 hrs</p>
+																
+															</div>
+															<div class="fa-icns">
+																<span class=""><i class="fas fa-pencil"></i></span>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="insid-crd visibility-pref prfile-details">
+												<div class="prf-desc innr-form">
+													<h6 class="mb-3">Visibility & Preferences</h6>
+													<form>
+														<div class="other-info">
+															<div class="card main-card see-profile">
+																<p>Who can see your profile?</p>
+																<div class="row ml-3">
+																	<div class="col-sm-4 pl-0">
+																		<div class="custom-control custom-radio custm-radio-cs">
+																		<input type="radio" class="custom-control-input" id="customRadio" value="1">
+																		<label class="custom-control-label" for="customRadio">
+																			<span class="">Anyone</span>
+																			<p>qqqeyeywoeuud</p>
+																		</label>
+																		</div>  
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="other-info">
+															<div class="card main-card">
+																<p class="mb-0">Set your own rate of service?</p>
+																<div class="row ml-3">
+																	<div class="col-sm-12">
+																		<div class="open-div mt-3 ml-3">
+																			<div class="row">
+																				<div class="col-sm-10 pl-0">
+																					<label>Expected Hourly Salary*</label>
+																					<div class="input-group mb-3 append-input-cs">
+																						<input type="text" class="form-control" placeholder="eg. 50">
+																						<div class="input-group-append">
+																							
+																							<span class="input-group-text" id="basic-addon2">$/Hour</span>
+																						</div>
+																					</div>
+																				
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+																<div class="row ml-3">
+																	<div class="col-sm-12">
+																		<div class="open-div mt-3 ml-3">
+																			<div class="row">
+																				<div class="col-sm-10 pl-0 form-group">
+																					<label>Expected Monthly Salary*</label>
+																					<div class="input-group mb-3 append-input-cs">
+																						<input type="text" class="form-control" placeholder="eg. 50">
+																						<div class="input-group-append">
+																						
+																							<span class="input-group-text" id="basic-addon2">$/Month</span>
+																						</div>
+																					</div>
+																					
+																				</div>
+																			</div>
+																		</div> 
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="other-info">
+															<div class="card main-card">
+																<div class="row">
+																	<div class="col-sm-9">
+																		<p>How much time would you like to spend in a week? (in Hours)</p>
+																		<div class="rang-slidr">
+																		
+																		</div>
+																		
+																	</div>
+																</div>
+															</div>
+														</div>
+
+													</form>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div> -->
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- <div class="inside-footer">
+					<app-footer></app-footer>
+				</div> -->
+			</div>
+		</section>
+	</div>
+	<app-footer></app-footer>
+</main>
+<!-- add sector modal -->
+<div class="modal fade add-service" id="addSector" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      	<div class="modal-content">
+        	<div class="modal-header">
+          		<h5 class="modal-title" id="exampleModalLongTitle">Add Sector</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-sm-9">
+						<div class="form-group">
+							<div class="custom-file">
+							<input type="file" class="custom-file-input" id="customFile">
+							<label class="custom-file-label" for="customFile">Choose Image</label>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-9">
+						<div class="form-group">
+							<label>Sector Name</label>
+							<input type="text" class="form-control" placeholder="e.g. Technology">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn_modal_black" data-dismiss="modal">Cancel</button>
+				<button type="button" class="btn btn_modal_green">Submit</button>
+			</div>
+      	</div>
+    </div>
+</div>

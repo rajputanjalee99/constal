@@ -1,0 +1,494 @@
+<app-client-header></app-client-header>
+
+<main class="comon_main internal_pages_prnt">
+	<div class="cmn-pading-top">
+		<section class="client_post_job vsblty_talntpref">
+			<div class="wrap-client">
+				<div class="d-flex">
+					<app-left-sidebar></app-left-sidebar>
+					<div class="main-cntnt geting-strt">
+						<h5>Post a Job</h5>
+						<div class="prgrs-bar">
+							<span class="prg-perc">6% Completed</span>
+							<mat-progress-bar mode="determinate" value="10"></mat-progress-bar>
+						</div>
+						<h6>4. Preferences & Budget for Talent</h6>
+						<div class="inside-wrapr card talent-pref">
+	                        <div class="main-tabs">
+	                            <mat-tab-group animationDuration="0ms">
+	                                <mat-tab label="Speciality">
+	                                	<div class="inside-tab">
+		                                    <div class="tag-input">
+												<tag-input></tag-input>
+											</div>
+											<div class="pre-pills">
+												<p>Choose the suitable speciality for Planning & Scheduling</p>
+												<ul class="">
+													<li>
+														Tender Programme <i class="fas fa-plus"></i>
+													</li>
+													<li class="selected">
+														Baseline Programme <i class="fas fa-check"></i>
+													</li>
+													<li>
+														Revised Programme <i class="fas fa-plus"></i>
+													</li>
+													<li>
+														Updated Programme <i class="fas fa-plus"></i>
+													</li>
+													<li>
+														Progress Monitoring <i class="fas fa-plus"></i>
+													</li>
+												</ul>
+											</div>
+										</div>
+	                                </mat-tab>
+	                                <mat-tab label="Services">
+	                                    <div class="inside-tab services-card">
+	                                    	<div class="add-more-link text-right m-0 mb-3" data-toggle="modal" data-target="#addService">
+						                      <img src="assets/imgs/add-blue.png" class="img-fluid">
+						                      <span class="blue_text">Add New Service</span>
+						                  	</div>
+							                 <div class="row">
+							                      <div class="col-sm-6">
+							                          <div class="card">
+							                              <h6>Traditional</h6>
+							                              <ul class="servc-listng">
+							                                  <li>
+							                                     <div class="custom-control custom-checkbox">
+							                                        <input type="checkbox" class="custom-control-input" checked="checked"  id="customCheck" name="example1">
+							                                        <label class="custom-control-label" for="customCheck">Prepare Tender Programme</label>
+							                                      </div>
+							                                  </li>
+							                                  <li>
+							                                      <!-- <mat-checkbox class="example-margin">Evaluate Tender Programme</mat-checkbox> -->
+							                                      <div class="custom-control custom-checkbox">
+							                                        <input type="checkbox" class="custom-control-input" id="customCheck2" name="example1">
+							                                        <label class="custom-control-label" for="customCheck2">Evaluate Tender Programme</label>
+							                                      </div>
+							                                  </li>
+							                                  <li>
+							                                      <div class="custom-control custom-checkbox">
+							                                        <input type="checkbox" class="custom-control-input" id="customCheck3" name="example1">
+							                                        <label class="custom-control-label" for="customCheck3">Prepare Baseline</label>
+							                                      </div>
+							                                  </li>
+							                                  <li>
+							                                      <div class="custom-control custom-checkbox">
+							                                        <input type="checkbox" class="custom-control-input" id="customCheck4" name="example1">
+							                                        <label class="custom-control-label" for="customCheck4">Evaluate Baseline</label>
+							                                      </div>
+							                                  </li>
+							                                  <li>
+							                                      <div class="custom-control custom-checkbox">
+							                                        <input type="checkbox" class="custom-control-input" id="customCheck5" name="example1">
+							                                        <label class="custom-control-label" for="customCheck555">Prepare Revised Programme</label>
+							                                      </div>
+							                                  </li>
+							                                  <li>
+							                                      <div class="custom-control custom-checkbox">
+							                                        <input type="checkbox" class="custom-control-input" id="customCheck6" name="example1">
+							                                        <label class="custom-control-label" for="customCheck6">Evaluate Revised Programme</label>
+							                                      </div>
+							                                  </li>
+							                              </ul>
+							                          </div>
+							                      </div>
+							                      <div class="col-sm-6">
+							                          <div class="card">
+							                              <h6>Digital</h6>
+							                              <ul class="servc-listng">
+							                                  <li>
+							                                      <div class="custom-control custom-checkbox">
+							                                        <input type="checkbox" class="custom-control-input" id="customCheck7" checked="checked" name="example1">
+							                                        <label class="custom-control-label" for="customCheck7">Constructability Check</label>
+							                                      </div>
+							                                  </li>
+							                                  <li>
+							                                      <div class="custom-control custom-checkbox">
+							                                        <input type="checkbox" class="custom-control-input" id="customCheck8" name="example1">
+							                                        <label class="custom-control-label" for="customCheck8">BIM 3D Simulation</label>
+							                                      </div>
+							                                  </li>
+							                                  <li>
+							                                      <div class="custom-control custom-checkbox">
+							                                        <input type="checkbox" class="custom-control-input" id="customCheck9" name="example1">
+							                                        <label class="custom-control-label" for="customCheck9">BIM 4D Simulation</label>
+							                                      </div>
+							                                  </li>
+							                                  <li>
+							                                      <div class="custom-control custom-checkbox">
+							                                        <input type="checkbox" class="custom-control-input" id="customCheck10" name="example1">
+							                                        <label class="custom-control-label" for="customCheck10"> 5D Take of Quantity</label>
+							                                      </div>
+							                                  </li>
+							                              </ul>
+							                          </div>
+							                      </div>
+							                 </div>
+							             </div>
+	                                </mat-tab>
+	                                <mat-tab label="Skills">
+	                                    <div class="inside-tab form-flds">
+	                                    	<div class="singl-row border-btm">
+												<p class="head-title">Talent Location</p>
+												<div class="flds-inside ml-4">
+													<div class="row mb-3">
+														<div class="col-sm-6">
+														    <div class="custom-control custom-radio custm-radio-cs">
+														      <input type="radio" class="custom-control-input" id="customRadio" name="example1">
+														      <label class="custom-control-label" for="customRadio">
+														      	<span>Remotely</span>
+														      </label>
+														    </div>  
+														</div>
+														<div class="col-sm-6">
+															<div class="custom-control custom-radio custm-radio-cs">
+														      <input type="radio" checked="checked" class="custom-control-input" id="customRadio2" name="example1">
+														      <label class="custom-control-label" for="customRadio2">
+														      	<span>On-Site</span>
+														      </label>
+														    </div>  
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="singl-row border-btm ">
+												<p class="head-title mb-2">What skills and expertise are most important to you in Talent?*</p>
+												<div class="tag-input">
+	                                       			 <tag-input></tag-input>
+			                                    </div>
+			                                    <div class="pre-pills">
+			                                    	<p class="mb-2">Skill Platform Name</p>
+			                                        <ul class="">
+			                                            <li>
+			                                                Project Control <i class="fas fa-plus"></i>
+			                                            </li>
+			                                            <li>
+			                                                CPM <i class="fas fa-plus"></i>
+			                                            </li>
+			                                        </ul>
+			                                    </div>
+			                                </div>
+			                                <div class="singl-row border-btm">
+												<p class="head-title mb-2">Tools & Technologies</p>
+												<div class="tag-input">
+	                                       			 <tag-input></tag-input>
+			                                    </div>
+			                                    <div class="pre-pills">
+			                                    	<!-- <p class="mb-2">Skill Platform Namr</p> -->
+			                                        <ul class="">
+			                                            <li>
+			                                                P6 <i class="fas fa-plus"></i>
+			                                            </li>
+			                                            <li>
+			                                                MS Project <i class="fas fa-plus"></i>
+			                                            </li>
+			                                            <li class="selected">
+			                                                Acument Fuse <i class="fas fa-plus"></i>
+			                                            </li>
+			                                        </ul>
+			                                    </div>
+			                                </div>
+											<div class="singl-row">
+												<div class="row pb-3">
+													<div class="col-sm-4">
+														<p class="head-title">English Level</p>
+														<div class="flds-inside ml-4">
+															<div class="custom-control custom-radio custm-radio-cs  mb-3">
+														      <input type="radio" class="custom-control-input"id="customRadio7" checked="checked" name="example1">
+														      <label class="custom-control-label" for="customRadio7">
+														      	<span class="">Any Level</span>
+														      </label>
+														    </div>
+															<div class="custom-control custom-radio custm-radio-cs mb-3">
+														      <input type="radio" class="custom-control-input" id="customRadio8" name="example1">
+														      <label class="custom-control-label" for="customRadio8">
+														      	<span>Conversational</span>
+														      </label>
+														    </div>
+															<div class="custom-control custom-radio custm-radio-cs mb-3">
+														      <input type="radio" class="custom-control-input" id="customRadio9" name="example1">
+														      <label class="custom-control-label" for="customRadio9">
+														      	<span>Fluent</span>
+														      </label>
+														    </div>
+														    <div class="custom-control custom-radio custm-radio-cs">
+														      <input type="radio" class="custom-control-input" id="customRadio10" name="example1">
+														      <label class="custom-control-label" for="customRadio10">
+														      	<span>Native or Billingual</span>
+														      </label>
+														    </div>
+														</div>
+													</div>
+													<div class="col-sm-4">
+														<p class="head-title">Job Success Score</p>
+														<div class="flds-inside ml-4">
+															<div class="custom-control custom-radio custm-radio-cs  mb-3">
+														      <input type="radio" class="custom-control-input"id="customRadio3" checked="checked" name="example1">
+														      <label class="custom-control-label" for="customRadio3">
+														      	<span class="">Any Job Score</span>
+														      </label>
+														    </div>
+															<div class="custom-control custom-radio custm-radio-cs mb-3">
+														      <input type="radio" class="custom-control-input" id="customRadio4" name="example1">
+														      <label class="custom-control-label" for="customRadio4">
+														      	<span>30% & up</span>
+														      </label>
+														    </div>
+															<div class="custom-control custom-radio custm-radio-cs mb-3">
+														      <input type="radio" class="custom-control-input" id="customRadio5" name="example1">
+														      <label class="custom-control-label" for="customRadio5">
+														      	<span>80% & up</span>
+														      </label>
+														    </div>
+														    <div class="custom-control custom-radio custm-radio-cs">
+														      <input type="radio" class="custom-control-input" id="customRadio6" name="example1">
+														      <label class="custom-control-label" for="customRadio6">
+														      	<span>95% & up</span>
+														      </label>
+														    </div>
+														</div>
+													</div>
+													<div class="col-sm-4">
+														<p class="head-title">Amount Earned</p>
+														<div class="flds-inside ml-4">
+															<div class="custom-control custom-radio custm-radio-cs  mb-3">
+														      <input type="radio" class="custom-control-input"id="customRadio11" checked="checked" name="example1">
+														      <label class="custom-control-label" for="customRadio11">
+														      	<span class="">Any Amount Earned</span>
+														      </label>
+														    </div>
+															<div class="custom-control custom-radio custm-radio-cs mb-3">
+														      <input type="radio" class="custom-control-input" id="customRadio12" name="example1">
+														      <label class="custom-control-label" for="customRadio12">
+														      	<span>$100 + Earned</span>
+														      </label>
+														    </div>
+															<div class="custom-control custom-radio custm-radio-cs mb-3">
+														      <input type="radio" class="custom-control-input" id="customRadio13" name="example1">
+														      <label class="custom-control-label" for="customRadio13">
+														      	<span>$1K + Earned</span>
+														      </label>
+														    </div>
+														    <div class="custom-control custom-radio custm-radio-cs">
+														      <input type="radio" class="custom-control-input" id="customRadio14" name="example1">
+														      <label class="custom-control-label" for="customRadio14">
+														      	<span>$10K + Earned</span>
+														      </label>
+														    </div>
+														</div>
+													</div>
+												</div>
+											</div>
+	                                    </div>
+	                                </mat-tab>
+	                                <mat-tab label="Budget">
+	                                    <div class="inside-tab form-flds">
+	                                    	<div class="singl-row">
+	                                    		<p class="head-title">How would you like to pay your talent?</p>
+												<div class="row ml-3">
+													<div class="col-sm-12">
+													    <div class="custom-control custom-radio custm-radio-cs mb-3">
+													      <input type="radio" class="custom-control-input" checked="checked" id="customRadio3" name="example2">
+													      <label class="custom-control-label" for="customRadio3">
+													      	<span class="">Hour</span>
+													      </label>
+													    </div>  
+													    <div class="open-div">
+													    	<div class="row">
+													    		<div class="col-sm-5 pl-0">
+													    			<label>From</label>
+													    			<div class="input-group mb-3 append-input-cs">
+																	  <input type="text" class="form-control" placeholder="eg. 50" aria-label="" aria-describedby="basic-addon2">
+																	  <div class="input-group-append">
+																	    <span class="input-group-text" id="basic-addon2">$/Hour</span>
+																	  </div>
+																	</div>
+													    		</div>
+													    		<div class="col-sm-5 pl-0">
+													    			<label>To</label>
+													    			<div class="input-group mb-3 append-input-cs">
+																	  <input type="text" class="form-control" placeholder="eg. 70" aria-label="" aria-describedby="basic-addon2">
+																	  <div class="input-group-append">
+																	    <span class="input-group-text" id="basic-addon2">$/Hour</span>
+																	  </div>
+																	</div>
+													    		</div>
+													    	</div>
+													    	<div class="row">
+													    		<div class="col-sm-10">
+													    			<label>Do you have a max hour Requirements?</label>
+													    			<div class="rang-slidr">
+																		<ngx-slider [(value)]="value" [options]="options"></ngx-slider>
+																	</div>
+													    		</div>
+													    	</div>
+													    </div>
+													</div>
+												</div>
+												<div class="row ml-3">
+													<div class="col-sm-12">
+													    <div class="custom-control custom-radio custm-radio-cs mb-3">
+													      <input type="radio" class="custom-control-input" id="customRadio4" name="example2">
+													      <label class="custom-control-label" for="customRadio4">
+													      	<span class="">Lumpsum</span>
+													      </label>
+													    </div> 
+													    <div class="open-div">
+													    	<div class="row">
+													    		<div class="col-sm-5 pl-0">
+													    			<label>From</label>
+													    			<div class="input-group mb-3 append-input-cs">
+																	  <input type="text" class="form-control" placeholder="eg. 50" aria-label="" aria-describedby="basic-addon2">
+																	  <div class="input-group-append">
+																	    <span class="input-group-text" id="basic-addon2">$/Hour</span>
+																	  </div>
+																	</div>
+													    		</div>
+													    		<div class="col-sm-5 pl-0">
+													    			<label>To</label>
+													    			<div class="input-group mb-3 append-input-cs">
+																	  <input type="text" class="form-control" placeholder="eg. 70" aria-label="" aria-describedby="basic-addon2">
+																	  <div class="input-group-append">
+																	    <span class="input-group-text" id="basic-addon2">$/Hour</span>
+																	  </div>
+																	</div>
+													    		</div>
+													    	</div>
+													    </div>
+													</div>
+												</div>
+												<div class="row ml-3">
+													<div class="col-sm-12">
+													    <div class="custom-control custom-radio custm-radio-cs mb-3">
+													      <input type="radio" class="custom-control-input" id="customRadio5" name="example2">
+													      <label class="custom-control-label" for="customRadio5">
+													      	<span class="">Salary Based</span>
+													      </label>
+													    </div> 
+													    <div class="open-div">
+													    	<div class="row">
+													    		<div class="col-sm-5 pl-0">
+													    			<label>From</label>
+													    			<div class="input-group mb-3 append-input-cs">
+																	  <input type="text" class="form-control" placeholder="eg. 50" aria-label="" aria-describedby="basic-addon2">
+																	  <div class="input-group-append">
+																	    <span class="input-group-text" id="basic-addon2">$/Hour</span>
+																	  </div>
+																	</div>
+													    		</div>
+													    		<div class="col-sm-5 pl-0">
+													    			<label>To</label>
+													    			<div class="input-group mb-3 append-input-cs">
+																	  <input type="text" class="form-control" placeholder="eg. 70" aria-label="" aria-describedby="basic-addon2">
+																	  <div class="input-group-append">
+																	    <span class="input-group-text" id="basic-addon2">$/Hour</span>
+																	  </div>
+																	</div>
+													    		</div>
+													    	</div>
+													    </div>
+													</div>
+												</div>
+					                        </div>
+	                                    </div>
+	                                </mat-tab>
+	                                <mat-tab label="Timeline">
+	                                    <div class="inside-tab form-flds">
+					                        <div class="singl-row border-btm">
+	                                    		<p class="head-title">Project Timeline</p>
+	                                    		<div class="row ml-3 mb-3">
+													<div class="col-sm-8">
+														<div class="form-group custm-datepickr">
+												        	<mat-form-field appearance="fill">
+		                                                        <mat-label>Choose a date</mat-label>
+		                                                        <input matInput [matDatepicker]="picker">
+		                                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+		                                                        <mat-datepicker #picker></mat-datepicker>
+		                                                    </mat-form-field>
+											    		</div>
+													</div>
+												</div>
+	                                    	</div>
+	                                    	<div class="singl-row">
+	                                    		<p class="head-title">Define a specific Timeline for this Talent</p>
+	                                    		<div class="row ml-3 mb-3">
+	                                    			<div class="col-sm-4">
+														<div class="form-group custm-datepickr">
+															<label>Start Date</label>
+												        	<mat-form-field appearance="fill">
+		                                                        <mat-label>Choose a date</mat-label>
+		                                                        <input matInput [matDatepicker]="picker2">
+		                                                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+		                                                        <mat-datepicker #picker2></mat-datepicker>
+		                                                    </mat-form-field>
+											    		</div>
+													</div>
+													<div class="col-sm-4">
+														<div class="form-group custm-datepickr">
+															<label>End Date</label>
+												        	<mat-form-field appearance="fill">
+		                                                        <mat-label>Choose a date</mat-label>
+		                                                        <input matInput [matDatepicker]="picker3">
+		                                                        <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+		                                                        <mat-datepicker #picker3></mat-datepicker>
+		                                                    </mat-form-field>
+											    		</div>
+													</div>
+												</div>
+	                                    	</div>
+	                                    </div>
+	                                </mat-tab>
+	                            </mat-tab-group>
+	                        </div>                        
+	    				</div>
+						<div class="submit-btn btn-width d-flex justify-content-between mt-3">
+							<a routerLink="/visibility-talent-preferences" class="btn btn_theme_black my-2 my-sm-0 mr-3">Back</a>
+							<a routerLink="/talent-preferences" class="btn btn_theme_blue my-2 my-sm-0">Next</a>
+						</div>
+						<div class="inside-footer">
+							<app-footer></app-footer>
+						</div>
+					</div>
+					<app-right-sidebar></app-right-sidebar>
+				</div>
+			</div>
+		</section>
+	</div>
+</main>
+
+
+<!-- add service modal -->
+<div class="modal fade add-service" id="addService" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Add Service</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="form-group">
+                        <label>Category</label>
+                         <ngx-select-dropdown></ngx-select-dropdown>
+                    </div>
+                </div>
+                <div class="col-sm-9">
+                    <div class="form-group">
+                        <label>Service Name</label>
+                        <input type="text" class="form-control" placeholder="e.g. Evaluate Baseline">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn_modal_black" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn_modal_blue">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>

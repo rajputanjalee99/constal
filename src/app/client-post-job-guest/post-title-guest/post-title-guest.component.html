@@ -1,0 +1,199 @@
+<app-client-header></app-client-header>
+
+<main class="comon_main internal_pages_prnt">
+	<div class="cmn-pading-top">
+		<section class="client_post_job post_ttl">
+			<div class="wrap-client">
+				<div class="d-flex">
+					<aside class="client-sidebar">
+						<ul class="list_optns">
+							<li routerLink="/getting-started"><span>Getting Started</span></li>
+							<li routerLink="/post-title"><span>Job Info</span></li>
+							<li routerLink="/visibility-talent-preferences"><span>Contract Preferences</span></li>
+							<li class="" routerLink="/talent-preferences">
+								<span>Talents Preferences</span>
+								<ul class="sub-bar" >
+									<li *ngFor="let item of totalTalents;let index = index;" routerLink="/talent-preferences"> Talent {{index + 1}}</li>
+								</ul>
+							</li>
+						</ul>
+					</aside>
+					<div class="main-cntnt geting-strt">
+						<h5>Post a Job</h5>
+						<div class="prgrs-bar">
+							<span class="prg-perc">50% Completed</span>
+							<mat-progress-bar mode="determinate" value="50"></mat-progress-bar>
+						</div>
+						<!-- <h6>2. Job Info </h6> -->
+						<form [formGroup]="form">
+							<div class="prjct-title">
+								<div class="">
+									<div class="form-flds">
+										<div class="singl-row">  <!-- border-btm -->
+											<div class="card main-card">
+												<div class="flds-wrap">
+													<div class="row">
+														<div class="col-sm-12">
+															<div class="form-group mb-2">
+																<label>Title*</label>
+													        	<input type="text" formControlName="title" class="form-control">
+													        	<div *ngIf="(form.get('title').touched || form.get('title').dirty) && form.get('title').invalid && form.get('title').errors.required" class="invalid-feedback">
+																*Please enter title
+																</div>
+												    		</div>
+														</div>
+														<!-- <input type="hidden" formControlName="job_id" value="{{localStorage.getItem('job_id')}}"> -->
+														<div class="text-ref">
+															<p>Here are some good examples:</p>
+															<ul class="list-style-disc">
+																<li>Need an Architecture for design</li>
+																<li>Need Civil Engineer for structural planning</li>
+															</ul>
+														</div>
+														<div class="col-sm-12">
+															<div class="form-group mb-2">
+																<label>Description*</label>
+													        	<textarea class="form-control" formControlName="description" rows="3" placeholder="e.g. Lorem ipsum dolor sit Lorem ipsum dolor sit Lorem ipsum dolor sit"></textarea>
+													        	<div *ngIf="(form.get('description').touched || form.get('description').dirty) && form.get('description').invalid && form.get('description').errors.required" class="invalid-feedback">
+																*Please enter description
+																</div>
+												    		</div>
+														</div>
+														<div class="text-ref">
+															<p>A good description includes:</p>
+															<ul class="list-style-disc">
+																<li>What the deliverable is</li>
+																<li>Type of Talent or agency you're looking for</li>
+																<li>Anything unique about the project, team or your company</li>
+															</ul>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="singl-row">
+											<div class="card main-card">
+												<div class="flds-wrap">
+													<div class="row">
+														<div class="col-sm-12">
+															<div class="visiblty-rw mb-3">
+																<p class="">Visibility*</p>
+																<div class="row ml-3">
+																	<div class="col-sm-4 pl-0">
+																	    <div class="custom-control custom-radio custm-radio-cs">
+																	      <input type="radio" class="custom-control-input" id="customRadio" checked="checked" [(ngModel)]="visibility" [ngModelOptions]="{standalone: true}"   value="anyone">
+																	      <label class="custom-control-label" for="customRadio">
+																	      	<span class="">Anyone</span>
+																	      	<p>Talents and Agencies using CONSTAL and the public search engine can find</p>
+																	      </label>
+																	    </div>
+																	</div>
+																	<div class="col-sm-4 pl-0">
+																		<div class="custom-control custom-radio custm-radio-cs">
+																	      <input type="radio" class="custom-control-input" id="customRadio1" [(ngModel)]="visibility" [ngModelOptions]="{standalone: true}" value="constal_talent">
+																	      <label class="custom-control-label" for="customRadio1">
+																	      	<span>Only CONSTAL Talent</span>
+																	      	<p>Only CONSTAL user can find my profile</p>
+																	      </label>
+																	    </div>
+																	</div>
+																	<div class="col-sm-4 pr-0">
+																		<div class="custom-control custom-radio custm-radio-cs">
+																	      <input type="radio" class="custom-control-input" id="customRadio2" [(ngModel)]="visibility" [ngModelOptions]="{standalone: true}" value="private">
+																	      <label class="custom-control-label" for="customRadio2">
+																	      	<span>Private</span>
+																	      	<p>Access only will granted to the invited Talent</p>
+																	      </label>
+																	    </div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="singl-row">
+											<div class="card main-card">
+												<div class="flds-wrap">
+													<div class="row">
+														<div class="col-sm-12">
+															<div class="form-group">
+			                                                    <label>Project Files</label>
+			                                                    <div class="custm-dropzone">
+			                                                        <ngx-dropzone (change)="uploadFile($event)">
+			                                                            <ngx-dropzone-label>
+			                                                                <img src="assets/imgs/upload.png" class="img-fluid">
+			                                                                <p>Upload documents, photos, videos or presentation</p>
+			                                                            </ngx-dropzone-label>
+			                                                            <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+			                                                                <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+			                                                            </ngx-dropzone-preview>
+			                                                        </ngx-dropzone>
+			                                                    </div>
+			                                                </div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="singl-row">
+										    <div class="card main-card">
+										        <div *ngFor="let item of co_workers; let ind = index;" class="flds-wrap" >
+										            <p *ngIf="ind == 0" class="head-title">Invite CO-Workers</p>
+										            <div class="row">
+										                <div class="col-sm-12">
+										                    <div class="form-group">
+										                        <label>Email</label>
+										                        <input type="text" (keyup)="validate($event,'email',ind)" [(ngModel)]="co_workers[ind].email" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="e.g. helpdesk@gmail.com">
+										                        <div *ngIf="item.email_message" class="invalid-feedback">
+										                            {{item.email_message}}
+										                        </div>
+										                    </div>
+										                </div>
+										            </div>
+										            <div class="row">
+										                <div class="col-sm-12">
+										                    <div class="form-group">
+										                        <label>Description</label>
+										                        <textarea class="form-control" (keyup)="validate($event,'description',ind)" [(ngModel)]="co_workers[ind].description" [ngModelOptions]="{standalone: true}" rows="3" placeholder="e.g. Lorem ipsum dolor sit Lorem ipsum dolor sit Lorem ipsum dolor sit"></textarea>
+										                        <div *ngIf="item.description_message" class="invalid-feedback">
+										                            {{item.description_message}}
+										                        </div>
+										                    </div>
+										                </div>
+										            </div>
+										            <div class="row">
+										                <div class="col-sm-12">
+										                    <div class="add-more-link m-0 text-right" (click)="addCoworkers()">
+										                        <img src="assets/imgs/add-blue.png" class="img-fluid">
+										                        <span class="blue_text">Add Other Co-Workers</span>
+										                    </div>
+										                    <div *ngIf="ind > 0" (click)="removeCoworkers(ind)" class="add-more-link m-0 text-right">
+										                    <img src="assets/imgs/remove-blue.png" class="img-fluid">
+										                    <span class="blue_text">Remove Co-Worker</span>
+										                </div>
+										            </div>
+										        </div>
+										    </div>
+										</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="submit-btn btn-width d-flex justify-content-between mt-3">
+								<a routerLink="/getting-started" class="btn btn_theme_black my-2 my-sm-0">Back</a>
+								<button (click)="createJobPostStep2()" [disabled]="!form.valid" class="btn btn_theme_blue my-2 my-sm-0">Next</button>
+								<!-- <a routerLink="/visibility-talent-preferences" class="btn btn_theme_blue my-2 my-sm-0">Next</a> -->
+							</div>
+						</form>
+						<div class="inside-footer">
+							<app-footer></app-footer>
+						</div>
+					</div>
+					<app-right-sidebar></app-right-sidebar>
+				</div>
+			</div>
+		</section>
+	</div>
+</main>

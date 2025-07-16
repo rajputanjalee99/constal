@@ -1,0 +1,1244 @@
+@media screen and (max-width: 1199px) {
+	.main_header {
+	padding: 10px 20px;
+	}
+	.border-box-1 {
+	height: 291px;
+	}
+	.sectors-box .border-box-1 {
+	height: 218px;
+	}
+	.home_page .container {
+	max-width: 1150px;
+	}
+	.intro-page .our-benefits .right-cntnt .bg-imag-abs img {
+	position: absolute;
+	top: -70px;
+	}
+	.view-tlnt-prf.cmn-pading-top {
+    max-width: 1160px;
+	}
+	}
+	
+	@media screen and (max-width: 1024px) {
+	.talent-profile .discpline-icon {
+	padding: 70px 15px;
+	height: 233px;
+	}
+	.speciality-list .add-speciality {
+	padding: 10px 25px;
+	}
+	.author-fld .add-new {
+	display: block !important;
+	}
+	.author-fld .add-more-link.add-new-row {
+	text-align: right;
+	}
+	.sectors-box .border-box-1 {
+	height: 175px;
+	}
+	.border-box-1 {
+	height: 233px;
+	}
+	.home_page .container {
+	max-width: 970px;
+	}
+	.intro-page .our-benefits .right-cntnt .benefits-list {
+	margin-bottom: 50px;
+	}
+	.intro-page .main-sec {
+	padding: 90px 0 57px;
+	}
+	.intro-page .left-cntnt .title {
+	font-size: 25px !important;
+	}
+	.intro-page .left-cntnt ul li {
+	font-size: 15px;
+	}
+	.home_page .our-features {
+	padding: 60px 0px;
+	}
+	.intro-page .our-features .singl-featr img {
+	width: 60px;
+	}
+	.intro-page .our-benefits .right-cntnt .bg-imag-abs img {
+	position: absolute;
+	top: -42px;
+	left: 0;
+	}
+	.referral-db .card.busi-dev .percent {
+	width: 410px;
+	}
+	.client-dashboard .top-cards .card {
+	padding: 35px 20px;
+	}
+	.view-tlnt-prf.cmn-pading-top {
+	   max-width: 990px;
+	}
+	.img-wrap-3 img {
+	    width: 100%;
+	    height: 326px;
+	    -o-object-fit: cover;
+	    object-fit: contain;
+	}
+	}
+	
+	@media screen and (max-width: 991px) {
+	.main_header .navbar-nav {
+	margin-left: 0 !important;
+	}
+	.comn-header .btn_theme_white {
+	margin-top: 20px !important;
+	}
+	.comn-header .btn_theme_blue {
+	margin-top: 10px !important;
+	}
+	.talent-profile .discpline-icon {
+	padding: 62px 12px;
+	height: 222px;
+	}
+	.sectors-box .border-box-1 {
+	height: 166px;
+	}
+	.sectors-box .border-box-1 .icn-title {
+	font-size: 13px;
+	}
+	.navbar-nav.ml-auto.rgt_header_btns.top-srch-drop {
+	flex-direction: row;
+	justify-content: end !important;
+	margin-top: 10px;
+	}
+	.border-box-1 {
+	height: 222px;
+	}
+	.intro-header .rght-btn {
+	margin: 0 10px !important;
+	padding: 0px 10px !important;
+	margin-bottom: 10px !important;
+	}
+	.referral-signup .crd-mainn .refrl-steps .singl-stp {
+	padding: 20px;
+	}
+	.referral-signup .crd-mainn .refrl-steps .singl-stp .stp-no {
+	width: 42px;
+	height: 42px;
+	line-height: 42px;
+	}
+	.referral-header .rgt_header_btns {
+	margin: 20px 0;
+	}
+	.talent_header .navbar-expand-lg .navbar-nav .dropdown-menu {
+	position: absolute;
+	}
+	.hdr-hide {
+		display: block;
+	}
+	.outr-header {
+		display: none;
+	}
+	.cmn-pading-top.cl-dash.mrgn-above {
+		margin-top: 61px !important;
+	}
+	.contact-info .main-wrapr .info-card .div-width {
+	width: 450px;
+	}
+	.usr-prof {
+	align-items: start !important;
+	}
+	.img-wrap-3 img {
+    width: 100%;
+    height: 326px;
+    -o-object-fit: cover;
+    object-fit: contain;
+}
+	}
+	
+	@media screen and (max-width: 834px) {
+	.sidenav {
+	width: 0;
+	position: fixed;
+	z-index: 9999;
+	overflow-x: hidden;
+	transition: 0.5s;
+	padding: 0;
+	}
+	.sidenav .closebtn {
+	position: absolute;
+	top: -1px;
+	right: 11px;
+	font-size: 31px;
+	margin-left: 50px;
+	z-index: 99;
+	color: #444;
+	}
+	.menu-br {
+	display: block;
+	position: absolute;
+	top: 13px;
+	left: 13px;
+	}
+	.talent-profile .geting-strt {
+	width: 100% !important;
+	margin-left: 0 !important;
+	}
+	.top-cntnt h5 {
+	margin-left: 17px;
+	}
+	.closebtn {
+	display: block;
+	}
+	.sidenav .list_optns {
+	padding: 10px 8px;
+	}
+	.main-footer {
+	padding: 10px 15px;
+	}
+	.talent-profile .discpline-icon {
+	padding: 82px 12px;
+	height: 264px;
+	}
+	.add-more-link {
+	margin: 10px 0;
+	}
+	.border-box-1 {
+	height: 264px;
+	}
+	.sectors-box .border-box-1 {
+	height: 198px;
+	}
+	.home_page .container {
+	max-width: 810px;
+	}
+	.intro-page .left-cntnt .title {
+	font-size: 20px !important;
+	}
+	.intro-page .left-cntnt ul li {
+	font-size: 14px;
+	}
+	.intro-page .our-features .sec-title {
+	font-size: 18px;
+	}
+	.intro-page .how_it_works .sec-heading h2 {
+	font-size: 20px;
+	}
+	.intro-page .how_it_works .sec-heading {
+	margin-bottom: 60px;
+	}
+	.intro-page .sec-title {
+	font-size: 18px;
+	}
+	.intro-page .our-benefits .right-cntnt .benefits-list {
+	margin-bottom: 40px;
+	}
+	.intro-page .our-benefits .right-cntnt .bg-imag-abs img {
+	position: absolute;
+	top: 26px;
+	left: 30px;
+	}
+	.intro-page .our-testimonials .slidr-wrap .invert-spn {
+	font-size: 90px;
+	}
+	.intro-page .our-testimonials .slidr-wrap .main-cnt {
+	font-size: 17px;
+	}
+	.home_footer .footer-top-area {
+	padding: 50px 40px;
+	}
+	.home_footer .footer-top-area .col-sm-3.top-social-icns {
+	flex: 0 0 100%;
+	max-width: 100%;
+	}
+	.home_footer .footer-top-area .col-sm-3 {
+	flex: 0 0 33%;
+	max-width: 33%;
+	}
+	.home_footer .footer-top-area .ftr-cntnt {
+	margin-bottom: 30px;
+	}
+	.footer-top-area .col-sm-6.listing-1 {
+	flex: 0 0 65%;
+	max-width: 65%;
+	}
+	.referral-db .main-top-crd .col-sm-6.charts-wrap {
+	flex: 0 0 100%;
+	max-width: 100%;
+	}
+	.referral-db .main-top-crd .col-sm-6.top-cards {
+	flex: 0 0 100%;
+	max-width: 100%;
+	margin-top: 30px;
+	}
+	.referral-db .card.busi-dev .percent {
+	width: 760px;
+	}
+	.referral-db .card.card-main {
+	padding: 15px;
+	}
+	.link-db-modal .modal-dialog {
+	max-width: 800px !important;
+	}
+	.link-db-modal .modal-right h6 {
+	font-size: 18px;
+	line-height: 28px;
+	}
+	.link-db-modal .modal-right {
+	padding: 10px 30px 10px 15px;
+	}
+	.modal-right p {
+	font-size: 12px;
+	}
+	.link-db-modal .list-db li {
+	font-size: 12px;
+	}
+	.talent-settings-sidebar .settngs-wrp {
+	padding: 10px 15px;
+	}
+	.contact-info .main-wrapr {
+	margin-left: 0;
+	width: 100%;
+	}
+	.talent-profile .prf-card .col-sm-4 {
+	flex: 0 0 100%;
+	max-width: 100%;
+	}
+	.talent-profile .prf-card .col-sm-8 {
+	flex: 0 0 100%;
+	max-width: 100%;
+	}
+	.view-tlnt-prf.cmn-pading-top {
+	    max-width: 800px;
+	}
+	.merged-profile .main-tabs.cmn-card-tabs {
+		margin-top: 40px;
+	}
+	
+	}
+	
+	@media screen and (max-width: 800px) {
+	.talent-profile .discpline-icon {
+	padding: 78px 12px;
+	height: 253px;
+	}
+	.border-box-1 {
+	height: 253px;
+	}
+	.sectors-box .border-box-1 {
+	height: 190px;
+	}
+	.home_page .container {
+	max-width: 780px;
+	}
+	.footer-copyright p {
+	font-size: 13px;
+	}
+	.intro-page .our-testimonials .slidr-wrap .main-cnt {
+	font-size: 16px;
+	max-width: 720px;
+	}
+	.intro-page .left-cntnt .title {
+	font-size: 19px !important;
+	}
+	.intro-page .our-benefits .right-cntnt .bg-imag-abs img {
+	position: absolute;
+	top: 55px;
+	left: 0;
+	}
+	.referral-db .col-sm-6.bar-chart {
+	flex: 0 0 100%;
+	max-width: 100%;
+	}
+	.referral-db .col-sm-6.map-chart {
+	flex: 0 0 100%;
+	max-width: 100%;
+	margin-top: 20px;
+	}
+	.referral-db .card.busi-dev .percent {
+	width: 730px;
+	}
+	.link-db-modal .modal-dialog {
+	max-width: 770px !important;
+	}
+	.link-db-modal mat-tab-group .mat-tab-label {
+	padding: 0 9px;
+	}
+	.link-db-modal .modal-right {
+	padding: 20px 16px 30px 0px;
+	}
+	.view-tlnt-prf.cmn-pading-top {
+	    max-width: 760px;
+	}
+	}
+	
+	@media screen and (max-width: 768px) {
+	.talent-profile .discpline-icon {
+	padding: 76px 12px;
+	height: 242px;
+	}
+	.border-box-1 {
+	height: 242px;
+	}
+	.sectors-box .border-box-1 {
+	height: 182px;
+	}
+	.home_page .container {
+	max-width: 750px;
+	}
+	.footer-copyright p {
+	font-size: 12px;
+	}
+	.referral-db .card.busi-dev .percent {
+	width: 700px;
+	}
+	.link-db-modal .modal-dialog {
+	max-width: 740px !important;
+	}
+	.public-view {
+		display: block !important;
+	}
+	.public-view .cmn-btn {
+		text-align: right;
+	}
+	.view-tlnt-prf.cmn-pading-top {
+	    max-width: 730px;
+	}
+	
+	}
+	
+	@media screen and (max-width: 640px) {
+	.talent-profile .discpline-icon {
+	padding: 57px 2px;
+	height: 200px;
+	}
+	.speciality-list .col-sm-10 {
+	flex: 0 0 78%;
+	max-width: 78%;
+	}
+	.prgrs-bar .prg-perc {
+	left: 35px;
+	}
+	.top-cntnt .main-title {
+	display: block !important;
+	}
+	.top-cntnt .main-title .add-more-link {
+	margin-top: 10px !important;
+	text-align: right;
+	}
+	.services-card .custom-control-label {
+	font-size: 13px;
+	}
+	.level-of-talent .col-sm-4 {
+	flex: 0 0 100%;
+	max-width: 100%;
+	}
+	.see-profile .col-sm-4 {
+	flex: 0 0 100%;
+	max-width: 100%;
+	padding-left: 0;
+	}
+	.all-disciplines .svg-icn .icn-title {
+	font-size: 12px;
+	}
+	.border-box-1 {
+	height: 200px;
+	}
+	.edu-date .col-sm-6 {
+	flex: 0 0 100%;
+	max-width: 100%;
+	}
+	.edu-date .toggle-bttn {
+	display: block !important;
+	}
+	.togle-swtch {
+	text-align: right;
+	margin-bottom: 10px;
+	margin-top: -14px !important;
+	}
+	.sectors-box .border-box-1 {
+	height: 150px;
+	}
+	.all-disciplines .svg-icn .icn-title {
+	font-size: 11px;
+	}
+	.navbar-nav.ml-auto.rgt_header_btns.top-srch-drop .srch-input {
+	width: 290px;
+	margin-left: 0 !important;
+	}
+	.footer-top-area .col-sm-6.listing-1 {
+	flex: 0 0 100%;
+	max-width: 100%;
+	}
+	.home_page .container {
+	max-width: 620px;
+	}
+	.intro-page .left-cntnt .title {
+	font-size: 15px !important;
+	}
+	.intro-page .left-cntnt ul li {
+	font-size: 13px;
+	}
+	.intro-page .our-features .singl-featr {
+	padding: 30px 0px;
+	}
+	.intro-page .our-features .singl-featr img {
+	width: 50px;
+	}
+	.intro-page .our-features .singl-featr .cntnt h6 {
+	font-size: 13px;
+	}
+	.intro-page .our-features .singl-featr .cntnt p {
+	font-size: 12px;
+	}
+	.intro-page .our-benefits .right-cntnt h5 {
+	font-size: 15px;
+	}
+	.intro-page .our-benefits .right-cntnt .benefits-list li {
+	font-size: 13px;
+	}
+	.intro-page .our-benefits .right-cntnt {
+	padding: 30px 16px;
+	}
+	.intro-page .our-benefits .right-cntnt .benefits-list {
+	margin-bottom: 30px;
+	}
+	.intro-page .our-benefits .right-cntnt .bg-imag-abs img {
+	position: absolute;
+	top: 75px;
+	left: 0;
+	}
+	.intro-page .our-benefits .btm-line .btn.btn_theme_green {
+	padding: 10px 15px;
+	font-size: 12px;
+	}
+	.intro-page .our-testimonials {
+	padding: 50px 0;
+	}
+	.intro-page .our-testimonials .slidr-wrap .main-cnt {
+	font-size: 14px;
+	}
+	.home_footer .footer-top-area .col-sm-3 {
+	flex: 0 0 100%;
+	max-width: 100%;
+	}
+	.home_footer .footer-top-area .ftr-listng {
+	margin-bottom: 35px;
+	}
+	.footer-copyright p {
+	font-size: 10px;
+	}
+	.home_footer .footer-top-area {
+	padding: 50px 0px;
+	}
+	.referral-db .card.busi-dev .percent {
+	width: 560px;
+	}
+	.charts-wrap.pie-charts .col-sm-6 {
+	flex: 0 0 100%;
+	max-width: 100%;
+	}
+	.charts-wrap.pie-charts .col-sm-6.c1 {
+	margin-top: 20px;
+	}
+	.link-db-modal .modal-dialog {
+	max-width: 600px !important;
+	}
+	.link-db-modal .col-sm-6 {
+	flex: 0 0 100%;
+	max-width: 100%;
+	}
+	.link-db-modal .modal-left {
+	height: 295px;
+	background-position: top center;
+	}
+	.link-db-modal .modal-right {
+	padding: 0px 30px 10px 35px;
+	}
+	.refrl-steps .col-sm-4 {
+	flex: 0 0 100%;
+	max-width: 100%;
+	}
+	.refrl-steps .singl-stp {
+	border-bottom: 1px solid #ddd !important;
+	}
+	.refrl-steps .cntr-bordr {
+	border-left: unset !important;
+	border-right: unset !important;
+	}
+	.referral-signup .signup-form .col-sm-7 {
+	flex: 0 0 100%;
+	max-width: 100%;
+	}
+	.referral-signup .signup-form {
+	padding: 20px;
+	}
+	.referral-signup .crd-mainn .refrl-steps {
+	border-bottom: unset;
+	}
+	.contact-info .main-wrapr .info-card .div-width {
+	width: 380px;
+	}	
+	.view-tabss .width-fl {
+	flex: 0 0 100%;
+    max-width: 100%;
+	}
+	.wrap-right {
+	    border-left: unset;
+	}
+	}
+	
+	@media screen and (max-width: 575px) {
+	.main-footer .col-sm-6 {
+	flex: 0 0 100%;
+	max-width: 100%;
+	}
+	.main-footer .col-sm-6 .copyrigt_p {
+	text-align: center;
+	}
+	.main-footer .col-sm-6 .icon_ftr {
+	text-align: center !important;
+	margin-top: 20px;
+	}
+	.speciality-list .col-sm-10 {
+	flex: 0 0 75%;
+	max-width: 75%;
+	}
+	.speciality-list .col-sm-2 {
+	width: 25%;
+	}
+	.talent-profile .choose-services .services-card .card {
+	min-height: 350px;
+	}
+	.services-card .col-sm-6 {
+	margin-bottom: 15px;
+	}
+	.languages-tab .append-fld .col-sm-4 {
+	width: 40%;
+	}
+	.languages-tab .append-fld .col-sm-6 {
+	width: 40%;
+	}
+	.languages-tab .append-fld .col-sm-2 {
+	width: 20%;
+	}
+	.projects-tab .append-fld .col-sm-10 {
+	width: 80%;
+	}
+	.projects-tab .append-fld .col-sm-2 {
+	width: 20%;
+	}
+	.all-disciplines .col-sm-4 {
+	width: 50%;
+	}
+	.border-box-1 svg {
+	width: 50px;
+	}
+	.svg-icn .icn-title {
+	font-size: 14px !important;
+	}
+	div.box-wrap-1 div.col-sm-4:nth-child(odd) div.border-box-1::before {
+	background-image: url('../imgs/line-vr.png');
+	right: 0px;
+	top: 0;
+	content: "";
+	width: 1px;
+	height: 100%;
+	background-repeat: repeat;
+	position: absolute;
+	}
+	/*div.box-wrap-1 div.col-sm-4:nth-child(even) div.border-box-1::before {
+	background-image: none;
+	}*/
+	div.box-wrap-1 div.col-sm-4:nth-child(2n+1)>.bordr-left::before {
+	background-image: url('../imgs/line-vr.png') !important;
+	left: 0px;
+	top: 0;
+	content: "";
+	width: 1px;
+	height: 100%;
+	background-repeat: repeat;
+	position: absolute;
+	}
+	div.box-wrap-1 div.col-sm-4:nth-child(3n+1)>.bordr-left::before {
+	background-image: none;
+	}
+	.navbar-nav.ml-auto.rgt_header_btns.top-srch-drop {
+	flex-direction: row;
+	justify-content: right !important;
+	}
+	.navbar-nav.ml-auto.rgt_header_btns.top-srch-drop .srch-input {
+	width: 250px;
+	margin-left: 0 !important;
+	}
+	.all-disciplines .col-sm-3 {
+	width: 50%;
+	}
+	div.box-wrap-1 div.col-sm-3:nth-child(odd) div.border-box-1::before {
+	background-image: url('../imgs/line-vr.png');
+	right: 0px;
+	top: 0;
+	content: "";
+	width: 1px;
+	height: 100%;
+	background-repeat: repeat;
+	position: absolute;
+	}
+	/*div.box-wrap-1 div.col-sm-3:nth-child(even) div.border-box-1::before {
+	background-image: none;
+	}*/
+	div.box-wrap-1 div.col-sm-3:nth-child(4n+1)>.bordr-left::before {
+	background-image: none;
+	}
+	div.box-wrap-1 div.col-sm-3:nth-child(2n+1)>.bordr-left::before {
+	background-image: url('../imgs/line-vr.png') !important;
+	left: 0px;
+	top: 0;
+	content: "";
+	width: 1px;
+	height: 100%;
+	background-repeat: repeat;
+	position: absolute;
+	}
+	.border-box-1 {
+	height: 267px;
+	}
+	.sectors-box .border-box-1 {
+	height: 267px;
+	}
+	.home_page .container {
+	max-width: 560px;
+	}
+	.our-features .featr-wrp .col-sm-6 {
+	border: unset !important;
+	border-bottom: 1px solid #dee2e6 !important;
+	}
+	.our-features .featr-wrp .col-sm-6:last-child {
+	border: unset !important;
+	}
+	.intro-page .our-benefits .col-sm-6 {
+	padding-left: 15px !important;
+	padding-right: 15px !important;
+	}
+	.intro-page .our-benefits .left-imge img {
+	border-radius: 10px 10px 0 0px;
+	}
+	.intro-page .our-benefits .right-cntnt {
+	border-radius: 0 0px 10px 10px;
+	}
+	.intro-page .our-benefits .right-cntnt .bg-imag-abs img {
+	position: absolute;
+	top: -178px;
+	left: 0;
+	}
+	.home_footer .footer-bottom-area {
+	text-align: center;
+	}
+	/* .home_footer .footer-bottom-area .list-inline-item {
+	margin-right: 0 !important;
+	} */
+	.home_footer .footer-bottom-area .icon_ftr {
+	text-align: center !important;
+	}
+	.intro-header .rght-btn {
+	margin-bottom: 0px !important;
+	}
+	.referral-db .card.busi-dev .percent {
+	width: 490px;
+	}
+	.top-cards .col-sm-6 {
+	width: 50%;
+	}
+	.clnt-acnt.paswrd-set {
+		display: block !important;
+	}
+	.clnt-acnt.paswrd-set  .singl-rw.div-width {
+		width: 100%
+	}
+	.clnt-acnt.paswrd-set  .btn.btn_theme_green {
+		margin-top: 20px;
+	}
+	.append-fld .col-sm-2.del-icn {
+		padding-left: 15px !important;
+	}
+	.img-wrap-3 {
+	    width: 100%;
+	    min-height: unset;
+	    margin-right: 30px;
+	    margin-bottom: 20px;
+	    text-align: center;
+	}
+	.block-fl {
+		display: block !important;
+	}
+	.img-wrap-3 img {
+	    width: 170px;
+	    height: 170px;
+	    -o-object-fit: cover;
+	    object-fit: cover;
+	}
+	.view-tlnt-prf.cmn-pading-top {
+ 	   max-width: 540px;
+	}
+	}
+	
+	@media screen and (max-width: 480px) {
+	.speciality-list .col-sm-10 {
+	flex: 0 0 70%;
+	max-width: 70%;
+	}
+	.prgrs-bar .prg-perc {
+	left: 25px;
+	}
+	.languages-tab .append-fld .col-sm-4 {
+	width: 100%;
+	}
+	.languages-tab .append-fld .col-sm-6 {
+	width: 100%;
+	}
+	.languages-tab .append-fld .col-sm-2 {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+	}
+	.add-language.add-new {
+	display: block !important;
+	}
+	.add-language.add-new .add-more-link.add-new-row {
+	text-align: right;
+	}
+	.navbar-nav.ml-auto.rgt_header_btns.top-srch-drop .srch-input {
+	width: 170px;
+	margin-left: 0 !important;
+	}
+	.border-box-1 {
+	height: 220px;
+	}
+	.sectors-box .border-box-1 {
+	height: 220px;
+	}
+	.intro-page .our-features .sec-title {
+	font-size: 16px;
+	margin-bottom: 10px;
+	}
+	.home_page .our-features {
+	padding: 40px 0px;
+	padding-bottom: 0;
+	}
+	.home_page .landng-image-bg {
+	padding: 50px 0;
+	}
+	.intro-page .how_it_works .sec-heading p {
+	font-size: 12px;
+	max-width: 790px;
+	}
+	.landng-image-bg .how_it_works .vert-image {
+	width: 230px;
+	display: block;
+	margin: auto;
+	}
+	.landng-image-bg .how_it_works .horiz-image {
+	display: none;
+	}
+	.intro-page .our-benefits .right-cntnt .bg-imag-abs img {
+	position: absolute;
+	top: -105px;
+	left: 0;
+	}
+	.referral-db .card.busi-dev .percent {
+	width: 400px;
+	}
+	.top-cards .col-sm-6 {
+	width: 100%;
+	}
+	.link-db-modal .modal-right h6 {
+	font-size: 17px;
+	}
+	.clnt-acnt.singl-rw .add-new {
+	display: block !important;
+	}
+	.clnt-acnt.singl-rw .add-more-link  {
+		text-align: right;
+	}
+	.view-tlnt-prf.cmn-pading-top {
+	    max-width: 450px;
+	}
+	}
+	
+	@media screen and (max-width: 414px) {
+	.card_socal {
+	max-width: 382px;
+	}
+	.speciality-list .col-sm-10 {
+	flex: 0 0 100%;
+	max-width: 100%;
+	padding-right: 15px !important;
+	}
+	.speciality-list .servc-listng {
+	margin-top: 20px;
+	}
+	.top-cntnt {
+	font-size: 12px;
+	}
+	.singl-row label {
+	font-size: 12px;
+	}
+	.level-of-talent .level-list {
+	margin-left: 0 !important;
+	}
+	.choose-currency .row {
+	margin-left: 0 !important;
+	}
+	.service-rate .row {
+	margin-left: 0 !important;
+	}
+	.profile-info .prof-imag-card {
+	display: block !important;
+	text-align: center;
+	}
+	.talent-profile .prof-imag-card img {
+	margin-bottom: 5px;
+	}
+	.profile-info .prf-side {
+	margin-left: 0 !important;
+	}
+	.talent-profile .prof-imag-card p {
+	margin-top: 0px;
+	margin-bottom: 25px;
+	}
+	.all-disciplines .svg-icn .icn-title {
+	font-size: 11px;
+	}
+	.navbar-nav.ml-auto.rgt_header_btns.top-srch-drop {
+	flex-direction: column;
+	}
+	.navbar-nav.ml-auto.rgt_header_btns.top-srch-drop .srch-input {
+	width: 100%;
+	}
+	.navbar-nav.ml-auto.rgt_header_btns.top-srch-drop .nav-item {
+	width: 100%;
+	margin-top: 15px;
+	}
+	.border-box-1 {
+	height: 187px;
+	}
+	.sectors-box .border-box-1 {
+	height: 187px;
+	}
+	.border-box-1 svg {
+	width: 40px;
+	}
+	.svg-icn .icn-title {
+	font-size: 11px !important;
+	}
+	.intro-page .our-benefits .right-cntnt .bg-imag-abs img {
+	position: absolute;
+	top: -36px;
+	left: 0;
+	}
+	.intro-page .our-benefits .right-cntnt .bg-imag-abs img {
+	position: absolute;
+	top: -30px;
+	left: 0;
+	}
+	.top-cards .col-sm-6 {
+	width: 100%;
+	}
+	.referral-db .card.busi-dev .percent {
+	width: 350px;
+	}
+	.iti__country-name {
+	word-wrap: break-word;
+	display: inline-block;
+	white-space: normal;
+	max-width: 228px;
+	font-size: 13px;
+	width: 100%;
+	}
+	.talent_header .dropdown-menu-right {
+	right: unset;
+	left: auto;
+	}
+	.link-db-modal .modal-left {
+	height: 225px;
+	background-position: top center;
+	}
+	.link-db-modal .modal-right h6 {
+	font-size: 14px;
+	}
+	.link-db-modal mat-tab-group .mat-tab-label {
+	height: 43px;
+	}
+	.public-view .cmn-btn {
+		margin-bottom: 10px;
+	}
+	.view-tlnt-prf.cmn-pading-top {
+	    max-width: 390px;
+	}
+	}
+	
+	@media screen and (max-width: 375px) {
+	.card_socal {
+	max-width: 332px;
+	}
+	.card_socal .txt_card p {
+	font-size: 12px;
+	}
+	.btn_coomn_click {
+	width: 260px;
+	}
+	.user-profile .contine-with span {
+	padding: 0 3px;
+	}
+	.add-more-link span {
+	font-size: 11px;
+	}
+	.border-box-1 svg {
+	width: 60px;
+	}
+	.svg-icn .icn-title {
+	font-size: 14px !important;
+	margin-top: 10px;
+	}
+	.all-disciplines .col-sm-4 {
+	width: 100%;
+	}
+	/* div.box-wrap-1 div.col-sm-4:nth-child(odd) div.border-box-1::before {
+	background-image: none;
+	}
+	
+	div.box-wrap-1 div.col-sm-4:nth-child(even) div.border-box-1::before {
+	background-image: none;
+	}*/
+	.all-disciplines .col-sm-3 {
+	width: 100%;
+	}
+	/*   div.box-wrap-1 div.col-sm-3:nth-child(odd) div.border-box-1::before {
+	background-image: none;
+	}
+	
+	div.box-wrap-1 div.col-sm-3:nth-child(even) div.border-box-1::before {
+	background-image: none;
+	}*/
+	div.box-wrap-1 div.col-sm-4:nth-child(n+1)>.bordr-left::before {
+	background-image: url('../imgs/line-vr.png') !important;
+	left: 0px;
+	top: 0;
+	content: "";
+	width: 1px;
+	height: 100%;
+	background-repeat: repeat;
+	position: absolute;
+	}
+	div.box-wrap-1 div.col-sm-3:nth-child(n+1)>.bordr-left::before {
+	background-image: url('../imgs/line-vr.png') !important;
+	left: 0px;
+	top: 0;
+	content: "";
+	width: 1px;
+	height: 100%;
+	background-repeat: repeat;
+	position: absolute;
+	}
+	.border-box-1 {
+	height: 335px;
+	}
+	.sectors-box .border-box-1 {
+	height: 335px;
+	}
+	.intro-page .our-benefits .right-cntnt .bg-imag-abs img {
+	position: absolute;
+	top: 5px;
+	left: 0;
+	}
+	/*.referral-db .chrt-legnds li {
+	margin-right: 20px;
+	display: inline-flex;
+	}*/
+	.referral-db .card.busi-dev .percent {
+	height: 160px;
+	padding-top: 0px;
+	}
+	.referral-db .crd-top-title {
+	font-size: 13px;
+	}
+	.referral-db .card.busi-dev .percent {
+	width: 300px;
+	}
+	.referral-db .top-bttns {
+	text-align: center !important;
+	}
+	.link-db-modal mat-tab-group .mat-tab-label {
+	padding: 0 9px;
+	}
+	.link-db-modal .modal-right h6 {
+	font-size: 15px;
+	line-height: 22px;
+	}
+	.referral-signup .txt_card h3 {
+	font-size: 16px;
+	}
+	.referral-signup .crd-mainn .right-part {
+	padding: 25px;
+	}
+	.iti__country-name {
+	word-wrap: break-word;
+	display: inline-block;
+	white-space: normal;
+	max-width: 185px;
+	font-size: 13px;
+	width: 100%;
+	}
+	.verify-id {
+		display: block !important;
+	}
+	.verify-id h6 {
+		margin-bottom: 20px !important;
+	}
+	.contact-info .main-wrapr .info-card .div-width {
+	width: 100%;
+	}
+	.clnt-acnt.singl-rw .check_box label {
+	font-size: 12px;
+	}
+	.prf-desc .fa-icns {
+	text-align: right;
+	}
+	.prf-desc .fa-icns i {
+	margin-bottom: 10px;
+	}
+	.view-tlnt-prf.cmn-pading-top {
+	    max-width: 350px;
+	}
+	}
+	
+	@media screen and (max-width: 360px) {
+	.card_socal {
+	max-width: 322px;
+	}
+	.card_socal .txt_card h3 {
+	font-size: 16px;
+	}
+	.card_socal .txt_card p {
+	font-size: 11px;
+	}
+	.user-login .right-part {
+	padding: 30px;
+	}
+	.custm-dropzone ngx-dropzone-label p {
+	font-size: 10px;
+	}
+	.border-box-1 {
+	height: 320px;
+	}
+	.sectors-box .border-box-1 {
+	height: 320px;
+	}
+	.intro-page .our-benefits .right-cntnt .bg-imag-abs img {
+	position: absolute;
+	top: 20px;
+	left: 0;
+	}
+	.referral-signup .crd-mainn .right-part {
+	padding: 20px;
+	}
+	.link-db-modal .modal-right h6 {
+	font-size: 13px;
+	}	
+	.contact-info .main-wrapr .info-card header {
+	padding: 20px;
+	}
+	.contact-info .main-wrapr .cntnt-insid.crd-wrap .clnt-acnt {
+	padding: 20px;
+	}
+	.view-tlnt-prf.cmn-pading-top {
+	    max-width: 330px;
+	}
+
+	}
+	
+	@media screen and (max-width: 320px) {
+	.user-login .right-part {
+	padding: 30px;
+	}
+	.copyrigt_p {
+	font-size: 9px;
+	margin-top: 0;
+	}
+	.user-profile .contine-with {
+	font-size: 10px;
+	}
+	.card_socal {
+	max-width: 292px;
+	}
+	.speciality-list .custom-control-label {
+	font-size: 13px;
+	}
+	.level-of-talent .titl-abov {
+	font-size: 12px;
+	}
+	.regional-experience .titl-abov {
+	font-size: 12px;
+	}
+	.visibility-pref .head-title {
+	font-size: 13px;
+	}
+	.author-fld .add-more-link.add-new-row {
+	margin-bottom: 10px !important;
+	}
+	.singl-row .add-more-link {
+	display: block !important;
+	}
+	.singl-row .add-more-link .green_text {
+	width: 300px;
+	display: block;
+	}
+	.singl-row .add-more-link .skip_txt {
+	display: block;
+	text-align: right;
+	}
+	.border-box-1 {
+	height: 280px;
+	}
+	.sectors-box .border-box-1 {
+	height: 280px;
+	}
+	.intro-page .our-benefits .right-cntnt .bg-imag-abs img {
+	position: absolute;
+	top: 100px;
+	left: 0;
+	}
+	.intro-page .left-cntnt ul li {
+	font-size: 12px;
+	}
+	.referral-db .card.busi-dev .percent {
+	width: 250px;
+	}
+	.referral-db .main-cntnt {
+	padding: 9px;
+	}
+	.link-db-modal .modal-right {
+	padding: 0px 10px 10px 25px;
+	}
+	.referral-signup .btn.btn_referal {
+	padding: 10px 7px;
+	font-size: 15px;
+	}
+	.referral-signup .signup-form {
+	padding: 15px;
+	}
+	.referral-signup .crd-mainn .right-part {
+	padding: 20px 10px;
+	}
+	.iti__country-name {
+	word-wrap: break-word;
+	display: inline-block;
+	white-space: normal;
+	max-width: 167px;
+	font-size: 13px;
+	width: 100%;
+	}
+	.view-tlnt-prf.cmn-pading-top {
+	    max-width: 290px;
+	}
+	.merged-profile .cmn-btn {
+		display: flex;
+	}
+	}

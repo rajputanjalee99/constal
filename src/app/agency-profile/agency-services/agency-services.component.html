@@ -1,0 +1,217 @@
+<app-talent-header></app-talent-header>
+
+<main class="comon_main internal_pages_prnt">
+	<div class="cmn-pading-top">
+  	<section class="talent-profile">
+  		<div class="d-flex">
+  			<app-create-agency-sidebar></app-create-agency-sidebar>
+  			<div class="main-cntnt geting-strt">
+  				<div class="top-cntnt">
+  					<h5>Agency Account</h5>
+  					<div class="prgrs-bar bar-green">
+  						<span class="prg-perc">55% Completed</span>
+  						<mat-progress-bar mode="determinate" value="55"></mat-progress-bar>
+            </div>
+              <div class="main-title mb-2 d-flex justify-content-between">
+                  <p class="mb-0">What services do you offer?  You can add new services.</p>
+                  <div class="add-more-link m-0" (click)="addNewServiceModal()">
+                      <img src="assets/imgs/add-alt.png" class="img-fluid">
+                      <span class="green_text">Add New Service</span>
+                  </div>
+              </div>
+          </div>
+			<div class="inside-wrapr choose-services">
+				<div class="services-card">
+					<div class="row">
+						<div class="col-sm-6" *ngIf="traditional_data && traditional_data.length">
+							<div class="card srvces">
+								<h6>Traditional</h6>
+								<div class="accordion" id="accordionExample">
+									<div class="card acrdian-crd" *ngFor="let tradition of traditional_data;let i = index">
+										<div class="card-header collapsed"  data-toggle="collapse" [attr.data-target]="'#collapse' + i">
+											<h6 class="mb-0">
+												<a class="d-flex justify-content-between">
+													<span>{{tradition.speciality_data.name}} </span>
+													<span><i class="fas fa-chevron-up"></i></span>
+												</a>
+											</h6>
+										</div>
+										<div class="collapse" [attr.id]="'collapse' + i" data-parent="#accordionExample">
+											<div class="card-body">
+												<ul class="servc-listng">
+													<li *ngFor="let tradition_service of tradition.services" class="d-flex justify-content-between spc-hover">
+														<div class="custom-control custom-checkbox">
+															<input type="checkbox" (change)="onCheckboxChangeTraditional($event,tradition_service)" class="custom-control-input" id="{{tradition_service._id}}" 
+															[(ngModel)]="tradition_service.flag" name="{{tradition_service.name}}">
+															<label class="custom-control-label" for="{{tradition_service._id}}">{{tradition_service.name}}</label>
+														</div>
+														<span *ngIf="tradition_service.talent_user_id && tradition_service.talent_user_id==profile._id" (click)="deleteSpecialityService('traditional',tradition_service._id)"><i class="fas fa-trash"></i></span>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									
+									<!-- <div class="card">
+										<div class="card-header" id="headingTwo">
+											<h6 class="mb-0">
+												<a class="d-flex justify-content-between collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+													<span>Speciality 2</span>
+													<span><i class="fas fa-chevron-up"></i></span>
+												</a>
+											</h6>
+										</div>
+										<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+											<div class="card-body">
+												<ul class="servc-listng">
+													<li *ngFor="let tradition of traditional_services_List">
+														<div class="custom-control custom-checkbox">
+															<input type="checkbox" (change)="onCheckboxChangeTraditional($event,tradition)" class="custom-control-input" id="{{tradition._id}}" 
+															[(ngModel)]="tradition.flag" name="{{tradition.name}}">
+															<label class="custom-control-label" for="{{tradition._id}}">{{tradition.name}}</label>
+														</div>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div> -->
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6" *ngIf="digital_data && digital_data.length">
+							<div class="card srvces">
+								<h6>Digital</h6>
+								<div class="accordion" id="accordionExample1">
+									<div class="card acrdian-crd"  *ngFor="let digital of digital_data;let j = index">
+										<div class="card-header collapsed" id="headingThree" data-toggle="collapse" [attr.data-target]="'#collapseSec' + j" aria-expanded="true" aria-controls="collapseThree">
+											<h6 class="mb-0">
+												<a class="d-flex justify-content-between">
+													<span>{{digital.speciality_data.name}} </span>
+													<span><i class="fas fa-chevron-up"></i></span>
+												</a>
+											</h6>
+										</div>
+										<div [attr.id]="'collapseSec' + j" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample1">
+											<div class="card-body">
+												<ul class="servc-listng">
+													<li *ngFor="let digital_service of digital.services" class="d-flex justify-content-between spc-hover">
+														<div class="custom-control custom-checkbox">
+															<input type="checkbox" (change)="onCheckboxChangeDigital($event,digital_service)" class="custom-control-input" id="{{digital_service._id}}"
+															[(ngModel)]="digital_service.flag" name="{{digital_service.name}}">
+															<label class="custom-control-label" for="{{digital_service._id}}">{{digital_service.name}}</label>
+														</div>
+														<span *ngIf="digital_service.talent_user_id && digital_service.talent_user_id==profile._id" (click)="deleteSpecialityService('digital',digital_service._id)"><i class="fas fa-trash"></i></span>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<!-- <div class="card">
+										<div class="card-header" id="headingFour">
+											<h6 class="mb-0">
+												<a class="d-flex justify-content-between collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+													<span>Speciality 2</span>
+													<span><i class="fas fa-chevron-up"></i></span>
+												</a>
+											</h6>
+										</div>
+										<div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample1">
+											<div class="card-body">
+												<ul class="servc-listng">
+													<li *ngFor="let digital of digital_services_List">
+														<div class="custom-control custom-checkbox">
+															<input type="checkbox" (change)="onCheckboxChangeDigital($event,digital)" class="custom-control-input" id="{{digital._id}}"
+															[(ngModel)]="digital.flag" name="{{digital.name}}">
+															<label class="custom-control-label" for="{{digital._id}}">{{digital.name}}</label>
+														</div>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div> -->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+  				<div class="submit-btn btn-width d-flex justify-content-between mt-3">
+  					<a routerLink="/agency-specialities" class="btn btn_theme_black my-2 my-sm-0">Back</a>
+  					<a (click)="goToNext()" class="btn btn_theme_green my-2 my-sm-0">Next</a>
+  				</div>
+  				<div class="inside-footer">
+  					<app-footer></app-footer>
+  				</div>
+  			</div>
+  			<!-- <app-talent-right-sidebar></app-talent-right-sidebar> -->
+  		</div>
+  		
+  	</section>
+  </div>
+</main>
+
+<!-- add service modal -->
+<div class="modal fade add-service" id="addService" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Add Service</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+				<form action="" [formGroup]="addServiceForm">
+					<div class="col-sm-9">
+						<div class="form-group">
+							<label>Speciality</label>
+							<select  [(ngModel)]="serviceId" name="speciality" 
+							 formControlName="speciality"  class="form-control" required
+							>
+							<option value="" disabled >Select speciality</option>
+							<option *ngFor="let service of service_list" value="{{service._id}}">{{service.name}}</option>
+							</select>
+
+							<div *ngIf="(addServiceForm.get('speciality').touched || addServiceForm.get('speciality').dirty) && addServiceForm.get('speciality').invalid && addServiceForm.get('speciality').errors.required" class="invalid-feedback">
+								*Please choose Speciality
+							</div>
+							
+							<!-- <h6 class="speciality-name">{{speciallity}}</h6> -->
+						</div>
+					</div>
+
+					<div class="col-sm-9">
+						<div class="form-group">
+							<label>Category</label>
+							<select formControlName="category"  [(ngModel)]="category" name="categ" 
+							 class="form-control" required
+							>
+							<option value="" disabled>Select category</option>
+							<option *ngFor="let category of category_list" value="{{category.value}}">{{category.name}}</option>
+							</select>
+							<div *ngIf="(addServiceForm.get('category').touched || addServiceForm.get('category').dirty) && addServiceForm.get('category').invalid && addServiceForm.get('category').errors.required" class="invalid-feedback">
+								*Please choose Category
+							</div>
+							
+						</div>
+					</div>
+					<div class="col-sm-9">
+						<div class="form-group">
+							<label>Service Name</label>
+							<input type="text" formControlName="service_name" [(ngModel)]="serviceName" name="serviceName" class="form-control" placeholder="e.g. Evaluate Baseline">
+							<div *ngIf="(addServiceForm.get('service_name').touched || addServiceForm.get('service_name').dirty) && addServiceForm.get('service_name').invalid && addServiceForm.get('service_name').errors.required" class="invalid-feedback">
+								*Please enter Service Name
+							</div>
+						</div>
+					</div>
+				</form>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn_modal_black" data-dismiss="modal">Cancel</button>
+          <button type="button" (click)="addNewSpeciality()" class="btn btn_modal_green">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>

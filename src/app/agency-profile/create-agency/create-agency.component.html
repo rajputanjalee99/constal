@@ -1,0 +1,133 @@
+
+<app-talent-header></app-talent-header>
+<main class="comon_main internal_pages_prnt">
+	<div class="cmn-pading-top">
+		<section class="contact-info agency-account">
+			<div class="d-flex">
+				<app-create-agency-sidebar></app-create-agency-sidebar>
+				<div class="main-wrapr wrap-full-width">
+					<h5 class="mb-3">Agency Account</h5>
+	                <div class="info-card create-agency">
+	                	<header>
+	                		<h6 class="mb-0">Registered Agency</h6>
+	                	</header>
+
+	                	<div class="cntnt-insid">
+	                		<div class="frnt-div">
+	                			<div class="radio-wrp">
+	                				<!-- <div class="">
+	                					<span class="custom-control custom-radio custm-radio-cs radio-click-1">
+									      <input type="radio" class="custom-control-input" id="customRadio3" checked="checked" name="example2">
+									      <label class="custom-control-label" for="customRadio3">
+									      	Registered Agency
+									      </label>
+									    </span>
+								    </div>
+								    <div class="">
+								    	<span class="custom-control custom-radio custm-radio-cs radio-click">
+									      <input type="radio" class="custom-control-input" id="customRadio4" name="example2">
+									      <label class="custom-control-label" for="customRadio4">
+									      	New Agency at CONSTAL
+									      </label>
+									  	</span>
+								    </div> 
+								    <div class="new-one mt-4">
+								    	<form>
+								    		<div class="row">
+								    			<div class="col-sm-10">
+                                                    <div class="form-group">
+                                                        <label>Enter Agency Name*</label>
+                                                        <input type="text" class="form-control">
+                                                    </div>
+                                                </div>
+								    		</div>
+								    	</form>
+								    </div> -->
+								    <div class="registered-one mt-4">
+								    	<form [formGroup]="agencyForm">
+								    		<div class="row">
+								    			<div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <label>License Number*</label>
+                                                        <input (keyup)="preventSpace($event,'license_number')" type="text" formControlName="license_number" class="form-control">
+														<div *ngIf="(agencyForm.get('license_number').touched || agencyForm.get('license_number').dirty) && agencyForm.get('license_number').invalid && agencyForm.get('license_number').errors.required" class="invalid-feedback">
+															*Please enter License number
+														</div>
+                                                    </div>
+                                                </div>
+								    		</div>
+								    		<div class="row">
+								    			<div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <label>Agency Name*</label>
+                                                        <input (keyup)="preventSpace($event,'agency_name')" type="text" formControlName="agency_name" class="form-control">
+														<div *ngIf="(agencyForm.get('agency_name').touched || agencyForm.get('agency_name').dirty) && agencyForm.get('agency_name').invalid && agencyForm.get('agency_name').errors.required" class="invalid-feedback">
+															*Please enter Agency name
+														</div>
+                                                    </div>
+                                                </div>
+								    		</div>
+								    		<div class="row">
+								    			<div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <label>Company Location*</label>
+                                                        <input (keyup)="preventSpace($event,'company_location')" type="text" formControlName="company_location" class="form-control">
+														<div *ngIf="(agencyForm.get('company_location').touched || agencyForm.get('company_location').dirty) && agencyForm.get('company_location').invalid && agencyForm.get('company_location').errors.required" class="invalid-feedback">
+															*Please enter Agency name
+														</div>
+                                                    </div>
+                                                </div>
+								    		</div>
+								    		<div class="file-inpt">
+												<label>Upload Trade License* </label>
+												<div class="row">
+													<div class="col-sm-10 pr-0">
+														<div class="form-group">
+															<div class="custom-file">
+																<input type="file" formControlName="license" (change)="onSelectLic($event)" name="intro_video" class="custom-file-input validatn-input" id="customFile">
+																<label [ngStyle]="{'overflow': 'hidden'}" class="custom-file-label file-cs-con " for="customFile">{{ tradeLic }}</label>
+															</div>
+															<div class="disclaimer-txt"> 
+																<p>*The file should not exceed more than 25MB.</p>
+															</div>
+															<div *ngIf="(agencyForm.get('license').touched || agencyForm.get('license').dirty) && agencyForm.get('license').invalid && agencyForm.get('license').errors.required" class="invalid-feedback">
+																*Please choose Trade License
+															</div>
+														</div>
+													</div>
+													<div class="col-sm-2">
+														<a (click)="resetLic()" class="btn btn_theme_black">Reset</a>
+													</div>
+												</div>
+											</div>
+								    	
+								    		<div class="row">
+								    			<div class="col-sm-12">
+                                                    <div class="form-group">
+                                                        <label>Other Details</label>
+                                                        <textarea (keyup)="preventSpace($event,'')" class="form-control" formControlName="other_details" rows="3"></textarea>
+														<div *ngIf="(agencyForm.get('other_details').touched || agencyForm.get('other_details').dirty) && agencyForm.get('other_details').invalid && agencyForm.get('other_details').errors.required" class="invalid-feedback">
+															*Please enter Other details
+														</div>
+                                                    </div>
+                                                </div>
+								    		</div>
+								    	</form>
+								    </div> 
+	                			</div>
+		                	</div>
+	                	</div>
+	                </div>
+                    <div class="submit-btns text-right text-right">
+                    	<a class="btn btn_theme_green mr-2" (click)="saveAgencyDetails()">Next</a>
+                    	<!-- <a class="btn btn_theme_black on-update">Cancel</a> -->
+                    </div>
+					<div class="inside-footer">
+						<app-footer></app-footer>
+					</div>
+				</div>
+				<!-- <app-agency-right-sidebar></app-agency-right-sidebar> -->
+			</div>
+		</section>
+	</div>
+</main>

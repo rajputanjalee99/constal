@@ -1,0 +1,344 @@
+<div *ngIf="isLoading" class="uploader-status" id="spin">
+    <mat-spinner diameter="30"></mat-spinner>
+</div>
+<app-talent-header></app-talent-header>
+<main class="comon_main internal_pages_prnt">
+	<div class="cmn-pading-top">
+    	<section class="talent-profile">
+    		<div class="d-flex">
+    			<app-talent-sidebar></app-talent-sidebar>
+    			<div class="main-cntnt geting-strt">
+    				<div class="top-cntnt">
+    					<h5>Talent Admission</h5>
+    					<div class="prgrs-bar bar-green" *ngIf="service.sideBarHeight">
+							<span class="prg-perc">{{service.sideBarHeight}}% Completed</span>
+    						<mat-progress-bar mode="determinate" value="{{service.sideBarHeight}}"></mat-progress-bar>
+    					</div>
+                    </div>
+                    <form #addEducation="ngForm" (ngSubmit)="addEducation.valid && addEducationData()">
+    				    <div class="inside-wrapr">
+    					    <div class="main-tabs cmn-card-tabs">
+                                <mat-tab-group  #tabGroup [(selectedIndex)]="selectedIndexBinding" animationDuration="0ms">
+                                    <mat-tab label="Education" disabled>
+                                        <div class="singl-row card inside-wrapr" >
+                                            <div class="add-more-link d-flex justify-content-between">
+                                                <span class="green_text" (click)="addExperience()" >
+                                                    <img src="assets/imgs/add-alt.png" class="img-fluid">
+                                                    Add more Education
+                                                </span>
+                                            </div>
+                                            <div *ngFor = "let education of education_list; let i = index">
+                                                <div class="add-more-link d-flex justify-content-end" *ngIf="education_list.length>1">
+                                                    <span class="red_text" (click)="removeExperience(i)" > - Remove Education</span>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class="position-relative">
+                                                            <div class="form-group">
+                                                                <label>School*</label>
+                                                                <input type="text" [(ngModel)]="education.school_name" (keyup)="getUniversities(i)" #school="ngModel"
+                                                                    [ngModelOptions]="{standalone: true}" class="form-control {{education.schoolNameValidation ? 'validatn-input' : '' }} " placeholder="e.g. University of Cambridge" required
+                                                                    [ngClass]="{ 'is-invalid': addEducation.submitted && !school_name.valid }">
+                                                                <div *ngIf="education.schoolNameValidation" class="validation-spn">Please enter school</div>
+                                                            </div>
+                                                            <div class="sugestn-box card">
+                                                                <ul *ngIf="university_list.length">
+                                                                    <li *ngFor="let university of university_list; let j = index;" (click)="getUniversityText(university.name,i)" >
+                                                                        {{university.name}}
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <div class="position-relative">
+                                                            <div class="form-group">
+                                                                <label>Degree*</label>
+                                                                <input type="text" (keyup)="getDegrees(i)" [(ngModel)]="education.degree" #degree="ngModel"
+                                                                [ngModelOptions]="{standalone: true}" class="form-control {{education.degreeValidation ? 'validatn-input' : '' }}" placeholder="e.g. Bachelors of Science" required
+                                                                    [ngClass]="{ 'is-invalid': addEducation.submitted && !degree.valid }">
+                                                                <div *ngIf="education.degreeValidation" class="validation-spn">Please enter degree</div>
+                                                            </div>
+                                                            <div class="sugestn-box card">
+                                                                <ul *ngIf="degree_list.length">
+                                                                    <li *ngFor="let degree of degree_list; let j = index;" (click)="getDegreeText(degree.name,i)" >
+                                                                        {{degree.name}}
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <div class="position-relative">
+                                                            <div class="form-group">
+                                                                <label>Field of Study*</label>
+                                                                <input type="text" (keyup)="getFieldOfStudies(i)" [(ngModel)]="education.field_of_study" #field="ngModel"
+                                                                [ngModelOptions]="{standalone: true}" class="form-control {{education.fieldOfStudyValidation ? 'validatn-input' : '' }}" placeholder="e.g. Civil Engineering" required
+                                                                    [ngClass]="{ 'is-invalid': addEducation.submitted && !field.valid }">
+                                                                <div *ngIf="education.fieldOfStudyValidation" class="validation-spn">Please enter field of study</div>
+                                                            </div>
+                                                            <div class="sugestn-box card">
+                                                                <ul *ngIf="field_of_study_list.length">
+                                                                    <li *ngFor="let field_of_study of field_of_study_list; let j = index;" (click)="getFieldOfStudyText(field_of_study.name,i)" >
+                                                                        {{field_of_study.name}}
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row edu-date">
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group custm-datepickr {{education.startDateValidation ? 'validatn-input' : '' }}">
+                                                            <label>Start Date*</label>
+                                                            <!-- <mat-form-field appearance="fill">
+                                                                <mat-label>Choose a date</mat-label>
+                                                                <input readonly="" matInput [matDatepicker]="picker" autocomplete="off" class="" [min]="minDate" [max]="today1" [(ngModel)]="education.start_date" #sDate="ngModel"
+                                                                name="sDate{{i}}" required
+                                                                [ngClass]="{ 'is-invalid': addEducation.submitted && !sDate.valid }">
+                                                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                                                <mat-datepicker #picker></mat-datepicker>
+                                                            </mat-form-field> -->
+                                                            <mat-form-field appearance="fill">
+                                                                <mat-label>Choose a date</mat-label>
+                                                                <input readonly="" matInput [matDatepicker]="picker" autocomplete="off" class="" [min]="education.startMinDate" [max]="education.startMaxDate" [(ngModel)]="education.start_date" #sDate="ngModel"
+                                                                [ngModelOptions]="{standalone: true}" required
+                                                                [ngClass]="{ 'is-invalid': addEducation.submitted && !sDate.valid }">
+                                                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                                                <mat-datepicker #picker></mat-datepicker>
+                                                            </mat-form-field>
+                                                            <div *ngIf="education.startDateValidation" class="validation-spn">Please choose start date</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group custm-datepickr {{education.endDateValidation ? 'validatn-input' : '' }}">
+                                                            <div class="toggle-bttn d-flex justify-content-between custm-switch-cs">
+                                                                <label>End Date*</label>
+                                                                <div class="custom-control custom-switch togle-swtch">
+                                                                    <input *ngIf="education.expectedGraduation" [(ngModel)]="education.expectedGraduation" type="checkbox" class="custom-control-input" (click)="changeExpectedGraduation($event,i)" checked="checked" id="switch1{{i}}" name="example{{i}}">
+                                                                    <input *ngIf="!education.expectedGraduation" [(ngModel)]="education.expectedGraduation" type="checkbox" class="custom-control-input" (click)="changeExpectedGraduation($event,i)" id="switch1{{i}}" name="example{{i}}">
+                                                                    <label class="custom-control-label" for="switch1{{i}}">or expected graduation</label>
+                                                                </div>
+                                                            </div>
+                                                            <mat-form-field appearance="fill">
+                                                                <mat-label>Choose a date</mat-label>
+                                                                <input readonly="" matInput [matDatepicker]="picker2" autocomplete="off" class="" [min]="education.endMinDate" [max]="education.endMaxDate" [(ngModel)]="education.end_date" #eDate="ngModel"
+                                                                [ngModelOptions]="{standalone: true}" required 
+                                                                [ngClass]="{ 'is-invalid': addEducation.submitted && !eDate.valid }">
+                                                                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                                                <mat-datepicker #picker2></mat-datepicker>
+                                                            </mat-form-field>
+                                                            <div *ngIf="education.endDateValidation" class="validation-spn">Please choose end date</div>
+                                                            <div *ngIf="education.endDateLessValidation" class="validation-spn">End date should be greater than Start Date</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group">
+                                                            <label>Grade</label>
+                                                            <input type="text" [(ngModel)]="education.grade" #grade="ngModel" oninput="this.value = this.value.replace(/[^A-Za-z0-9-,.;'&/.() ]|^ /g,'')"
+                                                            [ngModelOptions]="{standalone: true}" class="form-control" placeholder="e.g. CGPA 8.2" required
+                                                                [ngClass]="{ 'is-invalid': addEducation.submitted && !grade.valid }">
+                                                            <div *ngIf="addEducation.submitted && !grade.valid" class="invalid-feedback">Grade is required</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group">
+                                                            <label>Activities & Societies</label>
+                                                            <input type="text" class="form-control" oninput="this.value = this.value.replace(/[^A-Za-z0-9-,.;'&/.() ]|^ /g,'')" [(ngModel)]="education.activities" [ngModelOptions]="{standalone: true}" placeholder="e.g. Designing">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12"  >
+                                                        <div class="form-group">
+                                                            <label>Upload Graduation Statement and Documents <small>(250W*250H)</small></label>
+                                                            <div class="custm-dropzone {{education.documentValidation ? 'validatn-input' : '' }}" >
+                                                                <ngx-dropzone (change)="onSelect($event,education)">
+                                                                    <ngx-dropzone-label>
+                                                                        <img src="assets/imgs/cloud-computing.png" class="img-fluid">
+                                                                        <p>Upload documents, photos, videos or presentation</p>
+                                                                    </ngx-dropzone-label>
+                                                                    <ngx-dropzone-preview *ngFor="let f of education.documents" [removable]="true" (removed)="deleteDocument(f,education.documents)">
+                                                                        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                                                                    </ngx-dropzone-preview>
+                                                                </ngx-dropzone>
+
+                                                            </div>
+                                                            <div class="disclaimer-txt"> 
+                                                                <p>*The file should not exceed more than 25MB.</p>
+                                                            </div>
+                                                            <div *ngIf="education.documentValidation" class="validation-spn">Please select document</div>
+                                                        </div>
+                                                    </div>
+                                                  
+                                                   
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="submit-btn btn-width d-flex justify-content-between mt-3">
+                                            <a routerLink="/choose-services" class="btn btn_theme_black my-2 my-sm-0">Back</a>
+                                            <button type="button" class="btn btn_theme_green my-2 my-sm-0" (click)="checkEducationData()">Next</button>
+                                        </div>
+                                    </mat-tab>
+                                    <mat-tab label="Licenses" disabled>
+                                        <div class="singl-row card inside-wrapr">
+                                            <div class="add-more-link d-flex justify-content-between">
+                                                <span class="green_text" (click)="addLicenses()" >
+                                                    <img src="assets/imgs/add-alt.png" class="img-fluid">
+                                                    {{licenses_list.length ? 'Add more Certificate & License' : 'Add Certificate & License'}}
+                                                </span>
+                                            </div>
+                                            <div *ngFor = "let licenses of licenses_list; let i = index">
+                                                <div class="add-more-link d-flex justify-content-end">
+                                                    <span class="red_text" (click)="removeLicenses(i)" > - Remove Licenses</span>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class="position-relative">
+                                                            <div class="form-group">
+                                                                <label>Certificate Name*</label>
+                                                                <input type="text" (keyup)="getLicenses(i)" [(ngModel)]="licenses.certificate_name" #certificate_name="ngModel"
+                                                                [ngModelOptions]="{standalone: true}" class="form-control {{licenses.certificateNameValidation ? 'validatn-input' : '' }}" placeholder="e.g. Certificate of Architecture" required
+                                                                    [ngClass]="{ 'is-invalid': addEducation.submitted && !certificate_name.valid }">
+                                                                <div *ngIf="licenses.certificateNameValidation" class="validation-spn">Please enter certificate name</div>
+                                                            </div>
+                                                            <div class="sugestn-box card">
+                                                                <ul *ngIf="license_list.length">
+                                                                    <li *ngFor="let license of license_list; let j = index;" (click)="getLicenseText(license.name,i)" >
+                                                                        {{license.name}}
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group">
+                                                            <label>Certification Authority</label>
+                                                            <input type="text" oninput="this.value = this.value.replace(/[^A-Za-z0-9-,.;'&/.() ]|^ /g,'')" [(ngModel)]="licenses.certification_authority" #certification_authority="ngModel"
+                                                            [ngModelOptions]="{standalone: true}" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group">
+                                                            <label>License Number</label>
+                                                            <input type="text" oninput="this.value = this.value.replace(/[^A-Za-z0-9-,.;'&/.() ]|^ /g,'')" [(ngModel)]="licenses.license_no" placeholder="e.g. LIC3573"
+                                                            #license_no="ngModel" [ngModelOptions]="{standalone: true}" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="prjct-date">
+                                                    <label>Issue Date</label>
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label>Month</label>
+                                                                <select  [(ngModel)]="licenses.start_month" [ngModelOptions]="{standalone: true}" 
+                                                                #start_month="ngModel"  class="form-control">
+                                                                <option value="" disabled>Select Month</option>
+                                                                <option *ngFor="let month of month_list" value="{{month.name}}">{{month.name}}</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label>Year</label>
+                                                                <select  [(ngModel)]="licenses.start_year" [ngModelOptions]="{standalone: true}" 
+                                                                #start_year="ngModel"  class="form-control">
+                                                                <option value="" disabled>Select Year</option>
+                                                                <option *ngFor="let year of year_list" value="{{year.name}}">{{year.name}}</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group">
+                                                            <div class="custom-control custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input" id="customCheck{{i}}" checked="checked"
+                                                                [ngModelOptions]="{standalone: true}" [(ngModel)]="licenses.is_license_expire" #is_license_expire="ngModel">
+                                                                <label class="custom-control-label" for="customCheck{{i}}">This License does not expire</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="prjct-date" *ngIf="!licenses.is_license_expire">
+                                                    <label>Expiration Date</label>
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label>Month</label>
+                                                                <select  [(ngModel)]="licenses.end_month" [ngModelOptions]="{standalone: true}" 
+                                                                #end_month="ngModel"  class="form-control">
+                                                                <option value="" disabled>Select Month</option>
+                                                                <option *ngFor="let month of month_list" value="{{month.name}}">{{month.name}}</option>
+                                                                </select>
+                                                                <div *ngIf="licenses.endMonthValidation" class="validation-spn">Expiration Date Month should be greater than Issue Date Month</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <div class="form-group">
+                                                                <label>Year</label>
+                                                                <select  [(ngModel)]="licenses.end_year" [ngModelOptions]="{standalone: true}" 
+                                                                #end_year="ngModel"  class="form-control">
+                                                                <option value="" disabled>Select Year</option>
+                                                                <option *ngFor="let year of year_list1" value="{{year.name}}">{{year.name}}</option>
+                                                                </select>
+                                                                <div *ngIf="licenses.endYearValidation" class="validation-spn">Expiration Date Year should be greater than Issue Date Year</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group">
+                                                            <label>Certification URL</label>
+                                                            <input type="text" [(ngModel)]="licenses.certification_url" #certificate_url="ngModel" oninput="this.value = this.value.replace(/[^A-Za-z0-9-,.;'&/.() ]|^ /g,'')"
+                                                            [ngModelOptions]="{standalone: true}" class="form-control {{licenses.certificationUrlValidation ? 'validatn-input' : '' }}" placeholder="e.g. www.entermycertificates.com" required
+                                                                [ngClass]="{ 'is-invalid': addEducation.submitted && !certificate_url.valid }">
+                                                            <div *ngIf="addEducation.submitted && !certificate_url.valid" class="invalid-feedback">Certificate Url is required</div>
+                                                            <div *ngIf="licenses.certificationUrlValidation" class="validation-spn">Please enter valid url</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group">
+                                                            <label>Upload the License Copy <small>(250W*250H)</small></label>
+                                                            <div class="custm-dropzone {{licenses.documentValidation ? 'validatn-input' : '' }}">
+                                                                <ngx-dropzone (change)="onSelect($event,licenses)">
+                                                                    <ngx-dropzone-label>
+                                                                        <img src="assets/imgs/cloud-computing.png" class="img-fluid">
+                                                                        <p>Upload documents, photos, videos or presentation</p>
+                                                                    </ngx-dropzone-label>
+                                                                    <ngx-dropzone-preview *ngFor="let f of licenses.documents" [removable]="true" (removed)="deleteDocument(f,licenses.documents)">
+                                                                        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                                                                    </ngx-dropzone-preview>
+                                                                </ngx-dropzone>
+                                                            </div>
+                                                            <div class="disclaimer-txt"> 
+                                                                <p>*The file should not exceed more than 25MB.</p>
+                                                            </div>
+                                                            <div *ngIf="licenses.documentValidation" class="validation-spn">Please select document</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="submit-btn btn-width d-flex justify-content-between mt-3">
+                                            <a (click)="tabGroup.selectedIndex=0" class="btn btn_theme_black my-2 my-sm-0">Back</a>
+                                            <button type="button" (click)="checkLicensesData()" class="btn btn_theme_green my-2 my-sm-0">Next</button>
+                                        </div>
+                                    </mat-tab>
+                                </mat-tab-group>
+                            </div>
+    				    </div>
+                    </form>
+    				<div class="inside-footer">
+    					<app-footer></app-footer>
+    				</div>
+    			</div>
+    			<app-talent-right-sidebar></app-talent-right-sidebar>
+    		</div>
+    	</section>
+    </div>
+</main>
+

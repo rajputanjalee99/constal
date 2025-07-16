@@ -1,0 +1,67 @@
+
+// // 
+// .border-box-1{
+//     height: 217px;
+//     margin: 0px -15px;
+//     padding: 0px 15px;
+//     // border-right: 1px solid;
+//     position: relative;
+//     // border-bottom: 1px solid;
+// }
+// .box-wrap-1{
+//     border-top:1px solid transparent;
+
+//     border-image: url('../../../assets/imgs/line.png') 30 round;
+// }
+// .border-box-1::before {
+//     background-image: url('../../../assets/imgs/line-vr.png');
+//     right: 0px;
+//     top: 0;
+//     content: "";
+//     width: 1px;
+//     height: 100%;
+//     background-repeat: no-repeat;
+//     position: absolute;
+// }
+// .border-box-1::after {
+//     background-image: url('../../../assets/imgs/line.png');
+//     right: 0px;
+//     bottom: 0;
+//     content: "";
+//     width: 100%;
+//     height:1px;
+//     background-repeat:repeat;
+//     position: absolute;
+// }
+// .border-box-1{
+//     flex-direction: column;
+//     cursor: pointer;
+// }
+// .border-box-1 span{
+//     display: inline-block;
+//     // margin-left: 15px;
+// }
+// .border-box-1 svg{
+//     width: 40px;
+//     height: auto;
+// }
+// div.box-wrap-1 div.col-sm-4:nth-child(3) > div::before,
+// div.box-wrap-1 div.col-sm-4:nth-child(6) > div::before,
+// div.box-wrap-1 div.col-sm-4:nth-child(9) > div::before,
+// div.box-wrap-1 div.col-sm-4:nth-child(12) > div::before,
+// div.box-wrap-1 div.col-sm-4:nth-child(15) > div::before,
+// div.box-wrap-1 div.col-sm-4:nth-child(18) > div::before,
+// div.box-wrap-1 div.col-sm-4:nth-child(21) > div::before,
+// div.box-wrap-1 div.col-sm-4:nth-child(24) > div::before,
+// div.box-wrap-1 div.col-sm-4:nth-child(27) > div::before,
+// div.box-wrap-1 div.col-sm-4:nth-child(30) > div::before,
+// div.box-wrap-1 div.col-sm-4:nth-child(3) > div::before,
+// div.box-wrap-1 div.col-sm-4:nth-child(3) > div::before,
+// div.box-wrap-1 div.col-sm-4:nth-child(3) > div::before,
+// div.box-wrap-1 div.col-sm-4:nth-child(3) > div::before,
+// div.box-wrap-1 div.col-sm-4:nth-child(3) > div::before,
+// div.box-wrap-1 div.col-sm-4:nth-child(3) > div::before,
+// div.box-wrap-1 div.col-sm-4:nth-child(3) > div::before{
+
+//     background-image: none!important;
+// }

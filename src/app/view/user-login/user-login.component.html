@@ -1,0 +1,98 @@
+<app-header></app-header>
+<div *ngIf="isLoading" class="uploader-status" id="spin">
+	<mat-spinner diameter="22"></mat-spinner>
+</div>
+<main class="comon_main internal_pages_prnt">
+	<div class="cmn-pading-top">
+		<section class="user-profile user-login client_post_job d-flex align-items-center">
+			<div class="custom_container">
+				<div class="card_socal">
+					<div class="row align-items-center">
+						<div class="col-sm-12 p-0">
+							<div class="right-part">
+								<div class="txt_card">
+									<h3>Welcome to <span class="blue">CONSTAL</span></h3>
+									<p>We make it easy for everyone to connect with the Talent all around.</p>
+								</div>
+								<div class="input-flds">
+									<form [formGroup]="form">
+										<div class="row">
+											<div class="col-sm-12">
+											      <div class="form-group input-group">
+											        <div class="input-group-prepend">
+											          <span class="input-group-text" id="inputGroupPrepend3">
+											          	<img src="assets/imgs/@.png" class="img-fluid">
+											          </span>
+											        </div>
+											        <input type="text" formControlName="email" placeholder="Enter Email" class="form-control is-invalid" id="validationServerUsername" value="james_fred@gmail.com" aria-describedby="inputGroupPrepend3">
+													<div *ngIf="(form.get('email').touched || form.get('email').dirty) && form.get('email').invalid && form.get('email').errors.required" class="invalid-feedback">
+														*Please enter Email
+													</div>
+													<div *ngIf="(form.get('email').touched || form.get('email').dirty) && form.get('email').invalid && form.get('email').errors.email" class="invalid-feedback">
+														*Please enter valid email
+													</div>
+													<div *ngIf="(form.get('email').touched || form.get('email').dirty) && form.get('email').invalid && form.get('email').errors.pattern && !form.get('email').errors.email" class="invalid-feedback">
+														*Please enter valid email
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-12">
+											      <div class="form-group input-group">
+											        <div class="input-group-prepend">
+											          <span class="input-group-text" id="inputGroupPrepend3">
+											          	<img src="assets/imgs/key.png" class="img-fluid">
+											          </span>
+											        </div>
+			<input formControlName="password" placeholder="Enter Password" class="form-control is-invalid" id="validationServerUsername" [type]="password" aria-describedby="inputGroupPrepend3" value="password">
+
+														<span class="password-eye blue" (click)="onClickEye()">
+														<i class="fa fa-eye" *ngIf="!show"></i>
+														<i class="fa fa-eye-slash" *ngIf="show"></i>
+													</span>
+													<div *ngIf="(form.get('password').touched || form.get('password').dirty) && form.get('password').invalid && form.get('password').errors.required" class="invalid-feedback">
+														*Please enter Password
+													</div>
+											    </div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-12">
+												<div class="check-fld d-flex justify-content-between">
+													<div class="custom-control custom-checkbox">
+												      <input formControlName="remember_me" type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+												      <label class="custom-control-label" for="customCheck">Remember Me</label>
+													  </div>
+													  <a routerLink="/forgot-password-client" class="blue">Forgot Password?</a>
+												</div>
+											</div>
+										</div>
+										<div class="submit-btn btn-width text-center">
+											<button [disabled]="!form.valid" (click)="login()" class="btn btn_theme_blue my-2 my-sm-0 mr-3">
+												
+												<span *ngIf="!isLoading">
+													Login
+												</span>										
+												
+												
+											</button>
+										</div>
+										<p class="already-acnt text-center">No Account? <a routerLink="/sign-up-user-email" class="blue">Create one Now</a></p>
+										<p class="text-gray contine-with mb-0 text-center">or login with: 
+											<span style="cursor: pointer;" class="blue" (click)="loginWithLinkedIn()"> Linkedin </span>
+											<span style="cursor: pointer;" class="blue" (click)="loginWithGoogle()"> Google </span>
+											<!-- <span class="blue"> Apple </span> -->
+										</p>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</main>
+
+<app-footer></app-footer>

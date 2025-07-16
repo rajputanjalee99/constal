@@ -1,0 +1,308 @@
+.client-sidebar li{
+	/* padding-bottom: 17px; */
+}
+select.form-control:not([size]):not([multiple]) {
+    height: calc(2.25rem + 8px) !important;
+}
+
+span.red_text {
+    color: red;
+}
+.skip_txt {
+    padding: 0 0 0 40px;
+}
+.modal_srtcd h3 {
+    font-size: 14px;
+    padding: 20px 0;
+}
+.modal_srtcd {
+    padding-bottom: 20px;
+}
+.shr-link input, .shr-link input:focus-visible, .shr-link input:focus, .shr-link input:focus-within {
+    pointer-events: none;
+    border: 0 !important;
+    padding: 0 5px;
+    font-weight: 300;
+    width: 430px;
+    outline: transparent !important;
+}
+.icon_ftr i {
+    font-size: 16px;
+    color: #fff;
+}
+i.far.fa-copy {
+    font-size: 19px;
+}
+.servc-listng.delete-icn .fa-trash {
+    margin-left: 14px;
+    color: #8e8b8b;
+}
+.servc-listng.delete-icn li {
+    padding: 10px;
+}
+.servc-listng.delete-icn li:hover {
+    background-color: #f5f4f4;
+}
+.pre-pills li {
+    position: relative;
+}
+.pre-pills li .cross-icn {
+    position: absolute;
+    right: 1px;
+    bottom: 28px;
+    cursor: pointer;
+}
+.pre-pills li .cross-icn i {
+    color: #444;
+}
+.link-db-modal .mat-tab-label-active#mat-tab-label-0-1 {
+    background: #0000ff;
+}
+.text-orange {
+    color: #f39200;
+}
+/*.comn-modal {
+    background: #f39200;
+    color: #444;
+    width: 210px;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    position: absolute;
+    bottom: 7px;
+    left: 20px;
+    visibility: hidden;
+    z-index: 99;
+}
+.show-popup {
+  visibility: visible;
+}*/
+.overly-modl {
+    position: absolute;
+    background: rgba(255,255,255,0.7);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    border-radius: 10px;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    z-index: 99;
+    align-items: center;
+
+}
+
+.overly-modl  h6 {
+    font-size: 20px;
+}
+.top-cards .card.card_grad {
+    /* padding-bottom: 0; */
+}
+.top-cards .card.card_grad h6{
+    margin: 10px auto;
+    font-size: 17px;
+}
+.job-title img {
+    width: 25px;
+}
+.chart-div.bar-chrt {
+    height: 420px;
+}
+.profile-details .card {
+    padding: 20px;
+}
+.spc-hover {
+    padding: 10px;
+    margin-bottom: 0 !important;
+}
+.spc-hover:hover {
+    background: #f5f5f5;
+}
+.pointers-none {
+    pointer-events: none;
+    cursor: pointer;
+}
+.main-footer .icon_ftr .list-inline-item img {
+    width: 15px;
+    filter: grayscale(1);
+    cursor: default;
+}
+.main-footer .icon_ftr .list-inline-item .lnkd img {
+    filter: unset;
+    cursor: pointer;
+}
+ngx-dropzone-label {
+    height: 100px;
+    overflow: hidden;
+}
+.uploader-status mat-spinner {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+}
+.servc-listng.hover-li {
+    padding: 10px;
+}
+.servc-listng.hover-li li {
+    padding: 10px;
+    margin-bottom: unset !important;
+}
+.servc-listng.hover-li li:hover {
+    background: #f5f5f5;
+}
+.profile-page .inside-wrapr {
+    padding: 13px 15px;
+    width: calc(100% - 284px);
+    margin-left: 284px;
+}
+.talent-profile.profile-page .main-cntnt {
+    padding: unset;
+}
+.talent-profile.profile-page .my-profile .card {
+    margin-bottom: 15px;
+}
+.prf-desc.regional-list {
+    border: unset !important;
+    padding-top: 0px !important;
+}
+.prf-desc.regional-list .test-cntnt h6 {
+    font-weight: 300 !important;
+}
+.regional-card .insid-crd {
+    padding: 20px 10px !important;
+}
+.talent-profile .my-profile.merged-profile .card {
+     border: unset; 
+     border-radius: unset; 
+     padding: unset; 
+    margin-bottom: 20px;
+}
+.merged-profile.contact-info .main-wrapr {
+    padding: unset;
+    width: 100%;
+    margin-left: unset;
+}
+/*.merged-profile .cmn-card-tabs .singl-row.card {
+    padding: 25px !important;
+}*/
+.paddng-add {
+    padding: 20px !important;
+}
+.merged-profile .inside-wrapr {
+    min-height: unset;
+}
+.inside-optns-wrap .active {
+    color: #00983a;
+}
+.inside-optns-wrap li {
+    font-size: 13px;
+}
+.disable-div {
+    pointer-events: none;
+    color: #b5b5b5;
+}
+.disable-div .custom-radio .custom-control-input:checked ~ .custom-control-label::before {
+    background-color: #00983a !important;
+    opacity: 0.7;
+}
+.disable-div .btn.btn_theme_green {
+    opacity: 0.5;
+}
+.disable-div .mat-tab-label-active .mat-tab-label-content {
+    color: #00983a;
+    opacity: 0.5;
+}
+.disable-div .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+    background-color: #00983a;
+    opacity: 0.6;
+}
+.disable-div .add-more-link img {
+    opacity: 0.5;
+}
+.disable-div .green_text {
+    color: #00983A !important;
+    opacity: 0.5;
+}
+.prfile-acrdian .heading-tl {
+    padding: 0;
+}
+.prfile-acrdian .collapsed .fa-chevron-up {
+    transform: rotate(180deg);
+}
+.prfile-acrdian .arrow-acr {
+    right: 24px;
+    position: absolute;
+}
+.merged-profile .geting-strt {
+    min-height: calc(100vh - 61px) !important;
+}
+.create-agency-prfile .card.profile-info {
+    margin-bottom: 15px;
+}
+.add-portfolio {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+.add-portfolio:last-child {
+    border-bottom: unset !important;
+}
+.create-agency-prfile span.delete-icn {
+    background: #fff;
+    border: 1px solid #7C9CBF;
+    border-radius: 100%;
+    width: 46px;
+    height: 46px;
+    line-height: 40px;
+    text-align: center;
+    display: block;
+    /* margin-top: 10px; */
+}
+.create-agency-prfile span.delete-icn img {
+    width: 20px;
+}
+.del-icn2 {
+    justify-content: flex-end;
+    display: flex;
+}
+.multiselect-dropdown .dropdown-btn {
+    padding: 12px 12px !important;
+    border: 1px solid #7c9cbf !important;
+}
+.multiselect-dropdown .dropdown-btn .selected-item {
+    max-width: 150px !important;
+}
+.security-cards {
+    min-height: 395px;
+}
+.fixed-dev h2 {
+    position: fixed;
+    top: 50%;
+}
+.vert_line {
+  width: 100%;
+}
+.no-margn {
+    margin-bottom: unset;
+}
+.edit-on {
+    width: 35px;
+    border-radius: 100%;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    border: 1px solid #ddd;
+    position: absolute;
+    right: 2px;
+    bottom: -4px;
+    background: #fff;
+}
+.edit-input input.form-control-file {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    bottom: -9px;
+    left: 51px;
+    border-radius: 100%;
+    opacity: 0;
+}

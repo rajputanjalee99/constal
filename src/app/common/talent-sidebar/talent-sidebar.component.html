@@ -1,0 +1,66 @@
+<span class="menu-br" (click)="openNav()"><i class="fas fa-bars"></i></span>
+
+<aside class="client-sidebar talent-sidebar sidenav" id="mySidenav">
+	<a class="closebtn" (click)="closeNav()">&times;</a>
+
+<div id="wrap-side-line">
+	<!-- <div class="prgrs-bar bar-green side-line">
+		<mat-progress-bar mode="determinate" value="{{service.sideBarHeight}}"></mat-progress-bar>
+	</div> -->
+	<ul class="list_optns">
+		<li routerLinkActive="active green_text"><span>Categories</span>
+			<ul class="sub-bar">
+				<li  routerLinkActive="{{service.page=='choose-discipline' ? 'active-text' : '' }}"  routerLink="/choose-discipline">Disciplines</li>
+				<li *ngIf="service.profile && service.profile.talent_category_data && service.profile.talent_category_data.discipline_id" routerLinkActive="{{service.page=='choose-speciality' ? 'active-text' : '' }}"  routerLink="/choose-speciality">Speciality</li>
+				<li *ngIf="service.profile && service.profile.talent_category_data && service.profile.talent_category_data.speciality && service.profile.talent_category_data.speciality.length" routerLinkActive="{{service.page=='choose-services' ? 'active-text' : '' }}"  routerLink="/choose-services">Services</li>
+				<!-- <li *ngIf="service.profile && service.profile.talent_category_data && ((service.profile.talent_category_data.digital_service && service.profile.talent_category_data.digital_service.length) || (service.profile.talent_category_data.traditional_service && service.profile.talent_category_data.traditional_service.length))" routerLinkActive="{{service.page=='choose-sectors' ? 'active-text' : '' }}"  routerLink="/choose-sectors">Sectors</li> -->
+			</ul>
+		</li>
+		
+		<!-- Talent Qualifications -->
+		<!-- <li *ngIf="common_profile && common_profile.talent_category_data && common_profile.talent_category_data.discipline_sectors.length" routerLinkActive="active green_text" routerLink="/qualifications"><span>Qualifications</span></li>
+		
+		<li *ngIf="common_profile && (!common_profile.talent_category_data || !common_profile.talent_category_data.discipline_sectors.length)" routerLinkActive="active green_text" class="grey-custom" ><span>Qualifications</span></li> -->
+
+		<li *ngIf="common_profile && common_profile.talent_category_data && ((common_profile.talent_category_data.digital_service && common_profile.talent_category_data.digital_service.length) || (common_profile.talent_category_data.traditional_service && common_profile.talent_category_data.traditional_service.length))" routerLinkActive="active green_text" routerLink="/qualifications"><span>Qualifications</span></li>
+		
+		<li *ngIf="common_profile && (!common_profile.talent_category_data || ((!common_profile.talent_category_data.digital_service || !common_profile.talent_category_data.digital_service.length) && (!common_profile.talent_category_data.traditional_service || !common_profile.talent_category_data.traditional_service.length)) )" routerLinkActive="active green_text" class="grey-custom" ><span>Qualifications</span></li>
+		
+		<!-- Talent Qualifications end -->
+		
+		<!-- Talent Skills -->
+		<li *ngIf="common_profile && common_profile.talent_qualification && common_profile.talent_qualification.education.length" routerLinkActive="active green_text" routerLink="/skills"><span>Skills</span></li>
+		
+		<li *ngIf="common_profile && (!common_profile.talent_qualification || !common_profile.talent_qualification.education.length)" routerLinkActive="active green_text" class="grey-custom" ><span>Skills</span></li>
+		<!-- end talent skills -->
+		
+		<!-- talent accomplishments-->
+		<li  *ngIf="common_profile && common_profile.talent_skills && common_profile.talent_skills.interpersonal_skills.length" routerLinkActive="active green_text" routerLink="/accomplishments"><span>Accomplishments</span></li>
+		
+		<li *ngIf="common_profile && (!common_profile.talent_skills || !common_profile.talent_skills.interpersonal_skills.length)" routerLinkActive="active green_text"  class="grey-custom"><span>Accomplishments</span></li>
+		
+		<!-- end of talent accomplishments-->
+		
+		<!-- talent Experience -->
+
+		<li routerLinkActive="active green_text" *ngIf="common_profile && common_profile.talent_accomplishment && common_profile.talent_accomplishment.languages && common_profile.talent_accomplishment.languages.english_proficiency" routerLink="/experience"><span>Experience</span></li>
+		
+		<li *ngIf="common_profile && (!common_profile.talent_accomplishment || !common_profile.talent_accomplishment.languages && !common_profile.talent_accomplishment.languages)" routerLinkActive="active green_text" class="grey-custom"><span>Experience</span></li>
+		<!-- end of talent experience -->
+		
+		<!-- Visibilities Pref -->
+		<li routerLinkActive="active green_text" *ngIf="common_profile && common_profile.talent_experience && common_profile.talent_experience.level_of_talent" routerLink="/visibility-preferences"><span>Visibility & Preferences</span></li>
+		
+		<li routerLinkActive="active green_text" *ngIf="common_profile && (!common_profile.talent_experience || !common_profile.talent_experience.level_of_talent)" class="grey-custom"><span>Visibility & Preferences</span></li>
+		<!-- Visibilities Pref end-->
+
+		<!-- profile details -->
+		<li routerLinkActive="active green_text" *ngIf="common_profile && common_profile.talent_preference " routerLink="/profile-details"><span>Profile Details</span></li>
+		
+		<li routerLinkActive="active green_text" *ngIf="common_profile && (!common_profile.talent_preference)" class="grey-custom"><span>Profile Details</span></li>
+		
+		<!-- End profile details -->
+	</ul>
+</div>
+
+</aside>

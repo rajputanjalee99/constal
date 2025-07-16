@@ -1,0 +1,416 @@
+<app-talent-header></app-talent-header>
+<div *ngIf="isLoading" class="uploader-status" id="spin">
+    <mat-spinner diameter="30"></mat-spinner>
+</div>
+<main class="comon_main internal_pages_prnt">
+	<div class="cmn-pading-top">
+    	<section class="talent-profile">
+    		<div class="d-flex">
+    			<app-talent-sidebar></app-talent-sidebar>
+    			<div class="main-cntnt geting-strt">
+    				<div class="top-cntnt">
+    					<h5>Talent Admission</h5>
+    					<div class="prgrs-bar bar-green" *ngIf="service.sideBarHeight">
+							<span class="prg-perc">{{service.sideBarHeight}}% Completed</span>
+    						<mat-progress-bar mode="determinate" value="{{service.sideBarHeight}}"></mat-progress-bar>
+    					</div>
+    					<h6>5. Experience</h6>
+    				</div>
+                    <form (keydown.enter)="$event.preventDefault()" #addExperience="ngForm" (ngSubmit)="addExperience.valid && addExperienceData()">
+                        <div class="inside-wrapr talent-level">
+                            <div class="main-tabs cmn-card-tabs">
+                                <mat-tab-group #tabGroup [(selectedIndex)]="selectedIndexBinding" animationDuration="0ms">
+                                    <mat-tab label="Sectors" disabled>
+                                        <div class="singl-row card inside-wrapr">                                         
+                                            <div class="top-cntnt">
+                                                <!-- <h5>Talent Admission</h5>
+                                                <div class="prgrs-bar bar-green" *ngIf="service.sideBarHeight">
+                                                    <span class="prg-perc">{{service.sideBarHeight}}% Completed</span>
+                                                    <mat-progress-bar mode="determinate" value="{{service.sideBarHeight}}"></mat-progress-bar>
+                                                </div> -->
+                                                <div class="main-title mb-2 d-flex justify-content-between">
+                                                    <p class="mb-1">What sectors are you experienced in?</p>
+                                                </div>
+                                            </div>
+                                            <div class="cntnt-insid crd-wrap">
+                                                <div class="clnt-acnt singl-rw">
+                                                    <div class="services-card">
+                                                        <div class="">		
+                                                            <div class="row">
+                                                                <div class="col-sm-10 pr-0">
+                                                                    <div class="form-group">
+                                                                        <input type="text" class="form-control" (keyup.enter)="addSector()" [(ngModel)]="sector_name" [ngModelOptions]="{standalone: true}" placeholder="Add Sector...">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-2">
+                                                                    <a class="btn btn_theme_green" (click)="addSector()" >Add</a>
+                                                                </div>
+                                                            </div>		                      	
+                                                            <ul class="servc-listng hover-li">
+                                                                <li *ngFor="let sector of sector_list;let i = index;" class="d-flex justify-content-between">
+                                                                    <div class="custom-control custom-checkbox">
+                                                                       <input type="checkbox" class="custom-control-input" id="{{sector._id}}" 
+                                                                       [(ngModel)]="sector.flag" name="{{sector.name}}">
+                                                                       <label class="custom-control-label" for="{{sector._id}}">{{sector.name}}</label>
+                                                                    </div>
+
+                                                                    <div id="{{ profile._id }} - {{ sector.talent_user_id }}">
+                                                                        <mat-icon *ngIf="sector.talent_user_id == profile._id && sector.is_approved_by_admin == false"  class="mat-icon notranslate material-icons mat-icon-no-color" (click)="deleteSector(sector._id,i)" role="img" aria-hidden="true">delete</mat-icon>
+                                                                    </div>
+                                                                </li>
+                                                                <!-- <div *ngIf="sectorValidation" class="validation-spn">Please select sector</div> -->
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="inside-wrapr card main-card choose-sectors">
+                                                <div class="all-disciplines">
+                                                    <div class="singl-row sectors-box">
+                                                        <div class="row box-wrap-1" *ngIf="sector_list.length">
+                                                            <div class="col-sm-3" *ngFor="let sector of sector_list; let i = index">
+                                                                <span class="bordr-left"></span>
+                                                                <div *ngIf="!selectedSectors.includes(sector._id)" (click)="chooseSector(sector._id)" class="svg-icn d-flex align-items-center justify-content-center border-box-1">
+                                                                    <div class="disc-imag"  [innerHtml]="transform(sector.icon)">
+                                                                    </div>
+                                                                    <p class="icn-title mt-2 mb-0">{{sector.name}}</p>
+                                                                </div>
+                                                                <div *ngIf="selectedSectors.includes(sector._id)" (click)="removeSector(sector._id)" class="svg-icn d-flex align-items-center justify-content-center border-box-1 active">
+                                                                    <div class="disc-imag"  [innerHtml]="transform(sector.icon)">
+                                                                    </div>
+                                                                    <p class="icn-title mt-2 mb-0">{{sector.name}}</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+                                        </div>
+                                        <div class="submit-btn btn-width d-flex justify-content-between mt-3">
+                                            <a routerLink="/accomplishments" class="btn btn_theme_black my-2 my-sm-0">Back</a>
+                                            <a class="btn btn_theme_green my-2 my-sm-0" (click)="saveSector()">Next</a>
+                                        </div>
+                                    </mat-tab>
+                                   
+                                    <mat-tab label="Work Record" disabled>
+                                        <div class="singl-row card inside-wrapr">
+                                            <div class="add-more-link d-flex justify-content-between">
+                                                <span class="green_text" (click)="addMoreExperience()" >
+                                                    <img src="assets/imgs/add-alt.png" class="img-fluid">
+                                                    {{experience_list.length ? 'Add more Experience' : 'Add Experience'}}
+                                                </span>
+                                            </div>
+                                            <div *ngFor = "let experience of experience_list; let i = index">
+                                                <div class="add-more-link d-flex justify-content-end">
+                                                    <span class="red_text" (click)="removeExperience(i)" > - Remove Experience</span>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label>Title*</label>
+                                                            <input type="text" [(ngModel)]="experience.title" #title="ngModel"
+                                                            [ngModelOptions]="{standalone: true}" class="form-control {{experience.titleValidation ? 'validatn-input' : '' }}" placeholder="e.g. Project Manager" required>
+                                                            <div *ngIf="experience.titleValidation" class="validation-spn">Please enter title</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label>Employment Type*</label>
+                                                            <select  [(ngModel)]="experience.employment_type" [ngModelOptions]="{standalone: true}" 
+                                                            #type="ngModel"  class="form-control {{experience.employmentTypeValidation ? 'validatn-input' : '' }}" required>
+                                                                <option value="" disabled>Select Type</option>
+                                                                <option value="full_time">Full-time</option>
+                                                                <option value="part_time">Part-time</option>
+                                                                <option value="self_employed">Self-employed</option>
+                                                                <option value="freelance">Freelance</option>
+                                                                <option value="internship">Internship</option>
+                                                                <!-- <option *ngFor="let type of employment_list" value="type">{{type.name}}</option> -->
+                                                            </select>
+                                                            <div *ngIf="experience.employmentTypeValidation" class="validation-spn">Please enter employment type</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group">
+                                                            <label>Company Name*</label>
+                                                            <input type="text" class="form-control {{experience.companyNameValidation ? 'validatn-input' : '' }}" placeholder="e.g. Construction Technology" required
+                                                            [(ngModel)]="experience.company_name" #company_name="ngModel" [ngModelOptions]="{standalone: true}">
+                                                            <div *ngIf="experience.companyNameValidation" class="validation-spn">Please enter company name</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <div class="prjct-date">
+                                                            <label>Start Date</label>
+                                                            <div class="row">
+                                                                <div class="col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <label>Month</label>
+                                                                        <select  [(ngModel)]="experience.start_month" [ngModelOptions]="{standalone: true}" 
+                                                                        #start_month="ngModel"  class="form-control">
+                                                                        <option value="" disabled>Select Month</option>
+                                                                        <option *ngFor="let month of month_list" value="{{month.name}}">{{month.name}}</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <label>Year</label>
+                                                                        <select  [(ngModel)]="experience.start_year" [ngModelOptions]="{standalone: true}" 
+                                                                        #start_year="ngModel"  class="form-control">
+                                                                        <option value="" disabled>Select Year</option>
+                                                                        <option *ngFor="let year of year_list" value="{{year.name}}">{{year.name}}</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12" >
+                                                        <div class="form-group">
+                                                            <div class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input" id="customCheck{{i}}" checked="checked"
+                                                            [(ngModel)]="experience.currently_working" [ngModelOptions]="{standalone: true}" #currently_working="ngModel">
+                                                            <label class="custom-control-label" for="customCheck{{i}}">I am currently working in this role</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12" *ngIf="!experience.currently_working">
+                                                        <div class="prjct-date">
+                                                            <label>End Date</label>
+                                                            <div class="row">
+                                                                <div class="col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <label>Month</label>
+                                                                        <select  [(ngModel)]="experience.end_month" [ngModelOptions]="{standalone: true}" 
+                                                                        #end_month="ngModel"  class="form-control {{experience.endMonthValidation ? 'validatn-input' : '' }}">
+                                                                        <option value="" disabled>Select Month</option>
+                                                                        <option *ngFor="let month of month_list" value="{{month.name}}">{{month.name}}</option>
+                                                                        </select>
+                                                                        <div *ngIf="experience.endMonthValidation" class="validation-spn">End Date Month should be greater than Start Date Month</div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <div class="form-group">
+                                                                        <label>Year</label>
+                                                                        <select  [(ngModel)]="experience.end_year" [ngModelOptions]="{standalone: true}" 
+                                                                        #end_year="ngModel"  class="form-control {{experience.endYearValidation ? 'validatn-input' : '' }}">
+                                                                        <option value="" disabled>Select Year</option>
+                                                                        <option *ngFor="let year of year_list" value="{{year.name}}">{{year.name}}</option>
+                                                                        </select>
+                                                                        <div *ngIf="experience.endYearValidation" class="validation-spn">End Date Year should be greater than Start Date Year</div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group">
+                                                            <label>Location</label>
+                                                            <input type="text" class="form-control"  oninput="this.value = this.value.replace(/[^A-Za-z0-9-,.;'&/.() ]|^ /g,'')" placeholder="" id="location{{i}}"
+                                                            [(ngModel)]="experience.location" [ngModelOptions]="{standalone: true}" #location="ngModel">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group">
+                                                            <label>Description</label>
+                                                            <textarea class="form-control" oninput="this.value = this.value.replace(/[^A-Za-z0-9-,.;'&/.() ]|^ /g,'')"  placeholder="e.g. lorem ipsum sit donar lorem ipsum sit donar..." rows="3"
+                                                            id="description{{i}}" [(ngModel)]="experience.description" [ngModelOptions]="{standalone: true}" #description="ngModel">
+                                                            </textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group">
+                                                            <label>Media <small>(250W*250H)</small></label>
+                                                            <div class="custm-dropzone">
+                                                                <ngx-dropzone (change)="uploadFile($event, experience)">
+                                                                    <ngx-dropzone-label>
+                                                                        <img src="assets/imgs/cloud-computing.png" class="img-fluid">
+                                                                        <p>Upload documents, photos, videos or presentation</p>
+                                                                    </ngx-dropzone-label>
+                                                                    <ngx-dropzone-preview *ngFor="let f of experience.media" [removable]="true" (removed)="deleteDocument(f,experience.media)">
+                                                                        <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                                                                    </ngx-dropzone-preview>
+                                                                </ngx-dropzone>
+                                                            </div>
+                                                            <div class="disclaimer-txt"> 
+                                                            <p>*The file should not exceed more than 25MB.</p>
+                                                            </div>
+                                                              <div *ngIf="experience.documentValidation" class="validation-spn">Please select document</div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="submit-btn btn-width d-flex justify-content-between mt-3">
+                                            <a (click)="tabGroup.selectedIndex=0" class="btn btn_theme_black my-2 my-sm-0">Back</a>
+                                            <a class="btn btn_theme_green my-2 my-sm-0" (click)="checkExperienceData()">Next</a>
+                                        </div>
+                                    </mat-tab>
+                                    <mat-tab label="Received Recommendations" disabled>
+                                        <div class="singl-row card inside-wrapr">
+                                            <div class="add-more-link d-flex justify-content-between">
+                                                <span class="green_text" (click)="addMoreRecommendation()" >
+                                                    <img src="assets/imgs/add-alt.png" class="img-fluid">
+                                                    {{recommendations_list.length ? 'Add more Recommendation' : 'Add Recommendation'}}
+                                                </span>
+                                            </div>
+                                            <div *ngFor = "let recommendation of recommendations_list; let i = index">
+                                                <div class="add-more-link d-flex justify-content-end">
+                                                    <span class="red_text" (click)="removeRecommendation(i)" > - Remove Recommendation</span>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group">
+                                                            <label>Person Name*</label>
+                                                            <input type="text" class="form-control {{recommendation.personNameValidation ? 'validatn-input' : '' }}" placeholder="e.g. James Matthew" id="person_name" 
+                                                            [(ngModel)]="recommendation.person_name" [ngModelOptions]="{standalone: true}" #person_name="ngModel" required>
+                                                            <div *ngIf="recommendation.personNameValidation" class="validation-spn">Please enter person name</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group">
+                                                            <label>Person Company </label>
+                                                            <input type="text" class="form-control" oninput="this.value = this.value.replace(/[^A-Za-z0-9-,.;'&/.() ]|^ /g,'')" [(ngModel)]="recommendation.talent_company_name" placeholder="e.g. Bechtel" id="talent_company_name" 
+                                                            [ngModelOptions]="{standalone: true}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group">
+                                                            <label>Person Position </label>
+                                                            <input type="text" class="form-control" oninput="this.value = this.value.replace(/[^A-Za-z0-9-,.;'&/.() ]|^ /g,'')" [(ngModel)]="recommendation.talent_position" placeholder="e.g. Civil Engineer" id="talent_position" 
+                                                            [ngModelOptions]="{standalone: true}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group">
+                                                            <label>Relationship</label>
+                                                            <select [(ngModel)]="recommendation.relationship" [ngModelOptions]="{standalone: true}" 
+                                                            #relationship="ngModel" class="form-control">
+                                                            <option value="" disabled>Select Relationship</option>
+                                                            <option *ngFor="let relation of relationship_list" value="{{relation.value}}">{{relation.value}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group">
+                                                            <label>Your Position</label>
+                                                            <select  [(ngModel)]="recommendation.position_time" [ngModelOptions]="{standalone: true}" 
+                                                            #position_time="ngModel"  class="form-control">
+                                                            <option value="" disabled>Select Position</option>
+                                                            <option *ngFor="let position of position_list" value="{{position.value}}">{{position.value}}</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group">
+                                                            <label>Copy the received recommendation*</label>
+                                                            <textarea class="form-control {{recommendation.recommendationsValidation ? 'validatn-input' : '' }}" placeholder="e.g. lorem ipsum sit donar lorem ipsum sit donar..." rows="3"
+                                                            [(ngModel)]="recommendation.recommendation" [ngModelOptions]="{standalone: true}" #recommendations="ngModel">
+                                                        </textarea>
+                                                        <div *ngIf="recommendation.recommendationsValidation" class="validation-spn">Please enter received recommendation</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="submit-btn btn-width d-flex justify-content-between mt-3">
+                                            <a (click)="tabGroup.selectedIndex=1" class="btn btn_theme_black my-2 my-sm-0">Back</a>
+                                            <a class="btn btn_theme_green my-2 my-sm-0" (click)="checkRecommendationData()">Next</a>
+                                        </div>
+                                    </mat-tab>
+                                    <mat-tab label="Level of Talent" disabled>
+                                        <div class="singl-row card level-of-talent">
+                                            <p>Choose your Experience Level</p>
+                                            <div class="row ml-3" *ngIf="talent_level_list.length;">
+                                                <!-- <div class="col-sm-4" *ngFor="let talent_level of talent_level_list; let ind = index;">
+                                                    <div class="custom-control custom-radio custm-radio-cs">
+                                                    <input type="radio" class="custom-control-input" value="{{talent_level._id}}" checked="checked" id="customRadio{{ind}}" name="example1"
+                                                    [(ngModel)]="experienceModel.level_of_talent" #level_of_talent="ngModel">
+                                                    <label class="custom-control-label" for="customRadio{{ind}}">
+                                                        <span class="">{{talent_level.level}}</span>
+                                                        <p>I am relatively new to  this field</p>
+                                                    </label>
+                                                    </div>  
+                                                </div> -->
+                                                <div class="col-sm-4">
+                                                    <div class="custom-control custom-radio custm-radio-cs">
+                                                    <input type="radio" class="custom-control-input" value="entry_level" checked="checked" id="customRadio" name="example1"
+                                                    [(ngModel)]="experienceModel.level_of_talent" #level_of_talent="ngModel">
+                                                    <label class="custom-control-label" for="customRadio">
+                                                        <span class="">Junior</span>
+                                                        <p>I am relatively new to  this field</p>
+                                                    </label>
+                                                    </div>  
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="custom-control custom-radio custm-radio-cs">
+                                                    <input type="radio" class="custom-control-input" value="intermediate" id="customRadio1" name="example1"
+                                                    [(ngModel)]="experienceModel.level_of_talent" #level_of_talent="ngModel">
+                                                    <label class="custom-control-label" for="customRadio1">
+                                                        <span>Senior</span>
+                                                        <p>I have substantial experience in this field</p>
+                                                    </label>
+                                                    </div>  
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="custom-control custom-radio custm-radio-cs">
+                                                    <input type="radio" class="custom-control-input" value="expert" id="customRadio2" name="example1"
+                                                    [(ngModel)]="experienceModel.level_of_talent" #level_of_talent="ngModel">
+                                                    <label class="custom-control-label" for="customRadio2">
+                                                        <span>Lead</span>
+                                                        <p>I have comprehensive and deep expertise in this field</p>
+                                                    </label>
+                                                    </div>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="submit-btn btn-width d-flex justify-content-between mt-3">
+                                            <a (click)="tabGroup.selectedIndex=2" class="btn btn_theme_black my-2 my-sm-0">Back</a>
+                                            <!-- <a class="btn btn_theme_green my-2 my-sm-0" (click)="tabGroup.selectedIndex=4">Next</a> -->
+                                            <a class="btn btn_theme_green my-2 my-sm-0" (click)="checkTalentLevel()">Next</a>
+                                        </div>
+                                    </mat-tab>
+                                    <mat-tab label="Regional Experience" disabled>
+                                        <div class="singl-row card regional-experience">
+                                            <p class="titl-abov">Choose your Regional Experience</p>
+                                            <ul class="servc-listng">
+                                                <li *ngFor="let regional of regional_list; let i = index">
+                                                    <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" (change)="changeRegional($event)" class="custom-control-input" id="customCheck{{i}}"
+                                                    checked="checked" [checked]="true" [(ngModel)]="regional.flag" [ngModelOptions]="{standalone: true}" #checkFlag="ngModel">
+                                                    <label class="custom-control-label" for="customCheck{{i}}">{{regional.name}}</label>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" (change)="changeRegionalNone($event)" class="custom-control-input" id="customCheck"
+                                                        checked="checked" [(ngModel)]="experienceModel.regional_experience_none" name="regional_experience_none" >
+                                                    <label class="custom-control-label" for="customCheck">None</label>
+                                                    </div>
+                                                </li>
+                                                <div *ngIf="experienceModel.regionalExperienceValidation" class="validation-spn">Please select regional experience</div>
+                                            </ul>
+                                        </div>
+                                        <div class="submit-btn btn-width d-flex justify-content-between mt-3">
+                                            <a (click)="tabGroup.selectedIndex=3" class="btn btn_theme_black my-2 my-sm-0">Back</a>
+                                            <button type="submit" class="btn btn_theme_green my-2 my-sm-0" [disabled]="!addExperience.valid">Next</button>
+                                        </div>
+                                    </mat-tab>
+                                </mat-tab-group>
+                            </div>
+                        </div>
+                    </form>
+    				<div class="inside-footer">
+    					<app-footer></app-footer>
+    				</div>
+    			</div>
+    			<app-talent-right-sidebar></app-talent-right-sidebar>
+    		</div>
+    	</section>
+    </div>
+</main>
+

@@ -1,0 +1,591 @@
+<div *ngIf="isLoading" class="uploader-status" id="spin">
+	<mat-spinner diameter="22"></mat-spinner>
+</div>
+<app-talent-header></app-talent-header>
+<main class="comon_main internal_pages_prnt">
+    <div class="cmn-pading-top">
+        <section class="client_post_job talent-profile client-dashboard talent-dashbord referral-db">
+            <div class="d-flex">
+                <!-- <app-talent-sidebar></app-talent-sidebar> -->
+                <div class="main-cntnt">   <!-- geting-strt -->
+                    <div class="inside-wrapr">
+                        <section class="main-top-crd">
+                            <div class="row">
+                                <div class="col-sm-6 charts-wrap">
+                                    <div class="card card-main busi-dev">
+                                        <h6 class="crd-top-title">Business Development Quarter Target</h6>
+                                        <!-- <div id="chartdivA" class="chart-div chrt-smll"></div> -->
+                                        <div class="chrt-legnds text-center">
+                                          <ul>
+                                            <li>
+                                              <span class="clr-code"></span> Achieved 0
+                                            </li>
+                                            <li>
+                                              <span class="clr-code clr-2"></span> Balance 0
+                                            </li>
+                                          </ul>
+                                        </div>
+                                        <div class="percent">
+                                          <svg>
+                                            <circle cx="70" cy="70" r="70"></circle>
+                                            <circle cx="70" cy="70" r="70"></circle>
+                                          </svg>
+                                          <div class="number">
+                                            <h2>0 <span>USD</span></h2>
+                                          </div>
+                                          <p class="ttl-rev">Total Revenue: 0 USD</p>
+                                        </div>
+                                        <div class="overly-modl">
+                                            <h6>Under Development</h6>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-sm-6 top-cards">
+                                    <div class="top-bttns mb-3 text-right">
+                                        <!-- <a class="btn btn_theme_green mr-2" data-toggle="modal" data-target="#refer_talent">Refer Talent</a> -->
+                                        <a class="btn btn_theme_green mr-2" (click)="generateReferralCode('talent')">Refer Talent</a>
+                                        <!-- <a class="btn btn_theme_blue" data-toggle="modal" data-target="#refer_talent">Refer Client</a> -->
+                                        <!-- <a class="btn btn_theme_blue" (click)="generateReferralCode('client')">Refer Client</a> -->
+                                        <a class="btn btn_theme_blue">Refer Client</a>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6 ">
+                                            <div class="card card_grad"> <!-- blue-card -->
+                                                <div class="crd-cntnt d-flex align-items-start justify-content-between">
+                                                    <i class="icofont-dollar"></i>
+                                                    <div class="text-right">
+                                                        <span>Bonus</span>
+                                                        <h5>0</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="overly-modl">
+                                                    <h6>Under Development</h6>
+                                                </div>
+                                                <!-- <h6>Under Development</h6> -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="card card_grad">
+                                                <div class="crd-cntnt d-flex align-items-start justify-content-between">
+                                                    <i class="icofont-dollar"></i>
+                                                    <div class="text-right">
+                                                        <span>Revenue</span>
+                                                        <h5>0</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="overly-modl">
+                                                    <h6>Under Development</h6>
+                                                </div>
+                                                <!-- <h6>Under Development</h6> -->
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="card">
+                                                <div class="crd-cntnt d-flex align-items-start justify-content-between">
+                                                    <i class="icofont-business-man"></i>
+                                                    <div class="text-right">
+                                                        <span>No. of introduced Talents</span>
+                                                        <h5>{{talentCount}}</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="card card_grad">
+                                                <div class="crd-cntnt d-flex align-items-start justify-content-between">
+                                                    <i class="icofont-business-man"></i>
+                                                    <div class="text-right">
+                                                        <span>No. of introduced Clients</span>
+                                                        <h5>{{clientCount}}</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="overly-modl">
+                                                    <h6>Under Development</h6>
+                                                </div>
+                                                <!-- <h6>Under Development</h6> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="charts-wrap pie-charts">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="tst">
+                                        <div class="card card-main t1 mdl-hover">
+                                            <h6 class="crd-top-title">Talent Engagement</h6>
+                                            <div id="talents" class="chart-div"></div>
+                                            <!-- <div class="overly-modl">
+                                                <h6>Under Development</h6>
+                                            </div> -->
+                                        </div>
+                                        <!-- <div class="comn-modal">
+                                            <h6>Under Development</h6>
+                                        </div> -->
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="tst">
+                                        <div class="card card-main c1 mdl-hover">
+                                            <h6 class="crd-top-title">Client Engagement</h6>
+                                            <div id="clients" class="chart-div"></div>
+                                            <div class="overly-modl">
+                                                <h6>Under Development</h6>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="comn-modal">
+                                            <h6>Under Development</h6>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="charts-wrap pie-charts">
+                            <div class="row">
+                                <div class="col-sm-6 t1">
+                                    <div class="tst">
+                                        <div class="card card-main mdl-hover">
+                                            <h6 class="crd-top-title">Bonus Per Talent</h6>
+                                            <div id="chartdiv" class="chart-div"></div>
+                                            <div class="overly-modl">
+                                                <h6>Under Development</h6>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="comn-modal">
+                                            <h6>Under Development</h6>
+                                        </div> -->
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 c1">
+                                    <div class="tst">
+                                        <div class="card card-main mdl-hover">
+                                            <h6 class="crd-top-title">Bonus Per Client</h6>
+                                            <div id="chartdiv2" class="chart-div"></div>
+                                            <div class="overly-modl">
+                                                <h6>Under Development</h6>
+                                            </div>
+                                        </div>
+                                       <!--  <div class="comn-modal">
+                                            <h6>Under Development</h6>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <!-- <section class="charts-wrap">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="card card-main">
+                                        <h6 class="crd-top-title">Number of Talents</h6>
+                                        <div id="talents" class="chart-div"></div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="card card-main">
+                                        <h6 class="crd-top-title">Number of Clients</h6>
+                                        <div id="clients" class="chart-div"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section> -->
+                        <section class="charts-wrap">
+                            <div class="row">
+                                <div class="col-sm-6 bar-chart">
+                                    <div class="tst">
+                                        <div class="card card-main mdl-hover">
+                                            <h6 class="crd-top-title">Talents By- Discipline</h6>
+                                            <div id="chartdiv4" class="chart-div bar-chrt"></div>
+                                            <!-- <div class="overly-modl">
+                                                <h6>Under Development</h6>
+                                            </div> -->
+                                        </div>
+                                        <!-- <div class="comn-modal">
+                                            <h6>Under Development</h6>
+                                        </div> -->
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 map-chart">
+                                    <div class="tst">
+                                        <div class="card card-main mdl-hover">
+                                            <h6 class="crd-top-title">Talents & Clients Location</h6>
+                                            <div class="chrt-legnds text-center">
+                                              <ul>
+                                                <li>
+                                                  <span class="clr-code clr-green"></span> Talents 40,000
+                                                </li>
+                                                <li>
+                                                  <span class="clr-code clr-blue"></span> Clients
+                                                </li>
+                                              </ul>
+                                            </div>
+                                            <div id="chartdiv3" class="chart-div"></div>
+                                            <div class="overly-modl">
+                                                <h6>Under Development</h6>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="comn-modal">
+                                            <h6>Under Development</h6>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <!-- <section class="charts-wrap map-chart">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <div class="card card-main">
+                                        <h6 class="crd-top-title">Talent Location</h6>
+                                        <div id="chartdiv3" class="chart-div"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section> -->
+                        <section class="val-table">
+                            <div class="card card-main">
+                                <div class="crd-top-title pb-0 d-flex justify-content-between align-items-center">
+                                    <h6 class="">Referral Record</h6>
+                                    <!-- <div class="fltrs-right">
+                                        <div class="tabl-fltrs">
+                                            <div class="form-group dropdwn">
+                                                <ngx-select-dropdown></ngx-select-dropdown>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                </div>
+                                <div>
+                                    <div class="mat-elevation-z8 m-e-8 table-responsive">
+                                        <!-- searching by row by $9942 -->
+                                        <mat-form-field class="width-100 table-filtr">
+                                            <mat-label>Filter</mat-label>
+                                            <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+                                        </mat-form-field>
+                                        
+                                        <table mat-table [dataSource]="dataSource" class="width-100 refral-table">
+                                            <!-- Position Column -->
+                                            <ng-container matColumnDef="position">
+                                                <th mat-header-cell *matHeaderCellDef> No. </th>
+                                                <td mat-cell *matCellDef="let element; let i=index"> {{ i + reqData.offset + 1 }} </td>
+                                            </ng-container>
+
+                                            <!-- Name Column -->
+                                            <ng-container matColumnDef="name">
+                                                <th mat-header-cell *matHeaderCellDef> Name </th>
+                                                <td mat-cell *matCellDef="let element">
+                                                    {{element.first_name + " " + element.last_name}} </td>
+                                            </ng-container>
+
+                                            <!-- Discipline Slug -->
+                                            <ng-container matColumnDef="type">
+                                                <th mat-header-cell *matHeaderCellDef> Type </th>
+                                                <td mat-cell *matCellDef="let element"> {{element.role | titlecase}} </td>
+                                            </ng-container>
+
+                                            <!-- Discipline Icon Column -->
+                                            <ng-container matColumnDef="expected_project_revenue">
+                                                <th mat-header-cell *matHeaderCellDef> Expected Project Revenue </th>
+                                                <td mat-cell *matCellDef="let element">
+                                                    --
+                                                </td>
+                                            </ng-container>
+                                            <!-- Discipline Icon Column -->
+                                            <ng-container matColumnDef="admission_date">
+                                                <th mat-header-cell *matHeaderCellDef> Admission Date </th>
+                                                <td mat-cell *matCellDef="let element">
+                                                    {{element.createdAt | date:"MM/dd/yy"}}
+                                                </td>
+                                            </ng-container>
+                                            <!-- Discipline Icon Column -->
+                                            <ng-container matColumnDef="bonus_percentage">
+                                                <th mat-header-cell *matHeaderCellDef> Bonus Percentage </th>
+                                                <td mat-cell *matCellDef="let element">
+                                                    --
+                                                </td>
+                                            </ng-container>
+                                            <!-- Discipline Icon Column -->
+                                            <ng-container matColumnDef="expected_bonus">
+                                                <th mat-header-cell *matHeaderCellDef class="bg-highlight"> Expected Bonus </th>
+                                                <td mat-cell *matCellDef="let element" class="bg-highlight">
+                                                    --
+                                                </td>
+                                            </ng-container>
+                                            <!-- Discipline Icon Column -->
+                                            <ng-container matColumnDef="status">
+                                                <th mat-header-cell *matHeaderCellDef> Status </th>
+                                                <td mat-cell *matCellDef="let element">
+                                                    --
+                                                </td>
+                                            </ng-container>
+
+                                            
+
+                                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                                            <!-- Row shown when there is no matching data. by $9942 -->
+                                            <tr class="mat-row" *matNoDataRow>
+                                                <td class="mat-cell" colspan="4">No data matching the filter
+                                                    "{{input.value}}"
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <mat-paginator [length]="length" [pageSize]="10"
+                                            [pageSizeOptions]="getPageSizeOptions()"
+                                            (page)="paginationOptionChange($event)">
+                                        </mat-paginator>
+                                        <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" (page)="pageEvent = OnPageChange($event)" showFirstLastButtons></mat-paginator> -->
+                                    </div>
+                                </div>
+                                
+                                <!-- <mat-form-field>
+                                    <mat-label>Filter</mat-label>
+                                    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+                                  </mat-form-field>
+
+                                  <div class="mat-elevation-z8">
+                                    <table mat-table [dataSource]="dataSource" matSort class="text-center">                                      
+                                      <ng-container matColumnDef="id">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                                        <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+                                      </ng-container>
+                                      
+                                      <ng-container matColumnDef="name">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+                                        <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+                                      </ng-container>
+                                       
+                                      <ng-container matColumnDef="type">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
+                                        <td mat-cell *matCellDef="let row"> {{row.type}} </td>
+                                      </ng-container>
+
+                                      <ng-container matColumnDef="revenue">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Expected Project Revenue </th>
+                                        <td mat-cell *matCellDef="let row"> {{row.revenue}} </td>
+                                      </ng-container>
+
+                                      <ng-container matColumnDef="admission">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Admission Date </th>
+                                        <td mat-cell *matCellDef="let row"> {{row.admission}} </td>
+                                      </ng-container>
+
+                                      <ng-container matColumnDef="percentage">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Bonus Percentage  </th>
+                                        <td mat-cell *matCellDef="let row"> {{row.percentage}} </td>
+                                      </ng-container>
+
+                                      <ng-container matColumnDef="bonus">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header class="bg-highlight"> Expected Bonus  </th>
+                                        <td mat-cell *matCellDef="let row" class="bg-highlight"> {{row.bonus}} </td>
+                                      </ng-container>
+
+                                      <ng-container matColumnDef="status">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Status  </th>
+                                        <td mat-cell *matCellDef="let row"> {{row.status}} </td>
+                                      </ng-container>
+
+
+                                      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                                      
+                                      <tr class="mat-row" *matNoDataRow>
+                                        <td class="mat-cell" colspan="8">No data matching the filter "{{input.value}}"</td>
+                                      </tr>
+                                    </table>
+
+                                    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+                                  </div> -->
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+    </div>
+
+</main>
+<div class="cl-footer">
+    <app-footer></app-footer>
+</div>
+
+
+
+
+<!-- profile link modal -->
+<div class="modal fade add-service share-link" data-backdrop="static" data-keyboard="false" id="refer_talent" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- <h5 class="modal-title" id="exampleModalLongTitle">Profile Link</h5> -->
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="logo-img text-center">
+                <!-- <p>Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod proident, sunt in culpa qui .</p> -->
+                <img src="assets/imgs/logo-wh.png" class="img-fluid">
+                <div class="text-center">
+                    <p class="bg-black">driving digital transformation</p>
+                </div>
+            </div>
+            <div class="bg-imagg">
+                <img src="assets/imgs/wh-pattern.png" class="img-fluid">
+            </div>
+            <div class="shr-link d-flex justify-content-between align-items-center">
+                <!-- <a (click)="copyThat(referCode)">{{referCode}}</a> -->
+                <input readonly="" value="{{referCode}}" #userinput />
+                <!-- <i (click)="copyText('Copying any text passed here by deep')" value="click to copy" class="far fa-copy"></i> -->
+                <!-- <input type="button" role="button" value="Copy" 
+                    [copy-clipboard]="name + stamp()" 
+                    (copied)="notify($event)"> -->
+                    <!-- <input type="text" value="Enter text to be copied" #userinput>
+                    <button (click)="copyInputMessage(userinput)" value="click to copy" >Copy from Textbox</button> -->
+                <i (click)="copyInputMessage(userinput)" class="far fa-copy"></i>
+            </div>
+            <!-- <div class="col-sm-10">
+                <div class="form-group">
+                    <label>Service Name</label>
+                    <input type="text" class="form-control" placeholder="e.g. Evaluate Baseline">
+                    <div class="input-group append-input-cs">
+                      <input type="text" class="form-control" placeholder="eg. www.constal.com/user_john" aria-label="" aria-describedby="basic-addon2">
+                      <div class="input-group-append">
+                        <span class="input-group-text" id="basic-addon2"><i class="fas fa-link"></i></span>
+                      </div>
+                    </div>
+                </div>
+            </div> -->
+            <div class="share-icns">
+                <label>Share it via:</label>
+                <ul class="icon_ftr list-inline mb-0">
+                    <!-- <li class="list-inline-item">
+                        <a class="emal"><img src="assets/imgs/facebook.svg" class="img-fluid" /></a>
+                        <i class="fab fa-facebook-f"></i>
+                    </li>
+                    <li class="list-inline-item">
+                        <a class="appl"><img src="assets/imgs/twitter.svg" class="img-fluid" /></a>
+                        <i class="fab fa-twitter"></i>
+                    </li> -->
+                    <li class="list-inline-item">
+                        <!-- <a class="googl"><img src="assets/imgs/google.svg" class="img-fluid" /></a> -->
+                        <!-- <a href="https://www.facebook.com/sharer/sharer.php?u=https://constal.web.app/referal/{{referCode}}" target="_blank"><i class="fab fa-facebook-f"></i></a> -->
+                        <a href="{{referWhatsAppCode}}" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                        <!-- <a class="lnkd"><img src="assets/imgs/linkedin.svg" class="img-fluid" /></a> -->
+                        <!-- <a href="https://www.linkedin.com/cws/share?url=https://constal.web.app/referal/{{referCode}}&title=LinkedIn%20Developer%20Network&summary=My%20favorite%20developer%20program&source=LinkedIn" target="_blank"><i class="fab fa-linkedin-in"></i></a> -->
+                        <a href="{{referLinkedInCode}}" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn_modal_black" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn_modal_green">Submit</button>
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+
+
+ 
+  <div class="modal fade add-service link-db-modal" data-backdrop="static" data-keyboard="false" id="link-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <!-- <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Profile Link</h5>
+        </div> -->
+        <div class="modal-body">
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="modal-left">
+                  <!-- <img src="assets/imgs/bg-1.jpg" class="img-fluid"> -->
+                </div>
+              </div>
+              <div class="col-sm-6 pl-0">
+                  <div class="modl-back">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    
+                </div>
+                <p class="back-icn text-right" routerLink="/" data-dismiss="modal"><i class="fas fa-arrow-left"></i> Back to HomePage</p>
+                <!-- <p class="back-icn text-right" (click)="modalBand()"><i class="fas fa-arrow-left"></i> Back to HomePage</p> -->
+                <div class="modal-right">
+                  <!-- <h6>Partner Business Development Dashboard</h6> -->
+                  <h6>Referral Partner Program</h6>
+                  <p>Welcome to your Referral Dashboard<br>Refer Great talents and great clients and let's all achieve together! <span class="tooltip-span" title="You can share the provided link with others to refer as many clients / talents as you want."><i class="fa fa-question-circle"></i></span></p>
+                  <ul class="list-db">
+                    <li><i class="fas fa-check"></i> Earn 3% when a CLIENT completes his first job</li>
+                    <li><i class="fas fa-check"></i> Earn 1.5% when a TALENT completes his first job</li>
+                  </ul>
+                  <mat-tab-group (selectedTabChange)="onChangeMatTab($event)" animationDuration="0ms">
+                    
+                    <mat-tab (click)="generateReferralCodeForModal('talent')" label="Refer Talents">
+                       <div class="shr-link d-flex justify-content-between align-items-center">
+                        <!-- <a>www.constal.com/Talent_URL</a>
+                        <i class="far fa-copy"></i> -->
+                        <input readonly="" value="{{referCode}}" #userinput2 />
+                        <i (click)="copyInputMessage(userinput2)" class="far fa-copy"></i>
+                      </div>
+                      <div class="share-icns">
+                          <label>Share link via:</label>
+                          <ul class="icon_ftr list-inline mb-0">
+                              <li class="list-inline-item mr-2">
+                                    <a href="{{referWhatsAppCode}}" target="_blank" class="googl"><img src="assets/imgs/whatsapp1.png" class="img-fluid" /></a>
+                                </li>
+                                <!-- <li class="list-inline-item mr-2">
+                                    <a href="{{referTwitterCode}}" target="_blank" class="googl"><img src="assets/imgs/twitter.png" class="img-fluid" /></a>
+                                </li>
+                                <li class="list-inline-item mr-2">
+                                    <a href="{{referFbCode}}" target="_blank" class="googl"><img src="assets/imgs/fb.png" class="img-fluid" /></a>
+                                </li> -->
+                                <li class="list-inline-item mr-2">
+                                    <a href="{{referLinkedInCode}}" target="_blank" class="lnkd"><img src="assets/imgs/linked.png" class="img-fluid" /></a>
+                                </li>
+                          </ul>
+                      </div>
+                    </mat-tab>
+                    <mat-tab disabled="" (click)="generateReferralCodeForModal('client')" label="Refer Clients">
+                        <div class="shr-link d-flex justify-content-between align-items-center">
+                          <!-- <a>www.constal.com/Client_URL</a>
+                          <i class="far fa-copy"></i> -->
+                          <input readonly="" value="{{referCode}}" #userinput1 />
+                          <i (click)="copyInputMessage(userinput1)" class="far fa-copy"></i>
+                        </div>
+                        <div class="share-icns">
+                            <label>Share link via:</label>
+                            <ul class="icon_ftr list-inline mb-0">
+                                  <li class="list-inline-item mr-2">
+                                      <a href="{{referWhatsAppCode}}" target="_blank" class="googl"><img src="assets/imgs/whatsapp1.png" class="img-fluid" /></a>
+                                  </li>
+                                  <!-- <li class="list-inline-item mr-2">
+                                      <a href="{{referTwitterCode}}" target="_blank" class="googl"><img src="assets/imgs/twitter.png" class="img-fluid" /></a>
+                                  </li>
+                                  <li class="list-inline-item mr-2">
+                                      <a href="{{referFbCode}}" target="_blank" class="googl"><img src="assets/imgs/fb.png" class="img-fluid" /></a>
+                                  </li> -->
+                                  <li class="list-inline-item mr-2">
+                                      <a href="{{referLinkedInCode}}" target="_blank" class="lnkd"><img src="assets/imgs/linked.png" class="img-fluid" /></a>
+                                  </li>
+                            </ul>
+                        </div>
+                      </mat-tab>
+                  </mat-tab-group>
+                </div>
+              </div>
+            </div>
+        </div>
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn_modal_black" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn_modal_green">Submit</button>
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+

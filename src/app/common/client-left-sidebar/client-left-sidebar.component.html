@@ -1,0 +1,28 @@
+<span class="menu-br" (click)="openNav()"><i class="fas fa-bars"></i></span>
+
+<aside class="client-sidebar sidenav" id="mySidenav">
+
+	<a class="closebtn" (click)="closeNav()">&times;</a>
+	<ul class="list_optns">
+		<!-- <li routerLinkActive="active blue_text" routerLink="/getting-started"><span>Getting Started</span></li> -->
+
+		<li routerLinkActive="active blue_text">
+			<span>Categories</span>
+			<ul class="sub-bar">
+							
+				<li routerLinkActive="active_text" routerLink="/disciplines">Disciplines</li>
+				<li  routerLinkActive="active_text" routerLink="/speciality"><span *ngIf="discipline" >Speciality</span></li>
+
+				<li *ngIf="speciality &&speciality.length"routerLinkActive="active_text" routerLink="/services"><span *ngIf="discipline && speciality &&speciality.length " >Services </span></li>
+				<!-- <li routerLink="/sectors">Sectors</li> -->
+			</ul>
+		</li>
+		<li *ngIf="discipline && (dig_services && dig_services.length || trad_ser && trad_ser.length)" routerLinkActive="active blue_text" routerLink="/talent-budget"><span>Talent & Budget</span></li>
+				<li *ngIf="!(dig_services && dig_services.length || trad_ser && trad_ser.length)" routerLinkActive="active blue_text"><span>Talent & Budget</span></li>
+
+		<li *ngIf="discipline && (talent_location && english_level&& interpersonal.length && industry.length && tools_tech.length)" routerLinkActive="active blue_text" routerLink="/project-title"><span>Project Title</span>
+				<li *ngIf="!(talent_location && english_level&& interpersonal.length && industry.length && tools_tech.length)" routerLinkActive="active blue_text" ><span>Project Title</span>
+
+		</li>
+	</ul>
+</aside>

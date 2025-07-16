@@ -1,0 +1,264 @@
+<app-talent-header></app-talent-header>
+
+<main class="comon_main internal_pages_prnt">
+	<div class="cmn-pading-top">
+		<section class="talent-profile">
+			<div class="d-flex">
+				<app-talent-sidebar></app-talent-sidebar>
+				<div class="main-cntnt geting-strt">
+					<div class="top-cntnt">
+						<h5>Talent Admission</h5>
+						<div class="prgrs-bar bar-green" *ngIf="service.sideBarHeight">
+							<span class="prg-perc">{{service.sideBarHeight}}% Completed</span>
+							<mat-progress-bar mode="determinate" value="{{service.sideBarHeight}}"></mat-progress-bar>
+	                    </div>
+	                    <div class="main-title mb-2 d-flex justify-content-between">
+	                    </div>
+					</div>
+					<div class="inside-wrapr choose-services">
+	                    <div class="services-card profile-details">
+	                        <div class="row">
+	                            <div class="col-sm-12">
+	                            	<form [formGroup]="addProfileDetailsForm">
+										<div class="card">
+	                                    	<div class="row">
+	                                    		<div class="col-sm-12">
+	                                    			<div class="prof-imag-card d-flex align-items-center">
+				                                    	<img src="{{ this.profileImageSrc }}" class="img-fluid">
+														<div class="prf-side ml-3">
+															<a class="btn btn_theme_green my-2 my-sm-0">Upload Image</a>
+					                                    	<input name="file" (change)="uploadImage($event)" type="file" class="uplod-prf-img">
+					                                    </div>
+				                                    </div>
+	                                    		</div>
+	                                    	</div>
+		                                    <div class="row">
+												<div class="col-sm-12">
+													<div class="form-group">
+														<label>Profile Headline</label>
+														<textarea class="form-control" oninput="this.value = this.value.replace(/[^A-Za-z0-9-,.;'&/.() ]|^ /g,'')" [(ngModel)]="profileDetailModel.profile_headline" [ngModelOptions]="{standalone: true}" name="profile_headline" #profile_headline="ngModel" rows="3"></textarea>
+													</div>
+												</div>
+												<div class="col-sm-12">
+		                                            <div class="intl-input">
+		                                                <label>Contact Number*</label>
+														<div class="mob-input form-group {{profileDetailModel.contactNumberValidation || profileDetailModel.contactNumberLengthValidation ? 'validatn-input' : '' }}">
+															<ngx-intl-tel-input
+																[cssClass]="'custom'"
+																[preferredCountries]="[CountryISO.UnitedStates, CountryISO.UnitedKingdom]"
+																[enableAutoCountrySelect]="false"
+																[enablePlaceholder]="false"
+																[searchCountryFlag]="true"
+																[searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+																[selectFirstCountry]="false"
+																[selectedCountryISO]="CountryISO.UnitedArabEmirates"
+																[maxLength]="15"
+																[phoneValidation]="true"
+																[(ngModel)]="phone"
+																[ngModelOptions]="{standalone: true}"
+																(ngModelChange)="checkNumber()"
+																name="phone" oninput="this.value = this.value.replace(/[^A-Za-z0-9-,.;'&/.() ]|^ /g,'')"
+																autocomplete="off"
+															></ngx-intl-tel-input>
+															<div *ngIf="profileDetailModel.contactNumberValidation" class="validation-spn">Please enter contact number</div>
+															<div *ngIf="profileDetailModel.contactNumberLengthValidation" class="validation-spn">Please enter atleast 8 digit</div>
+														</div>
+		                                            </div>
+		                                        </div>
+		                                        <div class="col-sm-12">
+		                                            <div class="form-group">
+		                                                <label>WEB Address</label>
+		                                                <input type="text" oninput="this.value = this.value.replace(/[^A-Za-z0-9-,.;'&/.() ]|^ /g,'')" name="web_address" autocomplete="off" [(ngModel)]="profileDetailModel.web_address" [ngModelOptions]="{standalone: true}"
+														class="form-control {{profileDetailModel.webAddressValidation ? 'validatn-input' : '' }}" placeholder="">
+														<div *ngIf="profileDetailModel.webAddressValidation" class="validation-spn">Please enter valid url</div>
+		                                            </div>
+		                                        </div>
+		                                        <div class="col-sm-12">
+		                                            <div class="form-group">
+														<div>
+															<label>Country*</label>
+														</div>
+													   	<select name="" formControlName="country" (change)="getStates($event)"
+													   	class="form-control slct-form {{profileDetailModel.countryValidation ? 'validatn-input' : '' }}">
+														   <option value="" disabled>Select Country</option>
+														   <option *ngFor="let country of countryArray" value="{{country.isoCode}}">{{country.name}}</option>
+													   	</select>
+														<div *ngIf="profileDetailModel.countryValidation" class="validation-spn">Please select country</div>
+														<div *ngIf="(addProfileDetailsForm.get('country').touched || addProfileDetailsForm.get('country').dirty) && addProfileDetailsForm.get('country').invalid && addProfileDetailsForm.get('country').errors.required" class="invalid-feedback">
+															*Please Select country
+														</div>
+													</div>
+		                                        </div>
+
+
+		                                        <div class="col-sm-12">
+		                                            <div class="form-group">
+														<div>
+															<label>Timezone</label>
+														</div>
+													   	<select name="" formControlName="timezone" 
+													   	class="form-control slct-form">
+														   <option value="" disabled>Select Timezone</option>
+														   <option *ngFor="let item of timezones_list" value="{{ item._id }}">{{ item.text }}</option>
+													   	</select>														
+													</div>
+		                                        </div>
+		                                        <div class="col-sm-12">
+		                                            <div class="form-group">
+		                                                <label>Appartment/Suite</label>
+		                                                <input type="text" class="form-control" oninput="this.value = this.value.replace(/[^A-Za-z0-9-,.;'&/.() ]|^ /g,'')" [(ngModel)]="profileDetailModel.appartment" [ngModelOptions]="{standalone: true}" name="appartment"
+														#appartment="ngModel" placeholder="">
+		                                            </div>
+		                                        </div>
+		                                        <div class="col-sm-6">
+		                                            <div class="form-group">
+		                                               <div>
+														<label>State*</label>
+													   </div>														
+														<select name="" formControlName="state" class="form-control {{profileDetailModel.stateValidation ? 'validatn-input' : '' }}" (change)="getCity($event)" id="">
+															<option value="" disabled>Select State</option>
+															<option  *ngFor="let state of statesArray" value="{{ state.isoCode }}">{{ state.name }}</option>
+														</select>
+														<div *ngIf="profileDetailModel.stateValidation" class="validation-spn">Please select state</div>
+														<div *ngIf="(addProfileDetailsForm.get('state').touched || addProfileDetailsForm.get('state').dirty) && addProfileDetailsForm.get('state').invalid && addProfileDetailsForm.get('state').errors.required" class="invalid-feedback">
+															*Please Select State
+														</div>
+		                                            </div>
+		                                        </div>
+		                                        <div class="col-sm-6">
+		                                            <div class="form-group">
+		                                              <div>
+														<label>City</label>
+													  </div>
+														<!-- <select name="" formControlName="city" class="form-control {{profileDetailModel.cityValidation ? 'validatn-input' : '' }}" id=""> -->
+														<select name="" formControlName="city" class="form-control" id="">
+															<option value="" disabled>Select City</option>
+															<option  *ngFor="let city of cityArray" value="{{ city.name }}">{{ city.name }}</option>
+														</select>
+														<!-- <div *ngIf="profileDetailModel.cityValidation" class="validation-spn">Please select city</div>
+														<div *ngIf="(addProfileDetailsForm.get('city').touched || addProfileDetailsForm.get('city').dirty) && addProfileDetailsForm.get('city').invalid && addProfileDetailsForm.get('city').errors.required" class="invalid-feedback">
+															*Please Select City
+														</div> -->
+		                                            </div>
+		                                        </div>
+		                                        <div class="col-sm-12">
+		                                            <div class="form-group">
+		                                                <label>ZIP Code</label>
+		                                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" pattern="[0-9.]+" type="text" name="zip_code" [(ngModel)]="profileDetailModel.zip_code" [ngModelOptions]="{standalone: true}" #zip_code="ngModel" class="form-control" placeholder="">
+		                                            </div>
+		                                        </div>
+												<div class="col-sm-12">
+		                                            <div class="form-group">
+		                                                <label>Portfolio</label>
+		                                                <input type="text" name="port_folio" autocomplete="off" oninput="this.value = this.value.replace(/[^A-Za-z0-9-,.;'&/.() ]|^ /g,'')" [(ngModel)]="profileDetailModel.port_folio" [ngModelOptions]="{standalone: true}"
+														class="form-control {{profileDetailModel.portFolioValidation ? 'validatn-input' : '' }}" placeholder="">
+														<div *ngIf="profileDetailModel.portFolioValidation" class="validation-spn">Please enter valid url</div>
+		                                            </div>
+		                                        </div>
+											</div>
+											<div class="file-inpt">
+												<label>Identity Verification Document (National ID or Passport) <span class="cstm-sp-con">( NOTE : Your ID will not be shared with our clients, it's only to make sure it's you.) </span></label>
+												<div class="row">
+													<div class="col-sm-10 pr-0">
+														<div class="form-group">
+															<div class="custom-file">
+																<input type="file" (change)="onSelectUserId($event)" name="intro_video" class="custom-file-input validatn-input" id="customFile">
+																<label class="custom-file-label file-cs-con {{profileDetailModel.userIdValidation ? 'validatn-input' : '' }}" for="customFile">{{introFileNameUserID}}</label>
+															</div>
+															<div class="disclaimer-txt"> 
+																<p>*The file should not exceed more than 25MB.</p>
+															</div>
+															<div *ngIf="profileDetailModel.userIdValidation" class="validation-spn">Please select user ID</div>
+														</div>
+													</div>
+													<div class="col-sm-2">
+														<a (click)="resetUserId()" class="btn btn_theme_black">Reset</a>
+													</div>
+												</div>
+											</div>
+											<div class="file-inpt">
+												<label>Upload Intro Video</label>
+												<div class="row">
+													<div class="col-sm-10 pr-0">
+														<div class="form-group">
+															
+															<div class="custom-file">
+																<input type="file" (change)="onSelect($event)" name="intro_video" class="custom-file-input" id="customFile">
+																<label class="custom-file-label file-cs-con" for="customFile">{{introFileName}}</label>
+															</div>
+															<div class="disclaimer-txt"> 
+															<p>*The file should not exceed more than 25MB.</p>
+															</div>
+														</div>
+													</div>
+													<div class="col-sm-2">
+														<a (click)="resetIntro()" class="btn btn_theme_black">Reset</a>
+													</div>
+													<!-- <div class="col-sm-12">
+														<div class="form-group">
+															<label>Upload Your Portfolio</label>
+															<div class="custom-file">
+																<input type="file" (change)="onSelect1($event)" name="intro_video" class="custom-file-input" id="customFile1">
+																<label class="custom-file-label" for="customFile1">{{portFolioFileName}}</label>
+															</div>
+															<div class="disclaimer-txt"> 
+															<p>*The file should not exceed more than 25MB.</p>
+															</div>
+														</div>
+													</div> -->
+												</div>
+											</div>
+	                                	</div>
+										<div class="submit-btn btn-width d-flex justify-content-between mt-3">
+											<a routerLink="/visibility-preferences" class="btn btn_theme_black my-2 my-sm-0">Back</a>
+											<!-- <a routerLink="/visibility-preferences" (click)="addProfileDetailsDataOnBackButton()" class="btn btn_theme_black my-2 my-sm-0">Back</a> -->
+											<button class="btn btn_theme_green my-2 my-sm-0" [disabled]="isLoading" (click)="checkProfileDetails()" type="submit">
+												
+
+												<span *ngIf="!isLoading">
+													Apply
+												</span>	
+												
+												<span *ngIf="isLoading" class="sp-spinner">
+													<mat-spinner diameter="22"></mat-spinner>
+												</span>
+
+											</button>
+
+
+										</div>
+									</form>
+	                            </div>
+	                        </div>
+	                    </div>
+					</div>
+					<div class="inside-footer">
+						<app-footer></app-footer>
+					</div>
+				</div>
+				<app-talent-right-sidebar></app-talent-right-sidebar>
+			</div>
+		</section>
+	</div>
+</main>
+
+<!-- profile completed modal -->
+<div class="modal fade add-service"  id="profileCompleted" tabindex="-1" role="dialog"  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      	<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLongTitle">Success</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<p>Your application  has  been  submitted  and now  it is
+				under  review.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn_modal_black btn_full" data-dismiss="modal">Cancel</button>
+			</div>
+      	</div>
+    </div>
+</div>

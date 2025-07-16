@@ -1,0 +1,106 @@
+<div *ngIf="isLoading" class="uploader-status" id="spin">
+	<mat-spinner diameter="22"></mat-spinner>
+</div>
+<app-referral-header></app-referral-header>
+<main class="comon_main internal_pages_prnt">
+	<div class="cmn-pading-top">
+		<section class="user-profile user-login referral-signup">
+			<div class="custom_container">
+				<div class="card_socal">
+					<div class="row align-items-center">
+						<!-- <div class="col-sm-6 pr-0">
+							<div class="left-img">
+								<img src="assets/imgs/login.png" class="img-fluid">
+							</div>
+						</div> -->
+						<div class="col-sm-12 p-0">
+							<div class="right-part">
+								<div class="txt_card">
+									<h3>Welcome to <span class="blue">CONS<span class="green">T</span>AL</span></h3>
+									<p>We make it easy for everyone to connect with the Talent all around.</p>
+								</div>
+								<div class="input-flds">
+									<form [formGroup]="form">
+										<div class="row">
+											<div class="col-sm-12">
+											      <div class="form-group input-group input-border-gold">
+											        <div class="input-group-prepend">
+											          <span class="input-group-text" id="inputGroupPrepend3">
+											          	<img src="assets/imgs/@.png" class="img-fluid">
+											          </span>
+											        </div>
+											        <!-- <input type="text" class="form-control is-invalid" id="validationServerUsername" value="james_fred@gmail.com" aria-describedby="inputGroupPrepend3"> -->
+													<input oninput="this.value=this.value.trim()" type="text" formControlName="email" placeholder="Enter Email" class="form-control is-invalid" id="validationServerUsername" value="james_fred@gmail.com" aria-describedby="inputGroupPrepend3">
+													<div *ngIf="(form.get('email').touched || form.get('email').dirty) && form.get('email').invalid && form.get('email').errors.required" class="invalid-feedback">
+														*Please enter Email
+													</div>
+													<div *ngIf="(form.get('email').touched || form.get('email').dirty) && form.get('email').invalid && form.get('email').errors.email" class="invalid-feedback">
+														*Please enter valid email
+													</div>
+													<div *ngIf="(form.get('email').touched || form.get('email').dirty) && form.get('email').invalid && form.get('email').errors.pattern && !form.get('email').errors.email" class="invalid-feedback">
+														*Please enter valid email
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-12">
+											      <div class="form-group input-group input-border-gold">
+											        <div class="input-group-prepend">
+											          <span class="input-group-text" id="inputGroupPrepend3">
+											          	<img src="assets/imgs/key.png" class="img-fluid">
+											          </span>
+											        </div>
+											        <!-- <input type="text" class="form-control is-invalid" id="validationServerUsername" type="password" aria-describedby="inputGroupPrepend3" value="password"> -->
+													<input [type]="password" formControlName="password" placeholder="Enter Password" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3" value="">
+													<span class="password-eye active" (click)="onClickEye()">
+														<i class="fa fa-eye" *ngIf="!show"></i>
+														<i class="fa fa-eye-slash" *ngIf="show"></i>
+													</span>
+													<div *ngIf="(form.get('password').touched || form.get('password').dirty) && form.get('password').invalid && form.get('password').errors.required" class="invalid-feedback">
+														*Please enter Password
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-12">
+												<div class="check-fld d-flex justify-content-between">
+													<div class="custom-control custom-checkbox">
+												      <input type="checkbox" formControlName="remember_me" class="custom-control-input" id="customCheck" name="example1">
+												      <label class="custom-control-label" for="customCheck">Remember Me</label>
+													  </div>
+													  <a routerLink="/referral-forget"><span class="gold_text">Forgot Password?</span></a>
+												</div>
+											</div>
+										</div>
+										<div class="submit-btn btn-width text-center">
+											<!-- <a routerLink="/referral-db" class="btn btn_theme_green btn_referal my-2 my-sm-0 mr-3">Login</a> -->
+											<button [disabled]="!form.valid" (click)="login()" class="btn btn_theme_green btn_referal my-2 my-sm-0 mr-3">
+												<span *ngIf="!isLoading">
+													Login
+												</span>	
+											</button>
+											<!-- <a class="btn btn_theme_white my-2 my-sm-0">Signup</a> -->
+										</div>
+										<p class="already-acnt text-center">No Account? <a routerLink="/referral-signup"><span class="gold_text">Create one Now</span></a></p>
+										<!-- <p class="text-gray contine-with mb-0 text-center">or login with: 
+											<span class="gold_text" (click)="loginWithLinkedIn()"> Linkedin </span>
+											<span class="gold_text" (click)="loginWithGoogle()"> Google </span>
+											<span class="gold_text"> Linkedin </span>
+											<span class="gold_text"> Google </span>
+											<span class="gold_text"> Apple </span>
+										</p> -->
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+
+</main>
+
+<app-footer></app-footer>

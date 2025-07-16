@@ -1,0 +1,49 @@
+<app-talent-header></app-talent-header>
+
+<main class="comon_main internal_pages_prnt">
+	<div class="cmn-pading-top">
+		<section class="talent-profile">
+			<div class="d-flex">
+				<app-create-agency-sidebar></app-create-agency-sidebar>
+				<div class="main-cntnt geting-strt">
+					<div class="top-cntnt">
+						<h5>Agency Account</h5>
+						<div class="prgrs-bar bar-green">
+							<span class="prg-perc">25% Completed</span>
+							<mat-progress-bar mode="determinate" value="25"></mat-progress-bar>
+	                    </div>
+	                    <div class="main-title mb-2 d-flex justify-content-between">
+	                        <!-- <h6>1.1 Disciplines</h6> -->
+							<p class="mb-0">Tell us about the work you do</p>
+	                    </div>
+					</div>
+					<div class="inside-wrapr card main-card">
+						<div class="all-disciplines">
+							<div class="speciality-list">
+								<ul class="servc-listng">
+									<li *ngFor="let item of disciplines;let ind = index">
+										<div class="custom-control custom-checkbox custm-radio-cs">
+											<input [(ngModel)]="item.flag"  type="checkbox" name="discipline{{ind}}" class="custom-control-input" id="customRadio{{ind}}" value="{{ item._id }}">
+											<label class="custom-control-label" for="customRadio{{ind}}">{{ item.discipline }}
+											</label>
+										</div>
+									</li>
+									<!-- <div class="validation-spn">Please select discipline</div> -->
+								</ul>
+							</div>
+						</div>
+						
+						<!-- <button (click)="goToNext()" class="btn">Next</button> -->
+					</div>
+					<div class="text-right mt-3">
+						<a class="btn btn_theme_green" (click)="goToNext()">Next</a>
+
+					</div>
+					<div class="inside-footer">
+						<app-footer></app-footer>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</main>

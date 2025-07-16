@@ -1,0 +1,44 @@
+<app-talent-header></app-talent-header>
+
+<main class="comon_main internal_pages_prnt">
+	<div class="cmn-pading-top">
+		<section class="talent-profile">
+			<div class="d-flex">
+				<app-talent-sidebar></app-talent-sidebar>
+				<div class="main-cntnt geting-strt">
+					<div class="top-cntnt">
+						<h5>Talent Admission</h5>
+						<div class="prgrs-bar bar-green" *ngIf="service.sideBarHeight">
+							<span class="prg-perc">{{service.sideBarHeight}}% Completed</span>
+    						<mat-progress-bar mode="determinate" value="{{service.sideBarHeight}}"></mat-progress-bar>
+	                    </div>
+	                    <div class="main-title mb-2 d-flex justify-content-between">
+	                        <p class="mb-1">Tell us about the work you do</p>
+	                    </div>
+					</div>
+					<div class="inside-wrapr card main-card"> 
+						<div class="all-disciplines">
+							<div class="">
+								<div  class="row box-wrap-1">
+									<div *ngFor="let item of list;let i = index"  class="col-sm-4" (click)="selectDiscipline(item)">
+										<span class="bordr-left"></span>
+										<div class="d-flex align-items-center justify-content-center border-box-1">
+											<div class="svg-icn text-center {{ item._id == selected_discipline ? 'active' : '' }}">
+												<img src="{{env.desp + item.discipline_image}}" class="img-fluid">
+												<p class="icn-title">{{ item.discipline }}</p>
+											</div>
+										</div>
+									</div>							
+								</div>
+							</div>						
+						</div>
+					</div>
+					<div class="inside-footer">
+						<app-footer></app-footer>
+					</div>
+				</div>
+				<!-- <app-talent-right-sidebar></app-talent-right-sidebar> -->
+			</div>
+		</section>
+	</div>
+</main>

@@ -1,0 +1,377 @@
+<app-talent-header></app-talent-header>
+
+<main class="comon_main internal_pages_prnt">
+	<div class="cmn-pading-top">
+		<section class="talent-profile create-agency-prfile">
+			<div class="d-flex">
+				<app-create-agency-sidebar></app-create-agency-sidebar>
+				<div class="main-cntnt geting-strt">
+					<div class="top-cntnt">
+						<h5>Agency Account</h5>
+						<div class="prgrs-bar bar-green">
+							<span class="prg-perc">85% Completed</span>
+							<mat-progress-bar mode="determinate" value="10"></mat-progress-bar>
+	                    </div>
+	                    <div class="main-title mb-2 d-flex justify-content-between">
+	                        <!-- <h6>7. Profile Details</h6> -->
+	                    </div>
+					</div>
+					<div class="inside-wrapr choose-services">
+	                    <div class="services-card profile-details">
+	                        <div class="row">
+	                            <!-- <div class="col-sm-3 pr-0">
+	                                <div class="card">
+	                                    <div class="prof-imag-card">
+	                                    	<img src="assets/imgs/header-prof.png" class="img-fluid">
+	                                    	<a class="btn btn_theme_green my-2 my-sm-0">Upload Image</a>
+	                                    	<p>*Image should be 200 X 200 in dimensions</p>
+	                                    </div>
+	                                </div>
+	                            </div> -->
+	                            <div class="col-sm-12">
+	                                <div class="card profile-info">
+	                                    <form [formGroup]="agencyForm">
+	                                    	<div class="row">
+	                                    		<div class="col-sm-12">
+	                                    			<div class="prof-imag-card d-flex align-items-center">
+				                                    	<img *ngIf="agency_profile_image" src="{{ agency_profile_image }}" class="img-fluid">
+				                                    	<div class="prf-side ml-3">
+					                                    	<a class="btn btn_theme_green my-2 my-sm-0">Upload Image</a>
+					                                    	<input (change)="uploadProfileImage($event)" formControlName="agency_image" name="file" type="file" class="uplod-prf-img">
+					                                    	<p>*Image should be 200 X 200 in dimensions</p>
+					                                    </div>
+
+														<div *ngIf="(agencyForm.get('agency_image').touched || agencyForm.get('agency_image').dirty) && agencyForm.get('agency_image').invalid && agencyForm.get('agency_image').errors.required" class="invalid-feedback">
+															*Please choose image
+														</div>
+
+				                                    </div>
+	                                    		</div>
+	                                    	</div>
+		                                    <div class="row">
+		                                    	<div class="col-sm-12">
+		                                            <div class="form-group">
+		                                                <label>Profile Cover</label>
+		                                                <div class="custom-file">
+															<input (change)="uploadCoverImage($event)" formControlName="agency_cover_image" type="file" name="intro_video" class="custom-file-input form-control" id="customFile">
+															<label class="custom-file-label file-cs-con" for="customFile" style="overflow: hidden;">{{ agency_cover_image }}</label>
+															<div *ngIf="(agencyForm.get('agency_cover_image').touched || agencyForm.get('agency_cover_image').dirty) && agencyForm.get('agency_cover_image').invalid && agencyForm.get('agency_cover_image').errors.required" class="invalid-feedback">
+																*Please choose cover image
+															</div>
+														</div>
+		                                            </div>
+		                                        </div>
+		                                        <div class="col-sm-12">
+		                                            <div class="form-group">
+		                                                <label>Agency Tagline</label>
+		                                                <input formControlName="agency_tagline" type="text" class="form-control" placeholder="">
+														<div *ngIf="(agencyForm.get('agency_tagline').touched || agencyForm.get('agency_tagline').dirty) && agencyForm.get('agency_tagline').invalid && agencyForm.get('agency_tagline').errors.required" class="invalid-feedback">
+															*Please enter Agency Tagline
+														</div>
+		                                            </div>
+		                                        </div>
+		                                    	<div class="col-sm-12">
+		                                    		 <div class="form-group">
+													    <label for="exampleFormControlTextarea1">Overview</label>
+													    <textarea formControlName="agency_overview" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+														<div *ngIf="(agencyForm.get('agency_overview').touched || agencyForm.get('agency_overview').dirty) && agencyForm.get('agency_overview').invalid && agencyForm.get('agency_overview').errors.required" class="invalid-feedback">
+															*Please enter Overview
+														</div>
+													  </div>
+		                                    	</div>
+		                                        <!-- <div class="col-sm-6">
+		                                            <div class="form-group">
+		                                                <label>Hourly Rate*</label>
+		                                                <div class="input-group mb-3 append-input-cs">
+														  <input type="text" class="form-control" placeholder="eg. 50" aria-label="" aria-describedby="basic-addon2">
+														  <div class="input-group-append">
+														    <span class="input-group-text" id="basic-addon2">$/hr</span>
+														  </div>
+														</div>
+		                                            </div>
+		                                        </div>
+		                                        <div class="col-sm-6">
+		                                            <div class="form-group">
+		                                                <label>Monthly Rate</label>
+		                                                <div class="input-group mb-3 append-input-cs">
+														  <input type="text" class="form-control" placeholder="eg. 50" aria-label="" aria-describedby="basic-addon2">
+														  <div class="input-group-append">
+														    <span class="input-group-text" id="basic-addon2">$/month</span>
+														  </div>
+														</div>
+		                                            </div>
+		                                        </div>
+		                                        <div class="col-sm-6">
+		                                            <div class="form-group">
+		                                                <label>Total Earned</label>
+		                                                <input type="text" class="form-control" placeholder="">
+		                                            </div>
+		                                        </div>
+		                                        <div class="col-sm-6">
+		                                            <div class="form-group">
+		                                                <label>Total Hours</label>
+		                                                <input type="text" class="form-control" placeholder="">
+		                                            </div>
+		                                        </div> -->
+		                                        <div class="col-sm-6">
+		                                            <div class="form-group">
+		                                                <label>Total Jobs</label>
+		                                                <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" pattern="[0-9.]+" formControlName="total_jobs" class="form-control" placeholder="">
+														<div *ngIf="(agencyForm.get('total_jobs').touched || agencyForm.get('total_jobs').dirty) && agencyForm.get('total_jobs').invalid && agencyForm.get('total_jobs').errors.required" class="invalid-feedback">
+															*Please enter Total Jobs
+														</div>
+		                                            </div>
+		                                        </div>
+		                                        <div class="col-sm-6">
+		                                            <div class="form-group custm-datepickr">
+                                                        <label>Member Since</label>
+                                                        <mat-form-field appearance="fill">
+                                                            <mat-label>Choose a date</mat-label>
+                                                            <input matInput formControlName="member_since" [max]="today" [matDatepicker]="picker">
+                                                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                                            <mat-datepicker #picker></mat-datepicker>
+                                                        </mat-form-field>
+														<div *ngIf="(agencyForm.get('member_since').touched || agencyForm.get('member_since').dirty) && agencyForm.get('member_since').invalid && agencyForm.get('member_since').errors.required" class="invalid-feedback">
+															*Please Choose Member
+														</div>
+                                                    </div>
+		                                        </div>
+		                                        <div class="col-sm-6">
+		                                            <div class="form-group">
+		                                                <label>Agency Size</label>
+		                                                <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" pattern="[0-9.]+" formControlName="agency_size" type="text" class="form-control" placeholder="">
+														<div *ngIf="(agencyForm.get('agency_size').touched || agencyForm.get('agency_size').dirty) && agencyForm.get('agency_size').invalid && agencyForm.get('agency_size').errors.required" class="invalid-feedback">
+															*Please Agency Size
+														</div>
+		                                            </div>
+		                                        </div>
+		                                        <div class="col-sm-6">
+		                                            <div class="form-group srt-flter">
+		                                            	<label>Year Founded in</label>
+				                                        <select formControlName="year_founded_in" class="form-control custom-select" aria-label="Default select example">
+														 <option *ngFor="let y of years" value="{{ y }}">{{y}}</option>
+													  </select>
+													  	<div *ngIf="(agencyForm.get('year_founded_in').touched || agencyForm.get('year_founded_in').dirty) && agencyForm.get('year_founded_in').invalid && agencyForm.get('year_founded_in').errors.required" class="invalid-feedback">
+															*Please Choose Year Founded
+														</div>
+													</div>
+												</div>
+												<div class="col-sm-6">
+		                                            <div class="form-group srt-flter">
+		                                            	<label>Client Focus</label>
+				                                        <!-- <select class="form-control custom-select" formControlName="client_focus" multiple aria-label="Default select example">
+														  <option value="Contractor">Contractor</option>
+														  <option value="Developer">Developer</option>
+														  <option value="Consultant">Consultant</option>
+														  <option value="Others">Others</option>
+													  </select> -->
+													  <ng-multiselect-dropdown
+														name="client_focus"
+														[placeholder]="'Client Focus'"
+														[settings]="dropdownSettings"
+														[data]="client_focus_data"
+														[(ngModel)]="selectedItems"
+														[ngModelOptions]="{standalone: true}"
+														(onSelect)="onItemSelect($event)"
+														(onSelectAll)="onSelectAll($event)"
+														>
+														</ng-multiselect-dropdown>
+													</div>
+												</div>
+												<div class="col-sm-6">
+		                                            <div class="form-group">
+		                                                <label>Web Address</label>
+		                                                <input formControlName="web_address" type="text" class="form-control" placeholder="">
+														<div *ngIf="(agencyForm.get('web_address').touched || agencyForm.get('web_address').dirty) && agencyForm.get('web_address').invalid && agencyForm.get('web_address').errors.required" class="invalid-feedback">
+															*Please enter Web Address
+														</div>
+													</div>
+		                                        </div>
+												<div class="col-sm-12">
+		                                    		 <div class="form-group">
+													    <label for="exampleFormControlTextarea1">Agency's Address</label>
+													    <textarea class="form-control" formControlName="agency_address" id="exampleFormControlTextarea1" rows="3"></textarea>
+														<div *ngIf="(agencyForm.get('agency_address').touched || agencyForm.get('agency_address').dirty) && agencyForm.get('agency_address').invalid && agencyForm.get('agency_address').errors.required" class="invalid-feedback">
+															*Please enter Agency Address
+														</div>
+													</div>
+		                                    	</div>
+		                                    </div>
+		                                </form>
+	                                </div>
+	                                <div class="card profile-info">
+	                                    <form>
+	                                    	<div class="row">
+												<div class="col-sm-12">
+                                                    <div class="form-group"> 
+                                                        <div class="add-language add-new d-flex justify-content-between">
+                                                            <h6>Languages*</h6>
+                                                            <div class="add-more-link add-new-row" (click)="addLanguages()">
+                                                                <img src="assets/imgs/add-alt.png" class="img-fluid">
+                                                                <span class="green_text">Add more Languages</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="append-fld">
+                                                        <div class="row align-items-center" *ngFor="let lang of agency_languages;let i = index">
+                                                            <div class="col-sm-6">
+                                                                <div class="form-group">
+                                                                    <label>Language</label>
+                                                                    <select name="" [(ngModel)]="lang.language_name" [ngModelOptions]="{standalone: true}" class="form-control" id="">
+																		<option value="">Choose</option>
+																		<option *ngFor="let item of languages;" value="{{ item.name }}">{{ item.name }} {{ item.nativeName }}</option>
+																	</select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-5">
+                                                                <div class="form-group">
+                                                                    <label>Proficiency</label>
+																	
+																	<select [(ngModel)]="lang.proficiency" [ngModelOptions]="{standalone: true}" class="form-control" name="" id="">
+																		<option value="">Choose</option>
+																		<option *ngFor="let item of proficiencies" value="{{ item._id }}">{{ item.value }}</option>
+																	</select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-1 pl-0" *ngIf="i > 0">
+                                                                <span class="delete-icn">
+                                                                    <img src="assets/imgs/Delete.png" (click)="deleteLanguages()" class="img-fluid">
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+	                                    	</div>
+	                                    </form>
+	                                </div>
+	                                <div class="card profile-info">
+	                                    <form>
+											<div class="add-new d-flex justify-content-between">
+												<h6 class="mb-3">Portfolio</h6>
+												<div class="add-more-link add-new-row">
+													<img src="assets/imgs/add-alt.png" class="img-fluid">
+													<span class="green_text" (click)="addPortfolio()">Add more Portfolio</span>
+												</div>
+											</div>
+											<div *ngFor="let item of agency_portfolio;let ind = index" class="add-portfolio">
+												<div class="row">
+													<div class="col-sm-12">
+														<div class="prof-imag-card d-flex align-items-center">
+															<img *ngIf="item.image" src="{{ item.image }}" class="img-fluid">
+															<div *ngIf="!item.image" class="prf-side ml-3">
+																<a class="btn btn_theme_green my-2 my-sm-0">Upload Image</a>
+																<input name="file" type="file" (change)="uploadPortfolio($event,ind)" class="uplod-prf-img">
+																<p>*Image should be 200 X 200 in dimensions</p>
+															</div>
+														</div>
+													</div>
+													<div class="col-sm-12">
+														<div class="form-group">
+															<label>Project Title*</label>
+															<input type="text" [(ngModel)]="item.project_title" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="">
+														</div>
+													</div>
+													<div class="col-sm-12">
+														<div class="form-group">
+															<label>Project Service*</label>
+															<input type="text" [(ngModel)]="item.project_service" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="">
+														</div>
+													</div>
+													<div class="col-sm-12" *ngIf="ind > 0">
+														<div class="del-icn2" (click)="removePortfolio(ind)">
+															<span class="delete-icn">
+																<img src="assets/imgs/Delete.png" class="img-fluid">
+															</span>
+														</div>
+													</div>
+													<!-- <div class="col-sm-6">
+														<div class="form-group custm-datepickr">
+															<label>Start Date</label>
+															<mat-form-field appearance="fill">
+																<mat-label>Choose a date</mat-label>
+																<input matInput [matDatepicker]="picker2">
+																<mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+																<mat-datepicker #picker2></mat-datepicker>
+															</mat-form-field>
+														</div>
+													</div>
+													<div class="col-sm-6">
+														<div class="form-group custm-datepickr">
+															<label>End Date</label>
+															<mat-form-field appearance="fill">
+																<mat-label>Choose a date</mat-label>
+																<input matInput [matDatepicker]="picker3">
+																<mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+																<mat-datepicker #picker3></mat-datepicker>
+															</mat-form-field>
+														</div>
+													</div>
+													<div class="col-sm-6">
+														<div class="form-group">
+															<label>Estimated Budget</label>
+															<input type="text" class="form-control" placeholder="">
+														</div>
+													</div>
+													<div class="col-sm-6">
+														<div class="form-group srt-flter">
+															<label>Status</label>
+														
+														<ngx-select-dropdown></ngx-select-dropdown>
+														</div>
+													</div>
+													<div class="col-sm-6">
+														<div class="form-group srt-flter">
+															<label>Experience</label>
+															<ngx-select-dropdown></ngx-select-dropdown>
+														</div>
+													</div>
+													<div class="col-sm-6">
+														<div class="form-group srt-flter">
+															<label>Price</label>
+															<ngx-select-dropdown></ngx-select-dropdown>
+														</div>
+													</div> -->
+												</div>
+											</div>
+	                                    </form>
+	                                </div>
+	                                <div class="submit-btn btn-width d-flex justify-content-between mt-3">
+										<a routerLink="/visibility-preferences" class="btn btn_theme_black my-2 my-sm-0">Back</a>
+										<a class="btn btn_theme_green my-2 my-sm-0" (click)="apply()" >Apply</a>
+										<!-- routerLink="/agency-profile" -->
+									</div>
+	                            </div>
+	                        </div>
+	                    </div>
+					</div>
+					<div class="inside-footer">
+						<app-footer></app-footer>
+					</div>
+				</div>
+				<!-- <app-talent-right-sidebar></app-talent-right-sidebar> -->
+			</div>
+			
+		</section>
+	</div>
+</main>
+
+<!-- profile completed modal -->
+<!-- <div class="modal fade add-service" id="profileCompleted" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Success</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <p>Your application  has  been  submitted  and now  it is
+			under  review.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn_modal_black btn_full" data-dismiss="modal" routerLink="/talent-dashboard">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div> -->

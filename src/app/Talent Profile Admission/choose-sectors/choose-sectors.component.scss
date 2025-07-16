@@ -1,0 +1,75 @@
+// .talent-profile .grid_view-new div.col-sm-3:nth-last-of-type(2), .talent-profile .grid_view-new div.col-sm-3:nth-last-of-type(3), .talent-profile .grid_view-new div.col-sm-3:nth-last-of-type(4), .talent-profile .grid_view-new div.col-sm-3:last-child {
+//     background-image: none;
+//     position: inherit !important;
+// }
+
+// .show-modal {
+//     display: block; 
+//     padding-right: 15px;
+// }
+
+// //
+// .border-box-1{
+//     height: 217px;
+//     margin: 0px -15px;
+//     padding: 0px 15px;
+//     // border-right: 1px solid;
+//     position: relative;
+//     // border-bottom: 1px solid;
+// }
+// .box-wrap-1{
+//     border-top:1px solid transparent;
+
+//     border-image: url('../../../assets/imgs/line.png') 30 round;
+// }
+// .border-box-1::before {
+//     background-image: url('../../../assets/imgs/line-vr.png');
+//     right: 0px;
+//     top: 0;
+//     content: "";
+//     width: 1px;
+//     height: 100%;
+//     background-repeat: no-repeat;
+//     position: absolute;
+// }
+// .border-box-1::after {
+//     background-image: url('../../../assets/imgs/line.png');
+//     right: 0px;
+//     bottom: 0;
+//     content: "";
+//     width: 100%;
+//     height:1px;
+//     background-repeat: no-repeat;
+//     position: absolute;
+// }
+// .border-box-1{
+//     flex-direction: column;
+// }
+// .border-box-1 span{
+//     display: inline-block;
+//     margin-left: 15px;
+// }
+// .border-box-1 svg{
+//     width: 40px;
+//     height: auto;
+// }
+// div.box-wrap-1 div.col-sm-3:nth-child(4) > div::before,
+// div.box-wrap-1 div.col-sm-3:nth-child(8) > div::before,
+// div.box-wrap-1 div.col-sm-3:nth-child(12) > div::before,
+// div.box-wrap-1 div.col-sm-3:nth-child(16) > div::before,
+// div.box-wrap-1 div.col-sm-3:nth-child(20) > div::before,
+// div.box-wrap-1 div.col-sm-3:nth-child(24) > div::before,
+// div.box-wrap-1 div.col-sm-3:nth-child(28) > div::before,
+// div.box-wrap-1 div.col-sm-3:nth-child(32) > div::before,
+// div.box-wrap-1 div.col-sm-3:nth-child(36) > div::before,
+// div.box-wrap-1 div.col-sm-3:nth-child(40) > div::before,
+// div.box-wrap-1 div.col-sm-3:nth-child(44) > div::before,
+// div.box-wrap-1 div.col-sm-3:nth-child(48) > div::before,
+// div.box-wrap-1 div.col-sm-3:nth-child(52) > div::before,
+// div.box-wrap-1 div.col-sm-3:nth-child(56) > div::before,
+// div.box-wrap-1 div.col-sm-3:nth-child(60) > div::before,
+// div.box-wrap-1 div.col-sm-3:nth-child(64) > div::before,
+// div.box-wrap-1 div.col-sm-3:nth-child(68) > div::before{
+
+//     background-image: none!important;
+// }

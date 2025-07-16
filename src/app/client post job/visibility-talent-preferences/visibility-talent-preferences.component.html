@@ -1,0 +1,178 @@
+<app-client-header></app-client-header>
+
+<main class="comon_main internal_pages_prnt">
+	<div class="cmn-pading-top">
+		<section class="client_post_job vsblty_talntpref">
+			<div class="wrap-client">
+				<div class="d-flex">
+					<aside class="client-sidebar">
+						<ul class="list_optns">
+							<li routerLink="/getting-started"><span>Getting Started</span></li>
+							<li routerLink="/post-title"><span>Job Info</span></li>
+							<li routerLink="/visibility-talent-preferences"><span>Contract Preferences</span></li>
+							<li class="" routerLink="/talent-preferences">
+								<span>Talents Preferences</span>
+								<ul class="sub-bar" >
+									<li *ngFor="let item of totalTalents;let index = index;" routerLink="/talent-preferences"> Talent {{index + 1}}</li>
+								</ul>
+							</li>
+						</ul>
+					</aside>
+					<div class="main-cntnt geting-strt">
+						<h5>Post a Job</h5>
+						<div class="prgrs-bar">
+							<span class="prg-perc">75% Completed</span>
+							<mat-progress-bar mode="determinate" value="75"></mat-progress-bar>
+						</div>
+						<!-- <h6>3. Contract Preferences</h6> -->
+						<form [formGroup]="form">
+							<div class="inside-wrapr form-flds">
+								<div class="main-tabs cmn-card-tabs">
+									<mat-tab-group animationDuration="0ms">
+		                                <mat-tab label="Contract Type">
+											<div class="inside-tab">
+												<!-- <form> -->
+													<div class="singl-row card">
+														<p class="head-title">How would you like to pay your talent?</p>
+														<div class="row ml-3">
+															<div class="col-sm-4">
+					                                            <div class="custom-control custom-radio custm-radio-cs">
+					                                              <input type="radio" class="custom-control-input" checked="checked" id="customRadio" [(ngModel)]="pay_type" [ngModelOptions]="{standalone: true}" value="hourly">
+					                                              <label class="custom-control-label" for="customRadio">
+					                                                <span class="">Hourly Rate</span>
+					                                              </label>
+					                                            </div>
+					                                        </div>
+					                                        <div class="col-sm-4">
+					                                            <div class="custom-control custom-radio custm-radio-cs">
+					                                              <input type="radio" class="custom-control-input" id="customRadio1" [(ngModel)]="pay_type" [ngModelOptions]="{standalone: true}" value="lumpsum">
+					                                              <label class="custom-control-label" for="customRadio1">
+					                                                <span>Lumpsum</span>
+					                                              </label>
+					                                            </div>
+					                                        </div>
+					                                        <div class="col-sm-4">
+					                                            <div class="custom-control custom-radio custm-radio-cs">
+					                                              <input type="radio" class="custom-control-input" id="customRadio2" [(ngModel)]="pay_type" [ngModelOptions]="{standalone: true}" value="salary_based">
+					                                              <label class="custom-control-label" for="customRadio2">
+					                                                <span>Salary Based</span>
+					                                              </label>
+					                                            </div>
+					                                        </div>
+					                                    </div>
+													</div>
+											
+												<!-- </form> -->
+											</div>
+										</mat-tab>
+										<mat-tab label="Job Timeline">
+											<div class="inside-tab">
+												<!-- <form> -->
+													<!-- <div class="singl-row border-btm">
+														<div class="">
+															<p class="head-title">When would you like to start the job?</p>
+															<div class="flds-inside ml-4">
+																<div class="row mb-3">
+																	<div class="col-sm-6">
+																	    <div class="custom-control custom-radio custm-radio-cs">
+																	      <input type="radio" class="custom-control-input" id="customRadio6" name="example1">
+																	      <label class="custom-control-label" for="customRadio6">
+																	      	<span>Immediate</span>
+																	      </label>
+																	    </div>
+																	</div>
+																	<div class="col-sm-6">
+																		<div class="custom-control custom-radio custm-radio-cs">
+																	      <input type="radio" checked="checked" class="custom-control-input" id="customRadio7" name="example1">
+																	      <label class="custom-control-label" for="customRadio7">
+																	      	<span>From a Specific Date</span>
+																	      </label>
+																	    </div>
+																	</div>
+																</div>
+																<div class="row mb-3">
+																	<div class="col-sm-12">
+																		<div class="form-group custm-datepickr">
+																			<label>Specify the Project Start Date</label>
+																        	<mat-form-field appearance="fill">
+						                                                        <mat-label>Choose a date</mat-label>
+						                                                        <input matInput [matDatepicker]="picker">
+						                                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+						                                                        <mat-datepicker #picker></mat-datepicker>
+						                                                    </mat-form-field>
+															    		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div> -->
+													<div class="singl-row card">
+														<div class="">
+															<p class="head-title">Specify your Job TimeLine</p>
+															<!-- <mat-radio-group>
+															  <mat-radio-button value="1" class="mr-4">One Talent</mat-radio-button>
+															  <mat-radio-button value="2">Team (Two Talents or more)</mat-radio-button>
+															</mat-radio-group> -->
+															<div class="flds-inside ml-4">
+																<div class="row">
+																	<div class="col-sm-6">
+																		<div class="form-group custm-datepickr">
+																			<label>Start Date</label>
+																        	<mat-form-field appearance="fill">
+						                                                        <mat-label>Choose a date</mat-label>
+						                                                        <input formControlName="job_start_date"  matInput [matDatepicker]="picker2"  [min]="minDate">
+						                                                        <mat-datepicker-toggle matSuffix [for]="picker2" ></mat-datepicker-toggle>
+						                                                        <mat-datepicker #picker2></mat-datepicker>
+						                                                    </mat-form-field>
+															    		</div>
+																	</div>
+																	<div class="col-sm-6">
+																		<div class="form-group custm-datepickr">
+																			<label>End Date</label>
+																        	<mat-form-field appearance="fill">
+						                                                        <mat-label>Choose a date</mat-label>
+						                                                        <input formControlName="job_end_date" matInput [matDatepicker]="picker3"  [min]="minDate " (dateChange)="compareTwoDates()">
+						                                                        <mat-datepicker-toggle matSuffix [for]="picker3"  ></mat-datepicker-toggle>
+						                                                        <mat-datepicker #picker3></mat-datepicker>
+						                                                    </mat-form-field>
+															    		</div>
+																	</div>
+																	<div *ngIf="error.isError==true" style="
+    /* padding-left: 2px; */
+    margin-left: 572px;
+	color:red;
+" class=" ">
+   {{ error.errorMessage }}
+</div>
+																	<!-- <div class="col-sm-4">
+						                                                <div class="form-group">
+						                                                    <label>Months</label>
+						                                                    <input type="text" class="form-control" placeholder="e.g. 18">
+						                                                </div>
+						                                            </div> -->
+																</div>
+															</div>
+														</div>
+													</div>
+												<!-- </form> -->
+											</div>
+										</mat-tab>
+									</mat-tab-group>
+								</div>
+							</div>
+							<div class="submit-btn btn-width d-flex justify-content-between mt-3">
+								<a routerLink="/post-title" class="btn btn_theme_black my-2 my-sm-0 mr-3">Back</a>
+								<button (click)="createJobPostStep3()" [disabled]="!form.valid" class="btn btn_theme_blue my-2 my-sm-0">Next</button>
+								<!-- <a routerLink="/talent-preferences" class="btn btn_theme_blue my-2 my-sm-0">Next</a> -->
+							</div>
+						</form>
+						<div class="inside-footer">
+							<app-footer></app-footer>
+						</div>
+					</div>
+					<app-right-sidebar></app-right-sidebar>
+				</div>
+			</div>
+		</section>
+	</div>
+</main>

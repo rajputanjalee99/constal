@@ -1,0 +1,78 @@
+<aside class="filter-left">
+    <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true"
+                             (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+                Posted By
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="sub-expension-one">
+            <div class="sub-expension-inner sub-radio-wrap">
+                <mat-radio-group aria-label="Select an option">
+                    <mat-radio-button value="1">Co-Workers</mat-radio-button>
+                    <mat-radio-button value="2">Co-Workers</mat-radio-button>
+                    <mat-radio-button value="3">Co-Workers</mat-radio-button>
+                    <mat-radio-button value="4">Co-Workers</mat-radio-button>
+                  </mat-radio-group>
+            </div>
+          </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel (opened)="panelOpenState = true"
+                            (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+            <mat-panel-title>
+            visibility
+            </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="sub-expension-one">
+            <div class="sub-expension-inner sub-radio-wrap">
+            <mat-radio-group aria-label="Select an option">
+            <mat-radio-button value="4">All</mat-radio-button>
+            <mat-radio-button value="5">Invite Only</mat-radio-button>
+            <mat-radio-button value="6">Public</mat-radio-button>
+            </mat-radio-group>
+            </div>
+            </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel (opened)="panelOpenState = true"
+                            (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+            <mat-panel-title>
+            Status
+            </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="sub-expension-one">
+            <div class="sub-expension-inner sub-radio-wrap">
+            <mat-radio-group aria-label="Select an option">
+            <mat-radio-button value="7">All</mat-radio-button>
+            <mat-radio-button value="8">Draft</mat-radio-button>
+            <mat-radio-button value="9">Open</mat-radio-button>
+            <mat-radio-button value="10">Filled</mat-radio-button>
+            <mat-radio-button value="11">Closed</mat-radio-button>
+            </mat-radio-group>
+            </div>
+            </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel (opened)="panelOpenState = true"
+                            (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+            <mat-panel-title>
+            Type
+            </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="sub-expension-one">
+            <div class="sub-expension-inner sub-radio-wrap">
+            <mat-radio-group aria-label="Select an option">
+            <mat-radio-button value="11">All</mat-radio-button>
+            <mat-radio-button value="12">Fixed Price</mat-radio-button>
+            <mat-radio-button value="13">Hourly</mat-radio-button>
+            <mat-radio-button value="14">Salary Based</mat-radio-button>
+           
+            </mat-radio-group>
+            </div>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+</aside>
+

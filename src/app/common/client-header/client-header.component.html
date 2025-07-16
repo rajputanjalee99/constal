@@ -1,0 +1,48 @@
+<header class="main_header internal_pages_header client_header">
+	<div class="custom_container">
+		<nav class="navbar navbar-expand-lg navbar-light">
+		  	<a class="navbar-brand logo_hedr" href="#">
+		  		<img src="assets/imgs/Constal.png" class="img-fluid" alt="Constal" />
+		  	</a>
+		  	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		    	<span class="navbar-toggler-icon"></span>
+		  	</button>
+
+		  	<div  class="collapse navbar-collapse" id="navbarSupportedContent">
+			    <ul class="navbar-nav ml-auto rgt_header_btns justify-content-end">
+			    	<li class="nav-item srch-input my-2 my-sm-0 position-relative">
+			    		<input type="text" class="form-control" placeholder="Search something here...">
+			    		<img src="assets/imgs/loupe.png" class="img-fluid" alt="search" />
+			    	</li>
+			      	<li class="nav-item" *ngIf="client_details">
+			      		<a class="notify-icn my-2 my-sm-0 position-relative">
+			      			<img src="assets/imgs/Notification.png" class="img-fluid" alt="notification" />
+			      		</a>
+				     </li>
+			      	<li class="nav-item"  style="
+    margin-top: 9px;" *ngIf="client_details">
+					      	<a class="prof-img my-2 my-sm-0  dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+				      	<a class="prof-img my-2 my-sm-0">
+			      			<img src="{{userImage}}" class="img-fluid"  routerLink="/client-info" alt=''/>
+				      		<span  routerLink="/client-info">Hi! {{username}}</span>
+				      	</a>
+						  </a>
+						  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+							<!-- <a class="dropdown-item" routerLink="/my-profile">My Profile</a>
+							  <a class="dropdown-item" routerLink="/password-security">Change Password</a>
+							  <a class="dropdown-item" routerLink="/contact-info">Settings</a> -->
+							  <!-- <a class="dropdown-item" routerLink="/profile-settings">Profile Settings</a> -->
+							  <a class="dropdown-item" *ngIf="client_details" (click)="logout()">Logout</a>
+                       
+					  	</div>
+						  
+			      	</li>
+			    </ul>
+				<div *ngIf="!client_details">
+                                      <a class="btn btn_theme_blue" routerLink="/login">Login</a>
+						  </div>
+		  	</div>
+		</nav>
+	</div>
+</header>

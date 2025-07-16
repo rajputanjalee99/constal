@@ -1,0 +1,317 @@
+
+<app-client-db-header></app-client-db-header>
+<main class="comon_main internal_pages_prnt">
+	<div class="cmn-pading-top cl-dash mrgn-above">
+		<section class="contact-info client-settings">
+			<div class="d-flex">
+				<app-client-settings-sidebar></app-client-settings-sidebar>
+				<div class="main-wrapr main-cont-resp">
+					<div class="top-cntnt">
+						<h5 class="mb-3">My Info</h5>
+					</div>
+	                <div class="info-card">
+	                	<header class="d-flex justify-content-between">
+	                		<h6 class="mb-0">Account</h6>
+	                		<a class="edit-info">
+	                			<img src="assets/imgs/edit.png" class="img-fluid">
+	                		</a>
+	                	</header>
+	                	<div class="cntnt-insid">
+	                		<div class="client-prfile position-relative">
+	                			<img src="{{userInfo.image}}" class="img-fluid">
+	                			<i class="fa fa-edit"></i>
+	                		</div>
+	                		<div class="frnt-div">
+		                		<div class="singl-rw">
+		                			<!-- <h6>Name</h6> -->
+		                			<p class="mb-0">{{userInfo.first_name + " "+ userInfo.last_name}}</p>
+		                		</div>
+		                		<div class="singl-rw mb-0">
+		                			<h6>Email</h6>
+		                			<p>{{userInfo.email}}</p>
+		                		</div>
+		                	</div>
+		                	<div class="hide-div">
+		                		<form action="#" (ngSubmit)="updateProfile(userForm)" #userForm="ngForm">
+		                			<div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>First Name</label>
+												 <input
+													type="text"
+													class="form-control"
+													id="first_name"
+													[pattern]="noSpacesRegex"
+													name="first_name"
+													[(ngModel)]="userInfo.first_name"
+													#first_name="ngModel"
+													required
+													(keydown.space)="$event.preventDefault()"
+												  />
+												   <span
+												  *ngIf="
+                  first_name.errors &&
+                  (first_name.dirty || first_name.touched || userForm.submitted)
+                "
+              >
+                            <span class="messages"    *ngIf="first_name.errors && first_name?.dirty && first_name?.errors?.pattern"><p class="text-danger error">Please enter valid mail id </p></span>
+
+                <p class="text-danger error">Please enter first name</p></span
+              >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Last Name</label>
+												 <input
+													type="text"
+													class="form-control"
+													id="last_name"
+													name="last_name"
+													[(ngModel)]="userInfo.last_name"
+													#last_name="ngModel"
+													required
+												    (keydown.space)="$event.preventDefault()"
+
+												  />
+												   <span
+                *ngIf="
+                  last_name.errors &&
+                  (last_name.dirty || last_name.touched || userForm.submitted)
+                "
+              >
+                <p class="text-danger error">Please enter last name</p></span
+              >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Email</label>
+												 <input
+													type="text"
+													class="form-control"
+													id="email"
+													name="email"
+													[disabled]="true"
+													[(ngModel)]="userInfo.email"
+													#email="ngModel"
+													 pattern="^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"
+												  />
+												  
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="submit-btns">
+                                    	<button class="btn btn_theme_blue mr-2" type="submit">Update</button>
+										<button type="button" class="btn btn_theme_black on-update"  [routerLink]="['/client-info']">Cancel</button>
+									</div>
+		                		</form>
+		                	</div>
+	                	</div>
+	                </div>
+	                <div class="info-card">
+	                	<header class="add-acnt">
+	                		<h6>Trade License </h6>
+	                	</header>
+	                	<div class="cntnt-insid">
+	                		<div class="clnt-acnt">
+		                		<div class="singl-rw div-width">
+		                			<h6>License Number </h6>
+		                			<p>5786-23454</p>
+		                		</div>
+		                	</div>
+	                	</div>
+	                </div>
+	                <div class="info-card">
+	                	<header class="d-flex justify-content-between">
+	                		<h6 class="mb-0">Company Details</h6>
+	                		<a class="edit-info">
+	                			<img src="assets/imgs/edit.png" class="img-fluid">
+	                		</a>
+	                	</header>
+	                	<div class="cntnt-insid">
+	                		<div class="frnt-div">
+		                		<div class="clnt-acnt">
+			                		<div class="singl-rw div-width">
+			                			<h6>CONSTAL</h6>
+			                		</div>
+			                	</div>
+			                </div>
+			                <div class="hide-div">
+		                		<form>
+		                			<div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Company Name</label>
+                                                <input type="text" class="form-control" value="CONSTAL">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Website</label>
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Tagline</label>
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Description</label>
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="submit-btns">
+                                    	<a class="btn btn_theme_blue mr-2">Update</a>
+									    <button type="button" class="btn btn_theme_black on-update"  [routerLink]="['/client-info']">Cancel</button>
+									</div>
+		                		</form>
+		                	</div>
+	                	</div>
+	                </div>
+	                <div class="info-card">
+	                	<header class="d-flex justify-content-between">
+	                		<h6 class="mb-0">Company Contacts</h6>
+	                		<a class="edit-info">
+	                			<img src="assets/imgs/edit.png" class="img-fluid">
+	                		</a>
+	                	</header>
+	                	<div class="cntnt-insid">
+	                		<div class="frnt-div">
+	                			<div class="singl-rw">
+		                			<h6>Owner</h6>
+		                			<p readonly>{{userInfo.first_name + " "+ userInfo.last_name}}</p>
+		                		</div>
+		                		<div class="singl-rw">
+		                			<h6 class="edit-info">Phone</h6>
+		                			<p>+44 6283153472</p>
+		                		</div>
+		                		<div class="singl-rw">
+		                			<h6 class="edit-info">VAT ID</h6>
+		                			<p><span class="blue">Enter your VAT ID </span>to enable VAT invoicing</p>
+		                		</div>
+		                		<div class="singl-rw">
+		                			<h6>Time Zone</h6>
+		                			<p>{{ userInfo && userInfo.talent_timezone && userInfo.talent_timezone.text ? userInfo.talent_timezone.text : "" }}</p>
+		                		</div>
+		                		<div class="singl-rw">
+		                			<h6>Address</h6>
+		                			{{ profile && profile.street_address ? profile.street_address : "" }}
+
+		                		</div>
+		                		
+		                	</div>
+	                		<div class="hide-div">
+		                		<form [formGroup]="accountForm">
+		                			<div class="row">
+		                				<div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label>Owner</label>
+		                			<p>{{userInfo.first_name+ " " + userInfo.last_name}}</p>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Phone</label>
+                                                <input type="text" class="form-control" value="+44 6283153472">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>VAT ID</label>
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                             <div class="form-group">
+                                                <label>Time Zone</label>
+                                                 <!-- <ngx-select-dropdown></ngx-select-dropdown> -->
+												<select formControlName="timezone"  name="" class="form-control" id="">
+													<option  *ngFor="let item of timezones_list" value="{{ item._id }}">{{ item.text }}</option>
+												</select>
+												<div *ngIf="(accountForm.get('timezone').touched || accountForm.get('timezone').dirty) && accountForm.get('timezone').invalid && accountForm.get('timezone').errors.required" class="invalid-feedback">
+													*Please Choose time zone
+												</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Country</label>
+                                                <select name="" formControlName="country" class="form-control" id="" (change)="changeCountry($event)">
+													<option  *ngFor="let item of countries_list" value="{{ item.isoCode }}">{{ item.name }}</option>
+												</select>
+												<div *ngIf="(accountForm.get('country').touched || accountForm.get('country').dirty) && accountForm.get('country').invalid && accountForm.get('country').errors.required" class="invalid-feedback">
+													*Please Choose country
+												</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label>Address</label>
+                                                <textarea class="form-control" rows="3">Covenant Garden</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>City</label>
+                                                 <ngx-select-dropdown></ngx-select-dropdown>
+                                            </div>
+                                        </div>
+                                     <div class="col-sm-6">
+
+                                     <div class="form-group">
+                                                <label>ZIP/Postal Code</label>
+                                                <input type="text" formControlName="postal" class="form-control" value="533416">
+												<div *ngIf="(accountForm.get('postal').touched || accountForm.get('postal').dirty) && accountForm.get('postal').invalid && accountForm.get('postal').errors.required" class="invalid-feedback">
+													*Please enter Postal code
+												</div>
+                                            </div>
+                                         </div>
+                                         
+                                    </div>
+                                    <div class="submit-btns">
+                                     	<button class="btn btn_theme_blue mr-2"  (click)="saveAccountDetails()">Update</button>
+                                    	<button type="button" class="btn btn_theme_black on-update"  [routerLink]="['/client-info']">Cancel</button>
+                                    </div>
+		                		</form>
+		                	</div>
+	                	</div>
+	                </div>
+	                <div class="info-card">
+	                	<div class="cntnt-insid">
+	                		<div class="frnt-div">
+	                			<div class="singl-rw">
+		                			<p>This is a Client account</p>
+		                			<div class="acnt-btns">
+		                				<a class="btn btn_theme_blue mr-3">Create New Account</a>
+		                				<a class="blue">Close account</a>
+		                			</div>
+		                		</div>
+		                	</div>
+	                	</div>
+	                </div>
+					<div class="inside-footer">
+						<app-footer></app-footer>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</main>
+
+

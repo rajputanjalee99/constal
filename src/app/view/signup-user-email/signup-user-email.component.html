@@ -1,0 +1,151 @@
+<div *ngIf="isLoading" class="uploader-status" id="spin">
+	<mat-spinner diameter="30"></mat-spinner>
+</div>
+<app-header></app-header>
+<main class="comon_main internal_pages_prnt">
+	<div class="cmn-pading-top">
+		<section class="user-profile cstm-mg user-login client_post_job d-flex align-items-center">
+			<div class="container">
+				<div class="card_socal">
+					<div class="row align-items-center">
+						<!-- <div class="col-sm-6 p-0">
+							<div class="left-img">
+								<img src="assets/imgs/1.png" class="img-fluid">
+							</div>
+						</div> -->
+						<div class="col-sm-12 p-0">
+							<div class="right-part">
+								<div class="txt_card">
+									<h3>Let's create your account</h3>
+									<p>We make it easy for everyone to connect with the Talent all around.</p>
+								</div>
+								<div class="input-flds">
+									<form [formGroup]="form"> 
+										<div class="row">
+											<div class="col-sm-6">
+												<div class="form-group input-group input-border-gray">
+													<div class="input-group-prepend">
+													<span class="input-group-text" id="inputGroupPrepend3">
+														<img src="assets/imgs/user.png" class="img-fluid">
+													</span>
+													</div>
+													<input pattern="[a-zA-Z ]*$" type="text" formControlName="first_name" class="form-control is-invalid" id="validationServerUsername" placeholder="First name" aria-describedby="inputGroupPrepend3">
+													<div *ngIf="(form.get('first_name').touched || form.get('first_name').dirty) && form.get('first_name').invalid && form.get('first_name').errors.required" class="invalid-feedback">
+													*Please enter First Name
+													</div>
+													<div *ngIf="(form.get('first_name').touched || form.get('first_name').dirty) && form.get('first_name').invalid && form.get('first_name').errors.pattern" class="invalid-feedback">
+													*Please enter Valid First Name
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-6">
+												<div class="form-group input-group input-border-gray">
+													<div class="input-group-prepend">
+													<span class="input-group-text" id="inputGroupPrepend3">
+														<img src="assets/imgs/user.png" class="img-fluid">
+													</span>
+													</div>
+													<input pattern="[a-zA-Z ]*$" type="text" formControlName="last_name" class="form-control is-invalid" id="validationServerUsername" placeholder="Last name" aria-describedby="inputGroupPrepend3" required>
+													<div *ngIf="(form.get('last_name').touched || form.get('last_name').dirty) && form.get('last_name').invalid && form.get('last_name').errors.required" class="invalid-feedback">
+														*Please enter Last Name
+													</div>
+													<div *ngIf="(form.get('last_name').touched || form.get('last_name').dirty) && form.get('last_name').invalid && form.get('last_name').errors.pattern" class="invalid-feedback">
+														*Please enter Valid Last Name
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-12">
+												<div class="form-group input-group">
+													<div class="input-group-prepend">
+													<span class="input-group-text" id="inputGroupPrepend3">
+														<img src="assets/imgs/@.png" class="img-fluid">
+													</span>
+													</div>
+													<input  type="text" formControlName="email" placeholder="Enter Email" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3">
+													<div *ngIf="(form.get('email').touched || form.get('email').dirty) && form.get('email').invalid && form.get('email').errors.required" class="invalid-feedback">
+														*Please enter Email
+													</div>
+													<div *ngIf="(form.get('email').touched || form.get('email').dirty) && form.get('email').invalid && form.get('email').errors.email" class="invalid-feedback">
+														*Please enter valid email
+													</div>
+													<div *ngIf="(form.get('email').touched || form.get('email').dirty) && form.get('email').invalid && form.get('email').errors.pattern && !form.get('email').errors.email" class="invalid-feedback">
+														*Please enter valid email
+													</div>
+													<!-- <div *ngIf="(form.get('email').touched || form.get('email').dirty) && form.get('email').errors.emailExist" class="invalid-feedback">
+														*Email already exist, try another
+													</div> -->
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-12">
+												<div class="form-group input-group">
+													<div class="input-group-prepend">
+													<span class="input-group-text" id="inputGroupPrepend3">
+														<img src="assets/imgs/key.png" class="img-fluid">
+													</span>
+													</div>
+													<input formControlName="password" (keyup)="changePassword()" placeholder="Enter Password" class="form-control is-invalid" id="validationServerUsername" [type]="password" aria-describedby="inputGroupPrepend3" value="password">
+													<span class="password-eye blue" (click)="onClickEye()">
+														<i class="fa fa-eye" *ngIf="!show"></i>
+														<i class="fa fa-eye-slash" *ngIf="show"></i>
+													</span>
+													<div *ngIf="(form.get('password').touched || form.get('password').dirty) && form.get('password').invalid && form.get('password').errors.required" class="invalid-feedback">
+														*Please enter Password
+													</div>
+													<div *ngIf="(form.get('password').touched || form.get('password').dirty) && form.get('password').invalid && form.get('password').errors.minlength" class="invalid-feedback">
+														*Minimum 8 character is required
+													</div>
+													<div *ngIf="(form.get('password').touched || form.get('password').dirty) && password_status" class="invalid-feedback">
+														{{ password_status }} password
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="check-fld">
+<div class="custom-control custom-checkbox">
+<input type="checkbox" formControlName="terms" class="custom-control-input" id="customCheck" name="example1">
+
+<label class="custom-control-label blue-check" for="customCheck"></label> Yes, I understand and agree to the Constal <span class="blue"><a routerLink="/terms-of-service" class="blue" target="_blank">Terms of Service,</a></span> including the User Agreement and <span class="blue"><a class="blue" target="_blank" routerLink="/privacy-policy">Privacy Policy</a></span>
+<div style="color: #dc3545;" *ngIf="(form.get('terms').touched) && form.get('terms').errors" >
+*Please accept our terms
+</div>
+</div>
+
+</div>
+										
+										<div class="submit-btn text-center">
+											<button class="btn btn_theme_blue my-2 my-sm-0" (click)="registerUser()" [disabled]="!form.valid">
+												<span *ngIf="!isLoading">
+													Create My Account
+												</span>										
+												
+												
+
+											</button>
+
+											
+										</div>
+										<p style="cursor: pointer;" routerLink="/login" class="already-acnt text-center">Already have an Account? <span class="blue">Sign in here</span></p>
+										<p class="text-gray contine-with text-center">or continue with: 
+											<span class="blue " style="cursor: pointer;" (click)="loginWithLinkedIn()"> Linkedin </span>
+											<span class="blue" style="cursor: pointer;" (click)="loginWithGoogle()"> Google </span>
+											<span class="blue" style="cursor: pointer;"> Apple </span>
+										</p>
+									</form>
+
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+
+</main>
+
+<app-footer></app-footer>

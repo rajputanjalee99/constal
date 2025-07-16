@@ -1,0 +1,261 @@
+<app-client-header></app-client-header>
+
+<main class="comon_main internal_pages_prnt">
+	<div class="cmn-pading-top">
+		<section class="client_post_job gtng_strtd bg-overlay">
+			<div class="wrap-client">
+				<div class="d-flex">
+					<!-- <app-left-sidebar></app-left-sidebar> -->
+					<div class="team-sidebar">
+						<span class="menu-br" (click)="openNav()"><i class="fas fa-bars"></i></span>
+						<aside *ngIf="no_of_talent_type=='multiple'" class="client-sidebar talent-sidebar sidenav search-left" id="mySidenav">
+							<a class="closebtn" (click)="closeNav()">&times;</a>
+							<div id="wrap-side-line">
+								<ul class="list_optns">
+									<li routerLinkActive="active blue_text" routerLink="/getting-started"><span>Getting Started</span></li>
+									<li routerLinkActive="active blue_text" routerLink="/post-title"><span>Job Info</span></li>
+									<li routerLinkActive="active blue_text" routerLink="/visibility-talent-preferences"><span>Contract Preferences</span></li>
+									<li routerLinkActive="active blue_text" routerLink="/talent-preferences">
+										<span>Talents Preferences</span>
+										<ul class="sub-bar">
+											<li *ngFor="let item of totalTalents;let index = index" routerLink="/talent-preferences" class="active_text">Talent {{index + 1}}</li>
+										</ul>
+									</li>
+								</ul>
+							</div>
+						</aside>
+					</div>
+					<div class="individual-sidebar">
+						<span class="menu-br" (click)="openNav()"><i class="fas fa-bars"></i></span>
+						<aside *ngIf="no_of_talent_type=='single'" class="client-sidebar sidenav search-left" id="mySidenav">
+							<a class="closebtn" (click)="closeNav()">&times;</a>
+							<ul class="list_optns">
+								<li class="active" routerLink="/getting-started"><span>Getting Started</span></li>
+								<li>
+									<span>Categories</span>
+									<ul class="sub-bar">
+										<li routerLink="/disciplines">Disciplines</li>
+										<li routerLink="/speciality">Speciality</li>
+										<li routerLink="/services">Services</li>
+										<li routerLink="/sectors">Sectors</li>
+									</ul>
+								</li>
+								<li routerLink="/talent-budget"><span>Talent & Budget</span></li>
+								<li routerLink="/project-title">
+									<span>Project Title</span>
+									<ul class="sub-bar" >
+										<li *ngFor="let item of totalTalents;let index = index" routerLink="/talent-preferences">Talent {{index + 1}}</li>
+									</ul>
+								</li>
+							</ul>
+						</aside>
+					</div>
+					<div class="main-cntnt geting-strt top-cntnt">
+						<h5>Post a Job</h5>
+						<div class="prgrs-bar">
+							<span class="prg-perc">0% Completed</span>
+							<mat-progress-bar mode="determinate" value="0"></mat-progress-bar>
+						</div>
+						<!-- <h6>1. Getting Started </h6> -->
+						<form [formGroup]="form">
+							<div class="inside-wrapr">
+								<div class="form-flds">
+									
+									<div class="singl-row">
+										<div class="card main-card">
+											<p class="head-title">How many people do you need for this job?</p>
+											<!-- <mat-radio-group>
+											  <mat-radio-button value="1" class="mr-4">One Talent</mat-radio-button>
+											  <mat-radio-button value="2">Team (Two Talents or more)</mat-radio-button>
+											</mat-radio-group> -->
+											<div class="flds-inside ml-4">
+												<div class="row mb-3">
+													<div class="col-sm-6">
+													    <div class="custom-control custom-radio custm-radio-cs">
+													      	<input type="radio" value="single" (click)="changetalentType('single')" [(ngModel)]="no_of_talent_type" [ngModelOptions]="{standalone: true}" class="custom-control-input" id="customRadio4" name="example2">
+													      	<label class="custom-control-label" for="customRadio4">
+													      		<span>One Talent</span>
+													      	</label>
+													    </div>
+													</div>
+													<div class="col-sm-6">
+														<div class="custom-control custom-radio custm-radio-cs">
+													      <input type="radio" (click)="changetalentType('multiple')" value="multiple" [(ngModel)]="no_of_talent_type" [ngModelOptions]="{standalone: true}" class="custom-control-input" id="customRadio5" name="example2">
+													      <label class="custom-control-label" for="customRadio5">
+													      	<span>Team (Two Talents or more)</span>
+													      </label>
+													    </div>
+													</div>
+												</div>
+												<div class="row" *ngIf="no_of_talent_type=='multiple'">
+													<div class="col-sm-12">
+														<div class="form-group">
+															<label>Specify the No. of Talents</label>
+												        	<input type="text" (keyup)="getTalentVal()"
+ pattern="^[1-9][0-9]*$" required oninput="if(!this.value.match('^[1-9][0-9]*$'))this.value='';" formControlName="total_talents_required" class="form-control"  placeholder="e.g. 4">
+												        	<!-- <input type="text" formControlName="total_talents_required" class="form-control"  value="{{jobDetail.total_talents_required}}" placeholder="e.g. 9"> -->
+												    		<div *ngIf="(form.get('total_talents_required').touched || form.get('total_talents_required').dirty) && form.get('total_talents_required').invalid && form.get('total_talents_required').errors.required" class="invalid-feedback">
+													          *Please enter No. of Talents
+													        </div>
+											    		</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="singl-row team-talent rept1" *ngFor="let item of totalTalents;let index = index" >
+										<div class="card main-card" *ngIf="no_of_talent_type=='multiple'">
+											<p class="head-title">Define Talent {{index + 1}}</p>
+											<div class="flds-inside ml-4">
+												<div class="row">
+													<div class="col-sm-12">
+														<div class="form-group">
+															<label>Talent Postion</label>
+															
+															<select formControlName="talent_position" [(ngModel)]="totalTalents[index].talent_position" class="form-control slct-form {{talent_position ? 'validatn-input' : '' }}"  (change)="changePosition($event)" >
+															<option value="" disabled>Select Talent Position</option>
+
+															<option *ngFor="let position of totalpositions" value="{{ position._id}}">{{position.position}}</option>
+														</select>
+															<div *ngIf="(form.get('talent_position').touched || form.get('talent_position').dirty) && form.get('talent_position').invalid && form.get('talent_position').errors.required" class="invalid-feedback" class="invalid-feedback">
+													          *Please select talent position
+													        </div>
+											    		</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-sm-6">
+														<div class="form-group">
+															<label>Talent Level</label>
+												        	<!-- <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" pattern="[0-9.]+"
+ type="text" class="form-control" [(ngModel)]="totalTalents[index].talent_level" [ngModelOptions]="{standalone: true}" placeholder="e.g. Level 1"> -->
+															<select formControlName="talent_level" [(ngModel)]="totalTalents[index].talent_level" class="form-control"  class="form-control slct-form {{talent_level ? 'validatn-input' : '' }}" (change)="chageTalent($event)">
+															<option value="" disabled>Select Talent Level</option>
+
+															<option *ngFor="let talentLevel of talentLevels" value="{{ talentLevel._id}}">
+																	{{talentLevel.level}}
+																</option>
+															</select>
+															<div *ngIf=" form.get('talent_level').invalid && form.get('talent_level').errors.required" class="invalid-feedback">
+													          *Please select talent level
+													        </div>
+											    		</div>
+													</div>
+													<div class="col-sm-6">
+														<div class="form-group">
+															<label>Members Required</label>
+												        	<input  formControlName="talent_required" pattern="^[1-9][0-9]*$" required oninput="if(!this.value.match('^[1-9][0-9]*$'))this.value='';"
+                                                             type="text" class="form-control" [(ngModel)]="totalTalents[index].talent_required"  placeholder="e.g. 7">
+															<div *ngIf="(form.get('talent_required').touched || form.get('talent_required').dirty) && form.get('talent_required').invalid && form.get('talent_required').errors.required">
+													          *Please enter number
+													        </div>
+											    		</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- <div class="singl-row team-talent rept1">
+										<div class="card main-card">
+											<p class="head-title">Define Talent 1</p>
+											<div class="flds-inside ml-4">
+												<div class="row">
+													<div class="col-sm-12">
+														<div class="form-group">
+															<label>Talent Postion</label>
+												        	<input type="text" class="form-control" placeholder="e.g. Civil Engineer">
+											    		</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-sm-6">
+														<div class="form-group">
+															<label>Talent Level</label>
+												        	<input type="text" class="form-control" placeholder="e.g. Level 1">
+											    		</div>
+													</div>
+													<div class="col-sm-6">
+														<div class="form-group">
+															<label>Members Required</label>
+												        	<input type="text" class="form-control" placeholder="e.g. 7">
+											    		</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="singl-row team-talent rept1">
+										<div class="card main-card">
+											<p class="head-title">Define Talent 1</p>
+											<div class="flds-inside ml-4">
+												<div class="row">
+													<div class="col-sm-12">
+														<div class="form-group">
+															<label>Talent Postion</label>
+												        	<input type="text" class="form-control" placeholder="e.g. Civil Engineer">
+											    		</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-sm-6">
+														<div class="form-group">
+															<label>Talent Level</label>
+												        	<input type="text" class="form-control" placeholder="e.g. Level 1">
+											    		</div>
+													</div>
+													<div class="col-sm-6">
+														<div class="form-group">
+															<label>Members Required</label>
+												        	<input type="text" class="form-control" placeholder="e.g. 7">
+											    		</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="singl-row team-talent rept1">
+										<div class="card main-card">
+											<p class="head-title">Define Talent 1</p>
+											<div class="flds-inside ml-4">
+												<div class="row">
+													<div class="col-sm-12">
+														<div class="form-group">
+															<label>Talent Postion</label>
+												        	<input type="text" class="form-control" placeholder="e.g. Civil Engineer">
+											    		</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-sm-6">
+														<div class="form-group">
+															<label>Talent Level</label>
+												        	<input type="text" class="form-control" placeholder="e.g. Level 1">
+											    		</div>
+													</div>
+													<div class="col-sm-6">
+														<div class="form-group">
+															<label>Members Required</label>
+												        	<input type="text" class="form-control" placeholder="e.g. 7">
+											    		</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div> -->
+								</div>
+							</div>
+							<div class="submit-btn btn-width text-right mt-3">
+								<!-- <a routerLink="/disciplines" class="btn btn_theme_blue my-2 my-sm-0 mr-2">Individual Next</a>
+								<button (click)="createJobPostStep1()"  class="btn btn_theme_blue my-2 my-sm-0 mr-3">Next</button>
+								<!-- <a routerLink="/post-title" class="btn btn_theme_blue my-2 my-sm-0 mr-3">Next</a> -->
+							</div>
+						</form>
+						<div class="inside-footer">
+							<app-footer></app-footer>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</main>

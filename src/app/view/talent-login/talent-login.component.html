@@ -1,0 +1,152 @@
+
+<app-header></app-header>
+<main class="comon_main internal_pages_prnt">
+	<div class="cmn-pading-top">
+		<section class="user-profile user-login d-flex align-items-center">
+			<div class="custom_container">
+				<div class="card_socal">
+					<div class="row align-items-center">
+						<div class="col-sm-12 p-0">
+							<div class="right-part">
+								<div class="txt_card">
+									<h3>Welcome to <span class="blue">CONS<span class="green">T</span>AL</span></h3>
+									<p>We make it easy for everyone to connect with the Talent all around.</p>
+								</div>
+								<div class="input-flds">
+									<form [formGroup]="form">
+										<div class="row">
+											<div class="col-sm-12">
+											      <div class="form-group input-group input-border-green">
+											        <div class="input-group-prepend">
+											          <span class="input-group-text" id="inputGroupPrepend3">
+											          	<img src="assets/imgs/@.png" class="img-fluid">
+											          </span>
+											        </div>
+											        <input oninput="this.value=this.value.trim()"  type="text" formControlName="email" placeholder="Enter Email" class="form-control is-invalid" id="validationServerUsername" value="james_fred@gmail.com" aria-describedby="inputGroupPrepend3">
+													<div *ngIf="(form.get('email').touched || form.get('email').dirty) && form.get('email').invalid && form.get('email').errors.required" class="invalid-feedback">
+														*Please enter Email
+													</div>
+													<div *ngIf="(form.get('email').touched || form.get('email').dirty) && form.get('email').invalid && form.get('email').errors.email" class="invalid-feedback">
+														*Please enter valid email
+													</div>
+													<div *ngIf="(form.get('email').touched || form.get('email').dirty) && form.get('email').invalid && form.get('email').errors.pattern && !form.get('email').errors.email" class="invalid-feedback">
+														*Please enter valid email
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-12">
+											      <div class="form-group input-group input-border-green">
+											        <div class="input-group-prepend">
+											          <span class="input-group-text" id="inputGroupPrepend3">
+											          	<img src="assets/imgs/key.png" class="img-fluid">
+											          </span>
+											        </div>
+													<input formControlName="password" placeholder="Enter Password" class="form-control is-invalid" id="validationServerUsername" [type]="password" aria-describedby="inputGroupPrepend3" value="password">
+													<span class="password-eye green" (click)="onClickEye()">
+														<i class="fa fa-eye" *ngIf="!show"></i>
+														<i class="fa fa-eye-slash" *ngIf="show"></i>
+													</span>
+													<div *ngIf="(form.get('password').touched || form.get('password').dirty) && form.get('password').invalid && form.get('password').errors.required" class="invalid-feedback">
+														*Please enter Password
+													</div>
+											    </div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-12">
+												<div class="check-fld d-flex justify-content-between">
+													<div class="custom-control custom-checkbox">
+												      <input type="checkbox" formControlName="remember_me" class="custom-control-input" id="customCheck" name="example1">
+												      <label  class="custom-control-label" for="customCheck">Remember Me</label>
+													  </div>
+													  <a routerLink="/forgot-password" class="green">Forgot Password?</a>
+												</div>
+											</div>
+										</div>
+										<div class="submit-btn btn-width text-center">
+											<button [disabled]="!form.valid" (click)="login()" class="btn btn_theme_green my-2 my-sm-0 mr-3">
+												
+												<span *ngIf="!isLoading">
+													Login
+												</span>	
+												
+												<span *ngIf="isLoading" class="sp-spinner">
+													<mat-spinner diameter="22"></mat-spinner>
+												</span>
+												
+												
+											</button>
+										</div>
+										<p class="already-acnt text-center">No Account? <span style="cursor: pointer;" routerLink="/signup-talent" class="green">Create one Now</span></p>
+										<p class="text-gray contine-with mb-0 text-center">or login with: 
+											<span style="cursor: pointer;" class="green " (click)="loginWithLinkedIn()"> Linkedin </span>
+											<span style="cursor: pointer;" class="green" (click)="loginWithGoogle()"> Google </span>
+											<!-- <span class="green"> Apple </span> -->
+										</p>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+
+</main>
+
+<app-footer></app-footer>
+
+<!-- modal_restricted -->
+<div class="modal fade restrctd_modal" id="rstrd_mod" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <!-- <h5 class="modal-title" id="exampleModalLongTitle">Access Restricted</h5> -->
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-sm-10">
+                    <div class="modal_srtcd">
+                        <h3>
+                            Your Profile is under Review.
+                        </h3>
+                        <!-- <button class="btn btn btn_theme_green">Log Out</button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- modal_rejected -->
+  <div class="modal fade ops_modal" id="oops_mod" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Sorry!</h5>
+		  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-sm-10">
+                    <div class="modal_oosp">
+                        <h3>
+                            Your profile was not approved. Kindly re-submit your application after 6 months to apply again.
+                        </h3>
+                        <!-- <a class="btn btn btn_theme_green">Update Profile</a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>

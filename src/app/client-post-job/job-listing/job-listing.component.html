@@ -1,0 +1,186 @@
+<app-client-db-header></app-client-db-header>
+<main class="comon_main internal_pages_prnt">
+	<div class="cmn-pading-top cl-dash mrgn-above">
+		<section class="client-search-talent bg-overlay">
+			<div class="d-flex">
+				<!-- <app-filter></app-filter> -->
+				<span class="menu-br" (click)="openNav()"><i class="fas fa-bars"></i></span>
+				<aside class="filter-left sidenav search-left" id="mySidenav">
+					<a class="closebtn" (click)="closeNav()">&times;</a>
+				    <mat-accordion>
+				 
+				        <mat-expansion-panel (opened)="panelOpenState = true"
+				                            (closed)="panelOpenState = false">
+				            <mat-expansion-panel-header>
+				            <mat-panel-title>
+				            visibility
+				            </mat-panel-title>
+				            </mat-expansion-panel-header>
+				            <div class="sub-expension-one">
+				            <div class="sub-expension-inner sub-radio-wrap">
+				            <mat-radio-group aria-label="Select an option" >
+				            <mat-radio-button   value="all"(change)="changeFilter($event)">All</mat-radio-button>
+				            <mat-radio-button  value="constal_talent"   (change)="changeFilter($event)">Constal talent</mat-radio-button>
+				            <mat-radio-button  value="private"  (change)="changeFilter($event)">Private</mat-radio-button>
+				            </mat-radio-group>
+				            </div>
+				            </div>
+				        </mat-expansion-panel>
+				        <mat-expansion-panel (opened)="panelOpenState = true"
+				                            (closed)="panelOpenState = false">
+				            <mat-expansion-panel-header>
+				            <mat-panel-title>
+				            Status
+				            </mat-panel-title>
+				            </mat-expansion-panel-header>
+				            <div class="sub-expension-one">
+				            <div class="sub-expension-inner sub-radio-wrap">
+				            <mat-radio-group aria-label="Select an option">
+				            <mat-radio-button value="all" (change)="changeStatus($event)" >All</mat-radio-button>
+				            <mat-radio-button value="open" (change)="changeStatus($event)">Open</mat-radio-button>
+				            <mat-radio-button value="filled" (change)="changeStatus($event)">Filled</mat-radio-button>
+				            <mat-radio-button value="closed" (change)="changeStatus($event)">Closed</mat-radio-button>
+				            </mat-radio-group>
+				            </div>
+				            </div>
+				        </mat-expansion-panel>
+				        <mat-expansion-panel (opened)="panelOpenState = true"
+				                            (closed)="panelOpenState = false">
+				            <mat-expansion-panel-header>
+				            <mat-panel-title>
+				            Type
+				            </mat-panel-title>
+				            </mat-expansion-panel-header>
+				            <div class="sub-expension-one">
+				            <div class="sub-expension-inner sub-radio-wrap">
+				            <mat-radio-group aria-label="Select an option">
+				            <mat-radio-button  value="all" (change)="changeType($event)">All</mat-radio-button>
+				            <mat-radio-button value="lumpsum" (change)="changeType($event)">Lumpsum</mat-radio-button>
+				            <mat-radio-button value="hourly" (change)="changeType($event)">Hourly</mat-radio-button>
+				            <mat-radio-button value="salary_based" (change)="changeType($event)">Salary Based</mat-radio-button>
+				           
+				            </mat-radio-group>
+				            </div>
+				            </div>
+				        </mat-expansion-panel>
+				    </mat-accordion>
+				</aside>
+
+				<div class="main-cnt-new">
+					<div class="top_data top-cntnt">
+	                    <h5>Post Jobs</h5>
+	                    <small>{{length}} Relevant Jobs Found</small>
+	                </div>
+	                <div class="search d-flex">
+	                    <div class="wrp-search">
+	                        <input type="text" placeholder="Search for Jobs..." id='searchTerm' name='searchTerm' [(ngModel)]='searchTerm'  (input)="onSearchChange($event.target.value)">
+
+	                    </div>
+	                    <div class="post-new">
+	                       <span routerLink='/getting-started'>Post a New Job</span>
+	                    </div>
+	                   
+	                </div>
+	                <div class="with-filters" *ngIf="statusValue||visibilityValue||typeValue">
+	                    <div class="hding">
+	                        Filters Applied
+	                    </div>
+	                    <div class="filter-span" (onchange)="changeFilter($event)">
+							<span class="sp-fil" *ngIf="visibilityValue">{{visibilityValue}}&nbsp;<i class="fa fa-times" (click)="clearVibility($event)"></i></span>
+							<span class="sp-fil" *ngIf="statusValue">{{statusValue}}&nbsp;<i class="fa fa-times" (click)="clearStatus($event)"></i></span>
+							<span class="sp-fil" *ngIf="typeValue">{{typeValue}}&nbsp;<i class="fa fa-times" (click)="clearType($event)"></i></span>
+							                            <span type="submit" class="clear-filter" (click)="clearallfilters($event)">Clear All Filters</span>
+
+	                    </div>
+	                </div>
+	                <div class="list-data" *ngFor="let job of jobDetails;let i =index">
+	                    <div class="d-flex">
+	                        <div class="flex-grow-1">
+	                            <div class="hdr-1 d-flex justify-content-between">
+	                                <div class="data-55"  >
+	                                    <span class="u-name" > {{job.title}}</span>
+	                                    <span class="top-rated" *ngFor="let data of job.job_talents; let i =index;">
+	                                       {{data.talent_pay_type}}
+	                                    </span>
+	                                </div>
+	                                <div class="invite-job d-flex align-items-center" >
+	                                  <!--   <img src="assets/imgs/hrt.png">
+	                                    <img src="assets/imgs/msg.png">
+	                                    -->
+	                                    <span class="invite-btn">
+	                                        <a routerLink="/post-job-list">Invite Talents</a>
+	                                    </span>&nbsp;&nbsp;&nbsp;
+										<span class="invite-btn" *ngIf="job.draft==true" style="
+    min-width: 68px;
+">
+	                                        <a (click)="editJob(job._id,job.job_type)">Draft</a>
+	                                    </span>&nbsp;&nbsp;&nbsp;
+	                                    <span class="dropdown drop-rght2" >
+	                                     	<svg class="dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 526 526"   ><title>hrt</title><circle cx="263" cy="263" r="253.5" fill="none" stroke="#7c9cbf" stroke-width="19"/><circle cx="139.5" cy="267" r="38" fill="#7c9cbf"/><circle cx="268.5" cy="267" r="38" fill="#7c9cbf"/><circle cx="397.5" cy="267" r="38" fill="#7c9cbf"/></svg>
+	                                     	<div class="dropdown-menu dropdown-menu-right mt-3" aria-labelledby="navbarDropdown" >
+									          <a class="dropdown-item" routerLink="/proposal-list">View Proposals</a>
+									          <a class="dropdown-item">Make Private
+											  </a>
+									          <a class="dropdown-item" (click)="viewPosting(job._id,job.job_type)">View Job Posting</a>
+									          <a class="dropdown-item" (click)="reuseJob(job._id)">Reuse Post</a>
+									          <a class="dropdown-item" *ngIf="job.draft==true"   (click)="editJob(job._id,job.job_type)">Edit Posting</a>
+											  									          <a class="dropdown-item" *ngIf="job.status=='open'"   (click)="closejob(job._id)">Close job</a>
+									          <a class="dropdown-item"   *ngIf="job.status=='closed'"  (click)="openjob(job._id)">Open job</a>
+
+									          <a class="dropdown-item" (click)="removeJob(job._id)">Remove Posting</a>
+									        </div>
+	                                    </span>
+	                                </div>
+	                            </div>
+	                            <div class="d-flex opt-data">
+	                                <div>
+								 <span *ngIf="Difference_In_Days==0">
+	                                        Posted Today
+	                                    </span>
+	                                    <span *ngIf="Difference_In_Days!=0">
+	                                        Posted {{Difference_In_Days}} day ago
+	                                    </span>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <div class="desc-p">
+	                       <p>
+	                        {{job.description}}
+	                    </p>
+	                   
+	                    </div>
+	                    <div class="skills" >
+						 <div class="skills-set">
+		                            <span>Skills:</span>
+		                            <span *ngFor="let data of job.job_talents; let i =index;" >
+										<span class="skill-label" *ngFor="let item of data.talent_skills; let i =index;">{{(item?.skill !=null && item?.skill!=undefined)? item.skill:''}},</span>
+	                            <span class="skill-label" *ngFor="let item of data.talent_tool_skills; let i =index;">{{(item?.skill !=null && item?.skill!=undefined)? item.skill:''}}</span>
+									</span>
+		                            
+		                        </div>
+	                       
+	                        
+	                    </div>
+						
+	                </div>
+	              <div *ngIf="noResultfound" class="no-results list-data">
+                <img src="assets/imgs/404-blue.png" class="img-fluid">
+                <h6>No Results Found</h6>
+               </div>
+
+			    <mat-paginator [length]="length" [pageSize]="10"
+                                            [pageSizeOptions]="getPageSizeOptions()"
+                                            (page)="paginationOptionChange($event)">
+                                        </mat-paginator>
+					<div class="inside-footer">
+						<app-footer></app-footer>
+					</div>
+				</div>
+				
+			</div>
+					
+		</section>
+	</div>
+
+</main>

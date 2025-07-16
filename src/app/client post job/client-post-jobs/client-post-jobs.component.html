@@ -1,0 +1,523 @@
+<app-client-db-header></app-client-db-header>
+<main class="comon_main internal_pages_prnt">
+	<div class="cmn-pading-top cl-dash">
+		<section class="client-search-talent">
+			<div class="d-flex">
+				<!-- <app-filter></app-filter> -->
+				<aside class="filter-left">
+					<mat-accordion>
+						<mat-expansion-panel (opened)="panelOpenState = true"
+											 (closed)="panelOpenState = false">
+						  <mat-expansion-panel-header>
+							<mat-panel-title>
+								Categories
+							</mat-panel-title>
+							
+						  </mat-expansion-panel-header>
+						  <div class="sub-expension-one">
+							<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+									<mat-expansion-panel-header>
+									  <mat-panel-title>
+										 Disciplines
+									  </mat-panel-title>
+									</mat-expansion-panel-header>
+									<div class="sub-expension-inner">
+									<mat-radio-group name="discipline" [(ngModel)]="discipline" 
+									 (change)="changeFilter($event)">
+									<mat-radio-button name="discipline"*ngFor="let discipline of disciplines" [value]="discipline">{{discipline.discipline}}</mat-radio-button>
+								
+									</mat-radio-group>
+									</div>
+							  </mat-expansion-panel>
+							   <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+									<mat-expansion-panel-header>
+									  <mat-panel-title>
+										 Speciality
+									  </mat-panel-title>
+									</mat-expansion-panel-header>
+									<div class="sub-expension-inner">
+									
+									<ul>
+									  <li *ngFor="let speciality of specialities; let i=index">
+										<mat-checkbox [(ngModel)]="speciality.checked"
+										[checked]="speciality.specialities" 
+										[(value)]="speciality"
+										(change)="changeSpeciality($event)">
+										  {{speciality.name}}
+										</mat-checkbox>
+									  </li>
+									</ul>
+										
+									</div>
+							  </mat-expansion-panel>
+
+
+							  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+									<mat-expansion-panel-header>
+									  <mat-panel-title>
+										 Services
+									  </mat-panel-title>
+									</mat-expansion-panel-header>
+									<div class="sub-expension-inner">
+									
+									<ul>
+									  <li *ngFor="let services of traditionalServices; let i=index">
+										<mat-checkbox [(ngModel)]="services.checked"
+										[checked]="services.traditionalServices" 
+										[(value)]="services"
+										(change)="changeServices($event)">
+										  {{services.name}}
+										</mat-checkbox>
+									  </li>
+									    <li *ngFor="let services of digitalServices; let i=index">
+										<mat-checkbox [(ngModel)]="services.checked"
+										[checked]="services.digitalServices" 
+										[(value)]="services"
+										(change)="changeServices($event)">
+										  {{services.name}}
+										</mat-checkbox>
+									  </li>
+									</ul>
+										
+									</div>
+									<div class="sub-expension-inner">
+										<mat-radio-group name="services" [(ngModel)]="services" 
+									 (change)="changeFilter($event)">
+									
+									</mat-radio-group>
+									</div>
+							  </mat-expansion-panel>
+							 
+						  </div>
+						</mat-expansion-panel>
+						<!--  -->
+						<mat-expansion-panel (opened)="panelOpenState = true"
+						(closed)="panelOpenState = false">
+						<mat-expansion-panel-header>
+						<mat-panel-title>
+						  Expertise
+						</mat-panel-title>
+				  
+						</mat-expansion-panel-header>
+						<div class="sub-expension-one">
+						<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+						<mat-expansion-panel-header>
+						<mat-panel-title>
+						  Skills
+						</mat-panel-title>
+						</mat-expansion-panel-header>
+						<div class="sub-expension-inner">
+									
+									<ul>
+									  <li *ngFor="let skills of industryKnowledgeSkills; let i=index">
+										<mat-checkbox [(ngModel)]="skills.checked"
+										[checked]="skills.industryKnowledgeSkills" 
+										[(value)]="skills"
+										(change)="changeSkill($event)">
+										  {{skills.skill}}
+										</mat-checkbox>
+									  </li>
+									   <li *ngFor="let skills of interpersonalSkills; let i=index">
+										<mat-checkbox [(ngModel)]="skills.checked"
+										[checked]="skills.interpersonalSkills" 
+										[(value)]="skills"
+										(change)="changeSkill($event)">
+										  {{skills.skill}}
+										</mat-checkbox>
+									  </li>
+									  
+									</ul>
+										
+									</div>
+						</mat-expansion-panel>
+						<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+						<mat-expansion-panel-header>
+						<mat-panel-title>
+						  Tools & Technologies
+						</mat-panel-title>
+						</mat-expansion-panel-header>
+						<div class="sub-expension-inner">
+						<ul>
+										<li *ngFor="let techskills of technologySkills; let i=index">
+										<mat-checkbox [(ngModel)]="techskills.checked"
+										[checked]="techskills.technologySkills" 
+										[(value)]="techskills"
+										(change)="changeTechSkill($event)">
+										  {{techskills.skill}}
+										</mat-checkbox>
+									  </li>						
+						 
+						  </ul>
+						</div>
+						</mat-expansion-panel>
+						 <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+									<mat-expansion-panel-header>
+									  <mat-panel-title>
+										 Sector
+									  </mat-panel-title>
+									</mat-expansion-panel-header>
+								<div class="sub-expension-inner">
+									
+									<ul>
+									  <li *ngFor="let sectors of allSectors; let i=index">
+										<mat-checkbox [(ngModel)]="sectors.checked"
+										[checked]="sectors.allSectors" 
+										[(value)]="sectors"
+										(change)="changeSector($event)">
+										  {{sectors.name}}
+										</mat-checkbox>
+									  </li>
+									</ul>
+										
+									</div>
+							  </mat-expansion-panel>
+						<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+						<mat-expansion-panel-header>
+						<mat-panel-title>
+						  Talent Level
+						</mat-panel-title>
+						</mat-expansion-panel-header>
+							      <div class="sub-expension-inner">
+									
+									<ul>
+									  <li *ngFor="let talent of talentList; let i=index">
+										<mat-checkbox [(ngModel)]="talent.checked"
+										[checked]="talent.talentList" 
+										[(value)]="talent"
+										(change)="changeTalent($event)">
+										  {{talent.level}}
+										</mat-checkbox>
+									  </li>
+									</ul>
+										
+									</div>
+						</mat-expansion-panel>
+						<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+						  <mat-expansion-panel-header>
+						  <mat-panel-title>
+							English Level
+						  </mat-panel-title>
+						  </mat-expansion-panel-header>
+						 <div class="sub-expension-inner">
+									
+									<ul>
+									  <li *ngFor="let proficiency of proficiency; let i=index">
+										<mat-checkbox [(ngModel)]="proficiency.checked"
+										[checked]="proficiency.proficiency" 
+										[(value)]="proficiency"
+										(change)="changeProficiency($event)">
+										  {{proficiency.value}}
+										</mat-checkbox>
+									  </li>
+									</ul>
+										
+									</div>
+						</mat-expansion-panel>
+						<mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+						  <mat-expansion-panel-header>
+						  <mat-panel-title>
+							Other Languages
+						  </mat-panel-title>
+						  </mat-expansion-panel-header>
+						 	<div class="sub-expension-inner">
+									
+									<ul>
+									  <li *ngFor="let language of AllLanguage; let i=index">
+										<mat-checkbox [(ngModel)]="language.checked"
+										[checked]="language.AllLanguage" 
+										[(value)]="language"
+										(change)="changeLanguage($event)">
+										  {{language.name}}
+										</mat-checkbox>
+									  </li>
+									</ul>
+										
+									</div>
+						</mat-expansion-panel>
+				  
+				  
+				  
+						</div>
+						</mat-expansion-panel>
+						<!--  -->
+					     <mat-expansion-panel (opened)="panelOpenState = true"
+      (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+      <mat-panel-title>
+        Budget & Timeline
+      </mat-panel-title>
+
+      </mat-expansion-panel-header>
+       <div class="sub-expension-one">
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+      <mat-panel-title>
+        Payment Type
+      </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="sub-expension-inner">
+        <mat-checkbox class="example-margin hr-rate">Hourly Rate</mat-checkbox>
+        <div>
+          <div class="rang-slidr" id="slide-rng-3">
+ <ngx-slider [value]="paymentValue" [options]="paymentOption" (mouseup)="paymentRange($event)"   [(ngModel)]="paymentValue"
+></ngx-slider>           </div>
+        </div>
+        <mat-checkbox class="example-margin mb-0">Salary Based</mat-checkbox>
+        <div class="form-group">
+          <input type="" name="" class="form-control">
+        </div>
+        <mat-checkbox class="example-margin mb-0">Lumpsum</mat-checkbox>
+        <div class="form-group">
+          <input type="" name="" class="form-control">
+        </div>
+        
+       
+
+      </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+      <mat-panel-title>
+        TimeLIne
+      </mat-panel-title>
+      </mat-expansion-panel-header>
+  <div class="sub-expension-inner">
+        <mat-checkbox class="example-margin hr-rate">Average hrs/week 
+          </mat-checkbox>
+        <div class="rang-slidr" id="slide-rng-3">
+<ngx-slider [value]="timeValue" [options]="timeOption" (mouseup)="timeRange($event)"   [(ngModel)]="timeValue"></ngx-slider>        </div>
+        <mat-checkbox class="example-margin mb-0">When Expected to Start</mat-checkbox>
+        <div class="form-group custm-datepickr">
+            <mat-form-field appearance="fill">
+                <mat-label>Choose a date</mat-label>
+                <input matInput [matDatepicker]="picker">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </div>
+      </div>
+      </mat-expansion-panel>
+      </div>
+      </mat-expansion-panel>
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+             KPI
+          </mat-panel-title>
+          
+        </mat-expansion-panel-header>
+        <div class="sub-expension-one">
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      Job Success Score
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <div class="sub-expension-inner">
+                      <mat-checkbox class="example-margin">Any Job Score</mat-checkbox>
+                      <mat-checkbox class="example-margin">30% & up</mat-checkbox>
+                      <mat-checkbox class="example-margin">80% up</mat-checkbox>
+                      <mat-checkbox class="example-margin">95% & up</mat-checkbox>
+                  </div>
+            </mat-expansion-panel>
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      Earned Amount
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <div class="sub-expension-inner">
+                      <mat-checkbox class="example-margin">Any Amount Earned</mat-checkbox>
+                      <mat-checkbox class="example-margin">$100 + Earned</mat-checkbox>
+                      <mat-checkbox class="example-margin">$1K + Earned</mat-checkbox>
+                      <mat-checkbox class="example-margin">$10K + Earned</mat-checkbox>
+                      
+                  </div>
+            </mat-expansion-panel>
+        </div>
+      </mat-expansion-panel> 
+    
+      
+  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Talent Type
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="sub-expension-inner sub-expension-one">
+                  <mat-checkbox class="example-margin">Talents</mat-checkbox>
+                  <mat-checkbox class="example-margin">Talents & Agencies</mat-checkbox>
+                  <mat-checkbox class="example-margin">Agencies</mat-checkbox>
+              </div>
+      </mat-expansion-panel>
+					</mat-accordion>
+				  </aside>
+				<div class="main-cnt-new">
+					<div class="top_data">
+	                    <h5>Search Talent</h5>
+	                    <small>19,706 Relevant Talents Found</small>
+	                </div>
+	                <div class="search d-flex">
+	                    <div class="search-label">
+	                        <span>Search</span>
+	                        <span>Invited Talents(2)</span>
+	                        <span>My Hires(6)</span>
+	                        <span>Saved(9)</span>
+	                    </div>
+	                    <div class="wrp-search">
+	                        <input type="text" placeholder="Search for Talent..." id='searchTerm' name='searchTerm' [(ngModel)]='searchTerm'  (input)="onSearchChange($event.target.value)">
+	                    </div>
+	                </div>
+	               <div class="with-filters">
+                        <div class="hding">
+                            Filters Applied
+                        </div>
+                        <div class="filter-span" (onchange)="changeFilter($event)">
+						    
+							<span class="sp-fil" *ngIf="disciplineValue">{{disciplineValue}}&nbsp;<i class="fa fa-times" (click)="closeFilter($event)"></i></span>
+						 	<span class="sp-fil"  *ngFor="let speciality of specialityValue">{{speciality}}&nbsp;<i class="fa fa-times" (click)="closeFilter($event)"></i></span>
+							<span class="sp-fil"  *ngFor="let service of serviceValue">{{service}}&nbsp;<i class="fa fa-times" (click)="closeFilter($event)"></i></span>
+							<span class="sp-fil"  *ngFor="let sector of sectorValue">{{sector}}&nbsp;<i class="fa fa-times" (click)="closeFilter($event)"></i></span>
+							<span class="sp-fil"  *ngFor="let skill of skillValue">{{skill}}&nbsp;<i class="fa fa-times" (click)="closeFilter($event)"></i></span>
+							<span class="sp-fil"  *ngFor="let techSkill of techSkillValue">{{techSkill}}&nbsp;<i class="fa fa-times" (click)="closeFilter($event)"></i></span>
+							<span class="sp-fil"  *ngFor="let talent of talentValue">{{talent}}&nbsp;<i class="fa fa-times" (click)="closeFilter($event)"></i></span>
+							<span class="sp-fil"  *ngFor="let profiency of profValue">{{profiency}}&nbsp;<i class="fa fa-times" (click)="closeFilter($event)"></i></span>
+							<span class="sp-fil"  *ngFor="let language of languageValue">{{language}}&nbsp;<i class="fa fa-times" (click)="closeFilter($event)"></i></span>
+
+
+                            <span type="submit" class="clear-filter" (click)="clearallfilters($event)">Clear All Filters</span>
+                        </div>
+                    </div>
+	                <a routerLink="/view-talent-profile">
+		                <div  class="list-data" *ngFor="let item of jobDetails ">
+		                    <div class="d-flex">
+		                        <div class="img-wrap">
+		                            <img class="" src="assets/imgs/userr.png">
+		                        </div>
+		                        <div class="data-info flex-grow-1" >
+		                            <div class="hdr-1 d-flex justify-content-between">
+		                                <div class="data-55">
+		                                    <span class="u-name"  >{{item.first_name + " " + item.last_name}} </span>
+		                                    <span class="top-rated">
+		                                       <img src="assets/imgs/star-line.png"> &nbsp;Top Rated
+		                                    </span>
+		                                </div>
+		                                <div class="invite-job d-flex">
+		                                    <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 529 529"><defs><style>.cls-1{fill:none;stroke:#7c9cbf;stroke-width:18px;}.cls-2{fill:#7c9cbf;}</style></defs><title>hrt55</title><circle class="cls-1" cx="264.5" cy="264.5" r="255.5"/><path class="cls-2" d="M370.39,182.68A61,61,0,0,0,324,161.77c-25.39,0-41.46,15.16-50.47,27.88a92.46,92.46,0,0,0-6,9.72,92.46,92.46,0,0,0-6-9.72c-9-12.72-25.08-27.88-50.47-27.88a61,61,0,0,0-46.42,20.91C153.27,195.54,147,212.77,147,231.19c0,20,7.83,38.69,24.63,58.68,15,17.86,36.63,36.28,61.65,57.6,9.33,7.94,19,16.16,29.23,25.14l.31.27a7.05,7.05,0,0,0,9.3,0l.31-.27c10.26-9,19.9-17.2,29.23-25.14,25-21.32,46.63-39.74,61.65-57.6,16.8-20,24.63-38.64,24.63-58.68C388,212.77,381.73,195.54,370.39,182.68Zm-77.86,154c-8,6.85-16.31,13.9-25,21.48-8.72-7.58-17-14.63-25-21.48-49-41.73-81.32-69.3-81.32-105.53,0-15,5-28.9,14-39.18A47.13,47.13,0,0,1,211,175.88c19.35,0,31.87,11.93,38.95,21.93a83.61,83.61,0,0,1,10.81,21.49,7.06,7.06,0,0,0,13.42,0A83.61,83.61,0,0,1,285,197.81c7.08-10,19.6-21.93,39-21.93A47.13,47.13,0,0,1,359.8,192c9.06,10.28,14.05,24.2,14.05,39.18C373.85,267.42,341.5,295,292.53,336.72Z" transform="translate(-3 -3.7)"/></svg>
+		                                   <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 529 529"><defs><style>.cls-1{fill:none;stroke:#7c9cbf;stroke-width:18px;}.cls-2{fill:#7c9cbf;}</style></defs><title>chat-new</title><circle class="cls-1" cx="264.5" cy="264.5" r="255.5"/><path class="cls-2" d="M268,160c-.06.05-.17.05-.35.05A105.43,105.43,0,0,0,185,331.2l-15.37,35.7a5.73,5.73,0,0,0,3,7.55,5.88,5.88,0,0,0,3.28.4l56.37-9.9a101.76,101.76,0,0,0,35.13,6.1A105.51,105.51,0,0,0,268,160Zm-.58,199.56a92.31,92.31,0,0,1-32.53-5.93,5.57,5.57,0,0,0-3-.29l-47.44,8.29,12.55-29.19a5.79,5.79,0,0,0-.92-6,91.88,91.88,0,0,1-16-26.61,94,94,0,1,1,181.54-34.77v.34A94.26,94.26,0,0,1,267.41,359.59Z" transform="translate(-3 -2.97)"/><path class="cls-2" d="M262.92,244.49H231.83a5.76,5.76,0,0,0,0,11.52h31.09a5.76,5.76,0,1,0,0-11.52Z" transform="translate(-3 -2.97)"/><path class="cls-2" d="M303.23,273.28h-71.4a5.76,5.76,0,0,0,0,11.52h71.4a5.76,5.76,0,0,0,0-11.52Z" transform="translate(-3 -2.97)"/></svg>
+		                                  <!--   <img src="assets/imgs/hrt.png">
+		                                    <img src="assets/imgs/msg.png">
+		                                    -->
+		                                    <span class="invite-btn">
+		                                        <a routerLink="/invite-for-interview">Invite for a Job</a>
+		                                    </span>
+		                                </div>
+		                            </div>
+		                            <div class="stts">
+		                                <img src="assets/imgs/online.png"> Online
+		                            </div>
+		                            <div class="desig">
+		                             {{  item.role}}
+		                            </div>
+		                            <div class="d-flex opt-data">
+		                                <div>
+		                                    <span>
+		                                        Location
+		                                    </span>
+		                                    <span>
+												{{((item.city !=null && item.city!=undefined)? item.city.name+',':'' ) + " " +((item.country !=null && item.country!=undefined)? item.country.name:'') }} 
+		                                    </span>
+		                                </div>
+		                                <div>
+		                                    <span>
+		                                        Rate/Hour
+		                                    </span>
+		                                    <span>
+		                                        $15.00/hrs
+		                                    </span>
+		                                </div>
+		                                <div>
+		                                    <span>
+		                                        Total Earnings
+		                                    </span>
+		                                    <span>
+		                                        $10K +
+		                                    </span>
+		                                </div>
+		                                <div class="flex-grow-1"> 
+		                                    <div class="pull-left loader-wrap">
+		                                        <div class="loader-per ">
+		                                       
+		                                        </div>
+		                                        <span class="loader-val">{{item.complete_profile_percent }}%</span>
+		                                    </div>
+		                                   
+		                                     <span class="pull-left">
+		                                        Job Success
+		                                    </span>
+		                                </div>
+		                            </div>
+		                        </div>
+		                    </div>
+		                    <div class="desc-p">
+		                        <p>
+		                            Industrial designer with more than 15 years of sport footwear design background (Crocs, Reebok, Merrell, Timberland,
+		                            Quiksilver, DC Shoes, Pony, Fila and Kappa in Argentina).
+		                        </p>
+		                       
+		                    </div>
+		                    <div class="skills">
+		                        <div class="skills-set">
+		                            <span>Skills:</span>
+		                            <span *ngFor="let data of item.talent_skills;" >
+										<span *ngFor='let skills of data.industrial_knowledge_skills; let i =index;'>{{(skills?.skill!=undefined)? skills.skill:''}}</span>
+										<span *ngFor='let skills of data.interpersonal_skills; let i =index;'>{{(skills?.skill !=null && skills?.skill!=undefined)? skills.skill:''}}</span>
+										<span *ngFor='let skills of data.soft_skills; let i =index;'>{{(skills?.skill !=null && skills?.skill!=undefined)? skills.skill:''}},</span>
+										<span *ngFor='let skills of data.talent_interpersonal_skills; let i =index;'>{{(skills?.skill !=null && skills?.skill!=undefined)? skills.skill:''}}</span>
+										<span *ngFor='let skills of data.talent_technologies_skills; let i =index;'>{{(skills?.skill !=null && skills?.skill!=undefined)? skills.skill:''}}</span>
+										<span *ngFor='let skills of data.talent_top_skills;let i =index;'>{{(skills?.skill !=null && skills?.skill!=undefined)? skills.skill:''}}</span>
+
+										<span *ngFor='let skills of data.talent_industry_knowledge_skills;'>{{(skills?.skill !=null && skills?.skill!=undefined)? skills.skill:''}}</span>
+									</span>
+		                            
+		                        </div>
+		                        <div class="last-data flex-grow-1">
+		                            <img src="assets/imgs/arb.png">
+		                            <span class="">Previous Employer:</span>
+		                            
+		                        </div>
+		                    </div>
+		                </div>
+						
+						<div *ngIf="noResultfound" class="no-results list-data">
+                <img src="assets/imgs/404-blue.png" class="img-fluid">
+                <h6>No Results Found</h6>
+               </div>
+	            	</a>
+					<button type="button" [disabled] = "btnDisabled" (click)=onPrevious($event)>Previous</button>
+					<button type="button" [disabled] = "btnDisabled" (click)=onNext($event)>Next</button>
+					<mat-paginator 
+					[length]='totalLength'
+					 [pageSize]="itemsPerPage"
+					 [pageSizeOptions]="[5, 10, 20]" 
+					 (page) = " onPageChange($event)"
+					 showFirstLastButtons>
+					</mat-paginator>
+					<!-- <pagination-controls (pageChange)="loadAgents($event)" id="server" ></pagination-controls>	            	<!-- <div *ngFor=" -->
+				
+						<!-- paginate: { itemsPerPage: 10, currentPage: page , totalItem: totalLength}" >
+				<p></p> -->
+				<!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
+			<!-- </div>  -->
+					<div class="inside-footer">
+						<app-footer></app-footer>
+					</div>
+				</div>
+				
+			</div>
+			
+		</section>
+	</div>
+
+</main>

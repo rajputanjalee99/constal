@@ -1,0 +1,67 @@
+<app-talent-header></app-talent-header>
+
+<main class="comon_main internal_pages_prnt">
+	<div class="cmn-pading-top">
+		<section class="talent-profile">
+			<div class="d-flex">
+				<app-talent-sidebar></app-talent-sidebar>
+				<div class="main-cntnt geting-strt">
+					<div class="top-cntnt">
+						<h5>Talent Admission</h5>
+						<div class="prgrs-bar bar-green" *ngIf="service.sideBarHeight">
+							<span class="prg-perc">{{service.sideBarHeight}}% Completed</span>
+    						<mat-progress-bar mode="determinate" value="{{service.sideBarHeight}}"></mat-progress-bar>
+						</div>
+						<p class="mb-2"><strong>{{discipline_name}} - </strong> What are you specialized in?</p>
+					</div>
+					<div class="inside-wrapr card main-card">
+						<div class="speciality-list">
+                            <div class="row">
+                                <div class="col-sm-10 pr-0">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" (keyup.enter)="addSpeciality()" [(ngModel)]="speciality_name" placeholder="Add Speciality...">
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <a class="btn btn_theme_green" (click)="addSpeciality()" >Add</a>
+                                </div>
+                            </div>
+                            <ul class="servc-listng">
+                                <!-- <li *ngFor="let item of specialities;let ind = index">
+                                    <div class="custom-control custom-radio custm-radio-cs">
+                                        <input type="radio" class="custom-control-input" id="customRadio{{ind}}" (click)="chooseSpeciality(item._id)" [(ngModel)]="speciality" [ngModelOptions]="{standalone: true}" value="{{item.name}}">
+                                        <label class="custom-control-label" for="customRadio{{ind}}">{{ item.name }}
+                                        </label>
+                                    </div>
+                                </li> -->
+								<li *ngFor="let item of specialities;let ind = index" class="d-flex justify-content-between spc-hover">
+									<div class="custom-control custom-checkbox">
+										<input type="checkbox" (change)="onCheckboxChangeSpeciality($event,item)" class="custom-control-input" id="customCheck{{ind}}"
+										[(ngModel)]="item.flag" name="{{item.name}}">
+										<label class="custom-control-label" for="customCheck{{ind}}">{{ item.name }} </label>
+									</div>
+									<span *ngIf="item.talent_user_id && item.talent_user_id==service.profile._id" (click)="deleteSpeciality(item._id)"><i class="fas fa-trash"></i></span>
+								</li>
+                            </ul>
+                        </div>
+					</div>
+					<div *ngIf="isLoading" class="uploader-status" id="spin">
+						<mat-spinner diameter="30"></mat-spinner>
+					</div>
+					<!-- <div class="uploader-status" id="spin">
+						<mat-spinner diameter="30"></mat-spinner>
+					</div> -->
+					<div class="submit-btn btn-width d-flex justify-content-between mt-3">
+						<a routerLink="/choose-discipline" class="btn btn_theme_black my-2 my-sm-0">Back</a>
+						<a (click)="addTalentSpeciality()" class="btn btn_theme_green my-2 my-sm-0">Next</a>
+					</div>
+					<div class="inside-footer">
+						<app-footer></app-footer>
+					</div>
+				</div>
+				<app-talent-right-sidebar></app-talent-right-sidebar>
+			</div>
+		</section>
+	</div>
+</main>
+

@@ -1,0 +1,103 @@
+<app-client-header></app-client-header>
+
+<main class="comon_main internal_pages_prnt">
+	<div class="cmn-pading-top">
+		<section class="talent-profile client_post_job">
+			<div class="d-flex">
+				<app-client-left-sidebar-guest></app-client-left-sidebar-guest>
+				<div class="main-cntnt geting-strt full_wdii">
+					<div class="top-cntnt">
+						<h5>Post Job</h5>
+						<div class="prgrs-bar">
+							<span class="prg-perc">10% Completed</span>
+							<mat-progress-bar mode="determinate" value="10"></mat-progress-bar>
+						</div>
+						<!-- <h6>1.2 Pick your Speciality based on your Discipline</h6> -->
+					</div>
+					<div >
+
+
+						<form  >
+						
+							<div class="inside-wrapr card main-card">
+
+								<!-- <div class="tag-input">
+                                        <input type="text" class="form-control" (keyup.enter)="addSpeciality()" [(ngModel)]="speciality_name" [ngModelOptions]="{standalone: true}" name="speciality" #speciality="ngModel" placeholder="Add Speciality...">
+								</div>
+								<div class="pre-pills">
+									<p>Choose the suitable speciality for {{disName}}</p>
+									<ul class="">
+										<li *ngFor="let item of specialities; let ind = index" class="{{ selectedSpecialities.includes(item._id) ? 'selected' : '' }}">
+                                                            
+                                                            
+                                            
+                                                            
+                                                            <span *ngIf="!selectedSpecialities.includes(item._id)" (click)="chooseSpeciality(item._id)">
+											{{item.name}}
+                                                                <i class="fas fa-plus"></i>
+                                                            </span>
+
+                                                            <span *ngIf="selectedSpecialities.includes(item._id)" (click)="removeSpeciality(item._id)">
+											{{item.name}}
+                                                                <i class="fas fa-check"></i>
+                                                            </span>
+
+																		 <span class="cross-icn" *ngIf="item.is_approved_by_admin==false" (click)="deleteSpeciality(item._id)"><i class="fas fa-times"></i></span>
+
+										</li>
+									</ul>
+								</div> -->
+
+								<!-- -------------------- speciality---------------------------- -->
+
+
+								<div class="speciality-list">
+		                            <div class="row">
+		                                <div class="col-sm-10 pr-0">
+		                                    <div class="form-group">
+                                        <input type="text" class="form-control"  [(ngModel)]="speciality_name" [ngModelOptions]="{standalone: true}" name="speciality" #speciality="ngModel" placeholder="Add Speciality...">
+		                                    </div>
+		                                </div>
+		                                <div class="col-sm-2">
+		                                    <a class="btn btn_theme_blue" (click)="addSpeciality()">Add</a>
+		                                </div>
+		                            </div>
+		                            <ul class="servc-listng">
+		                               <li *ngFor="let item of specialities; let index=index;" class="d-flex justify-content-between spc-hover">
+
+									<div class="custom-control custom-checkbox">
+
+										<input type="checkbox" (change)="onCheckboxChangeSpeciality($event,item)" class="custom-control-input"id="customCheck{{index}}"
+										[(ngModel)]="item.flag" name="{{item.name}}">
+										<label class="custom-control-label" for="customCheck{{index}}">{{ item.name }} </label>
+
+									</div>
+																	<span *ngIf=" item.session_id" (click)="deleteSpeciality(item._id)"><i class="fas fa-trash"></i></span>
+
+								</li>
+
+		                            </ul>
+		                        </div>
+
+
+								<!-- -------------------- speciality---------------------------- -->
+
+							</div>
+							<div class="submit-btn btn-width d-flex justify-content-between mt-3">
+								<a routerLink="/discipline-guest" class="btn btn_theme_black my-2 my-sm-0">Back</a>
+								<!-- <a routerLink="/services" class="btn btn_theme_blue my-2 my-sm-0">Next</a> -->
+								<a (click)="saveTalentDetails()" class="btn btn_theme_blue my-2 my-sm-0" *ngIf="selectedSpecialities.length">Next</a>
+							</div>
+							<div class="inside-footer">
+								<app-footer></app-footer>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			
+		</section>
+	</div>
+
+</main>
+

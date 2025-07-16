@@ -1,0 +1,168 @@
+
+<app-talent-db-header></app-talent-db-header>
+<main class="comon_main internal_pages_prnt">
+	<div class="cmn-pading-top cl-dash mrgn-above">
+		<section class="contact-info">
+			<div class="d-flex">
+				<app-talent-settings-sidebar></app-talent-settings-sidebar>
+				<div class="main-wrapr">
+          <div class="top-cntnt">
+					  <h5 class="mb-3">Identity Verification</h5>
+            </div>
+	                <div class="info-card">
+	                	<header class="verify-id d-flex justify-content-between align-items-center">
+	                		<h6 class="mb-0">Verify your identity</h6>
+	                		<a class="btn btn_theme_green" data-toggle="modal" data-target="#identity">Get Started</a>
+	                	</header>
+	                	<div class="cntnt-insid">
+	                		<div class="singl-rw div-width">
+	                			<h6>1. ID document verification</h6>
+	                			<p class="txt-lght">Upload an official government ID to verify your profile information. Your ID
+								will never be shared with clients. <span class="green_text">Learn more.</span> </p>
+	                		</div>
+		                	<div class="singl-rw div-width">
+	                			<h6>2. Visual verification</h6>
+	                			<p class="txt-lght">Take a selfie with your camera which matches the picture on your ID.
+								<span class="green_text">Learn more.</span> </p>
+	                		</div>
+	                	</div>
+	                </div>
+					<div class="inside-footer">
+						<app-footer></app-footer>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</main>
+
+<!-- identity modals-->
+<div class="modal fade add-service" id="identity" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Identity Verification</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="verificationForm">
+            <div class="row">
+                <div class="col-sm-10">
+	                <div class="form-group">
+	                    <label>First Name</label>
+	                    <input type="text" formControlName="first_name" class="form-control" placeholder="First Name as it appears on your ID">
+                      <div *ngIf="(verificationForm.get('first_name').touched || verificationForm.get('first_name').dirty) && verificationForm.get('first_name').invalid && verificationForm.get('first_name').errors.required" class="invalid-feedback">
+                        *Please enter first name
+                      </div>
+                    </div>
+	            </div>
+                <div class="col-sm-10">
+	                <div class="form-group">
+	                    <label>Last Name</label>
+	                    <input type="text" formControlName="last_name" class="form-control" placeholder="Last Name as it appears on your ID">
+                      <div *ngIf="(verificationForm.get('last_name').touched || verificationForm.get('last_name').dirty) && verificationForm.get('last_name').invalid && verificationForm.get('last_name').errors.required" class="invalid-feedback">
+                        *Please enter last name
+                      </div>
+                    </div>
+	            </div>
+	            <div class="col-sm-10">
+	            	<div class="form-group custm-datepickr">
+                        <label>Date of Birth</label>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Choose a date</mat-label>
+                            <input formControlName="dob" matInput [matDatepicker]="picker">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                        <div *ngIf="(verificationForm.get('dob').touched || verificationForm.get('dob').dirty) && verificationForm.get('dob').invalid && verificationForm.get('dob').errors.required" class="invalid-feedback">
+                        *Please choose DOB
+                        </div>
+                    </div>
+	            </div>
+	            <div class="col-sm-10">
+                    <div class="form-group">
+                        <label>Country Issuing ID</label>
+                         <!-- <ngx-select-dropdown></ngx-select-dropdown> -->
+                         <select name="" id="" class="form-control" formControlName="country_issuing_id">
+                            <option value="">Choose</option>
+                            <option *ngFor="let cou of countries_list;" value="{{ cou.name }}"> {{ cou.name }} </option>
+                         </select>
+                         <div *ngIf="(verificationForm.get('first_name').touched || verificationForm.get('first_name').dirty) && verificationForm.get('first_name').invalid && verificationForm.get('first_name').errors.required" class="invalid-feedback">
+                          *Please choose Country Issuing ID
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-10">
+                    <div class="form-group">
+                        <label>Government Issued Photo ID</label>
+                         <select name="" id="" class="form-control" formControlName="government_issue_photo_id">
+                            <option value="">Choose</option>  
+                            <option value="Driving License">Driving License</option>
+                            <option value="Passwort">Passport</option>
+                            <option value="other">Other</option>
+                         </select>
+                         <div *ngIf="(verificationForm.get('first_name').touched || verificationForm.get('first_name').dirty) && verificationForm.get('first_name').invalid && verificationForm.get('first_name').errors.required" class="invalid-feedback">
+                          *Please select Government Issued Photo ID
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button"  class="btn btn_modal_black" data-dismiss="modal">Back</button>
+          <button type="button" [disabled]="!verificationForm.valid" class="btn btn_modal_green" data-dismiss="modal" data-toggle="modal" data-target="#uploadImg">Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="modal fade add-service identity-modl" id="uploadImg" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Upload the Image of your ID</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-sm-10">
+	                <div class="form-group">
+                        <!-- <label>Upload Graduation Statement and Documents*</label> -->
+                        <div class="custm-dropzone">
+                            <ngx-dropzone (change)="onSelect($event)" [multiple]="false" [accept]="'image/jpeg,image/jpg,image/png'">
+                                <ngx-dropzone-label>
+                                    <img src="assets/imgs/cloud-computing.png" class="img-fluid">
+                                    <p>Upload photos</p>
+                                </ngx-dropzone-label>
+                                <ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+                                    <ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+                                </ngx-dropzone-preview>
+                            </ngx-dropzone>
+                        </div>
+                    </div>
+	            </div>
+                <div class="col-sm-10">
+	                <div class="upload-chk">
+	                	<h6>Upload Checklist</h6>
+	                	<p class="txt-lght">Before uploading your ID image, check for the following:</p>
+	                	<ul>
+	                		<li><img src="assets/imgs/tick-green.png" class="img-fluid"> The photo is not blurry.</li>
+	                		<li><img src="assets/imgs/tick-green.png" class="img-fluid"> There is a border area around your ID and all four corners are visible.</li>
+	                		<li><img src="assets/imgs/tick-green.png" class="img-fluid"> The image hasn't been edited in any way.</li>
+	                	</ul>
+	                </div>
+	            </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn_modal_black" data-dismiss="modal">Back</button>
+          <button type="button" (click)="sendVerification()" class="btn btn_modal_green">Upload</button>
+        </div>
+      </div>
+    </div>
+  </div>

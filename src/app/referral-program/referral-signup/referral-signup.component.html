@@ -1,0 +1,242 @@
+<app-referral-header></app-referral-header>
+
+<main class="comon_main internal_pages_prnt">
+	<div class="cmn-pading-top">
+		<section class="user-profile user-login referral-signup">
+			<div class="container">
+				<div class="crd-mainn">
+					<div class="txt_card">
+						<h3>The CONSTAL Referral Partners Program</h3>
+						<p>If you know great companies who could benefit from CONSTAL's services, you can now earn money while helping them grow their business.</p>
+					</div>
+					<div class="refrl-steps text-center">
+						<div class="row">
+							<div class="col-sm-4">
+								<div class="singl-stp">
+									<span class="stp-no">1</span>
+									<p>Sign up to become a CONSTAL Referral Partner below</p>
+								</div>
+							</div>
+							<div class="col-sm-4 cntr-bordr">
+								<div class="singl-stp">
+									<span class="stp-no">2</span>
+									<p>Refer Clients and/or Talents</p>
+								</div>
+							</div>
+							<div class="col-sm-4">
+								<div class="singl-stp">
+									<span class="stp-no">3</span>
+									<p>Earn 3% when a CLIENT completes his first Job</p>
+									<p>Earn 1.5% when a TALENT completes his first Job</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="signup-form">
+						<div class="row justify-content-center">
+							<div class="col-sm-7">
+								<div class="input-flds right-part">
+									<form [formGroup]="form">
+										<div class="row">
+											<div class="col-sm-12">
+												<!-- <div class="form-group">
+		                                            <label>Email Address* <small class="smal_blu">(Use @myconstal.com)</small></label>
+		                                            <input type="text" class="form-control" placeholder="Enter your Email Address">
+		                                        </div> --><label><small class="text-orange">(Use @myconstal.com)</small></label>
+		                                        <div class="form-group input-group input-border-gold">
+		                                        	
+											        <div class="input-group-prepend">
+											          <span class="input-group-text" id="inputGroupPrepend3">
+											          	<img src="assets/imgs/@.png" class="img-fluid">
+											          </span>
+											        </div>
+											        <!-- <input type="text" class="form-control is-invalid" id="validationServerUsername" value="james_fred@gmail.com" aria-describedby="inputGroupPrepend3"> -->
+													<input oninput="this.value=this.value.trim()" type="text" class="form-control is-invalid" formControlName="email" placeholder="Email Address">
+													<div *ngIf="(form.get('email').touched || form.get('email').dirty) && form.get('email').invalid && form.get('email').errors.required" class="invalid-feedback">
+														*Please enter Email
+													</div>
+													<div *ngIf="(form.get('email').touched || form.get('email').dirty) && form.get('email').invalid && form.get('email').errors.email" class="invalid-feedback">
+														*Please enter valid email
+													</div>
+													<div *ngIf="(form.get('email').touched || form.get('email').dirty) && form.get('email').invalid && form.get('email').errors.pattern && !form.get('email').errors.email" class="invalid-feedback">
+														*Please enter valid email
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-12">
+												<div class="form-group input-group input-border-gold">
+											        <div class="input-group-prepend">
+											          <span class="input-group-text" id="inputGroupPrepend3">
+											          	<img src="assets/imgs/user.png" class="img-fluid">
+											          </span>
+											        </div>
+											        <!-- <input type="text" class="form-control is-invalid" id="validationServerUsername" placeholder="Full name" aria-describedby="inputGroupPrepend3" required> -->
+											        <input pattern="[a-zA-Z ]*$" type="text" class="form-control is-invalid" formControlName="full_name" placeholder="Full name">
+													<div *ngIf="(form.get('full_name').touched || form.get('full_name').dirty) && form.get('full_name').invalid && form.get('full_name').errors.required" class="invalid-feedback">
+													*Please enter Full Name
+													</div>
+													<div *ngIf="(form.get('full_name').touched || form.get('full_name').dirty) && form.get('full_name').invalid && form.get('full_name').errors.pattern" class="invalid-feedback">
+													*Please enter Valid Full Name
+													</div>
+													<div *ngIf="form.get('full_name').valid && form.hasError('whitespace')" class="invalid-feedback">
+													*Please enter Valid Full Name
+													</div>
+													<!-- <div class="invalid-feedback">
+											          *Please enter First Name
+											        </div> -->
+											    </div>
+											</div>
+											<div class="col-sm-12">
+											    <div class="form-group input-group input-border-gold">
+											        <div class="input-group-prepend">
+											          <span class="input-group-text" id="inputGroupPrepend3">
+											          	<img src="assets/imgs/key-gray.png" class="img-fluid">
+											          </span>
+											        </div>
+											        <!-- <input type="password" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3" placeholder="Enter Password"> -->
+													<input [type]="password" class="form-control is-invalid" (keyup)="changePassword()" formControlName="password" placeholder="Enter Password">
+													<!-- <span class="password-eye"><i class="fa fa-eye"></i></span> -->
+													<span class="password-eye active" (click)="onClickEye()">
+														<i class="fa fa-eye" *ngIf="!show"></i>
+														<i class="fa fa-eye-slash" *ngIf="show"></i>
+													</span>
+													<div *ngIf="(form.get('password').touched || form.get('password').dirty) && form.get('password').invalid && form.get('password').errors.required" class="invalid-feedback">
+														*Please enter Password
+													</div>
+													<div *ngIf="(form.get('password').touched || form.get('password').dirty) && form.get('password').invalid && form.get('password').errors.minlength" class="invalid-feedback">
+														*Minimum 8 character is required
+													</div>
+													<div *ngIf="(form.get('password').touched || form.get('password').dirty) && password_status" class="invalid-feedback">
+														{{ password_status }} password
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-12">
+											      <div class="form-group input-group input-border-gold">
+											        <div class="input-group-prepend">
+											          <span class="input-group-text" id="inputGroupPrepend3">
+											          	<img src="assets/imgs/key-gray.png" class="img-fluid">
+											          </span>
+											        </div>
+											        <!-- <input type="password" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3" placeholder="Confirm Password"> -->
+													<input [type]="password1" class="form-control is-invalid" (keyup)="changePassword()" formControlName="confirm_password" placeholder="Confirm Password">
+													<!-- <span class="password-eye"><i class="fa fa-eye"></i></span> -->
+													<span class="password-eye active" (click)="onClickEye1()">
+														<i class="fa fa-eye" *ngIf="!show1"></i>
+														<i class="fa fa-eye-slash" *ngIf="show1"></i>
+													</span>
+													<div *ngIf="(form.get('confirm_password').touched || form.get('confirm_password').dirty) && form.get('confirm_password').invalid && form.get('confirm_password').errors.required" class="invalid-feedback">
+														*Please enter Password
+													</div>
+													<div *ngIf="(form.get('confirm_password').touched || form.get('confirm_password').dirty) && form.get('confirm_password').invalid && form.get('confirm_password').errors.minlength" class="invalid-feedback">
+														*Minimum 8 character is required
+													</div>
+													<div *ngIf="(form.get('confirm_password').touched || form.get('confirm_password').dirty) && password_status" class="invalid-feedback">
+														{{ password_status }} password
+													</div>
+													<div *ngIf="form.hasError('notSame')" class="invalid-feedback">
+														Password not same
+													</div>
+													<!-- <mat-error *ngIf="form.hasError('notSame')">
+														Passwords do not match
+													</mat-error>  -->
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-12">
+												<div class="check-fld refer-checkbx">
+													<div class="custom-control custom-checkbox">
+												      <input type="checkbox" formControlName="terms" class="custom-control-input" id="customCheck" name="example1">
+												      
+													  <label class="custom-control-label" for="customCheck"></label> clicking this box, you accept the CONSTAL Referral Partners <span class="gold_text"><a routerLink="/referral-terms" class="gold_text" target="_blank">Terms and Conditions</a></span> & <span class="gold_text"><a class="gold_text" target="_blank" routerLink="/referral-policy">Privacy Policy</a></span>
+													  <div style="color: #dc3545;" *ngIf="(form.get('terms').touched) && form.get('terms').errors" >
+														*Please accept our terms
+													  </div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="submit-btn text-center">
+											<!-- <a routerLink="/referral-apply" class="btn btn_theme_green btn_referal my-2 my-sm-0">Partner with CONSTAL</a> -->
+											<button (click)="checkRegisterReferral()" [disabled]="!form.valid" class="btn btn_theme_green btn_referal my-2 my-sm-0">Partner with CONSTAL</button>
+										</div>
+										<p class="alrdy-acnt">Already have an account? <span><a class="gold_text" routerLink="/referral-login">Login from here</a></span></p>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- <div class="row justify-content-center align-items-center">
+						<div class="col-sm-5">
+							<div class="refrl-steps text-center">
+								<div class="singl-stp">
+									<span class="stp-no">1</span>
+									<p>Sign up to become a CONSTAL Referral Partner below.</p>
+								</div>
+								<div class="singl-stp">
+									<span class="stp-no">2</span>
+									<p>Refer CLIENTS of TALENT via the unique generated links.</p>
+								</div>
+								<div class="singl-stp">
+									<span class="stp-no">3</span>
+									<p>Earn 1.5% when a TALENT completes his first Job</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="right-part">
+								<div class="input-flds">
+									<form>
+										<div class="row">
+											<div class="col-sm-12">
+												<div class="form-group">
+                                                    <label>Email Address</label>
+                                                    <input type="text" class="form-control" placeholder="Enter your Email Address">
+                                                </div>
+											</div>
+											<div class="col-sm-12">
+												<div class="form-group">
+                                                    <label>Full Name</label>
+                                                    <input type="text" class="form-control" placeholder="Enter your full name">
+                                                </div>
+											</div>
+											<div class="col-sm-12">
+												<div class="form-group">
+                                                    <label>Password</label>
+                                                    <input type="password" class="form-control" placeholder="Enter Password">
+                                                </div>
+											</div>
+											<div class="col-sm-12">
+												<div class="form-group">
+                                                    <label>Confirm Password</label>
+                                                    <input type="password" class="form-control" placeholder="Confirm Password">
+                                                </div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-12">
+												<div class="check-fld">
+													<div class="custom-control custom-checkbox">
+												      <input type="checkbox" class="custom-control-input" id="customCheck" name="example1">
+												      <label class="custom-control-label" for="customCheck">By clicking this box, you accept the CONSTAL Referral Partners <span class="green">Terms and Conditions</span></label>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="submit-btn text-center">
+											<a routerLink="/referral-apply" class="btn btn_theme_green my-2 my-sm-0">Join CONSTAL</a>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div> -->
+				</div>
+			</div>
+		</section>
+	</div>
+
+</main>
+
+<app-footer></app-footer>

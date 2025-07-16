@@ -1,0 +1,53 @@
+<header class="main_header internal_pages_header client_header talent_header">
+	<div class="custom_container">
+		<nav class="navbar navbar-expand-lg navbar-light">
+		  	<a class="navbar-brand logo_hedr" href="#">
+		  		<img src="assets/imgs/Constal.png" class="img-fluid" alt="Constal" />
+		  	</a>
+		  	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		    	<span class="navbar-toggler-icon"></span>
+		  	</button>
+
+		  	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			    <ul class="navbar-nav ml-auto rgt_header_btns top-srch-drop justify-content-end align-items-center">
+			    	<!-- <li class="nav-item srch-input my-2 my-sm-0 position-relative">
+			    		<input type="text" class="form-control" placeholder="Search something here...">
+			    		<img src="assets/imgs/loupe.png" class="img-fluid" alt="search" />
+			    	</li>
+			      	<li class="nav-item notify-dropdwn dropdown">
+			      		<a class="notify-icn my-2 my-sm-0 position-relative dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			      			<img src="assets/imgs/Notification-green.png" class="img-fluid" alt="notification" />
+			      		</a>
+						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item">No New Notifications</a>
+					  	</div>
+				    </li> -->
+					<li *ngIf="profile && profile.role == 'talent' && profile.is_profile_submitted_to_admin" >
+						<div class="">
+							<a routerLink="/view-talent-profile/{{ talent_details._id }}" class="">See Public View</a>
+						</div>
+					</li>
+			      	<li class="nav-item dropdown">
+				      	<a class="prof-img my-2 my-sm-0  dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				      		<img *ngIf="!talent_details || !talent_details.image || talent_details.image=='undefined'" src="assets/imgs/no-image.png" class="img-fluid" alt="" />
+				      		<img *ngIf="talent_details && talent_details.image && talent_details.image!='undefined'" src="{{ talent_details.image }}" class="img-fluid" alt="" id="pro-img-header" />
+				      		<span *ngIf="!talent_details">Hi! Samantha</span>
+							<span *ngIf="talent_details && talent_details.first_name">Hi! {{ talent_details.first_name }}</span>
+							<!-- <span>
+								&nbsp;&nbsp;<i class="fad fa-power-off fa-lg" (click)="logout()"></i>
+							</span> -->
+				      	</a>
+						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+							<!-- <a class="dropdown-item" routerLink="/my-profile">My Profile</a>
+							  <a class="dropdown-item" routerLink="/password-security">Change Password</a>
+							  <a class="dropdown-item" routerLink="/contact-info">Settings</a> -->
+							  <a *ngIf="talent_details && talent_details.is_profile_submitted_to_admin==false" class="dropdown-item" routerLink="/choose-discipline">Talent Admission</a>
+							  <a class="dropdown-item" *ngIf="profile && profile.role == 'talent' && profile.admin_profile_status == 'accepted'" routerLink="/my-profile">My Profile</a>
+							  <a class="dropdown-item" (click)="logout()">Logout</a>
+					  	</div>
+			      	</li>
+			    </ul>
+		  	</div>
+		</nav>
+	</div>
+</header>

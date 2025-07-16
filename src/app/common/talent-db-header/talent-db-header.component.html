@@ -1,0 +1,173 @@
+<div class="header_wrp_main main_header comn-header internal_pages_header client_header talent_header">
+	
+	<header class="top-header">
+		<div class="custom_container">
+		<nav class="navbar navbar-expand-lg navbar-light">
+		  	<a class="navbar-brand logo_hedr" href="#">
+		  		<img src="assets/imgs/Constal.png" class="img-fluid" alt="Constal" />
+		  	</a>
+		  	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		    	<span class="navbar-toggler-icon"></span>
+		  	</button>
+
+		  	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		  		<div class="sub-header hdr-hide">
+				    <div class="custom_container">
+				        <nav class="navbar navbar-expand-lg navbar-light align-items-center">
+				            
+				            <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				                <span class="navbar-toggler-icon"></span>
+				            </button> -->
+
+				            <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent"> -->
+				                
+				                <ul class="navbar-nav mr-auto justify-content-center">
+				                    <li class="nav-item">
+				                        <a class="nav-link" routerLink="/talent-dashboard"><label class="nav_labl">Dashboard</label></a>
+				                    </li>
+				                    <li class="nav-item dropdown">
+				                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><label class="nav_labl">Find Work </label></a>
+				                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								          <a class="dropdown-item">Saved Jobs</a>
+								          <a class="dropdown-item">Proposals</a>
+								          <a class="dropdown-item" routerLink="/my-profile">Profile</a>
+								          <a class="dropdown-item" href="#">My Status</a>
+								          <a class="dropdown-item" href="#">Readliness Test</a>
+								        </div>
+				                    </li>
+				                    
+				                    <li class="nav-item">
+				                         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><label class="nav_labl">My Jobs </label></a>
+				                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								          <a class="dropdown-item">Active Jobs</a>
+								          <a class="dropdown-item">All Contracts</a>
+								        </div>
+				                    </li>
+				                    <li class="nav-item">
+				                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><label class="nav_labl">Reports </label></a>
+				                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								          <a class="dropdown-item" href="#">Overview</a>
+								          <a class="dropdown-item" href="#">My Reports</a>
+								          <a class="dropdown-item" href="#">Lifetime Billings by Client</a>
+								          <a class="dropdown-item" href="#">Connects History</a>
+								        </div>
+				                    </li>
+				                    <li class="nav-item">
+				                        <a class="nav-link"><label class="nav_labl">Message</label></a>
+				                    </li>
+				                </ul>
+				                
+				                
+				            <!-- </div> -->
+				        </nav>
+				    </div>
+				</div>
+			    <ul class="navbar-nav ml-auto rgt_header_btns usr-prof justify-content-end align-items-center">
+			    	<!-- <li class="nav-item srch-input my-2 my-sm-0 position-relative">
+			    		<input type="text" class="form-control" placeholder="Search something here...">
+			    		<img src="assets/imgs/loupe.png" class="img-fluid" alt="search" />
+			    	</li>
+			      	<li class="nav-item notify-dropdwn dropdown">
+			      		<a class="notify-icn my-2 my-sm-0 position-relative dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			      			<img src="assets/imgs/Notification-green.png" class="img-fluid" alt="notification" />
+			      		</a>
+						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item">No New Notifications</a>
+						</div>
+				     </li> -->
+			      	<li class="nav-item">
+				      	<a class="prof-img my-2 my-sm-0 dropdown-toggle navbarDropdown-cl" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				      		<!-- <img src="assets/imgs/header-prof.png" class="img-fluid" alt="notification" /> -->
+							<img *ngIf="!talent_details || !talent_details.image || talent_details.image=='undefined'" src="assets/imgs/no-image.png" class="img-fluid 11" alt="" />
+							<img *ngIf="talent_details && talent_details.image && talent_details.image!='undefined'" src="{{ talent_details.image }}" class="img-fluid 22" alt="" />
+				      		<!-- <span>Hi! Samantha</span>	 -->
+							<span *ngIf="!talent_details || !talent_details.first_name">Hi!</span>
+							<span *ngIf="talent_details && talent_details.first_name">Hi! {{ talent_details.first_name }}</span>
+				      	</a>
+						<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+							  <!-- <a class="dropdown-item" routerLink="/my-profile">My Profile</a>
+								<a class="dropdown-item" routerLink="/password-security">Change Password</a>
+								<a class="dropdown-item" routerLink="/contact-info">Settings</a> -->
+								<a class="dropdown-item" routerLink="/profile-settings">Profile Settings</a>
+								<a class="dropdown-item" (click)="logout()">Logout</a>
+						</div>
+			      	</li>
+
+
+
+					<!-- <li class="nav-item">
+						<a class="prof-img my-2 my-sm-0">
+							<img *ngIf="!talent_details " src="assets/imgs/no-image.png" class="img-fluid" alt="" />
+							<img *ngIf="talent_details" src="{{ talent_details.image }}" class="img-fluid" alt="" />
+							<span *ngIf="!talent_details">Hi! Samantha</span>
+							<span *ngIf="talent_details && talent_details.first_name">Hi! {{ talent_details.first_name }}</span>
+							<span>
+							  &nbsp;&nbsp;<i class="fad fa-power-off fa-lg" (click)="logout()"></i>
+							</span>
+						</a>
+					</li> -->
+			    </ul>
+
+		  	</div>
+		</nav>
+	</div>
+	</header>
+	<div class="sub-header outr-header">
+	    <div class="custom_container">
+	        <nav class="navbar navbar-expand-lg navbar-light align-items-center">
+	            
+	            <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	                <span class="navbar-toggler-icon"></span>
+	            </button> -->
+
+	            <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent"> -->
+	                
+	                <ul class="navbar-nav mr-auto justify-content-center">
+	                    <li class="nav-item">
+	                        <a class="nav-link" routerLink="/talent-dashboard"><label class="nav_labl">Dashboard</label></a>
+	                    </li>
+	                    <li class="nav-item dropdown">
+	                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><label class="nav_labl">Find Work </label></a>
+	                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					          <a class="dropdown-item">Saved Jobs</a>
+					          <a class="dropdown-item">Proposals</a>
+					          <a class="dropdown-item" routerLink="/my-profile">Profile</a>
+					          <a class="dropdown-item" href="#">My Status</a>
+					          <a class="dropdown-item" href="#">Readliness Test</a>
+					        </div>
+	                    </li>
+	                    
+	                    <li class="nav-item">
+	                         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><label class="nav_labl">My Jobs </label></a>
+	                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					          <a class="dropdown-item">Active Jobs</a>
+					          <a class="dropdown-item">All Contracts</a>
+					        </div>
+	                    </li>
+	                    <li class="nav-item">
+	                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><label class="nav_labl">Reports </label></a>
+	                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					          <a class="dropdown-item" href="#">Overview</a>
+					          <a class="dropdown-item" href="#">My Reports</a>
+					          <a class="dropdown-item" href="#">Lifetime Billings by Client</a>
+					          <a class="dropdown-item" href="#">Connects History</a>
+					        </div>
+	                    </li>
+	                    <li class="nav-item">
+	                        <a class="nav-link"><label class="nav_labl">Message</label></a>
+	                    </li>
+	                </ul>
+	                
+	                
+	            <!-- </div> -->
+	        </nav>
+	    </div>
+	</div>
+</div>
+
+
+
+
+
+
+

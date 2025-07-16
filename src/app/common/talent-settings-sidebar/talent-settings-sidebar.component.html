@@ -1,0 +1,58 @@
+<span class="menu-br" (click)="openNav()"><i class="fas fa-bars"></i></span>
+
+<aside class="talent-settings-sidebar sidenav" id="mySidenav">
+	<a class="closebtn" (click)="closeNav()">&times;</a>
+
+	<div class="settngs-wrp">
+		<!-- <div class="optns-wrap mb-4">
+			<h6>Billing</h6>
+			<ul class="list_optns">
+				<li class="active" routerLink="/getting-started"><span>Billing Methods</span></li>
+			</ul>
+		</div> -->
+		<div class="optns-wrap">
+			<h6>User Settings </h6>
+			<ul class="list_optns">
+				<!-- <li class="pointers-none"><span>Membership & Cointals</span></li> -->
+				<li routerLink="/contact-info" class="{{ activeModule == 'contact_info' ? 'active green_text' : '' }}"><span>Contact Info</span></li>
+				<!-- <li class="pointers-none"><span>Tax Information</span></li> -->
+				<!-- <li routerLink="/my-profile" class="{{ activeModule == 'my_profile' ? 'active green_text' : '' }}"><span>My Profile</span></li> -->
+				<!-- <li class="{{ activeModule == 'profile_setting' ? '' : '' }}" routerLink="/profile-settings"></li> -->
+				<li class="{{ activeModule == 'profile_setting' ? '' : '' }}">
+					<div class="accordion prfile-acrdian" id="accordionExample">
+					<div class="collapsed">
+						<div class="" id="headingOne" data-toggle="collapse" data-target="#collapseOneSide" aria-expanded="true" aria-controls="collapseOneSide">
+						<!-- <h2 class="mb-0"> -->
+							<a class="heading-tl" >
+								<span>My Profile</span>
+							</a>
+							<span class="arrow-acr"><i class="fas fa-chevron-up"></i></span>
+						<!-- </h2> -->
+						</div>
+
+						<div id="collapseOneSide" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+						<div class="" onclick="return false">
+							<div class="inside-optns-wrap mt-3">
+								<ul class="list_optns">
+									<li class="{{ tab == 0 ? 'active' : '' }}" routerLink="/my-profile" (click)="goToTab(0)"><span>Categories & Skills</span></li>
+									<li class="{{ tab == 1 ? 'active' : '' }}" routerLink="/my-profile" (click)="goToTab(1)"><span>Qualifications</span></li>
+									<li class="{{ tab == 2 ? 'active' : '' }}" routerLink="/my-profile" (click)="goToTab(2)"><span>Accomplishments</span></li>
+									<li class="{{ tab == 3 ? 'active' : '' }}" routerLink="/my-profile" (click)="goToTab(3)"><span>Experience</span></li>
+									<li class="{{ tab == 4 ? 'active' : '' }}" routerLink="/my-profile" (click)="goToTab(4)"><span>Visibility & Preferences</span></li>
+									<li class="{{ tab == 5 ? 'active' : '' }}" routerLink="/my-profile" (click)="goToTab(5)"><span>Profile Details</span></li>
+								</ul>
+							</div>
+						</div>
+						</div>
+					</div>
+					</div>	
+				</li>
+				<!-- <li class="pointers-none"><span>Get Paid</span></li> -->
+				<!-- <li class="pointers-none"><span>Connected Services</span></li> -->
+				<li routerLink="/password-security" class="{{ activeModule == 'password_security' ? 'active green_text' : '' }}"><span>Password & Security</span></li>
+				<!-- <li routerLink="/identify-verification"><span>Identity Verification</span></li> -->
+				<!-- <li class="pointers-none" routerLink="/notification-settings"><span>Notification Settings</span></li> -->
+			</ul>
+		</div>
+	</div>
+</aside>

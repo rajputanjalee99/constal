@@ -1,0 +1,157 @@
+<app-talent-header></app-talent-header>
+
+<main class="comon_main internal_pages_prnt">
+	<div class="cmn-pading-top">
+    	<section class="talent-profile">
+    		<div class="d-flex">
+    			<app-talent-sidebar></app-talent-sidebar>
+    			<div class="main-cntnt geting-strt">
+    				<div class="top-cntnt">
+    					<h5>Talent Admission</h5>
+    					<div class="prgrs-bar bar-green" *ngIf="service.sideBarHeight">
+							<span class="prg-perc">{{service.sideBarHeight}}% Completed</span>
+    						<mat-progress-bar mode="determinate" value="{{service.sideBarHeight}}"></mat-progress-bar>
+    					</div>
+    				</div>
+    				<div class="inside-wrapr">
+                        <div class="main-tabs cmn-card-tabs">
+                            <mat-tab-group #tabGroup animationDuration="0ms" [selectedIndex]="activeIndex" (selectedTabChange)="onTabChange($event)">
+                                <mat-tab label="Industry Knowledge" disabled>
+                                    <div class="inside-wrapr singl-row card skills-mrgn">
+                                        <mat-tab-group animationDuration="0ms" *ngIf="industry_list.length" #childTabs [selectedIndex]="activeIndex2" (selectedTabChange)="onTabChange2($event)">
+                                            <mat-tab *ngFor="let industry_data of industry_list;let i = index" label="{{industry_data.speciality_data.name}}">
+                                                <div class="tag-input">
+                                                    <label>Please press "Enter" once you finish typing your skill</label>
+                                                    <tag-input (keyup.enter)="addIndustry(industry_data.speciality_data._id)" [(ngModel)]="industry_knowledge_add" name="industry" #industry="ngModel"></tag-input>
+                                                </div>
+                                                <div class="pre-pills mt-4">
+                                                    <ul class="">
+                                                        <li *ngFor="let item of industry_data.skills;let ind = index" class="{{ selected_industry.includes(item._id) ? 'selected' : '' }}">
+                                                            
+                                                            <span class=" my-2 my-sm-0" *ngIf="!selected_industry.includes(item._id)" (click)="chooseIndustry(item._id)">
+                                                                <a>{{ item.skill }} </a>
+                                                            </span>
+                                                            <span class="cross-icn" *ngIf="item.talent_user_id && item.talent_user_id==service.profile._id" (click)="deleteSkill(item._id)"><i class="fas fa-times"></i></span>
+                                                            <span class=" my-2 my-sm-0" *ngIf="selected_industry.includes(item._id)" (click)="removeIndustry(item._id)">
+                                                                <a>{{ item.skill }} </a>
+                                                            </span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </mat-tab>
+                                            <!-- <mat-tab label="Speciality 2">
+                                                <div class="tag-input">
+                                                    <label>Please press "Enter" once you finish typing your skill</label>
+                                                    <tag-input (keyup.enter)="addIndustry()" [(ngModel)]="industry_knowledge_add" name="industry" #industry="ngModel"></tag-input>
+                                                </div>
+                                                <div class="pre-pills">
+                                                    <ul class="">
+                                                        <li  *ngFor="let item of industry_list;let ind = index" class="{{ selected_industry.includes(item.id) ? 'selected' : '' }}">
+                                                            <span *ngIf="!selected_industry.includes(item.id)" (click)="chooseIndustry(item.id)">
+                                                                {{ item.skill }} 
+                                                                <i class="fas fa-plus"></i>
+                                                            </span>
+                                                            <span *ngIf="selected_industry.includes(item.id)" (click)="removeIndustry(item.id)">
+                                                                {{ item.skill }} 
+                                                                <i class="fas fa-check"></i>
+                                                            </span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </mat-tab> -->
+                                        </mat-tab-group>
+                                    </div>
+                                    <div class="submit-btn btn-width d-flex justify-content-between mt-3">
+                                        <a routerLink="/qualifications" class="btn btn_theme_black my-2 my-sm-0">Back</a>
+                                        <button class="btn btn_theme_green my-2 my-sm-0" [disabled]= "!selected_industry.length && !industry_knowledge_add.length"  (click)="tabGroup.selectedIndex=1">Next</button>
+                                    </div>
+                                </mat-tab>
+                                <mat-tab label="Tools & Technologies" disabled>
+                                    <div class="inside-wrapr singl-row card">
+                                        <mat-tab-group animationDuration="0ms" *ngIf="tools_list.length" #childTabs [selectedIndex]="activeIndex2" (selectedTabChange)="onTabChange2($event)">
+                                            <mat-tab *ngFor="let tools_data of tools_list;let i = index" label="{{tools_data.speciality_data.name}}" >
+                                                <div class="tag-input">
+                                                    <label>Please press "Enter" once you finish typing your skill</label>
+                                                    <tag-input (keyup.enter)="addTool(tools_data.speciality_data._id)" [(ngModel)]="tools_add" name="tools" #tools="ngModel"></tag-input>
+                                                </div>
+                                                <div class="pre-pills mt-4">
+                                                    <ul class="">
+                                                        <li  *ngFor="let item of tools_data.skills;let ind = index" class="{{ selected_tools.includes(item._id) ? 'selected' : '' }}">
+                                                            <span class=" my-2 my-sm-0" *ngIf="!selected_tools.includes(item._id)" (click)="chooseTool(item._id)">
+                                                               <a> {{ item.skill }} </a>
+                                                            </span>
+                                                            <span class="cross-icn" *ngIf="item.talent_user_id && item.talent_user_id==service.profile._id" (click)="deleteSkill(item._id)"><i class="fas fa-times"></i></span>
+                                                            <span class=" my-2 my-sm-0"  *ngIf="selected_tools.includes(item._id)" (click)="removeTools(item._id)">
+                                                               <a> {{ item.skill }} </a>
+                                                            </span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </mat-tab>
+                                        </mat-tab-group>   
+                                    </div>
+                                    <div class="submit-btn btn-width d-flex justify-content-between mt-3">
+                                        <a (click)="tabGroup.selectedIndex=0" class="btn btn_theme_black my-2 my-sm-0">Back</a>
+                                        <button class="btn btn_theme_green my-2 my-sm-0" [disabled]= "!selected_tools.length && !tools_add.length" (click)="tabGroup.selectedIndex=2">Next</button>
+                                    </div>
+                                </mat-tab>
+                                <mat-tab label="Interpersonal Skills" disabled>
+                                    <div class="inside-wrapr singl-row card">
+                                        <!-- <mat-tab-group animationDuration="0ms" *ngIf="interpersonal_skill_list.length">
+                                            <mat-tab *ngFor="let interpersonal_skill_data of interpersonal_skill_list;let i = index" label="{{interpersonal_skill_data.speciality_data.name}}">
+                                                <div class="tag-input">
+                                                    <label>Please press "Enter" once you finish typing your skill</label>
+                                                    <tag-input (keyup.enter)="addInterpersonal(interpersonal_skill_data.speciality_data._id)" [(ngModel)]="interpersonal_skill_add" name="skills" #skills="ngModel"></tag-input>
+                                                </div>
+                                                <div class="pre-pills">
+                                                    <ul class="">
+                                                        <li *ngFor="let item of interpersonal_skill_data.skills;let ind = index" class="{{ selected_interpersonal_skill.includes(item._id) ? 'selected' : '' }}">
+                                                            <span *ngIf="!selected_interpersonal_skill.includes(item._id)" (click)="chooseInterSkills(item._id)">
+                                                                {{ item.skill }} 
+                                                                <i class="fas fa-plus"></i>
+                                                            </span>
+                                                            <span *ngIf="selected_interpersonal_skill.includes(item._id)" (click)="removeInterSkills(item._id)">
+                                                                {{ item.skill }} 
+                                                                <i class="fas fa-check"></i>
+                                                            </span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </mat-tab>
+                                        </mat-tab-group>   -->
+                                        <div class="tag-input">
+                                            <label>Please press "Enter" once you finish typing your skill</label>
+                                            <tag-input (keyup.enter)="addInterpersonal()" [(ngModel)]="interpersonal_skill_add" name="skills" #skills="ngModel"></tag-input>
+                                        </div>
+                                        <div class="pre-pills mt-4">
+                                            <ul class="">
+                                                <li *ngFor="let item of interpersonal_skill_list;let ind = index" class="{{ selected_interpersonal_skill.includes(item.id) ? 'selected' : '' }}">
+                                                    <span class=" my-2 my-sm-0" *ngIf="!selected_interpersonal_skill.includes(item.id)" (click)="chooseInterSkills(item.id)">
+                                                       <a> {{ item.skill }} </a>
+                                                    </span>
+                                                    <span class="cross-icn" *ngIf="item.talent_user_id && item.talent_user_id==service.profile._id" (click)="deleteSkill(item.id)"><i class="fas fa-times"></i></span>
+                                                    <span class=" my-2 my-sm-0" *ngIf="selected_interpersonal_skill.includes(item.id)" (click)="removeInterSkills(item.id)">
+                                                       <a> {{ item.skill }} </a>
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="submit-btn btn-width d-flex justify-content-between mt-3">
+                                        <a (click)="tabGroup.selectedIndex=1" class="btn btn_theme_black my-2 my-sm-0">Back</a>
+                                        <button class="btn btn_theme_green my-2 my-sm-0" [disabled]= "!selected_interpersonal_skill.length && !interpersonal_skill_add.length" (click)="postSkillsData()">Next</button>
+                                    </div>
+                                </mat-tab>
+                            </mat-tab-group>
+                        </div>                        
+    				</div>
+    				<div class="inside-footer">
+    					<app-footer></app-footer>
+    				</div>
+    			</div>
+    			<!-- <app-talent-right-sidebar></app-talent-right-sidebar> -->
+    		</div>
+    	</section>
+    </div>
+</main>
+

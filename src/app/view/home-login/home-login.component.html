@@ -1,0 +1,36 @@
+<app-header></app-header>
+
+<main class="comon_main internal_pages_prnt">
+	<div class="cmn-pading-top">
+		<section class="signup_social_main">
+			<particles [params]="myParams" [style]="myStyle"></particles>
+			<div class="custom_container">
+				<div class="card_socal text-center">
+						<div class="txt_card">
+							<h3>Get your <span class="blue">CONSTAL</span> Account</h3>
+							<p>We make it easy for everyone to connect with the Talent all around.</p>
+						</div>
+						<ul class="none unstyled_ul">
+							<li>
+								<a  class="btn_coomn_click lnkd"><img src="assets/imgs/linkedin.svg" class="img-fluid" /> Sign in with Linkedin</a>
+							</li>
+							<li>
+								<a class="btn_coomn_click googl" (click)="loginWithGoogle()" ><img src="assets/imgs/google.svg" class="img-fluid" /> Sign in with Google</a>
+							</li>
+							<li>
+								<a class="btn_coomn_click appl"><img src="assets/imgs/apple.svg" class="img-fluid" /> Sign in with Apple</a>
+							</li>
+							<li class="or_li position-relative">
+								<span>OR</span>
+							</li>
+							<li>
+								<a routerLink="/user-login" class="btn_coomn_click emal"><img src="assets/imgs/email.svg" class="img-fluid" /> Sign in with Email</a>
+							</li>
+						</ul>
+				</div>
+			</div>
+		</section>
+	</div>
+</main>
+
+<app-footer></app-footer>

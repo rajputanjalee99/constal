@@ -1,0 +1,152 @@
+<app-referral-header></app-referral-header>
+
+<main class="comon_main internal_pages_prnt">
+	<div class="cmn-pading-top">
+		<section class="user-profile user-login referral-signup">
+			<div class="custom_container">
+				<div class="card_socal">
+					<div class="row align-items-center">
+						<!-- <div class="col-sm-6 pr-0">
+							<div class="left-img">
+								<img src="assets/imgs/login.png" class="img-fluid">
+							</div>
+						</div> -->
+						<div class="col-sm-12 p-0">
+							<div class="right-part">
+								<div class="txt_card">
+									<h6 class="mb-4">Link Sent to your E-mail, Please Verify!</h6>
+									<!-- <p>Please enter new password below.</p> -->
+								</div>
+								<div class="input-flds">
+									<form [formGroup]="form">
+										<div class="row">
+											<div class="col-sm-12">
+											      <div class="custm-slect bordr-gld">
+													<span class="select-img">
+														<img src="assets/imgs/flag.png" class="img-fluid">
+													</span>
+													<div class="form-group">
+	                                                     <!-- <ngx-select-dropdown></ngx-select-dropdown> -->
+														<select name="" formControlName="country" class="form-control is-invalid" id="" (change)="changeCountry($event)">
+															<option value="" disabled>Select Country</option>
+															<option  *ngFor="let item of countries_list" value="{{ item.isoCode }}">{{ item.name }}</option>
+														</select>
+														<div *ngIf="(form.get('country').touched || form.get('country').dirty) && form.get('country').invalid && form.get('country').errors.required" class="invalid-feedback">
+															*Please Select country
+														</div>
+	                                                </div>
+												</div>
+											</div>
+											<div class="col-sm-12">
+											    <div class="custm-slect bordr-gld">
+													<span class="select-img">
+														<img src="assets/imgs/placeholder.png" class="img-fluid">
+													</span>
+													<div class="form-group">
+	                                                    <!-- <ngx-select-dropdown></ngx-select-dropdown> -->
+														<select name="" (change)="changeCity($event)" formControlName="city" class="form-control" id="">
+															<option value="" disabled>Select City</option>
+															<option  *ngFor="let item of cities_list" value="{{ item.name }}">{{ item.name }}</option>
+															<option value="other" >Other</option>
+														</select>
+														<!-- <div *ngIf="(form.get('city').touched || form.get('city').dirty) && form.get('city').invalid && form.get('city').errors.required" class="invalid-feedback">
+															*Please Select city
+														</div> -->
+	                                                </div>
+												</div>
+											</div>
+											<!-- <div class="col-sm-12">
+												<div class="bordr-gld">
+													<div class="input-group-prepend">
+														<span class="input-group-text" id="inputGroupPrepend3">
+															<img src="assets/imgs/edit.png" class="img-fluid">
+														</span>
+													</div>
+													<input type="text" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3" placeholder="City Name">
+											  	</div>
+										  	</div> -->
+											<div class="col-sm-12" *ngIf="otherCity">
+												<div class="form-group input-group input-border-gold">
+													<div class="input-group-prepend">
+													<span class="input-group-text" id="inputGroupPrepend3">
+														<img src="assets/imgs/placeholder.png" class="img-fluid">
+													</span>
+													</div>
+													<input type="text" formControlName="other_city" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3" autocomplete="off">
+													<div *ngIf="(form.get('other_city').touched || form.get('other_city').dirty) && form.get('other_city').invalid && form.get('other_city').errors.required && otherCity" class="invalid-feedback">
+														*Please enter city name
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-12">
+												<div class="intl-input refrl-apply">
+													<div class="form-group">
+														<!-- <div class="input-group-prepend">
+															<span class="input-group-text" id="inputGroupPrepend3">
+																<img src="assets/imgs/telephone.png" class="img-fluid">
+															</span>
+														</div> -->
+														<!-- <input type="text" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3" placeholder="Phone Number*"> -->
+														<!-- <input oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" pattern="[0-9.]+" type="text" formControlName="phone" class="form-control is-invalid" placeholder="Phone Number*">
+														<div  *ngIf="(form.get('phone').touched || form.get('phone').dirty) && form.get('phone').invalid && form.get('phone').errors.required" class="invalid-feedback">
+															*Please enter phone number
+														</div> -->
+														<ngx-intl-tel-input
+															[cssClass]="'custom'"
+															[preferredCountries]="[CountryISO.UnitedStates, CountryISO.UnitedKingdom]"
+															[enableAutoCountrySelect]="false"
+															[enablePlaceholder]="true"
+															[searchCountryFlag]="true"
+															[searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+															[selectFirstCountry]="false"
+															[selectedCountryISO]="CountryISO.UnitedArabEmirates"
+															[maxLength]="15"
+															[phoneValidation]="true"
+															(ngModelChange)="checkNumber()"
+															formControlName="phone"
+															autocomplete="off"
+														></ngx-intl-tel-input>
+														<!-- <div  *ngIf="(form.get('phone').touched || form.get('phone').dirty) && form.get('phone').invalid && form.get('phone').errors.required" class="invalid-feedback">
+															*Please enter phone number
+														</div> 
+														<div  *ngIf="(form.get('phone').touched || form.get('phone').dirty) && form.get('phone').invalid && form.get('phone').errors.minlength" class="invalid-feedback">
+															*Please enter phone number
+														</div>  -->
+														<div *ngIf="(f.phone.touched || f.phone.dirty) && f.phone.invalid && f.phone.errors" class="invalid-feedback">
+															<!-- <div *ngIf="(f.phone.touched || f.phone.dirty) && f.phone.invalid && f.phone.errors.required">Phone is required</div> -->
+															<div *ngIf="(f.phone.touched) && f.phone.invalid && f.phone.errors.required">Phone is required</div>
+															<div *ngIf="(f.phone.touched || f.phone.dirty) && f.phone.invalid && !f.phone.errors.required">Phone must be valid</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col-sm-12">
+												<div class="form-group">
+													<!-- <label>About Me</label> -->
+                                                    <textarea class="form-control" formControlName="about_me" rows="3" placeholder="Write something about yourself..."></textarea>
+													<div *ngIf="(form.get('about_me').touched || form.get('about_me').dirty) && form.get('about_me').invalid && form.get('about_me').errors.required" class="invalid-feedback">
+														*Please write something about yourself
+													</div>
+													<div *ngIf="form.get('about_me').valid && form.hasError('whitespace')" class="invalid-feedback">
+														*Please enter Valid Description
+													</div>
+                                                </div>
+											</div>
+										</div>
+										<div class="submit-btn btn-width text-center">
+											<!-- <a class="btn btn_theme_blue btn_referal my-2 my-sm-0" routerLink="/referral-db">Submit Details</a> -->
+											<button (click)="updateReferral()" [disabled]="!form.valid" class="btn btn_theme_blue btn_referal my-2 my-sm-0">Submit Details</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+
+</main>
+
+<app-footer></app-footer>

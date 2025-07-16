@@ -1,0 +1,89 @@
+<app-talent-header></app-talent-header>
+
+<main class="comon_main internal_pages_prnt">
+	<div class="cmn-pading-top">
+		<section class="talent-profile">
+			<div class="d-flex">
+				<app-talent-sidebar></app-talent-sidebar>
+				<div class="main-cntnt geting-strt">
+					<div class="top-cntnt">
+						<h5>Talent Admission</h5>
+						<div class="prgrs-bar bar-green" *ngIf="service.sideBarHeight">
+							<span class="prg-perc">{{service.sideBarHeight}}% Completed</span>
+    						<mat-progress-bar mode="determinate" value="{{service.sideBarHeight}}"></mat-progress-bar>
+	                    </div>
+	                    <div class="main-title mb-2 d-flex justify-content-between">
+							<p class="mb-1">What sectors are you experienced in?</p>
+	                    </div>
+					</div>
+					<div class="inside-wrapr card main-card choose-sectors">
+						<div class="all-disciplines">
+							<div class="singl-row sectors-box">
+								<div class="row box-wrap-1" *ngIf="sector_list.length">
+									<div class="col-sm-3" *ngFor="let sector of sector_list; let i = index">
+										<span class="bordr-left"></span>
+										<div *ngIf="!selectedSectors.includes(sector._id)" (click)="chooseSector(sector._id)" class="svg-icn d-flex align-items-center justify-content-center border-box-1">
+											<div class="disc-imag"  [innerHtml]="transform(sector.icon)">
+											</div>
+											<p class="icn-title mt-2 mb-0">{{sector.name}}</p>
+										</div>
+										<div *ngIf="selectedSectors.includes(sector._id)" (click)="removeSector(sector._id)" class="svg-icn d-flex align-items-center justify-content-center border-box-1 active">
+											<div class="disc-imag"  [innerHtml]="transform(sector.icon)">
+											</div>
+											<p class="icn-title mt-2 mb-0">{{sector.name}}</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="submit-btn btn-width d-flex justify-content-between mt-3">
+						<a routerLink="/choose-services" class="btn btn_theme_black my-2 my-sm-0">Back</a>
+						<a class="btn btn_theme_green my-2 my-sm-0" (click)="saveSector()">Next</a>
+					</div>
+					<div class="inside-footer">
+						<app-footer></app-footer>
+					</div>
+				</div>
+				<!-- <app-talent-right-sidebar></app-talent-right-sidebar> -->
+			</div>
+		</section>
+	</div>
+</main>
+
+
+<!-- add service modal -->
+<div class="modal fade add-service" [ngClass]="{'show show-modal': showModal}" id="addSector" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      	<div class="modal-content">
+        	<div class="modal-header">
+          		<h5 class="modal-title" id="exampleModalLongTitle">Add Sector</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-sm-9">
+						<div class="form-group">
+							<div class="custom-file">
+							<label>Enter Icon</label>
+							<input type="text" class="form-control" id="customFile" name="selFile" placeholder="enter icon svg code" [(ngModel)]="selectedIcon">
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-9">
+						<div class="form-group">
+							<label>Sector Name</label>
+							<input type="text" class="form-control" placeholder="e.g. Technology" [(ngModel)]="sectorName">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn_modal_black" data-dismiss="modal" (click)="closeModal()">Cancel</button>
+				<button type="button" class="btn btn_modal_green" (click)="saveNewSector()">Submit</button>
+			</div>
+      	</div>
+    </div>
+</div>
