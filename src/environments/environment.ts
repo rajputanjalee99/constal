@@ -31,7 +31,7 @@ export const environment = {
   SHARE_WHATSAPP_URL : "https://web.whatsapp.com/send?text=",
   SHARE_LINKEDIN_URL : "https://www.linkedin.com/cws/share?url=",
   firebaseConfig : {
-    apiKey: "AIzaSyBHA9upOSiVefXb440x51rJ8iAjMk6QxCY",
+    apiKey: "***************************88",
     authDomain: "constal-4a419.firebaseapp.com",
     projectId: "constal-4a419",
     storageBucket: "constal-4a419.appspot.com",

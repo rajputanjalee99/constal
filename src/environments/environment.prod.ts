@@ -21,7 +21,7 @@ export const environment = {
   // SERVER_URL : "https://developers.promaticstechnologies.com:5011/",
   SERVER_WEB_URL : "https://myconstal.com/",
   firebaseConfig : {
-    apiKey: "AIzaSyBHA9upOSiVefXb440x51rJ8iAjMk6QxCY",
+    apiKey: "*****************************888",
     authDomain: "constal-4a419.firebaseapp.com",
     projectId: "constal-4a419",
     storageBucket: "constal-4a419.appspot.com",
